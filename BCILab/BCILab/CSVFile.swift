@@ -4,7 +4,6 @@
 //
 //  Created by Scott Miller on 8/13/21.
 //
-
 import Foundation
 
 class CSVFile: FileHandle {

@@ -38,9 +38,7 @@ enum ChannelIDs: String, CaseIterable {
 
 class Headset {
     let params = BrainFlowInputParams(serial_port: "/dev/cu.usbserial-DM0258EJ")
-    //let boardId = BoardIds.CYTON_DAISY_BOARD
-    //let boardId = BoardIds.SYNTHETIC_BOARD
-    let boardId = BoardIds.CYTON_BOARD
+    let boardId: BoardIds
     let board: BoardShim
     let samplingRate: Int32
     let eegChannels: [Int32]
@@ -50,17 +48,30 @@ class Headset {
     let timestampChannel: Int
     let markerChannel: Int
 
-    init() throws {
+    init(boardId: BoardIds) throws {
+        self.boardId = boardId
         board = BoardShim(boardId, params)
         do {
             boardDescJSON = try getBoardDescr(boardId: boardId)
             boardDescDict = boardDescJSON.convertToDictionary()!
-            print("board description:\n\(boardDescJSON)")
             samplingRate = try getSamplingRate(boardId: boardId)
             eegChannels = try getEEGchannels(boardId: boardId)
             markerChannel = try Int(getMarkerChannel(boardId: boardId))
             pkgIDchannel = try Int(getPackageNumChannel(boardId: boardId))
             timestampChannel = try Int(getTimestampChannel(boardId: boardId))
+            
+            print("board description:\n\(boardDescJSON)")
+            print("preparing session")
+            
+            try board.prepareSession()
+            while try !board.isPrepared() {
+                sleep(1)
+            }
+            
+            print("setting gain to x1")
+            if !setGain(setting: .x1) {
+                exit(-1)
+            }
         }
         catch {
             try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: "Failed to initialize headset")
@@ -70,7 +81,11 @@ class Headset {
         enableDevBoardLogger()
     }
     
-    func setGain(setting: GainSettings) throws {
+    deinit {
+        try? board.isPrepared() ? try? board.releaseSession() : print("deinit: session already closed")
+    }
+
+    func setGain(setting: GainSettings) -> Bool {
         var i = 0
         for channel in ChannelIDs.allCases {
             if i >= eegChannels.count {
@@ -82,17 +97,26 @@ class Headset {
                 let response = try board.configBoard(command)
                 print("set \(channel) to gain value \(setting) with command \(command)")
                 print("reponse: \(response)")
+//                if response.range(of: "^Success", options: .regularExpression) == nil {
+//                    try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: response)
+//                    return false
+//                }
             }
             catch {
-                throw error
+                return false
             }
         }
+        return true
     }
 
     func streamEEG() {
         let filter = DataFilter()
         let rawFile = CSVFile(fileName: "BrainWave-EEG-Raw").openFile()
         let filteredFile = CSVFile(fileName: "BrainWave-EEG-Filtered").openFile()
+        
+        defer {
+            try? board.isPrepared() ? try? board.releaseSession() : print("defer: session already closed")
+        }
         
         func writeHeaders() {
             var headerStr = "PKG ID, Timestamp, Marker"
@@ -105,18 +129,10 @@ class Headset {
         }
 
         do {
-            print("preparing session")
-            try board.prepareSession()
-            while try !board.isPrepared() {
-                sleep(1)
-            }
-            print("setting gain to x1")
-            try setGain(setting: .x1)
             try board.startStream()
-            print("streaming EEG")
-            
             writeHeaders()
-            
+            print("streaming EEG")
+
             while true {
                 let matrixRaw = try board.getBoardData()
                 guard matrixRaw.count > 0 else {
@@ -144,12 +160,11 @@ class Headset {
                 }
                 rawFile.writeSamples(pkgIDs: pkgIDs, timestamps: timestamps, markers: markers, samples: rawSamples)
                 filteredFile.writeSamples(pkgIDs: pkgIDs, timestamps: timestamps, markers: markers, samples: filteredSamples)
-                sleep(5)
+                sleep(2)
             }
         }
         catch {
             try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: error.localizedDescription)
-            try? board.isPrepared() ? try? board.releaseSession() : print("session already closed")
         }
     }
 

@@ -8,7 +8,7 @@ struct ContentView: View {
     @State private var selection = -1
     @State var isTimerRunning = false
     let images: [LabeledImage] = prepareImages()
-    let headset = try! Headset()
+    let headset = try! Headset(boardId: BoardIds.SYNTHETIC_BOARD)
     
     var body: some View {
         ZStack{
@@ -31,6 +31,7 @@ struct ContentView: View {
                     }
                     if self.selection < 0 {
                         print("pause")
+                        try? self.headset.board.insertMarker(value: ImageLabels.blank.rawValue)
                         self.selection = 0
                         self.stopTimer()
                     } else {
@@ -51,9 +52,8 @@ struct ContentView: View {
             }
         }
     }
-    
-    init() {
-        print("total images: \(images.count)")
+
+    init () {
         let headsetCopy = headset
         DispatchQueue.global(qos: .background).async {
             headsetCopy.streamEEG()

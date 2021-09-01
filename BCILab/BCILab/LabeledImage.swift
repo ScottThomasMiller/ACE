@@ -19,32 +19,38 @@ struct LabeledImage {
     let label: ImageLabels
 }
 
-func appendImages(_ name: String,  label: ImageLabels, labeledImages: inout [LabeledImage])  {
-    let urls = Bundle.main.urls(forResourcesWithExtension: ".jpg", subdirectory: name)
-    for url in urls! {
-        guard let image = try? UIImage(data: Data(contentsOf: url)) else {
-            print("Error loading image: \(url)")
-            continue
+func getAllFromSubdir(subdir: String, label: ImageLabels) -> [LabeledImage]  {
+    var count = 0
+    var labeledImages = [LabeledImage]()
+
+    if let urls = Bundle.main.urls(forResourcesWithExtension: ".jpg", subdirectory: subdir) {
+        for url in urls {
+            guard let image = try? UIImage(data: Data(contentsOf: url)) else {
+                print("Error loading image: \(url)")
+                continue
+            }
+            let labeledImage = LabeledImage(image: image, label: label)
+            labeledImages.append(labeledImage)
+            count += 1
         }
-        let labeledImage = LabeledImage(image: image, label: label)
-        labeledImages.append(labeledImage)
     }
+    print("loaded \(count) images from \(subdir) with label \(label)")
+    return labeledImages
 }
 
+// Return a randomized array of faces and nonfaces, with blanks inserted between each image.
 func prepareImages () -> [LabeledImage] {
-    // replace the labeled animation images with a new set, which is a shuffling of the current animation images with blanks inserted between each image:
     guard let blankURL = Bundle.main.url(forResource: "green_crosshair", withExtension: ".png") else {
         print("Error: cannot load blank image")
         return [LabeledImage]()
     }
     let blankImage = try! UIImage(data: Data(contentsOf: blankURL))
     let blank = LabeledImage(image: blankImage!, label: ImageLabels.blank)
-    var labeledImages = [LabeledImage]()
-    appendImages("Faces", label: ImageLabels.face, labeledImages: &labeledImages)
-    appendImages("NonFaces", label: ImageLabels.nonface, labeledImages: &labeledImages)
-    let shuffledImages = labeledImages.shuffled()
+    let faceImages = getAllFromSubdir(subdir: "Faces", label: ImageLabels.face).shuffled()
+    let nonFaceImages = getAllFromSubdir(subdir: "NonFaces", label: ImageLabels.nonface).shuffled()
+    let shuffledImages = faceImages[..<50] + nonFaceImages[..<50]
     var finalImages = [LabeledImage]()
-    for image in shuffledImages {
+    for image in shuffledImages.shuffled() {
         finalImages.append(blank)
         finalImages.append(image)
     }
