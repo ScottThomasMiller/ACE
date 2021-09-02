@@ -43,7 +43,7 @@ extension FileHandle {
             let marker = String(format: "%d", Int(markers[iSample]))
             var sampleString = pkgID + "," + tStamp + "," + marker
             for iChannel in 0..<samples.count {
-                sampleString += "," + String(format: "%.5f", samples[iChannel][iSample]/24.0)
+                sampleString += "," + String(format: "%.5f", samples[iChannel][iSample])
             }
             sampleString += "\n"
             self.write(Data(sampleString.utf8))

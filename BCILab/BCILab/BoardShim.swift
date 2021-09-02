@@ -351,6 +351,7 @@ struct BoardShim {
         var response = [CChar](repeating: CChar(0), count: 4096)
         var cParams = jsonParams.cString(using: String.Encoding.utf8)!
         var cConfig = config.cString(using: String.Encoding.utf8)!
+        print("cConfig: \(cConfig) len: \(cConfig.count)")
 
         let result = config_board (&cConfig, &response, &responseLen, boardId.rawValue, &cParams)
         let exitCode = BrainFlowExitCodes(rawValue: result)

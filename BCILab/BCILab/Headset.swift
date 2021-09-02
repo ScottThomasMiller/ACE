@@ -72,6 +72,10 @@ class Headset {
             if !setGain(setting: .x1) {
                 exit(-1)
             }
+            
+            if !setNumChannels() {
+                exit(-1)
+            }
         }
         catch {
             try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: "Failed to initialize headset")
@@ -109,6 +113,25 @@ class Headset {
         return true
     }
 
+    func setNumChannels() -> Bool {
+        // send "c" for Cyton or "C" for Cyton+Daisy
+        var command: String = ""
+        if boardId == .CYTON_BOARD {
+            command = "c" }
+        else {
+            command = "C"
+        }
+        print("setNumChannels sending: \(command)")
+        
+        guard let response = try? board.configBoard(command) else {
+            print("Error.  Cannot send command.")
+            return false
+        }
+        
+        print("response: \(response)")
+        return true
+    }
+    
     func streamEEG() {
         let filter = DataFilter()
         let rawFile = CSVFile(fileName: "BrainWave-EEG-Raw").openFile()
@@ -146,7 +169,7 @@ class Headset {
                 var filteredSamples = [[Double]]()
                 for channel in eegChannels {
                     let ch = Int(channel)
-                    var filtered = matrixRaw[ch]
+                    var filtered = matrixRaw[ch].map { $0 / 24.0 }
                     try filter.removeEnvironmentalNoise(data: &filtered, samplingRate: samplingRate, noiseType: NoiseTypes.SIXTY)
                     try filter.performBandpass(data: &filtered, samplingRate: samplingRate, centerFreq: 27.5, bandWidth: 45.0, order: 4, filterType: FilterTypes.BUTTERWORTH, ripple: 1.0)
                     var rawSample = [Double]()

@@ -8,7 +8,7 @@ struct ContentView: View {
     @State private var selection = -1
     @State var isTimerRunning = false
     let images: [LabeledImage] = prepareImages()
-    let headset = try! Headset(boardId: BoardIds.SYNTHETIC_BOARD)
+    let headset = try! Headset(boardId: BoardIds.CYTON_BOARD)
     
     var body: some View {
         ZStack{
