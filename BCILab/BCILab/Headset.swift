@@ -50,8 +50,8 @@ class Headset {
 
     init(boardId: BoardIds) throws {
         self.boardId = boardId
-        board = BoardShim(boardId, params)
         do {
+            board = try BoardShim(boardId, params)
             boardDescJSON = try getBoardDescr(boardId: boardId)
             boardDescDict = boardDescJSON.convertToDictionary()!
             samplingRate = try getSamplingRate(boardId: boardId)
