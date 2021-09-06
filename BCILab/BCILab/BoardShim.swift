@@ -1,6 +1,6 @@
 //
 //  BoardShim.swift
-//  A binding for BrainFlow's board_shim high-level API
+//  A Swift binding for BrainFlow's board_shim high-level API
 //
 //  Created by Scott Miller for Aeris Rising, LLC on 8/23/21.
 //
@@ -11,35 +11,45 @@ import Foundation
 //////////// logging methods ////////////
 /////////////////////////////////////////
 
+
+/**
+ * enable BrainFlow logger with level INFO
+ */
 func enableBoardLogger () {
     set_log_level (LogLevels.LEVEL_INFO.rawValue)
 }
 
-func disableBoardLogger () {
-    set_log_level (LogLevels.LEVEL_OFF.rawValue)
-}
-
+/**
+ * enable BrainFlow logger with level TRACE
+ */
 func enableDevBoardLogger () {
     set_log_level (LogLevels.LEVEL_TRACE.rawValue)
 }
 
+/**
+* disable BrainFlow logger
+*/
+func disableBoardLogger () {
+    set_log_level (LogLevels.LEVEL_OFF.rawValue)
+}
+
+/**
+ * redirect logger from stderr to a file
+ */
 func setLogFile (_ logFile: String) throws
 {
     var cLogFile = logFile.cString(using: String.Encoding.utf8)!
     let result = set_log_file(&cLogFile)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException("failed to set log file", result)
-    }
+    try checkErrorCode(errorMsg: "failed to set log file", errorCode: result)
 }
 
+/**
+ * set log level
+ */
 func setLogLevel (_ logLevel: LogLevels) throws
 {
     let result = set_log_level (logLevel.rawValue)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException ("failed to set log level", result)
-    }
+    try checkErrorCode(errorMsg: "failed to set log level", errorCode: result)
 }
 
 /**
@@ -48,10 +58,7 @@ func setLogLevel (_ logLevel: LogLevels) throws
 func logMessage (logLevel: Int32, message: String) throws {
     var cMessage = message.cString(using: String.Encoding.utf8)!
     let result = log_message (logLevel, &cMessage)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException ("Error in log_message", result)
-    }
+    try checkErrorCode(errorMsg: "Error in log_message", errorCode: result)
 }
 
 /**
@@ -60,10 +67,8 @@ func logMessage (logLevel: Int32, message: String) throws {
 func getSamplingRate (boardId: BoardIds) throws -> Int32 {
     var samplingRate: Int32 = 0
     let result = get_sampling_rate (boardId.rawValue, &samplingRate)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException ("Error in board info getter", result)
-    }
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
     return samplingRate
 }
 
@@ -73,10 +78,8 @@ func getSamplingRate (boardId: BoardIds) throws -> Int32 {
 func getTimestampChannel (boardId: BoardIds) throws -> Int32 {
     var timestampChannel: Int32 = 0
     let result = get_timestamp_channel (boardId.rawValue, &timestampChannel)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException ("Error in board info getter", result)
-    }
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
     return timestampChannel
 }
 
@@ -87,10 +90,8 @@ func getMarkerChannel (boardId: BoardIds) throws -> Int32
 {
     var markerChannel: Int32 = 0
     let result = get_marker_channel (boardId.rawValue, &markerChannel)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException ("Error in board info getter", result)
-    }
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
     return markerChannel
 }
 
@@ -100,10 +101,8 @@ func getMarkerChannel (boardId: BoardIds) throws -> Int32
 func getNumRows (boardId: BoardIds) throws -> Int32 {
     var numRows: Int32 = 0
     let result = get_num_rows (boardId.rawValue, &numRows)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException ("Error in board info getter", result)
-    }
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
     return numRows
 }
 
@@ -113,10 +112,8 @@ func getNumRows (boardId: BoardIds) throws -> Int32 {
 func getPackageNumChannel (boardId: BoardIds) throws -> Int32 {
     var pkgNumChannel: Int32 = 0
     let result = get_package_num_channel (boardId.rawValue, &pkgNumChannel)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException ("Error in board info getter", result)
-    }
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
     return pkgNumChannel
 }
 
@@ -126,11 +123,23 @@ func getPackageNumChannel (boardId: BoardIds) throws -> Int32 {
 func getBatteryChannel (boardId: BoardIds) throws -> Int32 {
     var batteryChannel: Int32 = 0
     let result = get_battery_channel (boardId.rawValue, &batteryChannel)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException ("Error in board info getter", result)
-    }
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
     return batteryChannel
+}
+
+/**
+ * Get names of EEG electrodes in 10-20 system. Only if electrodes have freezed
+ * locations
+ */
+func getEEGnames (boardId: BoardIds) throws -> [String] {
+    var stringLen: Int32 = 0
+    var bytes = [CChar](repeating: 0, count: 4096)
+    let result = get_eeg_names (boardId.rawValue, &bytes, &stringLen)
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let EEGnames = bytes.toString(stringLen)
+
+    return EEGnames.components(separatedBy: ",")
 }
 
 /**
@@ -140,10 +149,7 @@ func getBoardDescr (boardId: BoardIds) throws -> String {
     var boardDescrStr = [CChar](repeating: CChar(0), count: 16000)
     var stringLen: Int32 = 0
     let result = get_board_descr (boardId.rawValue, &boardDescrStr, &stringLen)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException ("failed to get board info", result)
-    }
+    try checkErrorCode(errorMsg: "failed to get board info", errorCode: result)
 
     if let description = String(data: Data(bytes: &boardDescrStr, count: Int(stringLen)), encoding: .utf8) {
         return description }
@@ -159,10 +165,8 @@ func getDeviceName (boardId: BoardIds) throws -> String {
     var stringLen: Int32 = 0
     var deviceName = [CChar](repeating: CChar(0), count: 4096)
     let result = get_device_name (boardId.rawValue, &deviceName, &stringLen)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException ("Error in board info getter", result)
-    }
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
     return deviceName.toString(stringLen)
 }
 
@@ -174,10 +178,73 @@ func getEEGchannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
     let result = get_eeg_channels (boardId.rawValue, &channels, &len)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException ("Error in board info getter", result)
-    }
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
+    return Array(channels[0..<Int(len)])
+}
+
+/**
+ * get row indices in returned by get_board_data() 2d array which contain EMG
+ * data, for some boards we can not split EEG\EMG\... and return the same array
+ */
+func getEMGchannels (boardId: BoardIds) throws -> [Int32] {
+    var len: Int32 = 0
+    var channels = [Int32](repeating: 0, count: 512)
+    let result = get_emg_channels (boardId.rawValue, &channels, &len)
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
+    return Array(channels[0..<Int(len)])
+}
+
+/**
+ * get row indices in returned by get_board_data() 2d array which contain ECG
+ * data, for some boards we can not split EEG\EMG\... and return the same array
+ */
+func getECGchannels (boardId: BoardIds) throws -> [Int32] {
+    var len: Int32 = 0
+    var channels = [Int32](repeating: 0, count: 512)
+    let result = get_ecg_channels (boardId.rawValue, &channels, &len)
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
+    return Array(channels[0..<Int(len)])
+}
+
+/**
+ * get row indices in returned by get_board_data() 2d array which contain
+ * temperature data
+ */
+func getTemperatureChannels (boardId: BoardIds) throws -> [Int32] {
+    var len: Int32 = 0
+    var channels = [Int32](repeating: 0, count: 512)
+    let result = get_temperature_channels (boardId.rawValue, &channels, &len)
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
+    return Array(channels[0..<Int(len)])
+}
+
+/**
+ * get row indices in returned by get_board_data() 2d array which contain
+ * resistance data
+ */
+func getReistanceChannels (boardId: BoardIds) throws -> [Int32] {
+    var len: Int32 = 0
+    var channels = [Int32](repeating: 0, count: 512)
+    let result = get_resistance_channels (boardId.rawValue, &channels, &len)
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
+    return Array(channels[0..<Int(len)])
+}
+
+/**
+ * get row indices in returned by get_board_data() 2d array which contain EOG
+ * data, for some boards we can not split EEG\EMG\... and return the same array
+ */
+func getEOGchannels (boardId: BoardIds) throws -> [Int32] {
+    var len: Int32 = 0
+    var channels = [Int32](repeating: 0, count: 512)
+    let result = get_eog_channels (boardId.rawValue, &channels, &len)
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
     return Array(channels[0..<Int(len)])
 }
 
@@ -189,10 +256,8 @@ func getEXGchannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
     let result = get_exg_channels (boardId.rawValue, &channels, &len)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException ("Error in board info getter", result)
-    }
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
     return Array(channels[0..<Int(len)])
 }
 
@@ -204,10 +269,8 @@ func getEDAchannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
     let result = get_eda_channels (boardId.rawValue, &channels, &len)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException ("Error in board info getter", result)
-    }
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
     return Array(channels[0..<Int(len)])
 }
 
@@ -219,10 +282,8 @@ func getPPGchannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
     let result = get_ppg_channels (boardId.rawValue, &channels, &len)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException ("Error in board info getter", result)
-    }
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
     return Array(channels[0..<Int(len)])
 }
 
@@ -234,10 +295,8 @@ func getAccelChannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
     let result = get_accel_channels (boardId.rawValue, &channels, &len)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException ("Error in board info getter", result)
-    }
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
     return Array(channels[0..<Int(len)])
 }
 
@@ -249,10 +308,8 @@ func getAnalogChannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
     let result = get_analog_channels (boardId.rawValue, &channels, &len)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException ("Error in board info getter", result)
-    }
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
     return Array(channels[0..<Int(len)])
 }
 
@@ -264,10 +321,8 @@ func getGyroChannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
     let result = get_gyro_channels (boardId.rawValue, &channels, &len)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException ("Error in board info getter", result)
-    }
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
     return Array(channels[0..<Int(len)])
 }
 
@@ -279,19 +334,29 @@ func getOtherChannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
     let result = get_other_channels (boardId.rawValue, &channels, &len)
-    let exitCode = BrainFlowExitCodes(rawValue: result)
-    if exitCode != BrainFlowExitCodes.STATUS_OK {
-        throw BrainFlowException ("Error in board info getter", result)
-    }
+    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+
     return Array(channels[0..<Int(len)])
 }
 
+/*
+ If the board is streaming or playback, then get the master board ID from params.other_info.
+ Otherwise return the board ID itself.
+ */
+func getMasterBoardID(boardId: BoardIds, params: BrainFlowInputParams) throws -> BoardIds {
+    guard ((boardId == BoardIds.STREAMING_BOARD) || (boardId == BoardIds.PLAYBACK_FILE_BOARD)) else {
+        return boardId
+    }
+    if let otherInfoInt = Int32(params.other_info) {
+        if let masterBoardId = BoardIds(rawValue: otherInfoInt) {
+            return masterBoardId
+        }
+    }
+    throw BrainFlowException ("need to set params.otherInfo to master board id",
+                              BrainFlowExitCodes.INVALID_ARGUMENTS_ERROR)
+}
 
-//////////////////////////////////////////
-/////// data acquisition methods /////////
-//////////////////////////////////////////
-
-struct BoardShim {
+class BoardShim {
     let boardId: BoardIds
     let masterBoardId: BoardIds
     let bfParams: BrainFlowInputParams
@@ -300,104 +365,142 @@ struct BoardShim {
     init (_ boardId: BoardIds, _ params: BrainFlowInputParams) throws {
         self.boardId = boardId
         self.bfParams = params
-        var mBoardId: BoardIds? = boardId
-        var otherInfoInt: Int32? = 0
-        
-        if ((boardId == BoardIds.STREAMING_BOARD) || (boardId == BoardIds.PLAYBACK_FILE_BOARD)) {
-            otherInfoInt = Int32(params.other_info)
-            guard otherInfoInt != nil else {
-                throw BrainFlowException ("need to set params.otherInfo to master board id",
-                                          BrainFlowExitCodes.INVALID_ARGUMENTS_ERROR.rawValue)
-            }
-            mBoardId = BoardIds(rawValue: otherInfoInt!)
-            guard mBoardId != nil else {
-                throw BrainFlowException ("need to set params.otherInfo to master board id",
-                                          BrainFlowExitCodes.INVALID_ARGUMENTS_ERROR.rawValue)
-            }
-        }
-
-        self.masterBoardId = mBoardId!
+        self.masterBoardId = try getMasterBoardID(boardId: boardId, params: params)
         self.jsonBrainFlowInputParams = params.json().cString(using: String.Encoding.utf8)!
     }
     
     func prepareSession() throws {
         var jsonBFParams = self.jsonBrainFlowInputParams
         let result = prepare_session(boardId.rawValue, &jsonBFParams)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-            throw BrainFlowException("failed to prepare session", result)
-        }
+        try checkErrorCode(errorMsg: "failed to prepare session", errorCode: result)
     }
     
-    func isPrepared () throws -> Bool  {
-        var intPrepared: Int32 = 0
-        var jsonBFParams = self.jsonBrainFlowInputParams
-        let result = is_prepared (&intPrepared, boardId.rawValue, &jsonBFParams)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-            throw BrainFlowException ("failed to check session", result)
-        }
-        guard let boolPrepared = Bool(exactly: NSNumber(value: intPrepared)) else {
-            throw BrainFlowException ("is_prepared returned non-boolean", intPrepared)
-        }
-        return boolPrepared
-    }
-
-    func startStream (bufferSize: Int32, streamerParams: String) throws {
-        var cStreamerParams = streamerParams.cString(using: String.Encoding.utf8)!
-        var jsonBFParams = self.jsonBrainFlowInputParams
-        let result = start_stream (bufferSize, &cStreamerParams, boardId.rawValue, &jsonBFParams)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-            throw BrainFlowException ("failed to start stream", result)
-        }
-    }
-   
-    func startStream() throws {
-        try startStream(bufferSize: 450000, streamerParams: "")
-    }
-    
-    func stopStream () throws {
-        var jsonBFParams = self.jsonBrainFlowInputParams
-        let result = stop_stream (boardId.rawValue, &jsonBFParams)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-            throw BrainFlowException ("failed to stop stream", result)
-        }
-    }
-
-    func releaseSession () throws {
-        var jsonBFParams = self.jsonBrainFlowInputParams
-        let result = release_session (boardId.rawValue, &jsonBFParams)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-            throw BrainFlowException ("failed to release session", result)
-        }
-    }
-    
-    func getBoardDataCount () throws -> Int32 {
-        var dataCount: Int32 = 0
-        var jsonBFParams = self.jsonBrainFlowInputParams
-        let result = get_board_data_count (&dataCount, boardId.rawValue, &jsonBFParams)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-            throw BrainFlowException ("failed to get board data count", result)
-        }
-        return dataCount
-    }
-
+    /**
+     * Get Board Id, can be different than provided (playback or streaming board)
+     */
     func getBoardId () throws -> BoardIds {
         return self.masterBoardId
     }
         
-    func getNumRows (boardId: BoardIds) throws -> Int32 {
-        var numRows: Int32 = 0;
-        let result = get_num_rows (boardId.rawValue, &numRows)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-            throw BrainFlowException ("failed to get board info", result)
+    /**
+     * send string to a board, use this method carefully and only if you understand what you are doing
+     */
+    func configBoard (_ config: String) throws -> String {
+        var responseLen: Int32 = 0
+        var response = [CChar](repeating: CChar(0), count: 4096)
+        var cConfig = config.cString(using: String.Encoding.utf8)!
+        var jsonBFParams = self.jsonBrainFlowInputParams
+        let result = config_board (&cConfig, &response, &responseLen, boardId.rawValue, &jsonBFParams)
+        try checkErrorCode(errorMsg: "Error in config_board", errorCode: result)
+
+        return response.toString(responseLen)
+    }
+
+    /**
+     * start streaming thread, store data in internal ringbuffer and stream them
+     * from brainflow at the same time
+     *
+     * @param buffer_size     size of internal ringbuffer
+     *
+     * @param streamer_params supported vals: "file://%file_name%:w",
+     *                        "file://%file_name%:a",
+     *                        "streaming_board://%multicast_group_ip%:%port%". Range
+     *                        for multicast addresses is from "224.0.0.0" to
+     *                        "239.255.255.255"
+     */
+    func startStream (bufferSize: Int32, streamerParams: String) throws {
+        var cStreamerParams = streamerParams.cString(using: String.Encoding.utf8)!
+        var jsonBFParams = self.jsonBrainFlowInputParams
+        let result = start_stream (bufferSize, &cStreamerParams, boardId.rawValue, &jsonBFParams)
+        try checkErrorCode(errorMsg: "failed to start stream", errorCode: result)
+    }
+   
+    /**
+     * start streaming thread, store data in internal ringbuffer
+     */
+    func startStream () throws {
+        try startStream (bufferSize: 450000, streamerParams: "")
+    }
+
+    /**
+     * start streaming thread, store data in internal ringbuffer
+     */
+    func startStream (bufferSize: Int32) throws {
+        try startStream (bufferSize: bufferSize, streamerParams: "")
+    }
+    
+    /**
+     * stop streaming thread
+     */
+    func stopStream () throws {
+        var jsonBFParams = self.jsonBrainFlowInputParams
+        let result = stop_stream (boardId.rawValue, &jsonBFParams)
+        try checkErrorCode(errorMsg: "Error in stop_stream", errorCode: result)
+    }
+    
+    /**
+     * release all resources
+     */
+    func releaseSession () throws {
+        var jsonBFParams = self.jsonBrainFlowInputParams
+        let result = release_session (boardId.rawValue, &jsonBFParams)
+        try checkErrorCode(errorMsg: "failed to release session", errorCode: result)
+    }
+    
+    /**
+     * get number of packages in ringbuffer
+     */
+    func getBoardDataCount () throws -> Int32 {
+        var dataCount: Int32 = 0
+        var jsonBFParams = self.jsonBrainFlowInputParams
+        let result = get_board_data_count (&dataCount, boardId.rawValue, &jsonBFParams)
+        try checkErrorCode(errorMsg: "failed to get board data count", errorCode: result)
+        
+        return dataCount
+    }
+
+    /**
+     * insert marker to data stream
+     */
+    func insertMarker (value: Double) throws {
+        var jsonBFParams = self.jsonBrainFlowInputParams
+        let result = insert_marker (value, boardId.rawValue, &jsonBFParams)
+        try checkErrorCode(errorMsg: "Error in insert_marker", errorCode: result)
+    }
+    
+    /**
+     * check session status
+     */
+    func isPrepared () throws -> Bool  {
+        var intPrepared: Int32 = 0
+        var jsonBFParams = self.jsonBrainFlowInputParams
+        let result = is_prepared (&intPrepared, boardId.rawValue, &jsonBFParams)
+        try checkErrorCode(errorMsg: "failed to check session", errorCode: result)
+        
+        return NSNumber(value: intPrepared).boolValue
+    }
+
+    /**
+     * get latest collected data, can return less than "num_samples", doesnt flush
+     * it from ringbuffer
+     */
+    func getCurrentBoardData (_ numSamples: Int32) throws -> [Double]
+    {
+        var numRows: Int32 = 0
+        var currentSize: Int32 = 0
+        var jsonBFParams = self.jsonBrainFlowInputParams
+
+        do {
+            numRows = try getNumRows (boardId: getBoardId()) }
+        catch {
+            throw error
         }
-        return numRows
+            
+        var buffer = [Double](repeating: 0.0, count: Int(numSamples * numRows))
+        let result = get_current_board_data (numSamples, &buffer, &currentSize, boardId.rawValue, &jsonBFParams)
+        try checkErrorCode(errorMsg: "Error in get_current_board_data", errorCode: result)
+        
+        return buffer
     }
 
     func getBoardData () throws -> [[Double]] {
@@ -418,68 +521,8 @@ struct BoardShim {
         var buffer = [Double](repeating: 0.0, count: Int(size * numRows))
         
         let result = get_board_data (size, &buffer, boardId.rawValue, &jsonBFParams)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-            throw BrainFlowException ("failed to get board data", result)
-        }
+        try checkErrorCode(errorMsg: "failed to get board data", errorCode: result)
 
         return buffer.matrix2D(rowLength: Int(size))
-    }
-    
-    /**
-     * get latest collected data, can return less than "num_samples", doesnt flush
-     * it from ringbuffer
-     */
-    func getCurrentBoardData (_ numSamples: Int32) throws -> [Double]
-    {
-        var numRows: Int32 = 0
-        var currentSize: Int32 = 0
-        var jsonBFParams = self.jsonBrainFlowInputParams
-
-        do {
-            numRows = try getNumRows (boardId: getBoardId()) }
-        catch {
-            throw error
-        }
-            
-        var buffer = [Double](repeating: 0.0, count: Int(numSamples * numRows))
-        let result = get_current_board_data (numSamples, &buffer, &currentSize, boardId.rawValue, &jsonBFParams)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-            throw BrainFlowException ("Error in get_current_board_data", result)
-        }
-        
-        return buffer
-    }
-    
-    /**
-     * send string to a board, use this method carefully and only if you understand what you are doing
-     */
-    func configBoard (_ config: String) throws -> String {
-        var responseLen: Int32 = 0
-        var response = [CChar](repeating: CChar(0), count: 4096)
-        var cConfig = config.cString(using: String.Encoding.utf8)!
-        var jsonBFParams = self.jsonBrainFlowInputParams
-        print("cConfig: \(cConfig) len: \(cConfig.count)")
-
-        let result = config_board (&cConfig, &response, &responseLen, boardId.rawValue, &jsonBFParams)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-            throw BrainFlowException ("Error in config_board", result)
-        }
-        
-        return response.toString(responseLen)        
-    }
-    
-    /**
-     * insert marker to data stream
-     */
-    func insertMarker (value: Double) throws {
-        var jsonBFParams = self.jsonBrainFlowInputParams
-        let result = insert_marker (value, boardId.rawValue, &jsonBFParams)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-            throw BrainFlowException ("Error in insert_marker", result)
-        }
     }
 }

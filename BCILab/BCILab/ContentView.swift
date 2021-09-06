@@ -1,6 +1,6 @@
 import SwiftUI
 
-// forked from: https://stackoverflow.com/questions/58896661/swiftui-create-image-slider-with-dots-as-indicators
+// TabView timer code forked from: https://stackoverflow.com/questions/58896661/swiftui-create-image-slider-with-dots-as-indicators
 
 struct ContentView: View {
     let interval = 1.0
@@ -8,7 +8,9 @@ struct ContentView: View {
     @State private var selection = -1
     @State var isTimerRunning = false
     let images: [LabeledImage] = prepareImages()
-    let headset = try! Headset(boardId: BoardIds.CYTON_BOARD)
+    //let boardId = BoardIds.CYTON_BOARD
+    let boardId = BoardIds.SYNTHETIC_BOARD
+    let headset: Headset
     
     var body: some View {
         ZStack{
@@ -54,9 +56,16 @@ struct ContentView: View {
     }
 
     init () {
-        let headsetCopy = headset
-        DispatchQueue.global(qos: .background).async {
-            headsetCopy.streamEEG()
+        do {
+            self.headset = try Headset(boardId: self.boardId)
+            let headsetCopy = self.headset
+            DispatchQueue.global(qos: .background).async {
+                headsetCopy.streamEEG() }
+            }
+        catch {
+            print("Cannot connect to headset")
+            //exit(BrainFlowExitCodes.BOARD_NOT_READY_ERROR.rawValue)
+            exit(-1)
         }
     }
     
@@ -70,3 +79,9 @@ struct ContentView: View {
         self.timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     }
 }
+
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}

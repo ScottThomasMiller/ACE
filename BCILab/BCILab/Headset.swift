@@ -37,6 +37,7 @@ enum ChannelIDs: String, CaseIterable {
 }
 
 class Headset {
+    var isReady: Bool = false
     let params = BrainFlowInputParams(serial_port: "/dev/cu.usbserial-DM0258EJ")
     let boardId: BoardIds
     let board: BoardShim
@@ -51,6 +52,7 @@ class Headset {
     init(boardId: BoardIds) throws {
         self.boardId = boardId
         do {
+            print("setup headset")
             board = try BoardShim(boardId, params)
             boardDescJSON = try getBoardDescr(boardId: boardId)
             boardDescDict = boardDescJSON.convertToDictionary()!
@@ -65,7 +67,8 @@ class Headset {
             
             try board.prepareSession()
             while try !board.isPrepared() {
-                sleep(1)
+                print("waiting for session...")
+                sleep(3)
             }
             
             print("setting gain to x1")
@@ -83,6 +86,7 @@ class Headset {
             throw error
         }
         enableDevBoardLogger()
+        isReady = true
     }
     
     deinit {
@@ -101,10 +105,6 @@ class Headset {
                 let response = try board.configBoard(command)
                 print("set \(channel) to gain value \(setting) with command \(command)")
                 print("reponse: \(response)")
-//                if response.range(of: "^Success", options: .regularExpression) == nil {
-//                    try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: response)
-//                    return false
-//                }
             }
             catch {
                 return false
@@ -152,6 +152,8 @@ class Headset {
         }
 
         do {
+            //try setLogFile("brainflow.csv")
+            //try board.startStream(bufferSize: 10000000, streamerParams: "file://%file_name%:w")
             try board.startStream()
             writeHeaders()
             print("streaming EEG")
@@ -186,8 +188,11 @@ class Headset {
                 sleep(2)
             }
         }
+        catch let bfError as BrainFlowException {
+            try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: bfError.message)
+            try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: "Error code: \(bfError.errorCode)") }
         catch {
-            try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: error.localizedDescription)
+            try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: "undefined exception")
         }
     }
 

@@ -9,10 +9,21 @@ import Foundation
 
 class BrainFlowException: Error {
     var message: String
-    var errorCode: Int32
+    var errorCode: BrainFlowExitCodes
     
-    init(_ errorMessage: String, _ code: Int32) {
+    init(_ errorMessage: String, _ code: BrainFlowExitCodes) {
         message = errorMessage
         errorCode = code
+    }
+    
+}
+
+func checkErrorCode(errorMsg: String, errorCode: Int32) throws {
+    if let bfErrorCode = BrainFlowExitCodes(rawValue: errorCode) {
+        if bfErrorCode != BrainFlowExitCodes.STATUS_OK {
+            throw BrainFlowException (errorMsg, bfErrorCode)
+        }
+    } else {
+        throw BrainFlowException("Invalid error code: \(errorCode)", .UNKNOWN_CODE)
     }
 }

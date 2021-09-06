@@ -49,10 +49,7 @@ struct DataFilter {
     func setLogFile (_ logFile: String) throws {
         var cLogFile = logFile.cString(using: String.Encoding.utf8)!
         let result = set_log_file (&cLogFile)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-            throw BrainFlowException ("Error in set_log_file", result)
-        }
+        try checkErrorCode(errorMsg: "Error in set_log_file", errorCode: result)
     }
 
     /**
@@ -60,10 +57,7 @@ struct DataFilter {
      */
     private func setLogLevel (_ logLevel: LogLevels) throws {
         let result = set_log_level (logLevel.rawValue)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-            throw BrainFlowException ("Error in set_log_level", result)
-        }
+        try checkErrorCode(errorMsg: "Error in set_log_level", errorCode: result)
     }
 
     /**
@@ -74,10 +68,7 @@ struct DataFilter {
         let dataCount = Int32(data.count)
         let filterVal = filterType.rawValue
         let result = perform_lowpass (&data, dataCount, samplingRate, cutoff, order, filterVal, ripple)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-           throw BrainFlowException ("Failed to apply filter", result)
-        }
+        try checkErrorCode(errorMsg: "Failed to apply filter", errorCode: result)
     }
 
     /**
@@ -88,10 +79,7 @@ struct DataFilter {
         let dataCount = Int32(data.count)
         let filterVal = filterType.rawValue
         let result = perform_highpass (&data, dataCount, samplingRate, cutoff, order, filterVal, ripple)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-           throw BrainFlowException ("Failed to apply filter", result)
-        }
+        try checkErrorCode(errorMsg: "Failed to apply filter", errorCode: result)
     }
 
     /**
@@ -103,10 +91,7 @@ struct DataFilter {
         let filterVal = filterType.rawValue
         let result = perform_bandpass (&data, dataCount, samplingRate, centerFreq, bandWidth, order,
                                        filterVal, ripple)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-            throw BrainFlowException ("Failed to apply filter", result)
-        }
+        try checkErrorCode(errorMsg: "Failed to apply filter", errorCode: result)
     }
 
     /**
@@ -118,10 +103,7 @@ struct DataFilter {
         let filterVal = filterType.rawValue
         let result = perform_bandstop (&data, dataCount, samplingRate, centerFreq, bandWidth, order,
                                        filterVal, ripple)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-            throw BrainFlowException ("Failed to apply filter", result)
-        }
+        try checkErrorCode(errorMsg: "Failed to apply filter", errorCode: result)
     }
     
     /**
@@ -130,10 +112,7 @@ struct DataFilter {
     func performRollingFilter (data: inout [Double], period: Int32, operation: Int32) throws {
         let dataCount = Int32(data.count)
         let result = perform_rolling_filter (&data, dataCount, period, operation)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-            throw BrainFlowException ("Failed to apply filter", result)
-        }
+        try checkErrorCode(errorMsg: "Failed to apply filter", errorCode: result)
     }
     
     /**
@@ -142,10 +121,7 @@ struct DataFilter {
     func removeEnvironmentalNoise (data: inout [Double], samplingRate: Int32, noiseType: NoiseTypes) throws {
         let dataCount = Int32(data.count)
         let result = remove_environmental_noise (&data, dataCount, samplingRate, noiseType.rawValue)
-        let exitCode = BrainFlowExitCodes(rawValue: result)
-        if exitCode != BrainFlowExitCodes.STATUS_OK {
-            throw BrainFlowException ("Failed to remove noise", result)
-        }
+        try checkErrorCode(errorMsg: "Failed to remove noise", errorCode: result)
     }
 
 }

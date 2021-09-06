@@ -9,6 +9,29 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>BCILabTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>5F58BD0B26AC1C5D003F5483</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5F58BD1C26AC1C5E003F5483</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5F58BD2726AC1C5E003F5483</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 	</dict>
 </dict>
 </plist>

@@ -1,5 +1,6 @@
 
 enum BrainFlowExitCodes : Int32 {
+    case UNKNOWN_CODE = -1
     case STATUS_OK = 0
     case PORT_ALREADY_OPEN_ERROR = 1
     case UNABLE_TO_OPEN_PORT_ERROR = 2

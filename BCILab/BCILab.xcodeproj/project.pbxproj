@@ -40,6 +40,12 @@
 		5F58BD2226AC1C5E003F5483 /* BCILabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F58BD2126AC1C5E003F5483 /* BCILabTests.swift */; };
 		5F58BD2D26AC1C5E003F5483 /* BCILabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F58BD2C26AC1C5E003F5483 /* BCILabUITests.swift */; };
 		5F58BD3D26AC89F5003F5483 /* ImageCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F58BD3C26AC89F5003F5483 /* ImageCarousel.swift */; };
+		5F628BDE26E14B9D0085B009 /* Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BDD26E14B9D0085B009 /* Retry.swift */; };
+		5F628BDF26E14D970085B009 /* Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BDD26E14B9D0085B009 /* Retry.swift */; };
+		5F628BE026E14D970085B009 /* Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BDD26E14B9D0085B009 /* Retry.swift */; };
+		5F628BE226E231BA0085B009 /* CustomStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BE126E231BA0085B009 /* CustomStyles.swift */; };
+		5F628BE326E231BA0085B009 /* CustomStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BE126E231BA0085B009 /* CustomStyles.swift */; };
+		5F628BE426E231BA0085B009 /* CustomStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BE126E231BA0085B009 /* CustomStyles.swift */; };
 		5F64A17E26AF0D8A0001E9FB /* NonFaces in Resources */ = {isa = PBXBuildFile; fileRef = 5F64A17D26AF0D8A0001E9FB /* NonFaces */; };
 		5F64A17F26AF0D8A0001E9FB /* NonFaces in Resources */ = {isa = PBXBuildFile; fileRef = 5F64A17D26AF0D8A0001E9FB /* NonFaces */; };
 		5F64A18026AF0D8A0001E9FB /* NonFaces in Resources */ = {isa = PBXBuildFile; fileRef = 5F64A17D26AF0D8A0001E9FB /* NonFaces */; };
@@ -48,11 +54,13 @@
 		5F73913126DCE6B00029C95D /* libDataHandler.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F73912F26DCE6990029C95D /* libDataHandler.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5F73913226DCE6B00029C95D /* libBoardController.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F73912D26DCE67D0029C95D /* libBoardController.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5F74AE3D26C6845200A53ED5 /* CSVFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F74AE3C26C6845200A53ED5 /* CSVFile.swift */; };
+		5FA42B2926E378B8003C6F17 /* CSVFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F74AE3C26C6845200A53ED5 /* CSVFile.swift */; };
+		5FA42B2A26E378B9003C6F17 /* CSVFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F74AE3C26C6845200A53ED5 /* CSVFile.swift */; };
 		5FC07DB526BEFB4300B1971B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC07DB426BEFB4300B1971B /* ContentView.swift */; };
 		5FC07DB726BF67CB00B1971B /* LabeledImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC07DB626BF67CB00B1971B /* LabeledImage.swift */; };
-		5FCD107126DD36D6000A6FFE /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107026DD36D6000A6FFE /* ArrayExtensions.swift */; };
-		5FCD107226DD36D6000A6FFE /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107026DD36D6000A6FFE /* ArrayExtensions.swift */; };
-		5FCD107326DD36D6000A6FFE /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107026DD36D6000A6FFE /* ArrayExtensions.swift */; };
+		5FCD107126DD36D6000A6FFE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107026DD36D6000A6FFE /* Extensions.swift */; };
+		5FCD107226DD36D6000A6FFE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107026DD36D6000A6FFE /* Extensions.swift */; };
+		5FCD107326DD36D6000A6FFE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107026DD36D6000A6FFE /* Extensions.swift */; };
 		5FCD107626DD36DF000A6FFE /* BoardShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107426DD36DF000A6FFE /* BoardShim.swift */; };
 		5FCD107726DD36DF000A6FFE /* BoardShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107426DD36DF000A6FFE /* BoardShim.swift */; };
 		5FCD107826DD36DF000A6FFE /* BoardShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107426DD36DF000A6FFE /* BoardShim.swift */; };
@@ -74,6 +82,10 @@
 		5FCD108D26DD3806000A6FFE /* Headset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108C26DD3806000A6FFE /* Headset.swift */; };
 		5FCD108E26DD3806000A6FFE /* Headset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108C26DD3806000A6FFE /* Headset.swift */; };
 		5FCD108F26DD3806000A6FFE /* Headset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108C26DD3806000A6FFE /* Headset.swift */; };
+		5FCF80E226E634C000F63D9A /* libBoardController.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F73912D26DCE67D0029C95D /* libBoardController.dylib */; };
+		5FCF80E326E634D300F63D9A /* libDataHandler.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F73912F26DCE6990029C95D /* libDataHandler.dylib */; };
+		5FCF80E426E6360200F63D9A /* libBoardController.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F73912D26DCE67D0029C95D /* libBoardController.dylib */; };
+		5FCF80E526E6360200F63D9A /* libDataHandler.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F73912F26DCE6990029C95D /* libDataHandler.dylib */; };
 		5FCF8BAF26C577E3002DA9F0 /* EEG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCF8BAE26C577E3002DA9F0 /* EEG.swift */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +146,8 @@
 		5F58BD2C26AC1C5E003F5483 /* BCILabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCILabUITests.swift; sourceTree = "<group>"; };
 		5F58BD2E26AC1C5E003F5483 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F58BD3C26AC89F5003F5483 /* ImageCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarousel.swift; sourceTree = "<group>"; };
+		5F628BDD26E14B9D0085B009 /* Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retry.swift; sourceTree = "<group>"; };
+		5F628BE126E231BA0085B009 /* CustomStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStyles.swift; sourceTree = "<group>"; };
 		5F64A17D26AF0D8A0001E9FB /* NonFaces */ = {isa = PBXFileReference; lastKnownFileType = folder; path = NonFaces; sourceTree = "<group>"; };
 		5F73912D26DCE67D0029C95D /* libBoardController.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBoardController.dylib; path = BCILab/libBoardController.dylib; sourceTree = "<group>"; };
 		5F73912F26DCE6990029C95D /* libDataHandler.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDataHandler.dylib; path = BCILab/libDataHandler.dylib; sourceTree = "<group>"; };
@@ -141,7 +155,7 @@
 		5FBE6F8526B3F97600BA6B93 /* liblsl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = liblsl.h; sourceTree = "<group>"; };
 		5FC07DB426BEFB4300B1971B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5FC07DB626BF67CB00B1971B /* LabeledImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledImage.swift; sourceTree = "<group>"; };
-		5FCD107026DD36D6000A6FFE /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		5FCD107026DD36D6000A6FFE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5FCD107426DD36DF000A6FFE /* BoardShim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardShim.swift; sourceTree = "<group>"; };
 		5FCD107526DD36DF000A6FFE /* BoardDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardDescription.swift; sourceTree = "<group>"; };
 		5FCD107C26DD36F0000A6FFE /* BrainFlowConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrainFlowConstants.swift; sourceTree = "<group>"; };
@@ -154,6 +168,13 @@
 		5FCD109326DD3B13000A6FFE /* data_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_handler.h; sourceTree = "<group>"; };
 		5FCD109426DD3B13000A6FFE /* shared_export.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shared_export.h; sourceTree = "<group>"; };
 		5FCD109526DD3B13000A6FFE /* board_info_getter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = board_info_getter.h; sourceTree = "<group>"; };
+		5FCF80DB26E6325300F63D9A /* BCILabUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BCILabUITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		5FCF80DC26E6330900F63D9A /* board_shim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = board_shim.h; path = BCILab/brainflow/board_shim.h; sourceTree = SOURCE_ROOT; };
+		5FCF80DD26E6330900F63D9A /* board_controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = board_controller.h; path = BCILab/brainflow/board_controller.h; sourceTree = SOURCE_ROOT; };
+		5FCF80DE26E6330900F63D9A /* brainflow_input_params.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = brainflow_input_params.h; path = BCILab/brainflow/brainflow_input_params.h; sourceTree = SOURCE_ROOT; };
+		5FCF80DF26E6330900F63D9A /* board_info_getter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = board_info_getter.h; path = BCILab/brainflow/board_info_getter.h; sourceTree = SOURCE_ROOT; };
+		5FCF80E026E6330900F63D9A /* brainflow_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = brainflow_array.h; path = BCILab/brainflow/brainflow_array.h; sourceTree = SOURCE_ROOT; };
+		5FCF80E126E6330900F63D9A /* brainflow_constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = brainflow_constants.h; path = BCILab/brainflow/brainflow_constants.h; sourceTree = SOURCE_ROOT; };
 		5FCF8BAE26C577E3002DA9F0 /* EEG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EEG.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,6 +192,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FCF80E326E634D300F63D9A /* libDataHandler.dylib in Frameworks */,
+				5FCF80E226E634C000F63D9A /* libBoardController.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +201,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FCF80E426E6360200F63D9A /* libBoardController.dylib in Frameworks */,
+				5FCF80E526E6360200F63D9A /* libDataHandler.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,7 +264,7 @@
 				5FCD107D26DD36F0000A6FFE /* BrainFlowInputParams.swift */,
 				5FCD107526DD36DF000A6FFE /* BoardDescription.swift */,
 				5FCD107426DD36DF000A6FFE /* BoardShim.swift */,
-				5FCD107026DD36D6000A6FFE /* ArrayExtensions.swift */,
+				5FCD107026DD36D6000A6FFE /* Extensions.swift */,
 				5F58BD0F26AC1C5D003F5483 /* BCILabApp.swift */,
 				5F58BD3C26AC89F5003F5483 /* ImageCarousel.swift */,
 				5F58BD1326AC1C5E003F5483 /* Assets.xcassets */,
@@ -249,6 +274,8 @@
 				5FC07DB626BF67CB00B1971B /* LabeledImage.swift */,
 				5FCF8BAE26C577E3002DA9F0 /* EEG.swift */,
 				5F74AE3C26C6845200A53ED5 /* CSVFile.swift */,
+				5F628BDD26E14B9D0085B009 /* Retry.swift */,
+				5F628BE126E231BA0085B009 /* CustomStyles.swift */,
 			);
 			path = BCILab;
 			sourceTree = "<group>";
@@ -273,8 +300,15 @@
 		5F58BD2B26AC1C5E003F5483 /* BCILabUITests */ = {
 			isa = PBXGroup;
 			children = (
+				5FCF80DD26E6330900F63D9A /* board_controller.h */,
+				5FCF80DF26E6330900F63D9A /* board_info_getter.h */,
+				5FCF80DC26E6330900F63D9A /* board_shim.h */,
+				5FCF80E026E6330900F63D9A /* brainflow_array.h */,
+				5FCF80E126E6330900F63D9A /* brainflow_constants.h */,
+				5FCF80DE26E6330900F63D9A /* brainflow_input_params.h */,
 				5F58BD2C26AC1C5E003F5483 /* BCILabUITests.swift */,
 				5F58BD2E26AC1C5E003F5483 /* Info.plist */,
+				5FCF80DB26E6325300F63D9A /* BCILabUITests-Bridging-Header.h */,
 			);
 			path = BCILabUITests;
 			sourceTree = "<group>";
@@ -439,12 +473,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F524C4526BAD67C00DECD6E /* Error.swift in Sources */,
-				5FCD107126DD36D6000A6FFE /* ArrayExtensions.swift in Sources */,
+				5FCD107126DD36D6000A6FFE /* Extensions.swift in Sources */,
 				5FCD108526DD36F0000A6FFE /* BrainFlowException.swift in Sources */,
 				5F524C3926BAD67C00DECD6E /* Global.swift in Sources */,
+				5F628BDE26E14B9D0085B009 /* Retry.swift in Sources */,
 				5FCD107626DD36DF000A6FFE /* BoardShim.swift in Sources */,
 				5FCD107F26DD36F0000A6FFE /* BrainFlowConstants.swift in Sources */,
 				5FCF8BAF26C577E3002DA9F0 /* EEG.swift in Sources */,
+				5F628BE226E231BA0085B009 /* CustomStyles.swift in Sources */,
 				5FCD107926DD36DF000A6FFE /* BoardDescription.swift in Sources */,
 				5F524C3F26BAD67C00DECD6E /* SampleX.swift in Sources */,
 				5FC07DB526BEFB4300B1971B /* ContentView.swift in Sources */,
@@ -470,6 +506,7 @@
 				5F524C4C26BAD67C00DECD6E /* ChannelFormat.swift in Sources */,
 				5FCD107726DD36DF000A6FFE /* BoardShim.swift in Sources */,
 				5FCD108326DD36F0000A6FFE /* BrainFlowInputParams.swift in Sources */,
+				5FA42B2926E378B8003C6F17 /* CSVFile.swift in Sources */,
 				5F524C3D26BAD67C00DECD6E /* Outlet.swift in Sources */,
 				5F524C4026BAD67C00DECD6E /* SampleX.swift in Sources */,
 				5FCD108E26DD3806000A6FFE /* Headset.swift in Sources */,
@@ -479,8 +516,10 @@
 				5FCD108626DD36F0000A6FFE /* BrainFlowException.swift in Sources */,
 				5F524C4626BAD67C00DECD6E /* Error.swift in Sources */,
 				5F524C4926BAD67C00DECD6E /* StreamInfo.swift in Sources */,
+				5F628BDF26E14D970085B009 /* Retry.swift in Sources */,
 				5FCD107A26DD36DF000A6FFE /* BoardDescription.swift in Sources */,
-				5FCD107226DD36D6000A6FFE /* ArrayExtensions.swift in Sources */,
+				5FCD107226DD36D6000A6FFE /* Extensions.swift in Sources */,
+				5F628BE326E231BA0085B009 /* CustomStyles.swift in Sources */,
 				5F58BD2226AC1C5E003F5483 /* BCILabTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -493,6 +532,7 @@
 				5F524C4D26BAD67C00DECD6E /* ChannelFormat.swift in Sources */,
 				5FCD107826DD36DF000A6FFE /* BoardShim.swift in Sources */,
 				5FCD108426DD36F0000A6FFE /* BrainFlowInputParams.swift in Sources */,
+				5FA42B2A26E378B9003C6F17 /* CSVFile.swift in Sources */,
 				5F524C3E26BAD67C00DECD6E /* Outlet.swift in Sources */,
 				5F524C4126BAD67C00DECD6E /* SampleX.swift in Sources */,
 				5FCD108F26DD3806000A6FFE /* Headset.swift in Sources */,
@@ -502,8 +542,10 @@
 				5FCD108726DD36F0000A6FFE /* BrainFlowException.swift in Sources */,
 				5F524C4726BAD67C00DECD6E /* Error.swift in Sources */,
 				5F524C4A26BAD67C00DECD6E /* StreamInfo.swift in Sources */,
+				5F628BE026E14D970085B009 /* Retry.swift in Sources */,
 				5FCD107B26DD36DF000A6FFE /* BoardDescription.swift in Sources */,
-				5FCD107326DD36D6000A6FFE /* ArrayExtensions.swift in Sources */,
+				5FCD107326DD36D6000A6FFE /* Extensions.swift in Sources */,
+				5F628BE426E231BA0085B009 /* CustomStyles.swift in Sources */,
 				5F58BD2D26AC1C5E003F5483 /* BCILabUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -557,6 +599,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
+				CODE_SIGN_IDENTITY = "Apple Development: miller.scott.thomas@gmail.com (9C6P3H9F6Q)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -618,6 +662,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development: miller.scott.thomas@gmail.com (9C6P3H9F6Q)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -709,6 +754,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development: miller.scott.thomas@gmail.com (9C6P3H9F6Q)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y8JL76N88P;
 				INFOPLIST_FILE = BCILabTests/Info.plist;
@@ -721,9 +768,14 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/BCILab",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Aeris-Rising.BCILabTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "brainflow-bridge.h";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BCILab.app/BCILab";
@@ -735,6 +787,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development: miller.scott.thomas@gmail.com (9C6P3H9F6Q)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y8JL76N88P;
 				INFOPLIST_FILE = BCILabTests/Info.plist;
@@ -747,9 +801,14 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/BCILab",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Aeris-Rising.BCILabTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "brainflow-bridge.h";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BCILab.app/BCILab";
@@ -760,6 +819,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development: miller.scott.thomas@gmail.com (9C6P3H9F6Q)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y8JL76N88P;
 				INFOPLIST_FILE = BCILabUITests/Info.plist;
@@ -771,9 +832,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/BCILab",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Aeris-Rising.BCILabUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "brainflow-bridge.h";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = BCILab;
@@ -784,6 +848,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development: miller.scott.thomas@gmail.com (9C6P3H9F6Q)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y8JL76N88P;
 				INFOPLIST_FILE = BCILabUITests/Info.plist;
@@ -795,9 +861,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/BCILab",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Aeris-Rising.BCILabUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "brainflow-bridge.h";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = BCILab;
