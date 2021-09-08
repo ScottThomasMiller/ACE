@@ -1,16 +1,11 @@
 //
 //  BoardShim.swift
-//  A Swift binding for BrainFlow's board_shim high-level API
+//  a Swift binding for BrainFlow's board_shim high-level API
 //
 //  Created by Scott Miller for Aeris Rising, LLC on 8/23/21.
 //
 
 import Foundation
-
-/////////////////////////////////////////
-//////////// logging methods ////////////
-/////////////////////////////////////////
-
 
 /**
  * enable BrainFlow logger with level INFO
@@ -226,7 +221,7 @@ func getTemperatureChannels (boardId: BoardIds) throws -> [Int32] {
  * get row indices in returned by get_board_data() 2d array which contain
  * resistance data
  */
-func getReistanceChannels (boardId: BoardIds) throws -> [Int32] {
+func getResistanceChannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
     let result = get_resistance_channels (boardId.rawValue, &channels, &len)
@@ -356,7 +351,7 @@ func getMasterBoardID(boardId: BoardIds, params: BrainFlowInputParams) throws ->
                               BrainFlowExitCodes.INVALID_ARGUMENTS_ERROR)
 }
 
-class BoardShim {
+struct BoardShim {
     let boardId: BoardIds
     let masterBoardId: BoardIds
     let bfParams: BrainFlowInputParams
@@ -369,6 +364,9 @@ class BoardShim {
         self.jsonBrainFlowInputParams = params.json().cString(using: String.Encoding.utf8)!
     }
     
+    /**
+     * prepare steaming session, allocate resources
+     */
     func prepareSession() throws {
         var jsonBFParams = self.jsonBrainFlowInputParams
         let result = prepare_session(boardId.rawValue, &jsonBFParams)
@@ -503,6 +501,9 @@ class BoardShim {
         return buffer
     }
 
+    /**
+     * get all data from ringbuffer and flush it
+     */
     func getBoardData () throws -> [[Double]] {
         var size: Int32 = 0
         var numRows: Int32 = 0

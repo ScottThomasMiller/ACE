@@ -182,6 +182,9 @@ class Headset {
                     }
                     rawSamples.append(rawSample)
                     filteredSamples.append(filteredSample)
+                    
+//                    print("EARLY EXIT")
+//                    exit(0)
                 }
                 rawFile.writeSamples(pkgIDs: pkgIDs, timestamps: timestamps, markers: markers, samples: rawSamples)
                 filteredFile.writeSamples(pkgIDs: pkgIDs, timestamps: timestamps, markers: markers, samples: filteredSamples)

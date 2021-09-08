@@ -8,25 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		5F524C3926BAD67C00DECD6E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C2F26BAD67B00DECD6E /* Global.swift */; };
-		5F524C3A26BAD67C00DECD6E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C2F26BAD67B00DECD6E /* Global.swift */; };
 		5F524C3B26BAD67C00DECD6E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C2F26BAD67B00DECD6E /* Global.swift */; };
 		5F524C3C26BAD67C00DECD6E /* Outlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3126BAD67B00DECD6E /* Outlet.swift */; };
-		5F524C3D26BAD67C00DECD6E /* Outlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3126BAD67B00DECD6E /* Outlet.swift */; };
 		5F524C3E26BAD67C00DECD6E /* Outlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3126BAD67B00DECD6E /* Outlet.swift */; };
 		5F524C3F26BAD67C00DECD6E /* SampleX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3226BAD67B00DECD6E /* SampleX.swift */; };
-		5F524C4026BAD67C00DECD6E /* SampleX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3226BAD67B00DECD6E /* SampleX.swift */; };
 		5F524C4126BAD67C00DECD6E /* SampleX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3226BAD67B00DECD6E /* SampleX.swift */; };
 		5F524C4226BAD67C00DECD6E /* Inlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3426BAD67C00DECD6E /* Inlet.swift */; };
-		5F524C4326BAD67C00DECD6E /* Inlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3426BAD67C00DECD6E /* Inlet.swift */; };
 		5F524C4426BAD67C00DECD6E /* Inlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3426BAD67C00DECD6E /* Inlet.swift */; };
 		5F524C4526BAD67C00DECD6E /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3526BAD67C00DECD6E /* Error.swift */; };
-		5F524C4626BAD67C00DECD6E /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3526BAD67C00DECD6E /* Error.swift */; };
 		5F524C4726BAD67C00DECD6E /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3526BAD67C00DECD6E /* Error.swift */; };
 		5F524C4826BAD67C00DECD6E /* StreamInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3626BAD67C00DECD6E /* StreamInfo.swift */; };
-		5F524C4926BAD67C00DECD6E /* StreamInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3626BAD67C00DECD6E /* StreamInfo.swift */; };
 		5F524C4A26BAD67C00DECD6E /* StreamInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3626BAD67C00DECD6E /* StreamInfo.swift */; };
 		5F524C4B26BAD67C00DECD6E /* ChannelFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3826BAD67C00DECD6E /* ChannelFormat.swift */; };
-		5F524C4C26BAD67C00DECD6E /* ChannelFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3826BAD67C00DECD6E /* ChannelFormat.swift */; };
 		5F524C4D26BAD67C00DECD6E /* ChannelFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3826BAD67C00DECD6E /* ChannelFormat.swift */; };
 		5F576B2726DDC5BF00A71CD4 /* Faces in Resources */ = {isa = PBXBuildFile; fileRef = 5F576B2626DDC5BF00A71CD4 /* Faces */; };
 		5F576B2826DDC5BF00A71CD4 /* Faces in Resources */ = {isa = PBXBuildFile; fileRef = 5F576B2626DDC5BF00A71CD4 /* Faces */; };
@@ -41,10 +34,8 @@
 		5F58BD2D26AC1C5E003F5483 /* BCILabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F58BD2C26AC1C5E003F5483 /* BCILabUITests.swift */; };
 		5F58BD3D26AC89F5003F5483 /* ImageCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F58BD3C26AC89F5003F5483 /* ImageCarousel.swift */; };
 		5F628BDE26E14B9D0085B009 /* Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BDD26E14B9D0085B009 /* Retry.swift */; };
-		5F628BDF26E14D970085B009 /* Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BDD26E14B9D0085B009 /* Retry.swift */; };
 		5F628BE026E14D970085B009 /* Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BDD26E14B9D0085B009 /* Retry.swift */; };
 		5F628BE226E231BA0085B009 /* CustomStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BE126E231BA0085B009 /* CustomStyles.swift */; };
-		5F628BE326E231BA0085B009 /* CustomStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BE126E231BA0085B009 /* CustomStyles.swift */; };
 		5F628BE426E231BA0085B009 /* CustomStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BE126E231BA0085B009 /* CustomStyles.swift */; };
 		5F64A17E26AF0D8A0001E9FB /* NonFaces in Resources */ = {isa = PBXBuildFile; fileRef = 5F64A17D26AF0D8A0001E9FB /* NonFaces */; };
 		5F64A17F26AF0D8A0001E9FB /* NonFaces in Resources */ = {isa = PBXBuildFile; fileRef = 5F64A17D26AF0D8A0001E9FB /* NonFaces */; };
@@ -80,7 +71,6 @@
 		5FCD108A26DD37FB000A6FFE /* DataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108826DD37FB000A6FFE /* DataFilter.swift */; };
 		5FCD108B26DD37FB000A6FFE /* DataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108826DD37FB000A6FFE /* DataFilter.swift */; };
 		5FCD108D26DD3806000A6FFE /* Headset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108C26DD3806000A6FFE /* Headset.swift */; };
-		5FCD108E26DD3806000A6FFE /* Headset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108C26DD3806000A6FFE /* Headset.swift */; };
 		5FCD108F26DD3806000A6FFE /* Headset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108C26DD3806000A6FFE /* Headset.swift */; };
 		5FCF80E226E634C000F63D9A /* libBoardController.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F73912D26DCE67D0029C95D /* libBoardController.dylib */; };
 		5FCF80E326E634D300F63D9A /* libDataHandler.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F73912F26DCE6990029C95D /* libDataHandler.dylib */; };
@@ -90,14 +80,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5F58BD1E26AC1C5E003F5483 /* PBXContainerItemProxy */ = {
+		5F58BD2926AC1C5E003F5483 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5F58BD0426AC1C5D003F5483 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 5F58BD0B26AC1C5D003F5483;
 			remoteInfo = BCILab;
 		};
-		5F58BD2926AC1C5E003F5483 /* PBXContainerItemProxy */ = {
+		5FF2DC7226E917430040A6FF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5F58BD0426AC1C5D003F5483 /* Project object */;
 			proxyType = 1;
@@ -365,7 +355,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				5F58BD1F26AC1C5E003F5483 /* PBXTargetDependency */,
+				5FF2DC7326E917430040A6FF /* PBXTargetDependency */,
 			);
 			name = BCILabTests;
 			productName = BCILabTests;
@@ -503,23 +493,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FCD108A26DD37FB000A6FFE /* DataFilter.swift in Sources */,
-				5F524C4C26BAD67C00DECD6E /* ChannelFormat.swift in Sources */,
 				5FCD107726DD36DF000A6FFE /* BoardShim.swift in Sources */,
 				5FCD108326DD36F0000A6FFE /* BrainFlowInputParams.swift in Sources */,
 				5FA42B2926E378B8003C6F17 /* CSVFile.swift in Sources */,
-				5F524C3D26BAD67C00DECD6E /* Outlet.swift in Sources */,
-				5F524C4026BAD67C00DECD6E /* SampleX.swift in Sources */,
-				5FCD108E26DD3806000A6FFE /* Headset.swift in Sources */,
 				5FCD108026DD36F0000A6FFE /* BrainFlowConstants.swift in Sources */,
-				5F524C3A26BAD67C00DECD6E /* Global.swift in Sources */,
-				5F524C4326BAD67C00DECD6E /* Inlet.swift in Sources */,
 				5FCD108626DD36F0000A6FFE /* BrainFlowException.swift in Sources */,
-				5F524C4626BAD67C00DECD6E /* Error.swift in Sources */,
-				5F524C4926BAD67C00DECD6E /* StreamInfo.swift in Sources */,
-				5F628BDF26E14D970085B009 /* Retry.swift in Sources */,
 				5FCD107A26DD36DF000A6FFE /* BoardDescription.swift in Sources */,
 				5FCD107226DD36D6000A6FFE /* Extensions.swift in Sources */,
-				5F628BE326E231BA0085B009 /* CustomStyles.swift in Sources */,
 				5F58BD2226AC1C5E003F5483 /* BCILabTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -553,15 +533,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5F58BD1F26AC1C5E003F5483 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5F58BD0B26AC1C5D003F5483 /* BCILab */;
-			targetProxy = 5F58BD1E26AC1C5E003F5483 /* PBXContainerItemProxy */;
-		};
 		5F58BD2A26AC1C5E003F5483 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5F58BD0B26AC1C5D003F5483 /* BCILab */;
 			targetProxy = 5F58BD2926AC1C5E003F5483 /* PBXContainerItemProxy */;
+		};
+		5FF2DC7326E917430040A6FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F58BD0B26AC1C5D003F5483 /* BCILab */;
+			targetProxy = 5FF2DC7226E917430040A6FF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

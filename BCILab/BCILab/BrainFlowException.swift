@@ -7,7 +7,11 @@
 
 import Foundation
 
-class BrainFlowException: Error {
+class BrainFlowException: Error, Equatable {
+    static func == (lhs: BrainFlowException, rhs: BrainFlowException) -> Bool {
+        return (lhs.errorCode == rhs.errorCode) 
+    }
+    
     var message: String
     var errorCode: BrainFlowExitCodes
     
