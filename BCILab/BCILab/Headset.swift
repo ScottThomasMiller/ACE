@@ -1,8 +1,7 @@
 //
 //  Headset.swift
-//  BrainBook
 //
-//  Created by Scott Miller on 8/27/21.
+//  Created by Scott Miller for Aeris Rising, LLC on 8/27/21.
 //
 
 import Foundation
@@ -80,9 +79,14 @@ class Headset {
                 exit(-1)
             }
         }
+        catch let bfError as BrainFlowException {
+            try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: bfError.message)
+            try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue,
+                             message: "Error code: \(bfError.errorCode)")
+            throw bfError
+        }
         catch {
-            try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: "Failed to initialize headset")
-            try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: error.localizedDescription)
+            try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: "undefined exception")
             throw error
         }
         enableDevBoardLogger()
@@ -118,7 +122,7 @@ class Headset {
         var command: String = ""
         if boardId == .CYTON_BOARD {
             command = "c" }
-        else {
+        else if boardId == .CYTON_DAISY_BOARD {
             command = "C"
         }
         print("setNumChannels sending: \(command)")
@@ -182,9 +186,6 @@ class Headset {
                     }
                     rawSamples.append(rawSample)
                     filteredSamples.append(filteredSample)
-                    
-//                    print("EARLY EXIT")
-//                    exit(0)
                 }
                 rawFile.writeSamples(pkgIDs: pkgIDs, timestamps: timestamps, markers: markers, samples: rawSamples)
                 filteredFile.writeSamples(pkgIDs: pkgIDs, timestamps: timestamps, markers: markers, samples: filteredSamples)
@@ -193,7 +194,8 @@ class Headset {
         }
         catch let bfError as BrainFlowException {
             try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: bfError.message)
-            try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: "Error code: \(bfError.errorCode)") }
+            try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue,
+                             message: "Error code: \(bfError.errorCode)") }
         catch {
             try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: "undefined exception")
         }

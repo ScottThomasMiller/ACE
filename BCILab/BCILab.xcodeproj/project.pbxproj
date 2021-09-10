@@ -49,15 +49,15 @@
 		5FA42B2A26E378B9003C6F17 /* CSVFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F74AE3C26C6845200A53ED5 /* CSVFile.swift */; };
 		5FC07DB526BEFB4300B1971B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC07DB426BEFB4300B1971B /* ContentView.swift */; };
 		5FC07DB726BF67CB00B1971B /* LabeledImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC07DB626BF67CB00B1971B /* LabeledImage.swift */; };
-		5FCD107126DD36D6000A6FFE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107026DD36D6000A6FFE /* Extensions.swift */; };
-		5FCD107226DD36D6000A6FFE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107026DD36D6000A6FFE /* Extensions.swift */; };
-		5FCD107326DD36D6000A6FFE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107026DD36D6000A6FFE /* Extensions.swift */; };
+		5FCD107126DD36D6000A6FFE /* BrainFlowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107026DD36D6000A6FFE /* BrainFlowExtensions.swift */; };
+		5FCD107226DD36D6000A6FFE /* BrainFlowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107026DD36D6000A6FFE /* BrainFlowExtensions.swift */; };
+		5FCD107326DD36D6000A6FFE /* BrainFlowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107026DD36D6000A6FFE /* BrainFlowExtensions.swift */; };
 		5FCD107626DD36DF000A6FFE /* BoardShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107426DD36DF000A6FFE /* BoardShim.swift */; };
 		5FCD107726DD36DF000A6FFE /* BoardShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107426DD36DF000A6FFE /* BoardShim.swift */; };
 		5FCD107826DD36DF000A6FFE /* BoardShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107426DD36DF000A6FFE /* BoardShim.swift */; };
-		5FCD107926DD36DF000A6FFE /* BoardDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107526DD36DF000A6FFE /* BoardDescription.swift */; };
-		5FCD107A26DD36DF000A6FFE /* BoardDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107526DD36DF000A6FFE /* BoardDescription.swift */; };
-		5FCD107B26DD36DF000A6FFE /* BoardDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107526DD36DF000A6FFE /* BoardDescription.swift */; };
+		5FCD107926DD36DF000A6FFE /* BoardDescriptionX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107526DD36DF000A6FFE /* BoardDescriptionX.swift */; };
+		5FCD107A26DD36DF000A6FFE /* BoardDescriptionX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107526DD36DF000A6FFE /* BoardDescriptionX.swift */; };
+		5FCD107B26DD36DF000A6FFE /* BoardDescriptionX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107526DD36DF000A6FFE /* BoardDescriptionX.swift */; };
 		5FCD107F26DD36F0000A6FFE /* BrainFlowConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107C26DD36F0000A6FFE /* BrainFlowConstants.swift */; };
 		5FCD108026DD36F0000A6FFE /* BrainFlowConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107C26DD36F0000A6FFE /* BrainFlowConstants.swift */; };
 		5FCD108126DD36F0000A6FFE /* BrainFlowConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107C26DD36F0000A6FFE /* BrainFlowConstants.swift */; };
@@ -145,9 +145,9 @@
 		5FBE6F8526B3F97600BA6B93 /* liblsl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = liblsl.h; sourceTree = "<group>"; };
 		5FC07DB426BEFB4300B1971B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5FC07DB626BF67CB00B1971B /* LabeledImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledImage.swift; sourceTree = "<group>"; };
-		5FCD107026DD36D6000A6FFE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		5FCD107026DD36D6000A6FFE /* BrainFlowExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrainFlowExtensions.swift; sourceTree = "<group>"; };
 		5FCD107426DD36DF000A6FFE /* BoardShim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardShim.swift; sourceTree = "<group>"; };
-		5FCD107526DD36DF000A6FFE /* BoardDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardDescription.swift; sourceTree = "<group>"; };
+		5FCD107526DD36DF000A6FFE /* BoardDescriptionX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardDescriptionX.swift; sourceTree = "<group>"; };
 		5FCD107C26DD36F0000A6FFE /* BrainFlowConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrainFlowConstants.swift; sourceTree = "<group>"; };
 		5FCD107D26DD36F0000A6FFE /* BrainFlowInputParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrainFlowInputParams.swift; sourceTree = "<group>"; };
 		5FCD107E26DD36F0000A6FFE /* BrainFlowException.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrainFlowException.swift; sourceTree = "<group>"; };
@@ -252,9 +252,9 @@
 				5FCD107C26DD36F0000A6FFE /* BrainFlowConstants.swift */,
 				5FCD107E26DD36F0000A6FFE /* BrainFlowException.swift */,
 				5FCD107D26DD36F0000A6FFE /* BrainFlowInputParams.swift */,
-				5FCD107526DD36DF000A6FFE /* BoardDescription.swift */,
+				5FCD107526DD36DF000A6FFE /* BoardDescriptionX.swift */,
 				5FCD107426DD36DF000A6FFE /* BoardShim.swift */,
-				5FCD107026DD36D6000A6FFE /* Extensions.swift */,
+				5FCD107026DD36D6000A6FFE /* BrainFlowExtensions.swift */,
 				5F58BD0F26AC1C5D003F5483 /* BCILabApp.swift */,
 				5F58BD3C26AC89F5003F5483 /* ImageCarousel.swift */,
 				5F58BD1326AC1C5E003F5483 /* Assets.xcassets */,
@@ -463,7 +463,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F524C4526BAD67C00DECD6E /* Error.swift in Sources */,
-				5FCD107126DD36D6000A6FFE /* Extensions.swift in Sources */,
+				5FCD107126DD36D6000A6FFE /* BrainFlowExtensions.swift in Sources */,
 				5FCD108526DD36F0000A6FFE /* BrainFlowException.swift in Sources */,
 				5F524C3926BAD67C00DECD6E /* Global.swift in Sources */,
 				5F628BDE26E14B9D0085B009 /* Retry.swift in Sources */,
@@ -471,7 +471,7 @@
 				5FCD107F26DD36F0000A6FFE /* BrainFlowConstants.swift in Sources */,
 				5FCF8BAF26C577E3002DA9F0 /* EEG.swift in Sources */,
 				5F628BE226E231BA0085B009 /* CustomStyles.swift in Sources */,
-				5FCD107926DD36DF000A6FFE /* BoardDescription.swift in Sources */,
+				5FCD107926DD36DF000A6FFE /* BoardDescriptionX.swift in Sources */,
 				5F524C3F26BAD67C00DECD6E /* SampleX.swift in Sources */,
 				5FC07DB526BEFB4300B1971B /* ContentView.swift in Sources */,
 				5F58BD3D26AC89F5003F5483 /* ImageCarousel.swift in Sources */,
@@ -498,8 +498,8 @@
 				5FA42B2926E378B8003C6F17 /* CSVFile.swift in Sources */,
 				5FCD108026DD36F0000A6FFE /* BrainFlowConstants.swift in Sources */,
 				5FCD108626DD36F0000A6FFE /* BrainFlowException.swift in Sources */,
-				5FCD107A26DD36DF000A6FFE /* BoardDescription.swift in Sources */,
-				5FCD107226DD36D6000A6FFE /* Extensions.swift in Sources */,
+				5FCD107A26DD36DF000A6FFE /* BoardDescriptionX.swift in Sources */,
+				5FCD107226DD36D6000A6FFE /* BrainFlowExtensions.swift in Sources */,
 				5F58BD2226AC1C5E003F5483 /* BCILabTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,8 +523,8 @@
 				5F524C4726BAD67C00DECD6E /* Error.swift in Sources */,
 				5F524C4A26BAD67C00DECD6E /* StreamInfo.swift in Sources */,
 				5F628BE026E14D970085B009 /* Retry.swift in Sources */,
-				5FCD107B26DD36DF000A6FFE /* BoardDescription.swift in Sources */,
-				5FCD107326DD36D6000A6FFE /* Extensions.swift in Sources */,
+				5FCD107B26DD36DF000A6FFE /* BoardDescriptionX.swift in Sources */,
+				5FCD107326DD36D6000A6FFE /* BrainFlowExtensions.swift in Sources */,
 				5F628BE426E231BA0085B009 /* CustomStyles.swift in Sources */,
 				5F58BD2D26AC1C5E003F5483 /* BCILabUITests.swift in Sources */,
 			);

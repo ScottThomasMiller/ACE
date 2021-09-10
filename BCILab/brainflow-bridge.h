@@ -1,6 +1,6 @@
 //
 //  brainflow-bridge.h
-//  Bridging header for BrainFlow low-level API
+//  Bridging header for the BrainFlow low-level API
 //
 //  Created by Scott Miller on 8/23/21.
 //

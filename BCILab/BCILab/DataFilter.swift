@@ -9,7 +9,6 @@
 import Foundation
 
 struct DataFilter {
-
     /**
      * enable Data logger with level INFO
      */
@@ -48,16 +47,16 @@ struct DataFilter {
      */
     func setLogFile (_ logFile: String) throws {
         var cLogFile = logFile.cString(using: String.Encoding.utf8)!
-        let result = set_log_file (&cLogFile)
-        try checkErrorCode(errorMsg: "Error in set_log_file", errorCode: result)
+        let errorCode = set_log_file (&cLogFile)
+        try checkErrorCode("Error in set_log_file", errorCode)
     }
 
     /**
      * set log level
      */
     private func setLogLevel (_ logLevel: LogLevels) throws {
-        let result = set_log_level (logLevel.rawValue)
-        try checkErrorCode(errorMsg: "Error in set_log_level", errorCode: result)
+        let errorCode = set_log_level (logLevel.rawValue)
+        try checkErrorCode("Error in set_log_level", errorCode)
     }
 
     /**
@@ -65,10 +64,10 @@ struct DataFilter {
     */
     func performLowpass (data: inout [Double], samplingRate: Int32, cutoff: Double,
                          order: Int32, filterType: FilterTypes, ripple: Double) throws {
-        let dataCount = Int32(data.count)
+        let dataLen = Int32(data.count)
         let filterVal = filterType.rawValue
-        let result = perform_lowpass (&data, dataCount, samplingRate, cutoff, order, filterVal, ripple)
-        try checkErrorCode(errorMsg: "Failed to apply filter", errorCode: result)
+        let errorCode = perform_lowpass (&data, dataLen, samplingRate, cutoff, order, filterVal, ripple)
+        try checkErrorCode("Failed to apply filter", errorCode)
     }
 
     /**
@@ -76,10 +75,10 @@ struct DataFilter {
     */
     func performHighpass (data: inout [Double], samplingRate: Int32, cutoff: Double,
                          order: Int32, filterType: FilterTypes, ripple: Double) throws {
-        let dataCount = Int32(data.count)
+        let dataLen = Int32(data.count)
         let filterVal = filterType.rawValue
-        let result = perform_highpass (&data, dataCount, samplingRate, cutoff, order, filterVal, ripple)
-        try checkErrorCode(errorMsg: "Failed to apply filter", errorCode: result)
+        let errorCode = perform_highpass (&data, dataLen, samplingRate, cutoff, order, filterVal, ripple)
+        try checkErrorCode("Failed to apply filter", errorCode)
     }
 
     /**
@@ -87,11 +86,11 @@ struct DataFilter {
      */
     func performBandpass (data: inout [Double], samplingRate: Int32, centerFreq: Double, bandWidth: Double,
                           order: Int32, filterType: FilterTypes, ripple: Double) throws {
-        let dataCount = Int32(data.count)
+        let dataLen = Int32(data.count)
         let filterVal = filterType.rawValue
-        let result = perform_bandpass (&data, dataCount, samplingRate, centerFreq, bandWidth, order,
+        let errorCode = perform_bandpass (&data, dataLen, samplingRate, centerFreq, bandWidth, order,
                                        filterVal, ripple)
-        try checkErrorCode(errorMsg: "Failed to apply filter", errorCode: result)
+        try checkErrorCode("Failed to apply filter", errorCode)
     }
 
     /**
@@ -99,29 +98,61 @@ struct DataFilter {
      */
     func performBandstop (data: inout [Double], samplingRate: Int32, centerFreq: Double, bandWidth: Double,
                           order: Int32, filterType: FilterTypes, ripple: Double) throws {
-        let dataCount = Int32(data.count)
+        let dataLen = Int32(data.count)
         let filterVal = filterType.rawValue
-        let result = perform_bandstop (&data, dataCount, samplingRate, centerFreq, bandWidth, order,
+        let errorCode = perform_bandstop (&data, dataLen, samplingRate, centerFreq, bandWidth, order,
                                        filterVal, ripple)
-        try checkErrorCode(errorMsg: "Failed to apply filter", errorCode: result)
+        try checkErrorCode("Failed to apply filter", errorCode)
     }
     
     /**
      * perform moving average or moving median filter in-place
      */
     func performRollingFilter (data: inout [Double], period: Int32, operation: Int32) throws {
-        let dataCount = Int32(data.count)
-        let result = perform_rolling_filter (&data, dataCount, period, operation)
-        try checkErrorCode(errorMsg: "Failed to apply filter", errorCode: result)
+        let dataLen = Int32(data.count)
+        let errorCode = perform_rolling_filter (&data, dataLen, period, operation)
+        try checkErrorCode("Failed to apply filter", errorCode)
     }
     
+    /**
+     * subtract trend from data in-place
+     */
+    func deTrend (data: inout [Double], operation: Int32) throws {
+        let dataLen = Int32(data.count)
+        let errorCode = detrend (&data, dataLen, operation)
+        try checkErrorCode("Failed to detrend", errorCode)
+    }
+    
+    /**
+     * perform data downsampling, it doesnt apply lowpass filter for you, it just
+     * aggregates several data points
+     */
+    static func performDownsampling (data: inout [Double], period: Int32, operation: Int32) throws -> [Double] {
+        if (period <= 0) {
+            throw BrainFlowException("Invalid period", .INVALID_ARGUMENTS_ERROR)
+        }
+        
+        let dataLen = Int32(data.count)
+        let newSize = dataLen / period
+        
+        if (newSize <= 0) {
+            throw BrainFlowException ("Invalid data size", .INVALID_ARGUMENTS_ERROR)
+        }
+        
+        var downsampledData = [Double](repeating: 0.0, count: Int(newSize))
+        let errorCode = perform_downsampling (&data, dataLen, period, operation, &downsampledData)
+        try checkErrorCode("Failed to perform downsampling", errorCode)
+
+        return downsampledData
+    }
+
     /**
      * removes noise using notch filter
      */
     func removeEnvironmentalNoise (data: inout [Double], samplingRate: Int32, noiseType: NoiseTypes) throws {
-        let dataCount = Int32(data.count)
-        let result = remove_environmental_noise (&data, dataCount, samplingRate, noiseType.rawValue)
-        try checkErrorCode(errorMsg: "Failed to remove noise", errorCode: result)
+        let dataLen = Int32(data.count)
+        let errorCode = remove_environmental_noise (&data, dataLen, samplingRate, noiseType.rawValue)
+        try checkErrorCode("Failed to remove noise", errorCode)
     }
 
 }

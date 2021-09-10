@@ -34,8 +34,8 @@ func disableBoardLogger () {
 func setLogFile (_ logFile: String) throws
 {
     var cLogFile = logFile.cString(using: String.Encoding.utf8)!
-    let result = set_log_file(&cLogFile)
-    try checkErrorCode(errorMsg: "failed to set log file", errorCode: result)
+    let errorCode = set_log_file(&cLogFile)
+    try checkErrorCode("failed to set log file", errorCode)
 }
 
 /**
@@ -43,8 +43,8 @@ func setLogFile (_ logFile: String) throws
  */
 func setLogLevel (_ logLevel: LogLevels) throws
 {
-    let result = set_log_level (logLevel.rawValue)
-    try checkErrorCode(errorMsg: "failed to set log level", errorCode: result)
+    let errorCode = set_log_level (logLevel.rawValue)
+    try checkErrorCode("failed to set log level", errorCode)
 }
 
 /**
@@ -52,8 +52,8 @@ func setLogLevel (_ logLevel: LogLevels) throws
  */
 func logMessage (logLevel: Int32, message: String) throws {
     var cMessage = message.cString(using: String.Encoding.utf8)!
-    let result = log_message (logLevel, &cMessage)
-    try checkErrorCode(errorMsg: "Error in log_message", errorCode: result)
+    let errorCode = log_message (logLevel, &cMessage)
+    try checkErrorCode("Error in log_message", errorCode)
 }
 
 /**
@@ -61,8 +61,8 @@ func logMessage (logLevel: Int32, message: String) throws {
  */
 func getSamplingRate (boardId: BoardIds) throws -> Int32 {
     var samplingRate: Int32 = 0
-    let result = get_sampling_rate (boardId.rawValue, &samplingRate)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_sampling_rate (boardId.rawValue, &samplingRate)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return samplingRate
 }
@@ -72,8 +72,8 @@ func getSamplingRate (boardId: BoardIds) throws -> Int32 {
  */
 func getTimestampChannel (boardId: BoardIds) throws -> Int32 {
     var timestampChannel: Int32 = 0
-    let result = get_timestamp_channel (boardId.rawValue, &timestampChannel)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_timestamp_channel (boardId.rawValue, &timestampChannel)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return timestampChannel
 }
@@ -84,8 +84,8 @@ func getTimestampChannel (boardId: BoardIds) throws -> Int32 {
 func getMarkerChannel (boardId: BoardIds) throws -> Int32
 {
     var markerChannel: Int32 = 0
-    let result = get_marker_channel (boardId.rawValue, &markerChannel)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_marker_channel (boardId.rawValue, &markerChannel)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return markerChannel
 }
@@ -95,8 +95,8 @@ func getMarkerChannel (boardId: BoardIds) throws -> Int32
  */
 func getNumRows (boardId: BoardIds) throws -> Int32 {
     var numRows: Int32 = 0
-    let result = get_num_rows (boardId.rawValue, &numRows)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_num_rows (boardId.rawValue, &numRows)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return numRows
 }
@@ -106,8 +106,8 @@ func getNumRows (boardId: BoardIds) throws -> Int32 {
  */
 func getPackageNumChannel (boardId: BoardIds) throws -> Int32 {
     var pkgNumChannel: Int32 = 0
-    let result = get_package_num_channel (boardId.rawValue, &pkgNumChannel)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_package_num_channel (boardId.rawValue, &pkgNumChannel)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return pkgNumChannel
 }
@@ -117,8 +117,8 @@ func getPackageNumChannel (boardId: BoardIds) throws -> Int32 {
  */
 func getBatteryChannel (boardId: BoardIds) throws -> Int32 {
     var batteryChannel: Int32 = 0
-    let result = get_battery_channel (boardId.rawValue, &batteryChannel)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_battery_channel (boardId.rawValue, &batteryChannel)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return batteryChannel
 }
@@ -130,8 +130,8 @@ func getBatteryChannel (boardId: BoardIds) throws -> Int32 {
 func getEEGnames (boardId: BoardIds) throws -> [String] {
     var stringLen: Int32 = 0
     var bytes = [CChar](repeating: 0, count: 4096)
-    let result = get_eeg_names (boardId.rawValue, &bytes, &stringLen)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_eeg_names (boardId.rawValue, &bytes, &stringLen)
+    try checkErrorCode("Error in board info getter", errorCode)
     let EEGnames = bytes.toString(stringLen)
 
     return EEGnames.components(separatedBy: ",")
@@ -143,8 +143,8 @@ func getEEGnames (boardId: BoardIds) throws -> [String] {
 func getBoardDescr (boardId: BoardIds) throws -> String {
     var boardDescrStr = [CChar](repeating: CChar(0), count: 16000)
     var stringLen: Int32 = 0
-    let result = get_board_descr (boardId.rawValue, &boardDescrStr, &stringLen)
-    try checkErrorCode(errorMsg: "failed to get board info", errorCode: result)
+    let errorCode = get_board_descr (boardId.rawValue, &boardDescrStr, &stringLen)
+    try checkErrorCode("failed to get board info", errorCode)
 
     if let description = String(data: Data(bytes: &boardDescrStr, count: Int(stringLen)), encoding: .utf8) {
         return description }
@@ -159,8 +159,8 @@ func getBoardDescr (boardId: BoardIds) throws -> String {
 func getDeviceName (boardId: BoardIds) throws -> String {
     var stringLen: Int32 = 0
     var deviceName = [CChar](repeating: CChar(0), count: 4096)
-    let result = get_device_name (boardId.rawValue, &deviceName, &stringLen)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_device_name (boardId.rawValue, &deviceName, &stringLen)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return deviceName.toString(stringLen)
 }
@@ -172,8 +172,8 @@ func getDeviceName (boardId: BoardIds) throws -> String {
 func getEEGchannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
-    let result = get_eeg_channels (boardId.rawValue, &channels, &len)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_eeg_channels (boardId.rawValue, &channels, &len)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return Array(channels[0..<Int(len)])
 }
@@ -185,8 +185,8 @@ func getEEGchannels (boardId: BoardIds) throws -> [Int32] {
 func getEMGchannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
-    let result = get_emg_channels (boardId.rawValue, &channels, &len)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_emg_channels (boardId.rawValue, &channels, &len)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return Array(channels[0..<Int(len)])
 }
@@ -198,8 +198,8 @@ func getEMGchannels (boardId: BoardIds) throws -> [Int32] {
 func getECGchannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
-    let result = get_ecg_channels (boardId.rawValue, &channels, &len)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_ecg_channels (boardId.rawValue, &channels, &len)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return Array(channels[0..<Int(len)])
 }
@@ -211,8 +211,8 @@ func getECGchannels (boardId: BoardIds) throws -> [Int32] {
 func getTemperatureChannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
-    let result = get_temperature_channels (boardId.rawValue, &channels, &len)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_temperature_channels (boardId.rawValue, &channels, &len)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return Array(channels[0..<Int(len)])
 }
@@ -224,8 +224,8 @@ func getTemperatureChannels (boardId: BoardIds) throws -> [Int32] {
 func getResistanceChannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
-    let result = get_resistance_channels (boardId.rawValue, &channels, &len)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_resistance_channels (boardId.rawValue, &channels, &len)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return Array(channels[0..<Int(len)])
 }
@@ -237,8 +237,8 @@ func getResistanceChannels (boardId: BoardIds) throws -> [Int32] {
 func getEOGchannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
-    let result = get_eog_channels (boardId.rawValue, &channels, &len)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_eog_channels (boardId.rawValue, &channels, &len)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return Array(channels[0..<Int(len)])
 }
@@ -250,8 +250,8 @@ func getEOGchannels (boardId: BoardIds) throws -> [Int32] {
 func getEXGchannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
-    let result = get_exg_channels (boardId.rawValue, &channels, &len)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_exg_channels (boardId.rawValue, &channels, &len)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return Array(channels[0..<Int(len)])
 }
@@ -263,8 +263,8 @@ func getEXGchannels (boardId: BoardIds) throws -> [Int32] {
 func getEDAchannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
-    let result = get_eda_channels (boardId.rawValue, &channels, &len)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_eda_channels (boardId.rawValue, &channels, &len)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return Array(channels[0..<Int(len)])
 }
@@ -276,8 +276,8 @@ func getEDAchannels (boardId: BoardIds) throws -> [Int32] {
 func getPPGchannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
-    let result = get_ppg_channels (boardId.rawValue, &channels, &len)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_ppg_channels (boardId.rawValue, &channels, &len)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return Array(channels[0..<Int(len)])
 }
@@ -289,8 +289,8 @@ func getPPGchannels (boardId: BoardIds) throws -> [Int32] {
 func getAccelChannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
-    let result = get_accel_channels (boardId.rawValue, &channels, &len)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_accel_channels (boardId.rawValue, &channels, &len)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return Array(channels[0..<Int(len)])
 }
@@ -302,8 +302,8 @@ func getAccelChannels (boardId: BoardIds) throws -> [Int32] {
 func getAnalogChannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
-    let result = get_analog_channels (boardId.rawValue, &channels, &len)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_analog_channels (boardId.rawValue, &channels, &len)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return Array(channels[0..<Int(len)])
 }
@@ -315,8 +315,8 @@ func getAnalogChannels (boardId: BoardIds) throws -> [Int32] {
 func getGyroChannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
-    let result = get_gyro_channels (boardId.rawValue, &channels, &len)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_gyro_channels (boardId.rawValue, &channels, &len)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return Array(channels[0..<Int(len)])
 }
@@ -328,8 +328,8 @@ func getGyroChannels (boardId: BoardIds) throws -> [Int32] {
 func getOtherChannels (boardId: BoardIds) throws -> [Int32] {
     var len: Int32 = 0
     var channels = [Int32](repeating: 0, count: 512)
-    let result = get_other_channels (boardId.rawValue, &channels, &len)
-    try checkErrorCode(errorMsg: "Error in board info getter", errorCode: result)
+    let errorCode = get_other_channels (boardId.rawValue, &channels, &len)
+    try checkErrorCode("Error in board info getter", errorCode)
 
     return Array(channels[0..<Int(len)])
 }
@@ -369,8 +369,8 @@ struct BoardShim {
      */
     func prepareSession() throws {
         var jsonBFParams = self.jsonBrainFlowInputParams
-        let result = prepare_session(boardId.rawValue, &jsonBFParams)
-        try checkErrorCode(errorMsg: "failed to prepare session", errorCode: result)
+        let errorCode = prepare_session(boardId.rawValue, &jsonBFParams)
+        try checkErrorCode("failed to prepare session", errorCode)
     }
     
     /**
@@ -388,8 +388,8 @@ struct BoardShim {
         var response = [CChar](repeating: CChar(0), count: 4096)
         var cConfig = config.cString(using: String.Encoding.utf8)!
         var jsonBFParams = self.jsonBrainFlowInputParams
-        let result = config_board (&cConfig, &response, &responseLen, boardId.rawValue, &jsonBFParams)
-        try checkErrorCode(errorMsg: "Error in config_board", errorCode: result)
+        let errorCode = config_board (&cConfig, &response, &responseLen, boardId.rawValue, &jsonBFParams)
+        try checkErrorCode("Error in config_board", errorCode)
 
         return response.toString(responseLen)
     }
@@ -409,8 +409,8 @@ struct BoardShim {
     func startStream (bufferSize: Int32, streamerParams: String) throws {
         var cStreamerParams = streamerParams.cString(using: String.Encoding.utf8)!
         var jsonBFParams = self.jsonBrainFlowInputParams
-        let result = start_stream (bufferSize, &cStreamerParams, boardId.rawValue, &jsonBFParams)
-        try checkErrorCode(errorMsg: "failed to start stream", errorCode: result)
+        let errorCode = start_stream (bufferSize, &cStreamerParams, boardId.rawValue, &jsonBFParams)
+        try checkErrorCode("failed to start stream", errorCode)
     }
    
     /**
@@ -432,8 +432,8 @@ struct BoardShim {
      */
     func stopStream () throws {
         var jsonBFParams = self.jsonBrainFlowInputParams
-        let result = stop_stream (boardId.rawValue, &jsonBFParams)
-        try checkErrorCode(errorMsg: "Error in stop_stream", errorCode: result)
+        let errorCode = stop_stream (boardId.rawValue, &jsonBFParams)
+        try checkErrorCode("Error in stop_stream", errorCode)
     }
     
     /**
@@ -441,8 +441,8 @@ struct BoardShim {
      */
     func releaseSession () throws {
         var jsonBFParams = self.jsonBrainFlowInputParams
-        let result = release_session (boardId.rawValue, &jsonBFParams)
-        try checkErrorCode(errorMsg: "failed to release session", errorCode: result)
+        let errorCode = release_session (boardId.rawValue, &jsonBFParams)
+        try checkErrorCode("failed to release session", errorCode)
     }
     
     /**
@@ -451,8 +451,8 @@ struct BoardShim {
     func getBoardDataCount () throws -> Int32 {
         var dataCount: Int32 = 0
         var jsonBFParams = self.jsonBrainFlowInputParams
-        let result = get_board_data_count (&dataCount, boardId.rawValue, &jsonBFParams)
-        try checkErrorCode(errorMsg: "failed to get board data count", errorCode: result)
+        let errorCode = get_board_data_count (&dataCount, boardId.rawValue, &jsonBFParams)
+        try checkErrorCode("failed to get board data count", errorCode)
         
         return dataCount
     }
@@ -462,8 +462,8 @@ struct BoardShim {
      */
     func insertMarker (value: Double) throws {
         var jsonBFParams = self.jsonBrainFlowInputParams
-        let result = insert_marker (value, boardId.rawValue, &jsonBFParams)
-        try checkErrorCode(errorMsg: "Error in insert_marker", errorCode: result)
+        let errorCode = insert_marker (value, boardId.rawValue, &jsonBFParams)
+        try checkErrorCode("Error in insert_marker", errorCode)
     }
     
     /**
@@ -472,8 +472,8 @@ struct BoardShim {
     func isPrepared () throws -> Bool  {
         var intPrepared: Int32 = 0
         var jsonBFParams = self.jsonBrainFlowInputParams
-        let result = is_prepared (&intPrepared, boardId.rawValue, &jsonBFParams)
-        try checkErrorCode(errorMsg: "failed to check session", errorCode: result)
+        let errorCode = is_prepared (&intPrepared, boardId.rawValue, &jsonBFParams)
+        try checkErrorCode("failed to check session", errorCode)
         
         return NSNumber(value: intPrepared).boolValue
     }
@@ -495,8 +495,8 @@ struct BoardShim {
         }
             
         var buffer = [Double](repeating: 0.0, count: Int(numSamples * numRows))
-        let result = get_current_board_data (numSamples, &buffer, &currentSize, boardId.rawValue, &jsonBFParams)
-        try checkErrorCode(errorMsg: "Error in get_current_board_data", errorCode: result)
+        let errorCode = get_current_board_data (numSamples, &buffer, &currentSize, boardId.rawValue, &jsonBFParams)
+        try checkErrorCode("Error in get_current_board_data", errorCode)
         
         return buffer
     }
@@ -521,8 +521,8 @@ struct BoardShim {
         
         var buffer = [Double](repeating: 0.0, count: Int(size * numRows))
         
-        let result = get_board_data (size, &buffer, boardId.rawValue, &jsonBFParams)
-        try checkErrorCode(errorMsg: "failed to get board data", errorCode: result)
+        let errorCode = get_board_data (size, &buffer, boardId.rawValue, &jsonBFParams)
+        try checkErrorCode("failed to get board data", errorCode)
 
         return buffer.matrix2D(rowLength: Int(size))
     }

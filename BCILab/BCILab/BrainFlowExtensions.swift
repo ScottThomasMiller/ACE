@@ -1,8 +1,8 @@
 //
-//  Matrix.swift
-//  BrainBook
+//  BrainFlowExtensions.swift
+//  helper functions for the Swift binding of BrainFlow's API
 //
-//  Created by Scott Miller on 8/25/21.
+//  Created by Scott Miller for Aeris Rising, LLC on 8/25/21.
 //
 
 import Foundation

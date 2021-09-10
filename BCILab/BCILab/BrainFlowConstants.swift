@@ -1,3 +1,9 @@
+//
+//  BrainFlowConstants.swift
+//  a Swift binding for BrainFlow's enumeration types
+//
+//  Created by Scott Miller for Aeris Rising, LLC on 8/23/21.
+//
 
 enum BrainFlowExitCodes : Int32 {
     case UNKNOWN_CODE = -1

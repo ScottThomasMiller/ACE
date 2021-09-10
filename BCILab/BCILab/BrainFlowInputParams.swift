@@ -1,6 +1,6 @@
 //
 //  BrainFlowInputParams.swift
-//  A wrapper for BrainFlow's brainflow_input_params.h
+//  a Swift binding for BrainFlow's brainflow_input_params.h
 //
 //  Created by Scott Miller for Aeris Rising, LLC on 8/23/21.
 //
