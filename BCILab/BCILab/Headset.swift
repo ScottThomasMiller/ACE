@@ -38,6 +38,7 @@ enum ChannelIDs: String, CaseIterable {
 class Headset {
     var isReady: Bool = false
     let params = BrainFlowInputParams(serial_port: "/dev/cu.usbserial-DM0258EJ")
+    //let params = BrainFlowInputParams(serial_port: "/dev/cu.usbserial-4")
     let boardId: BoardIds
     let board: BoardShim
     let samplingRate: Int32
@@ -53,13 +54,13 @@ class Headset {
         do {
             print("setup headset")
             board = try BoardShim(boardId, params)
-            boardDescJSON = try getBoardDescr(boardId: boardId)
+            boardDescJSON = try BoardShim.getBoardDescr(boardId: boardId)
             boardDescDict = boardDescJSON.convertToDictionary()!
-            samplingRate = try getSamplingRate(boardId: boardId)
-            eegChannels = try getEEGchannels(boardId: boardId)
-            markerChannel = try Int(getMarkerChannel(boardId: boardId))
-            pkgIDchannel = try Int(getPackageNumChannel(boardId: boardId))
-            timestampChannel = try Int(getTimestampChannel(boardId: boardId))
+            samplingRate = try BoardShim.getSamplingRate(boardId: boardId)
+            eegChannels = try BoardShim.getEEGchannels(boardId: boardId)
+            markerChannel = try Int(BoardShim.getMarkerChannel(boardId: boardId))
+            pkgIDchannel = try Int(BoardShim.getPackageNumChannel(boardId: boardId))
+            timestampChannel = try Int(BoardShim.getTimestampChannel(boardId: boardId))
             
             print("board description:\n\(boardDescJSON)")
             print("preparing session")
@@ -80,16 +81,16 @@ class Headset {
             }
         }
         catch let bfError as BrainFlowException {
-            try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: bfError.message)
-            try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue,
+            try? BoardShim.logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: bfError.message)
+            try? BoardShim.logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue,
                              message: "Error code: \(bfError.errorCode)")
             throw bfError
         }
         catch {
-            try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: "undefined exception")
+            try? BoardShim.logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: "undefined exception")
             throw error
         }
-        enableDevBoardLogger()
+        BoardShim.enableDevBoardLogger()
         isReady = true
     }
     
@@ -193,11 +194,11 @@ class Headset {
             }
         }
         catch let bfError as BrainFlowException {
-            try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: bfError.message)
-            try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue,
+            try? BoardShim.logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: bfError.message)
+            try? BoardShim.logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue,
                              message: "Error code: \(bfError.errorCode)") }
         catch {
-            try? logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: "undefined exception")
+            try? BoardShim.logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: "undefined exception")
         }
     }
 

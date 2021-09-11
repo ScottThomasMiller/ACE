@@ -145,7 +145,7 @@ struct DataFilter {
 
         return downsampledData
     }
-
+    
     /**
      * removes noise using notch filter
      */
@@ -154,5 +154,71 @@ struct DataFilter {
         let errorCode = remove_environmental_noise (&data, dataLen, samplingRate, noiseType.rawValue)
         try checkErrorCode("Failed to remove noise", errorCode)
     }
+
+    /**
+     * perform wavelet based denoising in-place
+     *
+     * @param wavelet             supported vals:
+     *    db1..db15,haar,sym2..sym10,coif1..coif5,bior1.1,bior1.3,bior1.5,bior2.2,bior2.4,bior2.6,bior2.8,bior3.1,bior3.3,bior3.5,
+     *    bior3.7,bior3.9,bior4.4,bior5.5,bior6.8
+     *
+     * @param decomposition_level level of decomposition of wavelet transform
+     */
+    func performWaveletDenoising (data: inout [Double], wavelet: String, decompositionLevel: Int32) throws {
+        let dataLen = Int32(data.count)
+        var cWavelet = wavelet.cString(using: String.Encoding.utf8)!
+        let errorCode = perform_wavelet_denoising (&data, dataLen, &cWavelet, decompositionLevel)
+        try checkErrorCode("Failed to perform denoising", errorCode)
+    }
+    
+    /**
+     * perform wavelet transform
+     *
+     * @param wavelet supported vals:
+     *                db1..db15,haar,sym2..sym10,coif1..coif5,bior1.1,bior1.3,bior1.5,bior2.2,bior2.4,bior2.6,bior2.8,bior3.1,bior3.3,bior3.5
+     *                ,bior3.7,bior3.9,bior4.4,bior5.5,bior6.8
+     */
+    static func performWaveletTransform(data: inout [Double], wavelet: String, decompositionLevel: Int32) throws -> ([Double], [Int32]) {
+        if (decompositionLevel <= 0) {
+            throw BrainFlowException ("Invalid decomposition level", .INVALID_ARGUMENTS_ERROR)
+        }
+        
+        let dataLen = Int32(data.count)
+        var cWavelet = wavelet.cString(using: String.Encoding.utf8)!
+        var lengths = [Int32](repeating: 0, count: Int(decompositionLevel) + 1)
+        let outputLen = dataLen + (2 * decompositionLevel * (40 + 1))
+        var outputArray = [Double](repeating: 0.0, count: Int(outputLen))
+        
+        let errorCode = perform_wavelet_transform (&data, dataLen, &cWavelet, decompositionLevel,
+                                                   &outputArray, &lengths)
+        try checkErrorCode("Failed to perform wavelet transform", errorCode)
+
+        let totalLen = Int(lengths.reduce(0, +))
+        let result = Array(outputArray[..<totalLen])
+        
+        return (result, lengths)
+    }
+    
+    /**
+      * perform inverse wavelet transform
+      */
+    static func performInverseWaveletTransform (waveletTuple: ([Double], [Int32]), originalDataLen: Int32,
+                                                wavelet: String, decompositionLevel: Int32) throws -> [Double] {
+        if (decompositionLevel <= 0) {
+            throw BrainFlowException ("Invalid decomposition level", .INVALID_ARGUMENTS_ERROR)
+        }
+        
+        var outputArray = [Double](repeating: 0.0, count: Int(originalDataLen))
+        var waveletCoeffs = waveletTuple.0
+        var decompositionLengths = waveletTuple.1
+        var cWavelet = wavelet.cString(using: String.Encoding.utf8)!
+
+        let errorCode = perform_inverse_wavelet_transform (&waveletCoeffs, originalDataLen, &cWavelet,
+                                                           decompositionLevel, &decompositionLengths,
+                                                           &outputArray)
+        try checkErrorCode("Failed to perform inverse wavelet transform", errorCode)
+
+        return outputArray
+     }
 
 }
