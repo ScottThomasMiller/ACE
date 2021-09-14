@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -47,6 +47,9 @@
 		5F74AE3D26C6845200A53ED5 /* CSVFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F74AE3C26C6845200A53ED5 /* CSVFile.swift */; };
 		5FA42B2926E378B8003C6F17 /* CSVFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F74AE3C26C6845200A53ED5 /* CSVFile.swift */; };
 		5FA42B2A26E378B9003C6F17 /* CSVFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F74AE3C26C6845200A53ED5 /* CSVFile.swift */; };
+		5FAB0B3226EE5D500047E69A /* ComplexModule in Frameworks */ = {isa = PBXBuildFile; productRef = 5FAB0B3126EE5D500047E69A /* ComplexModule */; };
+		5FAB0B3426EE5D500047E69A /* RealModule in Frameworks */ = {isa = PBXBuildFile; productRef = 5FAB0B3326EE5D500047E69A /* RealModule */; };
+		5FAB0B3626EE5D500047E69A /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = 5FAB0B3526EE5D500047E69A /* Numerics */; };
 		5FC07DB526BEFB4300B1971B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC07DB426BEFB4300B1971B /* ContentView.swift */; };
 		5FC07DB726BF67CB00B1971B /* LabeledImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC07DB626BF67CB00B1971B /* LabeledImage.swift */; };
 		5FCD107126DD36D6000A6FFE /* BrainFlowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107026DD36D6000A6FFE /* BrainFlowExtensions.swift */; };
@@ -173,8 +176,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FAB0B3426EE5D500047E69A /* RealModule in Frameworks */,
 				5F73913026DCE6990029C95D /* libDataHandler.dylib in Frameworks */,
+				5FAB0B3226EE5D500047E69A /* ComplexModule in Frameworks */,
 				5F73912E26DCE67D0029C95D /* libBoardController.dylib in Frameworks */,
+				5FAB0B3626EE5D500047E69A /* Numerics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +346,11 @@
 			dependencies = (
 			);
 			name = BCILab;
+			packageProductDependencies = (
+				5FAB0B3126EE5D500047E69A /* ComplexModule */,
+				5FAB0B3326EE5D500047E69A /* RealModule */,
+				5FAB0B3526EE5D500047E69A /* Numerics */,
+			);
 			productName = BCILab;
 			productReference = 5F58BD0C26AC1C5D003F5483 /* BCILab.app */;
 			productType = "com.apple.product-type.application";
@@ -411,6 +422,9 @@
 				Base,
 			);
 			mainGroup = 5F58BD0326AC1C5D003F5483;
+			packageReferences = (
+				5FAB0B3026EE5D500047E69A /* XCRemoteSwiftPackageReference "swift-numerics" */,
+			);
 			productRefGroup = 5F58BD0D26AC1C5D003F5483 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -893,6 +907,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5FAB0B3026EE5D500047E69A /* XCRemoteSwiftPackageReference "swift-numerics" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-numerics.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5FAB0B3126EE5D500047E69A /* ComplexModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5FAB0B3026EE5D500047E69A /* XCRemoteSwiftPackageReference "swift-numerics" */;
+			productName = ComplexModule;
+		};
+		5FAB0B3326EE5D500047E69A /* RealModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5FAB0B3026EE5D500047E69A /* XCRemoteSwiftPackageReference "swift-numerics" */;
+			productName = RealModule;
+		};
+		5FAB0B3526EE5D500047E69A /* Numerics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5FAB0B3026EE5D500047E69A /* XCRemoteSwiftPackageReference "swift-numerics" */;
+			productName = Numerics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5F58BD0426AC1C5D003F5483 /* Project object */;
 }

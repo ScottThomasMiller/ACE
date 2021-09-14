@@ -7,7 +7,8 @@
 
 
 import Foundation
-
+import Numerics
+    
 struct DataFilter {
     /**
      * enable Data logger with level INFO
@@ -127,8 +128,8 @@ struct DataFilter {
      * perform data downsampling, it doesnt apply lowpass filter for you, it just
      * aggregates several data points
      */
-    static func performDownsampling (data: inout [Double], period: Int32, operation: Int32) throws -> [Double] {
-        if (period <= 0) {
+    static func performDownsampling (data: [Double], period: Int32, operation: Int32) throws -> [Double] {
+        guard (period > 0) else {
             throw BrainFlowException("Invalid period", .INVALID_ARGUMENTS_ERROR)
         }
         
@@ -140,7 +141,8 @@ struct DataFilter {
         }
         
         var downsampledData = [Double](repeating: 0.0, count: Int(newSize))
-        let errorCode = perform_downsampling (&data, dataLen, period, operation, &downsampledData)
+        var cData = data
+        let errorCode = perform_downsampling (&cData, dataLen, period, operation, &downsampledData)
         try checkErrorCode("Failed to perform downsampling", errorCode)
 
         return downsampledData
@@ -178,18 +180,19 @@ struct DataFilter {
      *                db1..db15,haar,sym2..sym10,coif1..coif5,bior1.1,bior1.3,bior1.5,bior2.2,bior2.4,bior2.6,bior2.8,bior3.1,bior3.3,bior3.5
      *                ,bior3.7,bior3.9,bior4.4,bior5.5,bior6.8
      */
-    static func performWaveletTransform(data: inout [Double], wavelet: String, decompositionLevel: Int32) throws -> ([Double], [Int32]) {
-        if (decompositionLevel <= 0) {
+    static func performWaveletTransform(data: [Double], wavelet: String, decompositionLevel: Int32) throws -> ([Double], [Int32]) {
+        guard (decompositionLevel > 0) else {
             throw BrainFlowException ("Invalid decomposition level", .INVALID_ARGUMENTS_ERROR)
         }
         
         let dataLen = Int32(data.count)
         var cWavelet = wavelet.cString(using: String.Encoding.utf8)!
         var lengths = [Int32](repeating: 0, count: Int(decompositionLevel) + 1)
-        let outputLen = dataLen + (2 * decompositionLevel * (40 + 1))
+        let outputLen = dataLen + 2 * decompositionLevel * (40 + 1)
         var outputArray = [Double](repeating: 0.0, count: Int(outputLen))
         
-        let errorCode = perform_wavelet_transform (&data, dataLen, &cWavelet, decompositionLevel,
+        var cData = data
+        let errorCode = perform_wavelet_transform (&cData, dataLen, &cWavelet, decompositionLevel,
                                                    &outputArray, &lengths)
         try checkErrorCode("Failed to perform wavelet transform", errorCode)
 
@@ -204,7 +207,7 @@ struct DataFilter {
       */
     static func performInverseWaveletTransform (waveletTuple: ([Double], [Int32]), originalDataLen: Int32,
                                                 wavelet: String, decompositionLevel: Int32) throws -> [Double] {
-        if (decompositionLevel <= 0) {
+        guard (decompositionLevel > 0) else {
             throw BrainFlowException ("Invalid decomposition level", .INVALID_ARGUMENTS_ERROR)
         }
         
@@ -220,5 +223,176 @@ struct DataFilter {
 
         return outputArray
      }
+    
+    /**
+     * get common spatial filters
+     */
+    static func getCsp (data: [[[Double]]], labels: inout [Double]) throws -> ([[Double]], [Double]) {
+        let nEpochs = data.count
+        let nChannels = data[0].count
+        let nTimes = data[0][0].count
 
+        var tempData1d = [Double](repeating: 0.0, count: Int(nEpochs * nChannels * nTimes))
+        for e in 0..<nEpochs {
+            for c in 0..<nChannels {
+                for t in 0..<nTimes {
+                    let idx = e * nChannels * nTimes + c * nTimes + t
+                    tempData1d[idx] = data[e][c][t]
+                }
+            }
+        }
+
+        var tempFilters = [Double](repeating: 0.0, count: nChannels * nChannels)
+        var outputEigenvalues = [Double](repeating: 0.0, count: nChannels)
+
+        let errorCode = get_csp (&tempData1d, &labels, Int32(nEpochs), Int32(nChannels), Int32(nTimes),
+                                 &tempFilters, &outputEigenvalues)
+        try checkErrorCode("Failed to get the CSP filters", errorCode)
+
+        var outputFilters = [[Double]](repeating: [Double](repeating: 0.0, count: nChannels), count: nChannels)
+        for i in 0..<nChannels {
+            for j in 0..<nChannels {
+                outputFilters[i][j] = tempFilters[i * nChannels + j]
+            }
+        }
+
+        return (outputFilters, outputEigenvalues)
+    }
+    
+    /**
+     * perform data windowing
+     *
+     * @param window     window function
+     * @param window_len lenght of the window function
+     * @return array of the size specified in window_len
+     */
+    static func getWindow (window: Int32, windowLen: Int32) throws -> [Double] {
+        var windowData = [Double](repeating: 0.0, count: Int(windowLen))
+        let errorCode = get_window (window, windowLen, &windowData)
+        try checkErrorCode("Failed to perform windowing", errorCode)
+
+        return windowData
+    }
+
+    /**
+     * perform direct fft
+     *
+     * @param data      data for fft transform
+     * @param start_pos starting position to calc fft
+     * @param end_pos   end position to calc fft, total_len must be a power of two
+     * @param window    window function
+     * @return array of complex values with size N / 2 + 1
+     */
+    static func performFFT (data: [Double], startPos: Int32, endPos: Int32, window: Int32) throws -> [Complex<Double>] {
+        let dataLen = data.count
+        guard (startPos >= 0) && (endPos <= dataLen) && (startPos < endPos) else {
+            throw BrainFlowException ("invalid position arguments", .INVALID_ARGUMENTS_ERROR)
+        }
+        
+        // I didnt find a way to pass an offset using pointers, copy array
+        var dataToProcess = Array(data[Int(startPos)..<Int(endPos)])
+        let len = dataToProcess.count
+        
+        guard ((len & (len - 1)) == 0) else {
+            throw BrainFlowException ("end_pos - start_pos must be a power of 2", .INVALID_ARGUMENTS_ERROR)
+        }
+        
+        var complexReal = [Double](repeating: 0.0, count: (len / 2 + 1))
+        var complexImaginary = [Double](repeating: 0.0, count: (len / 2 + 1))
+        let errorCode = perform_fft (&dataToProcess, Int32(len), window, &complexReal, &complexImaginary)
+        try checkErrorCode("Failed to perform fft", errorCode)
+
+        let complexResult = zip(complexReal, complexImaginary).map{Complex<Double>($0, $1)}
+        return complexResult
+    }
+
+    /**
+     * perform inverse fft
+     *
+     * @param data data from fft transform(array of complex values)
+     * @return restored data
+     */
+    static func performIFFT (data: [Complex<Double>]) throws -> [Double]
+    {
+        var complexReal = data.map{$0.real}
+        var complexImaginary = data.map{$0.imaginary}
+        
+        let len = (data.count - 1) * 2
+        var output = [Double](repeating: 0.0, count: len)
+        let errorCode = perform_ifft (&complexReal, &complexImaginary, Int32(len), &output)
+        try checkErrorCode("Failed to perform ifft", errorCode)
+
+        return output
+    }
+    
+    /**
+         * calc average and stddev of band powers across all channels, bands are
+         * 1-4,4-8,8-13,13-30,30-50
+         *
+         * @param data          data to process
+         * @param channels      rows of data arrays which should be used in calculation
+         * @param sampling_rate sampling rate
+         * @param apply_filters apply bandpass and bandstop filters before calculation
+         * @return pair of avgs and stddevs for bandpowers
+         */
+    static func getAvgBandPowers (data: [[Double]]?, channels: [Int32]?, samplingRate: Int32,
+                                  applyFilters: Bool) throws -> ([Double], [Double]) {
+        guard ((data != nil) && (channels != nil)) else {
+            throw BrainFlowException ("data or channels null", .INVALID_ARGUMENTS_ERROR)
+        }
+
+        // convert channels from [Int32]? to [Int] for syntactic sugar:
+        let iChannels = channels!.map{Int($0)}
+        
+        var data1d = [Double](repeating: 0.0, count: iChannels.count * data![iChannels[0]].count)
+        for i in 0..<iChannels.count {
+            let ch = iChannels[i]
+            for j in 0..<data![ch].count {
+                data1d[j + i * data![iChannels[i]].count] = data![iChannels[i]][j]
+            }
+        }
+
+        var avgs = [Double](repeating: 0.0, count: 5)
+        var stddevs = [Double](repeating: 0.0, count: 5)
+        let filtersOn = Int32(applyFilters ? 1 : 0)
+        let numRows = Int32(iChannels.count)
+        let numCols = Int32(data![iChannels[0]].count)
+
+        let errorCode = get_avg_band_powers (&data1d, numRows, numCols, samplingRate,
+                                             filtersOn, &avgs, &stddevs)
+        try checkErrorCode("Failed to get_avg_band_powers", errorCode)
+
+        return (avgs, stddevs)
+    }
+    
+    /**
+      * get PSD
+      *
+      * @param data          data to process
+      * @param start_pos     starting position to calc PSD
+      * @param end_pos       end position to calc PSD, total_len must be a power of
+      *                      two
+      * @param sampling_rate sampling rate
+      * @param window        window function
+      * @return pair of ampl and freq arrays with len N / 2 + 1
+      */
+    static func getPSD (data: [Double], startPos: Int32, endPos: Int32, samplingRate: Int32, window: Int32) throws -> ([Double], [Double]) {
+         guard ((startPos >= 0) && (endPos <= data.count) && (startPos < endPos)) else {
+             throw BrainFlowException ("invalid position arguments", .INVALID_ARGUMENTS_ERROR)
+         }
+        
+        // I didnt find a way to pass an offset using pointers, copy array
+        var dataToProcess = Array(data[Int(startPos)..<Int(endPos)])
+        let len = dataToProcess.count
+        guard ((len & (len - 1)) == 0) else {
+             throw BrainFlowException ("end_pos - start_pos must be a power of 2", .INVALID_ARGUMENTS_ERROR)
+        }
+        
+        var ampls = [Double](repeating: 0.0, count: len / 2 + 1)
+        var freqs = [Double](repeating: 0.0, count: len / 2 + 1)
+        let errorCode = get_psd (&dataToProcess, Int32(len), samplingRate, window, &ampls, &freqs)
+        try checkErrorCode("Failed to psd", errorCode)
+
+        return (ampls, freqs)
+     }
 }
