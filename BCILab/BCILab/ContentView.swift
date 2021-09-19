@@ -8,8 +8,8 @@ struct ContentView: View {
     @State private var selection = -1
     @State var isTimerRunning = false
     let images: [LabeledImage] = prepareImages()
-    let boardId = BoardIds.CYTON_DAISY_BOARD
-    //let boardId = BoardIds.SYNTHETIC_BOARD
+    //let boardId = BoardIds.CYTON_DAISY_BOARD
+    let boardId = BoardIds.SYNTHETIC_BOARD
     let headset: Headset
     
     var body: some View {
@@ -38,6 +38,7 @@ struct ContentView: View {
                         self.stopTimer()
                     } else {
                         let label = self.images[self.selection+1].label
+                        print("marker: \(label)")
                         try? self.headset.board.insertMarker(value: label.rawValue)
                         self.selection += 1
                     }
@@ -64,7 +65,6 @@ struct ContentView: View {
             }
         catch {
             print("Cannot connect to headset")
-            //exit(BrainFlowExitCodes.BOARD_NOT_READY_ERROR.rawValue)
             exit(-1)
         }
     }

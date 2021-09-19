@@ -43,8 +43,7 @@ class Headset {
     let board: BoardShim
     let samplingRate: Int32
     let eegChannels: [Int32]
-    let boardDescJSON: String
-    let boardDescDict: [String: Any]
+    let boardDescription: BoardDescription
     let pkgIDchannel: Int
     let timestampChannel: Int
     let markerChannel: Int
@@ -54,15 +53,14 @@ class Headset {
         do {
             print("setup headset")
             board = try BoardShim(boardId, params)
-            boardDescJSON = try BoardShim.getBoardDescr(boardId: boardId)
-            boardDescDict = boardDescJSON.convertToDictionary()!
+            boardDescription = try BoardShim.getBoardDescr(boardId: boardId)
             samplingRate = try BoardShim.getSamplingRate(boardId: boardId)
             eegChannels = try BoardShim.getEEGchannels(boardId: boardId)
             markerChannel = try Int(BoardShim.getMarkerChannel(boardId: boardId))
             pkgIDchannel = try Int(BoardShim.getPackageNumChannel(boardId: boardId))
             timestampChannel = try Int(BoardShim.getTimestampChannel(boardId: boardId))
             
-            print("board description:\n\(boardDescJSON)")
+            print("board description:\n\(boardDescription)")
             print("preparing session")
             
             try board.prepareSession()
@@ -81,13 +79,12 @@ class Headset {
             }
         }
         catch let bfError as BrainFlowException {
-            try? BoardShim.logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: bfError.message)
-            try? BoardShim.logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue,
-                             message: "Error code: \(bfError.errorCode)")
+            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: bfError.message)
+            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: "Error code: \(bfError.errorCode)")
             throw bfError
         }
         catch {
-            try? BoardShim.logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: "undefined exception")
+            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: "undefined exception")
             throw error
         }
         BoardShim.enableDevBoardLogger()
@@ -138,7 +135,6 @@ class Headset {
     }
     
     func streamEEG() {
-        let filter = DataFilter()
         let rawFile = CSVFile(fileName: "BrainWave-EEG-Raw").openFile()
         let filteredFile = CSVFile(fileName: "BrainWave-EEG-Filtered").openFile()
         
@@ -177,8 +173,8 @@ class Headset {
                 for channel in eegChannels {
                     let ch = Int(channel)
                     var filtered = matrixRaw[ch].map { $0 / 24.0 }
-                    try filter.removeEnvironmentalNoise(data: &filtered, samplingRate: samplingRate, noiseType: NoiseTypes.SIXTY)
-                    try filter.performBandpass(data: &filtered, samplingRate: samplingRate, centerFreq: 27.5, bandWidth: 45.0, order: 4, filterType: FilterTypes.BUTTERWORTH, ripple: 1.0)
+                    try DataFilter.removeEnvironmentalNoise(data: &filtered, samplingRate: samplingRate, noiseType: NoiseTypes.SIXTY)
+                    try DataFilter.performBandpass(data: &filtered, samplingRate: samplingRate, centerFreq: 27.5, bandWidth: 45.0, order: 4, filterType: FilterTypes.BUTTERWORTH, ripple: 1.0)
                     var rawSample = [Double]()
                     var filteredSample = [Double]()
                     for iSample in 0..<numSamples {
@@ -194,11 +190,10 @@ class Headset {
             }
         }
         catch let bfError as BrainFlowException {
-            try? BoardShim.logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: bfError.message)
-            try? BoardShim.logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue,
-                             message: "Error code: \(bfError.errorCode)") }
+            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: bfError.message)
+            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: "Error code: \(bfError.errorCode)") }
         catch {
-            try? BoardShim.logMessage (logLevel: LogLevels.LEVEL_ERROR.rawValue, message: "undefined exception")
+            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: "undefined exception")
         }
     }
 

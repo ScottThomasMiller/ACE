@@ -1,6 +1,6 @@
 //
 //  DataFilter.swift
-//  A binding for BrainFlow's data_filter high-level API
+//  A binding for BrainFlow's data_filter API
 //
 //  Created by Scott Miller for Aeris Rising, LLC on 8/27/21.
 //
@@ -85,7 +85,7 @@ struct DataFilter {
     /**
      * perform bandpass filter in-place
      */
-    func performBandpass (data: inout [Double], samplingRate: Int32, centerFreq: Double, bandWidth: Double,
+    static func performBandpass (data: inout [Double], samplingRate: Int32, centerFreq: Double, bandWidth: Double,
                           order: Int32, filterType: FilterTypes, ripple: Double) throws {
         let dataLen = Int32(data.count)
         let filterVal = filterType.rawValue
@@ -118,9 +118,9 @@ struct DataFilter {
     /**
      * subtract trend from data in-place
      */
-    func deTrend (data: inout [Double], operation: Int32) throws {
+    static func deTrend (data: inout [Double], operation: DetrendOperations) throws {
         let dataLen = Int32(data.count)
-        let errorCode = detrend (&data, dataLen, operation)
+        let errorCode = detrend (&data, dataLen, operation.rawValue)
         try checkErrorCode("Failed to detrend", errorCode)
     }
     
@@ -151,7 +151,7 @@ struct DataFilter {
     /**
      * removes noise using notch filter
      */
-    func removeEnvironmentalNoise (data: inout [Double], samplingRate: Int32, noiseType: NoiseTypes) throws {
+    static func removeEnvironmentalNoise (data: inout [Double], samplingRate: Int32, noiseType: NoiseTypes) throws {
         let dataLen = Int32(data.count)
         let errorCode = remove_environmental_noise (&data, dataLen, samplingRate, noiseType.rawValue)
         try checkErrorCode("Failed to remove noise", errorCode)
@@ -166,7 +166,7 @@ struct DataFilter {
      *
      * @param decomposition_level level of decomposition of wavelet transform
      */
-    func performWaveletDenoising (data: inout [Double], wavelet: String, decompositionLevel: Int32) throws {
+    static func performWaveletDenoising (data: inout [Double], wavelet: String, decompositionLevel: Int32) throws {
         let dataLen = Int32(data.count)
         var cWavelet = wavelet.cString(using: String.Encoding.utf8)!
         let errorCode = perform_wavelet_denoising (&data, dataLen, &cWavelet, decompositionLevel)
@@ -395,4 +395,93 @@ struct DataFilter {
 
         return (ampls, freqs)
      }
+    
+    /**
+      * get PSD using Welch Method
+      *
+      * @param data          data to process
+      * @param nfft          size of FFT, must be power of two
+      * @param overlap       overlap between FFT Windows, must be between 0 and nfft
+      * @param sampling_rate sampling rate
+      * @param window        window function
+      * @return pair of ampl and freq arrays
+      */
+    static func getPSDwelch (data: [Double], nfft: Int32, overlap: Int32, samplingRate: Int32,
+                             window: WindowFunctions) throws -> ([Double], [Double]) {
+         guard ((nfft & (nfft - 1)) == 0) else {
+             throw BrainFlowException ("nfft must be a power of 2", .INVALID_ARGUMENTS_ERROR)
+         }
+        
+        var cData = data
+        var ampls = [Double](repeating: 0.0, count: Int(nfft) / 2 + 1)
+        var freqs = [Double](repeating: 0.0, count: Int(nfft) / 2 + 1)
+        let errorCode = get_psd_welch (&cData, Int32(data.count), nfft, overlap, samplingRate,
+                                       window.rawValue, &ampls,
+                                       &freqs)
+        try checkErrorCode("Failed to get_psd_welch", errorCode)
+
+        return (ampls, freqs)
+     }
+    
+    /**
+      * get band power
+      *
+      * @param psd        PSD from get_psd or get_log_psd
+      * @param freq_start lowest frequency of band
+      * @param freq_end   highest frequency of band
+      * @return band power
+      */
+    static func getBandPower (psd: ([Double], [Double]), freqStart: Double, freqEnd: Double) throws -> Double {
+        var result = [Double](repeating: 0.0, count: 1)
+        var psdLeft = psd.0
+        var psdRight = psd.1
+        let errorCode = get_band_power (&psdLeft, &psdRight, Int32(psdLeft.count), freqStart, freqEnd,
+                                        &result)
+        try checkErrorCode("Failed to get band power", errorCode)
+        return result[0]
+     }
+    
+    /**
+     * calculate nearest power of two
+     */
+    static func getNearestPowerOfTwo (value: Int32) throws -> Int32 {
+        var powerOfTwo = [Int32](repeating: 0, count: 1)
+        let errorCode = get_nearest_power_of_two (value, &powerOfTwo)
+        try checkErrorCode("Failed to calc nearest power of two", errorCode)
+        return powerOfTwo[0]
+    }
+    
+    /**
+     * write data to tsv file, in file data will be transposed
+     */
+    static func writeFile (data: [[Double]], fileName: String, fileMode: String) throws {
+        guard data.count > 0 else {
+            throw BrainFlowException ("empty data array", .INVALID_ARGUMENTS_ERROR)
+        }
+
+        var linearData = data.flatMap {$0}
+        var cFileName = fileName.cString(using: String.Encoding.utf8)!
+        var cFileMode = fileMode.cString(using: String.Encoding.utf8)!
+        let errorCode = write_file (&linearData, Int32(data.count), Int32(data[0].count), &cFileName, &cFileMode)
+        try checkErrorCode("Failed to write data to file", errorCode)
+    }
+
+    /**
+     * read data from file, transpose it back to original format
+     */
+    static func readFile (fileName: String) throws -> [[Double]] {
+        var numElements = [Int32](repeating: 0, count: 1)
+        var cFileName = fileName.cString(using: String.Encoding.utf8)!
+        var errorCode = get_num_elements_in_file (&cFileName, &numElements)
+        try checkErrorCode("Failed to determine number of elements in a file", errorCode)
+
+        var dataArr = [Double](repeating: 0.0, count: Int(numElements[0]))
+        var numRows = [Int32](repeating: 0, count: 1)
+        var numCols = [Int32](repeating: 0, count: 1)
+        errorCode = read_file (&dataArr, &numRows, &numCols, &cFileName, numElements[0])
+        try checkErrorCode("Failed to read data from file", errorCode)
+
+        return dataArr.matrix2D(rowLength: Int(numCols[0]))
+    }
+    
 }
