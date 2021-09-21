@@ -22,42 +22,42 @@ class BoardShimTests: XCTestCase {
     }
 
     func testEEGnames() throws {
-        let result = try BoardShim.getEEGnames(boardId: synthBoardID)
+        let result = try BoardShim.getEEGnames(synthBoardID)
         XCTAssert(result == ["Fz", "C3", "Cz", "C4", "Pz", "PO7", "Oz", "PO8", "F5", "F7", "F3", "F1", "F2", "F4", "F6", "F8"])
     }
 
     func testSamplingRate() throws {
-        let result = try BoardShim.getSamplingRate(boardId: synthBoardID)
+        let result = try BoardShim.getSamplingRate(synthBoardID)
         XCTAssert(result == 250)
     }
     
     func testTimestampChannel () throws {
-        let result = try BoardShim.getTimestampChannel(boardId: synthBoardID)
+        let result = try BoardShim.getTimestampChannel(synthBoardID)
         XCTAssert(result == 30)
     }
 
     func testMarkerChannel () throws {
-        let result = try BoardShim.getMarkerChannel(boardId: synthBoardID)
+        let result = try BoardShim.getMarkerChannel(synthBoardID)
         XCTAssert(result == 31)
     }
     
     func testNumRows () throws {
-        let result = try BoardShim.getNumRows(boardId: synthBoardID)
+        let result = try BoardShim.getNumRows(synthBoardID)
         XCTAssert(result == 32)
     }
 
     func testPackageNumChannel () throws {
-        let result = try BoardShim.getPackageNumChannel(boardId: synthBoardID)
+        let result = try BoardShim.getPackageNumChannel(synthBoardID)
         XCTAssert(result == 0)
     }
 
     func testBatteryChannel () throws {
-        let result = try BoardShim.getBatteryChannel(boardId: synthBoardID)
+        let result = try BoardShim.getBatteryChannel(synthBoardID)
         XCTAssert(result == 29)
     }
 
     func testBoardDescr () throws {
-        let result = try BoardShim.getBoardDescr(boardId: synthBoardID)
+        let result = try BoardShim.getBoardDescr(synthBoardID)
         print("result: \(result)")
         let testBoard = try BoardDescription(
                     """
@@ -69,74 +69,74 @@ class BoardShimTests: XCTestCase {
     }
 
     func testDeviceName () throws {
-        let result = try BoardShim.getDeviceName(boardId: synthBoardID)
+        let result = try BoardShim.getDeviceName(synthBoardID)
         XCTAssert(result == "Synthetic")
     }
 
     func testEEGchannels () throws {
-        let result = try BoardShim.getEEGchannels(boardId: synthBoardID)
+        let result = try BoardShim.getEEGchannels(synthBoardID)
         XCTAssert(result == [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])
     }
 
     func testEMGchannels () throws
     {
-        let result = try BoardShim.getEMGchannels(boardId: synthBoardID)
+        let result = try BoardShim.getEMGchannels(synthBoardID)
         XCTAssert(result == [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])
     }
     
     func testECGchannels () throws {
-        let result = try BoardShim.getECGchannels(boardId: synthBoardID)
+        let result = try BoardShim.getECGchannels(synthBoardID)
         XCTAssert(result == [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])
     }
 
     func testTemperatureChannels () throws {
-        let result = try BoardShim.getTemperatureChannels(boardId: synthBoardID)
+        let result = try BoardShim.getTemperatureChannels(synthBoardID)
         XCTAssert(result == [26])
     }
 
     func testResistanceChannels () throws {
-        let result = try BoardShim.getResistanceChannels(boardId: synthBoardID)
+        let result = try BoardShim.getResistanceChannels(synthBoardID)
         XCTAssert(result == [27,28])
     }
 
     func testEOGchannels () throws {
-        let result = try BoardShim.getEOGchannels(boardId: synthBoardID)
+        let result = try BoardShim.getEOGchannels(synthBoardID)
         XCTAssert(result == [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])
     }
 
     func testEXGchannels () throws {
-        let result = try BoardShim.getEXGchannels(boardId: synthBoardID)
+        let result = try BoardShim.getEXGchannels(synthBoardID)
         XCTAssert(result == [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])
     }
 
     func testEDAchannels () throws {
-        let result = try BoardShim.getEXGchannels(boardId: synthBoardID)
+        let result = try BoardShim.getEXGchannels(synthBoardID)
         XCTAssert(result == [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])
     }
 
     func testPPGchannels () throws {
-        let result = try BoardShim.getEXGchannels(boardId: synthBoardID)
+        let result = try BoardShim.getEXGchannels(synthBoardID)
         XCTAssert(result == [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])
     }
 
     func testAccelChannels () throws {
-        let result = try BoardShim.getAccelChannels(boardId: synthBoardID)
+        let result = try BoardShim.getAccelChannels(synthBoardID)
         XCTAssert(result == [17,18,19])
     }
 
     func testGyroChannels () throws {
-        let result = try BoardShim.getGyroChannels(boardId: synthBoardID)
+        let result = try BoardShim.getGyroChannels(synthBoardID)
         XCTAssert(result == [20,21,22])
     }
 
     func testAnalogChannels () throws {
-        XCTAssertThrowsError(try BoardShim.getAnalogChannels(boardId: synthBoardID), "test message") { error in
+        XCTAssertThrowsError(try BoardShim.getAnalogChannels(synthBoardID), "test message") { error in
             XCTAssertEqual(error as? BrainFlowException, BrainFlowException("Error in board info getter", .UNSUPPORTED_BOARD_ERROR))
           }
     }
 
     func testOtherChannels () throws {
-        XCTAssertThrowsError(try BoardShim.getOtherChannels(boardId: synthBoardID), "test message") { error in
+        XCTAssertThrowsError(try BoardShim.getOtherChannels(synthBoardID), "test message") { error in
             XCTAssertEqual(error as? BrainFlowException, BrainFlowException("Error in board info getter", .UNSUPPORTED_BOARD_ERROR))
           }
     }
