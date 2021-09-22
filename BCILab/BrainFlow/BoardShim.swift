@@ -484,7 +484,7 @@ struct BoardShim {
      * get latest collected data, can return less than "num_samples", doesnt flush
      * it from ringbuffer
      */
-    func getCurrentBoardData (_ numSamples: Int32) throws -> [Double]
+    func getCurrentBoardData (_ numSamples: Int32) throws -> [[Double]]
     {
         var numRows: Int32 = 0
         var currentSize: Int32 = 0
@@ -500,7 +500,7 @@ struct BoardShim {
         let errorCode = get_current_board_data (numSamples, &buffer, &currentSize, boardId.rawValue, &jsonBFParams)
         try checkErrorCode("Error in get_current_board_data", errorCode)
         
-        return buffer
+        return buffer.matrix2D(rowLength: Int(numSamples))
     }
 
     /**

@@ -22,7 +22,7 @@ class DataFilterTests: XCTestCase {
             try board.startStream()
             try BoardShim.logMessage(logLevel: .LEVEL_INFO, message: "start sleeping in the main thread")
             sleep(5)
-            let nfft = try DataFilter.getNearestPowerOfTwo(value: samplingRate)
+            let nfft = try DataFilter.getNearestPowerOfTwo(samplingRate)
             var data = try board.getBoardData()
             try board.stopStream()
             try board.releaseSession()
@@ -112,6 +112,14 @@ class DataFilterTests: XCTestCase {
         }
     }
     
+    func stdDev(_ data : [Double]) -> Double
+    {
+        let len = Double(data.count)
+        let mean = data.reduce(0, {$0 + $1}) / len
+        let sumOfSq = data.map { pow($0 - mean, 2.0)}.reduce(0, {$0 + $1})
+        return sqrt(sumOfSq / len)
+    }
+    
     func testDenoising() {
         // use synthetic board for demo
         let params = BrainFlowInputParams()
@@ -134,42 +142,30 @@ class DataFilterTests: XCTestCase {
             for count in EEGchannels.indices {
                 // first of all you can try simple moving median or moving average with different window size
                 let channel = Int(EEGchannels[count])
-                let num = Double(data[channel].compactMap{$0}.count)
                 let beforeSum = Double(data[channel].compactMap( {$0} ).reduce(0, +))
-                let beforeAvg = String(format: "%.1f", beforeSum / num)
                 
-                func compareBeforeAfter(_ data: [Double]) {
-                    // averages are rounded to one decimal place before comparison
-                    let afterSum = Double(data.compactMap{$0}.reduce(0, +))
-                    let afterAvg = String(format: "%.1f", afterSum / num)
-                    XCTAssert((beforeSum != afterSum) && (beforeAvg == afterAvg))
-                }
-
                 switch count {
                 case 0:
                     try DataFilter.performRollingFilter(data: &data[channel], period: 3, operation: .MEAN)
-                    compareBeforeAfter(data[channel])
                 case 1:
                     try DataFilter.performRollingFilter(data: &data[channel], period: 3, operation: .MEDIAN)
-                    compareBeforeAfter(data[channel])
                     // if methods above dont work for your signal you can try wavelet based denoising
                     // feel free to try different functions and decomposition levels
                 case 2:
                     try DataFilter.performWaveletDenoising(data: &data[channel], wavelet: "db6", decompositionLevel: 3)
-                    compareBeforeAfter(data[channel])
                 case 3:
                     try DataFilter.performWaveletDenoising(data: &data[channel], wavelet: "bior3.9", decompositionLevel: 3)
-                    compareBeforeAfter(data[channel])
                 case 4:
                     try DataFilter.performWaveletDenoising(data: &data[channel], wavelet: "sym7", decompositionLevel: 3)
-                    compareBeforeAfter(data[channel])
                 case 5:
                     // with synthetic board this one looks like the best option, but it depends on many circumstances
                     try DataFilter.performWaveletDenoising(data: &data[channel], wavelet: "coif3", decompositionLevel: 3)
-                    compareBeforeAfter(data[channel])
                 default:
                     throw BrainFlowException("Invalid channel value: \(channel)", .EMPTY_BUFFER_ERROR)
                 }
+
+                let afterSum = Double(data[channel].compactMap{$0}.reduce(0, +))
+                XCTAssert((beforeSum != afterSum))
             }
         }
         catch let bfError as BrainFlowException {
@@ -186,7 +182,8 @@ class DataFilterTests: XCTestCase {
         // use synthetic board for demo
         let params = BrainFlowInputParams()
         let boardId = BoardIds.SYNTHETIC_BOARD
-
+        var downsampledData: [Double]
+        
         do {
             // use synthetic board for demo
             let board = try BoardShim(boardId, params)
@@ -202,28 +199,19 @@ class DataFilterTests: XCTestCase {
             // demo for downsampling, it just aggregates data
             for count in EEGchannels.indices {
                 let channel = Int(EEGchannels[count])
-                let num = Double(data[channel].compactMap{$0}.count)
                 let beforeSum = Double(data[channel].compactMap( {$0} ).reduce(0, +))
-                let beforeAvg = String(format: "%.1f", beforeSum / num)
                 
-                func compareBeforeAfter(_ data: [Double]) {
-                    // averages are rounded to one decimal place before comparison
-                    let afterSum = Double(data.compactMap{$0}.reduce(0, +))
-                    let afterAvg = String(format: "%.1f", afterSum / num)
-                    XCTAssert((beforeSum != afterSum) && (beforeAvg != afterAvg))
-                }
-
                 switch count {
                 case 0:
-                    let downsampledData = try DataFilter.performDownsampling(data: data[channel], period: 3, operation: .MEDIAN)
-                    compareBeforeAfter(downsampledData)
+                    downsampledData = try DataFilter.performDownsampling(data: data[channel], period: 3, operation: .MEDIAN)
                 case 1:
-                    let downsampledData = try DataFilter.performDownsampling(data: data[channel], period: 2, operation: .MEAN)
-                    compareBeforeAfter(downsampledData)
+                    downsampledData = try DataFilter.performDownsampling(data: data[channel], period: 2, operation: .MEAN)
                 default:
-                    let downsampledData = try DataFilter.performDownsampling(data: data[channel], period: 2, operation: .EACH)
-                    compareBeforeAfter(downsampledData)
+                    downsampledData = try DataFilter.performDownsampling(data: data[channel], period: 2, operation: .EACH)
                 }
+
+                let afterSum = Double(downsampledData.compactMap{$0}.reduce(0, +))
+                XCTAssert(beforeSum != afterSum)
             }
         }
         catch let bfError as BrainFlowException {
@@ -233,6 +221,155 @@ class DataFilterTests: XCTestCase {
         catch {
             try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: "undefined exception")
         }
+    }
+    
+    func testSignalFiltering() {
+        BoardShim.enableDevBoardLogger()
+        // use synthetic board for demo
+        let params = BrainFlowInputParams()
+        let boardId = BoardIds.SYNTHETIC_BOARD
 
+        do {
+            // use synthetic board for demo
+            let board = try BoardShim(boardId, params)
+            let samplingRate = try BoardShim.getSamplingRate(boardId)
+            try board.prepareSession()
+            try board.startStream()
+            try BoardShim.logMessage(logLevel: .LEVEL_INFO, message: "start sleeping in the main thread")
+            sleep(5)
+            var data = try board.getBoardData()
+            try board.stopStream()
+            try board.releaseSession()
+
+            // demo how to convert it to pandas DF and plot data
+            let EEGchannels = try BoardShim.getEEGchannels(boardId)
+
+            // for demo apply different filters to different channels, in production choose one
+            for count in EEGchannels.indices {
+                let channel = Int(EEGchannels[count])
+                let beforeSum = Double(data[channel].compactMap( {$0} ).reduce(0, +))
+
+                // filters work in-place
+                switch count {
+                case 0:
+                    try DataFilter.performBandpass(data: &data[channel], samplingRate: samplingRate,
+                                                   centerFreq: 15.0, bandWidth: 6.0, order: 4,
+                                                   filterType: .BESSEL, ripple: 0)
+                case 1:
+                    try DataFilter.performBandstop(data: &data[channel], samplingRate: samplingRate,
+                                                   centerFreq: 30.0, bandWidth: 1.0, order: 3,
+                                                   filterType: .BUTTERWORTH, ripple: 0)
+                case 2:
+                    try DataFilter.performLowpass(data: &data[channel], samplingRate: samplingRate,
+                                                  cutoff: 20.0, order: 5, filterType: .CHEBYSHEV_TYPE_1,
+                                                  ripple: 1)
+                case 3:
+                    try DataFilter.performHighpass(data: &data[channel], samplingRate: samplingRate,
+                                                   cutoff: 3.0, order: 4, filterType: .BUTTERWORTH, ripple: 0)
+                case 4:
+                    try DataFilter.performRollingFilter(data: &data[channel], period: 3, operation: .MEAN)
+                default:
+                    try DataFilter.removeEnvironmentalNoise(data: &data[channel], samplingRate: BoardShim.getSamplingRate(boardId), noiseType: .FIFTY)
+                }
+                
+                let afterSum = Double(data[channel].compactMap{$0}.reduce(0, +))
+                XCTAssert(beforeSum != afterSum)
+            }
+        }
+        catch let bfError as BrainFlowException {
+            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: bfError.message)
+            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: "Error code: \(bfError.errorCode)")
+            }
+        catch {
+            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: "undefined exception")
+        }
+    }
+    
+    // round to the 5th decimal place before comparing each item in the two arrays
+    func compareFFT(_ preData: [Double], _ postData: [Double]) {
+        for i in preData.indices {
+            let format = "%.5f"
+            let preString = String(format: format, preData[i])
+            let postString = String(format: format, postData[i])
+            
+            XCTAssert(preString == postString)
+        }
+    }
+    
+    func testTransforms() {
+        BoardShim.enableDevBoardLogger()
+        // use synthetic board for demo
+        let params = BrainFlowInputParams()
+        let boardId = BoardIds.SYNTHETIC_BOARD
+
+        do {
+            // use synthetic board for demo
+            let board = try BoardShim(boardId, params)
+            let samplingRate = try BoardShim.getSamplingRate(boardId)
+            let boardId = BoardIds.SYNTHETIC_BOARD
+            try board.prepareSession()
+            try board.startStream()
+            try BoardShim.logMessage(logLevel: .LEVEL_INFO, message: "start sleeping in the main thread")
+            sleep(5)
+            let data = try board.getCurrentBoardData(DataFilter.getNearestPowerOfTwo(samplingRate))
+            try board.stopStream()
+            try board.releaseSession()
+
+            let EEGchannels = try BoardShim.getEEGchannels(boardId)
+            // demo for transforms
+            for count in EEGchannels.indices {
+                let channel = Int(EEGchannels[count])
+                // demo for wavelet transforms
+                // wavelet_coeffs format is[A(J) D(J) D(J-1) ..... D(1)] where J is decomposition level, A - app coeffs, D - detailed coeffs
+                // lengths array stores lengths for each block
+                let (waveletCoeffs, lengths) = try DataFilter.performWaveletTransform(
+                                                data: data[channel], wavelet: "db5", decompositionLevel: 3)
+                //let appCoefs = waveletCoeffs[0..<Int(lengths[0])]
+                //let detailedCoeffsFirstBlock = waveletCoeffs[Int(lengths[0])..<Int(lengths[1])]
+                // you can do smth with wavelet coeffs here, for example denoising works via thresholds
+                // for wavelets coefficients
+                let restoredData = try DataFilter.performInverseWaveletTransform(
+                    waveletTuple: (waveletCoeffs, lengths), originalDataLen: Int32(data[channel].count),
+                    wavelet: "db5", decompositionLevel: 3)
+                compareFFT(data[channel], restoredData)
+ 
+                // demo for fft, len of data must be a power of 2
+                let fftData = try DataFilter.performFFT(data: data[channel], window: .NO_WINDOW)
+                // len of fft_data is N / 2 + 1
+                let restoredFFTdata = try DataFilter.performIFFT(data: fftData)
+                
+                compareFFT(data[channel], restoredFFTdata)
+                //XCTAssert(fftData == restoredFFTdata)
+            }
+        }
+        catch let bfError as BrainFlowException {
+            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: bfError.message)
+            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: "Error code: \(bfError.errorCode)")
+            }
+        catch {
+            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: "undefined exception")
+        }
+    }
+    
+    func testWindowing () {
+        let windowLen: Int32 = 20
+        let testException = BrainFlowException("test message", .INVALID_ARGUMENTS_ERROR)
+        do {
+            for window in WindowFunctions.allCases {
+                let windowData = try DataFilter.getWindow(window: window, windowLen: windowLen)
+                XCTAssert(windowData.count == windowLen)
+                XCTAssertThrowsError(try DataFilter.getWindow(window: window, windowLen: -1)) { error in
+                    if let bfError = error as? BrainFlowException {
+                        XCTAssertEqual(bfError, testException)
+                    }
+                }
+            }
+        }
+        catch let bfError as BrainFlowException {
+            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: bfError.message)
+        }
+        catch {
+            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: "undefined exception")
+        }
     }
 }

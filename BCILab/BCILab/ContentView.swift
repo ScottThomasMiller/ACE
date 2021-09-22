@@ -9,6 +9,7 @@ struct ContentView: View {
     @State var isTimerRunning = false
     let images: [LabeledImage] = prepareImages()
     //let boardId = BoardIds.CYTON_DAISY_BOARD
+    //let boardId = BoardIds.CYTON_BOARD
     let boardId = BoardIds.SYNTHETIC_BOARD
     let headset: Headset
     
