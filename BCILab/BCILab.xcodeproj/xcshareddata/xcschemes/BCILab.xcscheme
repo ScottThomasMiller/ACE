@@ -37,6 +37,20 @@
                BlueprintName = "BCILabTests"
                ReferencedContainer = "container:BCILab.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "BoardShimTests/testReadWriteFile()">
+               </Test>
+               <Test
+                  Identifier = "DataFilterTests/testDownsampling()">
+               </Test>
+               <Test
+                  Identifier = "DataFilterTests/testSignalFiltering()">
+               </Test>
+               <Test
+                  Identifier = "DataFilterTests/testTransforms()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO">

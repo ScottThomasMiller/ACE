@@ -13,7 +13,7 @@ extension Array {
         return stride(from: 0, to: count, by: rowLength).map {
             Array(self[$0 ..< Swift.min($0 + rowLength, count)])
         }
-    }    
+    }
 }
 
 extension Array where Element == CChar {
@@ -37,4 +37,23 @@ extension String {
     }
 }
 
+extension Encodable {
+    // Convert the current struct to a JSON string:
+    func encodeJSON() throws -> String {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted.union(.withoutEscapingSlashes)
+        
+        do {
+//            return try encoder.encode(self).description
+            let data = try encoder.encode(self)
+            if let str = String(data: data, encoding: .utf8) {
+                return str
+            } else {
+                return ""
+            }
+        } catch {
+            throw BrainFlowException("Invalid JSON", .NO_SUCH_DATA_IN_JSON_ERROR)
+        }
+    }
+}
 

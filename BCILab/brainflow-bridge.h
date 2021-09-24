@@ -11,5 +11,6 @@
 #include "board_controller.h"
 #include "data_handler.h"
 #include "board_info_getter.h"
+#include "ml_module.h"
 
 #endif /* libBoardController_h */

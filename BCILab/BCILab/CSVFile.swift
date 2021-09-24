@@ -36,7 +36,7 @@ class CSVFile: FileHandle {
 }
 
 extension FileHandle {
-    func writeSamples(pkgIDs: [Double], timestamps: [Double], markers: [Double], samples: [[Double]]) {
+    func writeEEGsamples(pkgIDs: [Double], timestamps: [Double], markers: [Double], samples: [[Double]]) {
         for iSample in 0..<timestamps.count {
             let pkgID = String(format: "%d", Int(pkgIDs[iSample]))
             let tStamp = String(format: "%.6f", timestamps[iSample])

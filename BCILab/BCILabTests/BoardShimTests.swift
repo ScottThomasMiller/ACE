@@ -65,7 +65,7 @@ class BoardShimTests: XCTestCase {
                     """
                     )
         
-            XCTAssert(result == testBoard)
+        XCTAssert(result == testBoard)
     }
 
     func testDeviceName () throws {
@@ -152,6 +152,5 @@ class BoardShimTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
 }
 
