@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum GainSettings: String, CaseIterable {
     case x1 = "00"
@@ -36,7 +37,6 @@ enum ChannelIDs: String, CaseIterable {
 }
 
 class Headset {
-    var isReady: Bool = false
     let params = BrainFlowInputParams(serial_port: "/dev/cu.usbserial-DM0258EJ")
     //let params = BrainFlowInputParams(serial_port: "/dev/cu.usbserial-4")
     let boardId: BoardIds
@@ -80,15 +80,29 @@ class Headset {
             }
         }
         catch let bfError as BrainFlowException {
-            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: bfError.message)
-            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: "Error code: \(bfError.errorCode)")
+            try? BoardShim.logMessage (.LEVEL_ERROR, bfError.message)
+            try? BoardShim.logMessage (.LEVEL_ERROR, "Error code: \(bfError.errorCode)")
             throw bfError
         }
         catch {
-            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: "undefined exception")
+            try? BoardShim.logMessage (.LEVEL_ERROR, "undefined exception")
             throw error
         }
-        isReady = true
+    }
+    
+    func reconnect() -> Bool {
+        do {
+            try self.board.releaseSession()
+            try self.board.prepareSession()
+            
+            return try self.board.isPrepared()
+        } catch let bfError as BrainFlowException {
+            try? BoardShim.logMessage(.LEVEL_ERROR, bfError.message)
+        } catch {
+            try? BoardShim.logMessage(.LEVEL_ERROR, "\(error)")
+        }
+        
+        return false
     }
     
     deinit {
@@ -190,10 +204,10 @@ class Headset {
             }
         }
         catch let bfError as BrainFlowException {
-            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: bfError.message)
-            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: "Error code: \(bfError.errorCode)") }
+            try? BoardShim.logMessage (.LEVEL_ERROR, bfError.message)
+            try? BoardShim.logMessage (.LEVEL_ERROR, "Error code: \(bfError.errorCode)") }
         catch {
-            try? BoardShim.logMessage (logLevel: .LEVEL_ERROR, message: "undefined exception")
+            try? BoardShim.logMessage (.LEVEL_ERROR, "undefined exception")
         }
     }
 

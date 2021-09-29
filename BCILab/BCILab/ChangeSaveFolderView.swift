@@ -8,11 +8,13 @@
 
 import SwiftUI
 
-struct ChangeSaveFolder: View {
+struct ChangeSaveFolderView: View {
     let message: String
+    @ObservedObject var appState: AppState
+
     var body: some View {
         Color(.white)
-        Text(message)
+        Text("change save folder happens now")
     }
 }
     

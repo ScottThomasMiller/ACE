@@ -11,7 +11,8 @@ import SwiftUI
 struct BCILabApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+            ExperimentVC()
         }
     }
 }

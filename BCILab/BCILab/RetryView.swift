@@ -5,22 +5,38 @@
 //  Created by Scott Miller on 9/2/21.
 //
 
-import Foundation
 import SwiftUI
 
-struct Retry: View {
+struct RetryView: View {
     let message: String
+    let headset: Headset
+    @ObservedObject var appState: AppState
     
-    init(_ message: String) {
-        self.message = message
+//    @Binding var isPrepared: Bool
+
+    func setBoardStatus () {
+        if let status = try? self.headset.board.isPrepared() {
+            self.appState.isHeadsetReady = status }
+        else {
+            self.appState.isHeadsetReady = false
+        }
     }
     
     func retry() {
-        print("retrying!")
+        try? BoardShim.logMessage(.LEVEL_INFO, "reconnecting")
+        try? self.headset.board.releaseSession()
+        try? self.headset.board.prepareSession()
+        setBoardStatus()
+        if self.appState.isHeadsetReady {
+            try? BoardShim.logMessage(.LEVEL_INFO, "reconnection successful")
+        } else {
+            try? BoardShim.logMessage(.LEVEL_INFO, "failed to reconnect")
+        }
     }
     
     func cancel() {
-        print("cancelling!")
+        try? BoardShim.logMessage(.LEVEL_INFO, "reconnection canceled by user")
+        setBoardStatus()
     }
     
     var body: some View {
@@ -52,12 +68,12 @@ struct Retry: View {
     }
 }
 
-struct Retry_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            Retry("The headset is not ready.")
-        }
-    }
-}
+//struct RetryView_Previews: PreviewProvider {
+//    static var previews: some UIView {
+//        Group {
+//            RetryView("The headset is not ready.")
+//        }
+//    }
+//}
     
     

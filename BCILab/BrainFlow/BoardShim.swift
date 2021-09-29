@@ -63,7 +63,7 @@ struct BoardShim {
     /**
      * send user defined strings to BrainFlow logger
      */
-    static func logMessage (logLevel: LogLevels, message: String) throws {
+    static func logMessage (_ logLevel: LogLevels, _ message: String) throws {
         var cMessage = message.cString(using: String.Encoding.utf8)!
         let errorCode = log_message (logLevel.rawValue, &cMessage)
         try checkErrorCode("Error in log_message", errorCode)

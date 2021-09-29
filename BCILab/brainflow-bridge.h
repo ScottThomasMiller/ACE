@@ -5,12 +5,12 @@
 //  Created by Scott Miller on 8/23/21.
 //
 
-#ifndef libBoardController_h
-#define libBoardController_h
+#ifndef brainflowBridge
+#define brainflowBridge
 
 #include "board_controller.h"
 #include "data_handler.h"
 #include "board_info_getter.h"
 #include "ml_module.h"
 
-#endif /* libBoardController_h */
+#endif /* brainflowBridge */
