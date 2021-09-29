@@ -22,6 +22,11 @@
 		<key>BrainFlowTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>BrainWaveiOS.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
 	</dict>
@@ -38,6 +43,21 @@
 			<true/>
 		</dict>
 		<key>5F58BD2726AC1C5E003F5483</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5FE9A3A42704812800A7AC22</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5FE9A3B32704812A00A7AC22</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5FE9A3BD2704812A00A7AC22</key>
 		<dict>
 			<key>primary</key>
 			<true/>

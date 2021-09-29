@@ -8,29 +8,46 @@
 import SwiftUI
 
 struct RetryView: View {
-    let message: String
-    let headset: Headset
+    @State var message: String
     @ObservedObject var appState: AppState
-    
+        
 //    @Binding var isPrepared: Bool
 
     func setBoardStatus () {
-        if let status = try? self.headset.board.isPrepared() {
-            self.appState.isHeadsetReady = status }
+        if let status = try? self.appState.headset.board.isPrepared() {
+            self.appState.isHeadsetNotReady = !status }
         else {
-            self.appState.isHeadsetReady = false
+            self.appState.isHeadsetNotReady = true
         }
     }
     
     func retry() {
-        try? BoardShim.logMessage(.LEVEL_INFO, "reconnecting")
-        try? self.headset.board.releaseSession()
-        try? self.headset.board.prepareSession()
-        setBoardStatus()
-        if self.appState.isHeadsetReady {
-            try? BoardShim.logMessage(.LEVEL_INFO, "reconnection successful")
-        } else {
-            try? BoardShim.logMessage(.LEVEL_INFO, "failed to reconnect")
+        do {
+            self.message = "Reconnecting..."
+            try? BoardShim.logMessage(.LEVEL_INFO, "reconnecting")
+            try? self.appState.headset.board.releaseSession()
+            
+            if appState.boardId != appState.headset.boardId {
+                self.appState.headset = try Headset(boardId: self.appState.boardId)
+            } else {
+                try self.appState.headset.board.prepareSession()
+            }
+            
+            setBoardStatus()
+            if self.appState.isHeadsetNotReady {
+                try? BoardShim.logMessage(.LEVEL_INFO, "failed to reconnect")
+                self.message = "Try again"
+            } else {
+                try? BoardShim.logMessage(.LEVEL_INFO, "reconnection successful")
+                self.message = "OK!"
+            }
+        }
+        catch let bfError as BrainFlowException {
+            try? BoardShim.logMessage(.LEVEL_ERROR, bfError.message)
+            self.appState.isHeadsetNotReady = true
+        } catch {
+            try? BoardShim.logMessage(.LEVEL_ERROR, "\(error)")
+            self.appState.isHeadsetNotReady = true
         }
     }
     
@@ -41,7 +58,7 @@ struct RetryView: View {
     
     var body: some View {
         VStack {
-            Text(message).font(.largeTitle)
+            Text(self.message).font(.largeTitle)
                 .baselineOffset(40)
             HStack {
                 Button(action: retry) {
@@ -51,15 +68,7 @@ struct RetryView: View {
                         .padding()
                         .foregroundColor(.white)
                 }
-                .buttonStyle(GrowingButton(color: .green))
-                Button(action: cancel) {
-                    Text("Cancel")
-                        .fontWeight(.bold)
-                        .font(.title)
-                        .padding()
-                        .foregroundColor(.white)
-                }
-                .buttonStyle(GrowingButton(color: .red))
+                .buttonStyle(GrowingButton(color: .blue))
             }
         }.frame(width: 450, height: 350, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
         .background(Color(.white))

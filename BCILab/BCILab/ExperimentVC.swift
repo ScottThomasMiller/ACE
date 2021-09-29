@@ -14,9 +14,7 @@ struct ExperimentVC: View {
     @State var timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State var selection = -1
     @StateObject private var appState = AppState()
-    private var boardId: BoardIds = .SYNTHETIC_BOARD
     private let images: [LabeledImage] = prepareImages()
-    private var headset = try! Headset(boardId: .SYNTHETIC_BOARD)
     
     func dismissMainMenu() {
         print("dismissMainMenu()")
@@ -44,13 +42,13 @@ struct ExperimentVC: View {
                     }
                     if self.selection < 0 {
                         print("pause")
-                        try? self.headset.board.insertMarker(value: ImageLabels.blank.rawValue)
+                        try? self.appState.headset.board.insertMarker(value: ImageLabels.blank.rawValue)
                         self.selection = 0
                         self.stopTimer()
                     } else {
                         let label = self.images[self.selection+1].label
                         print("marker: \(label)")
-                        try? self.headset.board.insertMarker(value: label.rawValue)
+                        try? self.appState.headset.board.insertMarker(value: label.rawValue)
                         self.selection += 1
                     }
                 }
@@ -69,20 +67,11 @@ struct ExperimentVC: View {
             }
         }
         .fullScreenCover(isPresented: $appState.isMainMenuActive) {
-            MainMenuView(callerVC: self, headset: self.headset, appState: appState) }
-        .fullScreenCover(isPresented: $appState.isHeadsetReady) {
-            RetryView(message: "Reconnect to headset", headset: self.headset, appState: appState)  }
+            MainMenuView(callerVC: self, appState: appState) }
+        .fullScreenCover(isPresented: $appState.isHeadsetNotReady) {
+            RetryView(message: "Reconnect to headset", appState: appState)  }
     }
 
-    init () {
-        do {
-            self.appState.isHeadsetReady = try self.headset.board.isPrepared()
-        } catch {
-            try? BoardShim.logMessage(.LEVEL_ERROR, "Failed to initialize headset")
-            self.appState.isHeadsetReady = false
-        }
-    }
-    
     func stopTimer() {
         print("stop timer")
         self.timer.upstream.connect().cancel()
