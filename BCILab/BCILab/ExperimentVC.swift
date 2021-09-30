@@ -15,6 +15,21 @@ struct ExperimentVC: View {
     @State var selection = -1
     @StateObject private var appState = AppState()
     private let images: [LabeledImage] = prepareImages()
+    private var headset: Headset?
+    
+    init() {
+        do {
+            self.headset = try Headset(boardId: .CYTON_DAISY_BOARD)
+//            let headsetCopy = headset!
+//            DispatchQueue.global(qos: .background).async {
+//                headsetCopy.streamEEG()
+//            }
+        }
+        catch {
+            try? BoardShim.logMessage(.LEVEL_CRITICAL, "Cannot connect to headset")
+            exit(-1)
+        }
+    }
     
     func dismissMainMenu() {
         print("dismissMainMenu()")
@@ -40,15 +55,18 @@ struct ExperimentVC: View {
                         self.stopTimer()
                         return
                     }
+                    
                     if self.selection < 0 {
                         print("pause")
-                        try? self.appState.headset.board.insertMarker(value: ImageLabels.blank.rawValue)
+                        if let tempHeadset = self.headset {
+                            try? tempHeadset.board.insertMarker(value: ImageLabels.blank.rawValue) }
                         self.selection = 0
                         self.stopTimer()
                     } else {
                         let label = self.images[self.selection+1].label
                         print("marker: \(label)")
-                        try? self.appState.headset.board.insertMarker(value: label.rawValue)
+                        if let tempHeadset = self.headset {
+                            try? tempHeadset.board.insertMarker(value: label.rawValue) }
                         self.selection += 1
                     }
                 }
@@ -67,19 +85,25 @@ struct ExperimentVC: View {
             }
         }
         .fullScreenCover(isPresented: $appState.isMainMenuActive) {
-            MainMenuView(callerVC: self, appState: appState) }
+            MainMenuView(headset: self.headset, callerVC: self, appState: appState) }
         .fullScreenCover(isPresented: $appState.isHeadsetNotReady) {
-            RetryView(message: "Reconnect to headset", appState: appState)  }
+            RetryView(headset: self.headset, message: "Reconnect to headset", appState: appState)  }
     }
 
     func stopTimer() {
         print("stop timer")
         self.timer.upstream.connect().cancel()
+        if let tempHeadset = self.headset {
+            tempHeadset.isStreaming = false
+        }
     }
     
     func startTimer() {
         print("start timer")
         self.timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+        if let tempHeadset = self.headset {
+            tempHeadset.isStreaming = true
+        }
     }
 }
 

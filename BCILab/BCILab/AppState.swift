@@ -11,8 +11,7 @@ class AppState: ObservableObject {
     @Published var isTimerRunning = false
     @Published var isPresented: Bool = true
     @Published var isMainMenuActive: Bool = false
-    @Published var isHeadsetNotReady: Bool = true
+    @Published var isHeadsetNotReady: Bool = false
     @Published var saveFolder = "BrainWaves"
     @Published var boardId: BoardIds = .CYTON_DAISY_BOARD
-    @Published var headset: Headset = try! Headset(boardId: .SYNTHETIC_BOARD)
 }

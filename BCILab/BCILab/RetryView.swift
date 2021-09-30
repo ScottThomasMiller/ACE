@@ -8,54 +8,49 @@
 import SwiftUI
 
 struct RetryView: View {
+    var headset: Headset?
     @State var message: String
     @ObservedObject var appState: AppState
         
-//    @Binding var isPrepared: Bool
-
     func setBoardStatus () {
-        if let status = try? self.appState.headset.board.isPrepared() {
-            self.appState.isHeadsetNotReady = !status }
-        else {
+        if let tempHeadset = self.headset {
+            if let status = try? tempHeadset.board.isPrepared() {
+                self.appState.isHeadsetNotReady = !status }
+            else {
+                self.appState.isHeadsetNotReady = true
+            }
+        } else {
             self.appState.isHeadsetNotReady = true
         }
     }
     
     func retry() {
-        do {
-            self.message = "Reconnecting..."
-            try? BoardShim.logMessage(.LEVEL_INFO, "reconnecting")
-            try? self.appState.headset.board.releaseSession()
-            
-            if appState.boardId != appState.headset.boardId {
-                self.appState.headset = try Headset(boardId: self.appState.boardId)
-            } else {
-                try self.appState.headset.board.prepareSession()
+        self.message = "Reconnecting..."
+        if let tempHeadset = self.headset {
+            if tempHeadset.isStreaming {
+                tempHeadset.isStreaming = false
+                sleep(1)
             }
-            
-            setBoardStatus()
-            if self.appState.isHeadsetNotReady {
-                try? BoardShim.logMessage(.LEVEL_INFO, "failed to reconnect")
-                self.message = "Try again"
-            } else {
-                try? BoardShim.logMessage(.LEVEL_INFO, "reconnection successful")
-                self.message = "OK!"
-            }
+            _ = tempHeadset.reconnect()
+            tempHeadset.isStreaming = true
         }
-        catch let bfError as BrainFlowException {
-            try? BoardShim.logMessage(.LEVEL_ERROR, bfError.message)
-            self.appState.isHeadsetNotReady = true
-        } catch {
-            try? BoardShim.logMessage(.LEVEL_ERROR, "\(error)")
-            self.appState.isHeadsetNotReady = true
-        }
-    }
-    
-    func cancel() {
-        try? BoardShim.logMessage(.LEVEL_INFO, "reconnection canceled by user")
+
         setBoardStatus()
+        
+        if self.appState.isHeadsetNotReady {
+            try? BoardShim.logMessage(.LEVEL_INFO, "failed to reconnect")
+            self.message = "Try again"
+        } else {
+            try? BoardShim.logMessage(.LEVEL_INFO, "reconnection successful")
+            self.message = "OK!"
+//            if let headsetCopy = self.headset {
+//                DispatchQueue.global(qos: .background).async {
+//                    headsetCopy.streamEEG()
+//                }
+//            }
+        }
     }
-    
+
     var body: some View {
         VStack {
             Text(self.message).font(.largeTitle)

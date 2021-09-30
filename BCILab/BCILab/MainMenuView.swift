@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 struct MainMenuView: View {
+    var headset: Headset?
     let callerVC: ExperimentVC
     @ObservedObject var appState: AppState
     
@@ -19,7 +20,7 @@ struct MainMenuView: View {
     var body: some View {
         let id = "bluetooth"
         let label = "Connect to the headset"
-        let connLink = NavigationLink(destination: RetryView(message: label, appState: self.appState)) {
+        let connLink = NavigationLink(destination: RetryView(headset: headset, message: label, appState: self.appState)) {
             HStack(alignment: .center) {
                 Text(label)
                     .fontWeight(.bold)
@@ -54,7 +55,7 @@ struct MainMenuView: View {
                     fileSaveLink
                 }.navigationBarTitle("Main Menu")
             }.border(Color.yellow, width: 1)
-        }.frame(width: .infinity, height: .infinity, alignment: .topLeading)
+        }//.frame(width: .infinity, height: .infinity, alignment: .topLeading)
          .border(Color.red, width: 1)
         Spacer()
         Spacer()

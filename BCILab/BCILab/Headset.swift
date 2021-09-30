@@ -37,8 +37,8 @@ enum ChannelIDs: String, CaseIterable {
 }
 
 class Headset {
+    var isStreaming: Bool = true
     let params = BrainFlowInputParams(serial_port: "/dev/cu.usbserial-DM0258EJ")
-    //let params = BrainFlowInputParams(serial_port: "/dev/cu.usbserial-4")
     let boardId: BoardIds
     let board: BoardShim
     let samplingRate: Int32
@@ -51,7 +51,7 @@ class Headset {
     init(boardId: BoardIds) throws {
         self.boardId = boardId
         do {
-            print("setup headset")
+            try? BoardShim.logMessage(.LEVEL_INFO, "init headset")
             board = try BoardShim(boardId, params)
             boardDescription = try BoardShim.getBoardDescr(boardId)
             samplingRate = try BoardShim.getSamplingRate(boardId)
@@ -60,16 +60,13 @@ class Headset {
             pkgIDchannel = try Int(BoardShim.getPackageNumChannel(boardId))
             timestampChannel = try Int(BoardShim.getTimestampChannel(boardId))
             
-            print("board description:\n\(boardDescription)")
-            print("preparing session")
-            
             try BoardShim.enableDevBoardLogger()
             try board.prepareSession()
             while try !board.isPrepared() {
-                print("waiting for session...")
+                try? BoardShim.logMessage(.LEVEL_INFO, "waiting for session...")
                 sleep(3)
             }
-            
+             
             print("setting gain to x1")
             if !setGain(setting: .x1) {
                 exit(-1)
@@ -77,6 +74,10 @@ class Headset {
             
             if !setNumChannels() {
                 exit(-1)
+            }
+            
+            DispatchQueue.global(qos: .background).async {
+                self.streamEEG()
             }
         }
         catch let bfError as BrainFlowException {
@@ -106,7 +107,8 @@ class Headset {
     }
     
     deinit {
-        try? board.isPrepared() ? try? board.releaseSession() : print("deinit: session already closed")
+        try? BoardShim.logMessage(.LEVEL_INFO, "Headset.deinit()")
+        try? board.releaseSession()
     }
 
     func setGain(setting: GainSettings) -> Bool {
@@ -151,9 +153,14 @@ class Headset {
     func streamEEG() {
         let rawFile = CSVFile(fileName: "BrainWave-EEG-Raw").openFile()
         let filteredFile = CSVFile(fileName: "BrainWave-EEG-Filtered").openFile()
+        var pauseCount = 0
         
         defer {
-            try? board.isPrepared() ? try? board.releaseSession() : print("defer: session already closed")
+            try?  BoardShim.logMessage(.LEVEL_INFO, "Headset.streamEEG.defer")
+            try? board.isPrepared() ? try? board.releaseSession() :
+                                      try?  BoardShim.logMessage(.LEVEL_INFO, "defer: session already closed")
+            rawFile.closeFile()
+            filteredFile.closeFile()
         }
         
         func writeHeaders() {
@@ -174,6 +181,13 @@ class Headset {
             print("streaming EEG")
 
             while true {
+                guard self.isStreaming else {
+                    sleep(1)
+                    pauseCount += 1
+                    if (pauseCount % 3) == 0 { print("streaming paused \(pauseCount) sec.")}
+                    continue
+                }
+                pauseCount = 0
                 let matrixRaw = try board.getBoardData()
                 guard matrixRaw.count > 0 else {
                     continue
@@ -205,10 +219,15 @@ class Headset {
         }
         catch let bfError as BrainFlowException {
             try? BoardShim.logMessage (.LEVEL_ERROR, bfError.message)
-            try? BoardShim.logMessage (.LEVEL_ERROR, "Error code: \(bfError.errorCode)") }
+            try? BoardShim.logMessage (.LEVEL_ERROR, "Error code: \(bfError.errorCode)")
+        }
         catch {
             try? BoardShim.logMessage (.LEVEL_ERROR, "undefined exception")
         }
-    }
 
+        rawFile.closeFile()
+        filteredFile.closeFile()
+        self.isStreaming = false
+        try? BoardShim.logMessage(.LEVEL_INFO, "exit streaming")
+    }
 }
