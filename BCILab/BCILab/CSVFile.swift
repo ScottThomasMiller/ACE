@@ -13,15 +13,14 @@ class CSVFile: FileHandle {
         self.fileName = fileName
     }
     
-    func uniqueSuffix() -> String {
+    static func uniqueID() -> String {
         let now = Date().timeIntervalSinceReferenceDate
         return String(Int(now))
     }
     
-    func openFile() -> FileHandle {
-        let suffix = uniqueSuffix()
+    func openFile(id: String) -> FileHandle {
         let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let csvURL = docDir.appendingPathComponent(fileName+"_"+suffix).appendingPathExtension("csv")
+        let csvURL = docDir.appendingPathComponent(fileName+"_"+id).appendingPathExtension("csv")
         var fileHandle: FileHandle
         do {
             FileManager.default.createFile(atPath: csvURL.path, contents: nil, attributes: nil)

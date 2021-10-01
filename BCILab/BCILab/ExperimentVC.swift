@@ -15,21 +15,19 @@ struct ExperimentVC: View {
     @State var selection = -1
     @StateObject private var appState = AppState()
     private let images: [LabeledImage] = prepareImages()
-    private var headset: Headset?
     
-    init() {
-        do {
-            self.headset = try Headset(boardId: .CYTON_DAISY_BOARD)
-//            let headsetCopy = headset!
-//            DispatchQueue.global(qos: .background).async {
-//                headsetCopy.streamEEG()
-//            }
-        }
-        catch {
-            try? BoardShim.logMessage(.LEVEL_CRITICAL, "Cannot connect to headset")
-            exit(-1)
-        }
-    }
+//    init() {
+//        do {
+//            self.headset = try Headset(boardId: .CYTON_DAISY_BOARD)
+////            let headsetCopy = headset!
+////            DispatchQueue.global(qos: .background).async {
+////                headsetCopy.streamEEG()
+////            }
+//        }
+//        catch {
+//            try? BoardShim.logMessage(.LEVEL_ERROR, "Cannot connect to headset")
+//        }
+//    }
     
     func dismissMainMenu() {
         print("dismissMainMenu()")
@@ -52,20 +50,22 @@ struct ExperimentVC: View {
                 withAnimation{
                     guard self.selection < (self.images.count-1) else {
                         print("done")
+                        if let tempHeadset = self.appState.headset {
+                            try? tempHeadset.board.insertMarker(value: ImageLabels.stop.rawValue) }
                         self.stopTimer()
                         return
                     }
                     
                     if self.selection < 0 {
                         print("pause")
-                        if let tempHeadset = self.headset {
+                        if let tempHeadset = self.appState.headset {
                             try? tempHeadset.board.insertMarker(value: ImageLabels.blank.rawValue) }
                         self.selection = 0
                         self.stopTimer()
                     } else {
                         let label = self.images[self.selection+1].label
                         print("marker: \(label)")
-                        if let tempHeadset = self.headset {
+                        if let tempHeadset = self.appState.headset {
                             try? tempHeadset.board.insertMarker(value: label.rawValue) }
                         self.selection += 1
                     }
@@ -85,25 +85,26 @@ struct ExperimentVC: View {
             }
         }
         .fullScreenCover(isPresented: $appState.isMainMenuActive) {
-            MainMenuView(headset: self.headset, callerVC: self, appState: appState) }
+            MainMenuView(headset: self.appState.headset, callerVC: self, appState: appState) }
         .fullScreenCover(isPresented: $appState.isHeadsetNotReady) {
-            RetryView(headset: self.headset, message: "Reconnect to headset", appState: appState)  }
+            ReconnectView(message: "Reconnect to headset", appState: appState)  }
+        .onAppear(perform: {print("ExperimentVC appears")})
     }
 
     func stopTimer() {
         print("stop timer")
-        self.timer.upstream.connect().cancel()
-        if let tempHeadset = self.headset {
+        if let tempHeadset = self.appState.headset {
             tempHeadset.isStreaming = false
-        }
+            try? tempHeadset.board.insertMarker(value: ImageLabels.stop.rawValue) }
+        self.timer.upstream.connect().cancel()
     }
     
     func startTimer() {
         print("start timer")
-        self.timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
-        if let tempHeadset = self.headset {
+        if let tempHeadset = self.appState.headset {
             tempHeadset.isStreaming = true
-        }
+            try? tempHeadset.board.insertMarker(value: ImageLabels.start.rawValue) }
+        self.timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     }
 }
 

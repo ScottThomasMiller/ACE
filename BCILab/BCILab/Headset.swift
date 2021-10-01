@@ -7,6 +7,7 @@
 import Foundation
 import SwiftUI
 
+
 enum GainSettings: String, CaseIterable {
     case x1 = "00"
     case x2 = "01"
@@ -36,9 +37,12 @@ enum ChannelIDs: String, CaseIterable {
     case channel16 = "I"
 }
 
-class Headset {
-    var isStreaming: Bool = true
-    let params = BrainFlowInputParams(serial_port: "/dev/cu.usbserial-DM0258EJ")
+class Headset: ObservableObject {
+    var isStreaming: Bool = false
+    //let params = BrainFlowInputParams(serial_port: "/dev/cu.usbserial-DM0258EJ")
+    let params = BrainFlowInputParams(serial_port: Headset.scan())
+    private var rawFile: FileHandle
+    private var filteredFile: FileHandle
     let boardId: BoardIds
     let board: BoardShim
     let samplingRate: Int32
@@ -50,8 +54,12 @@ class Headset {
 
     init(boardId: BoardIds) throws {
         self.boardId = boardId
+        let fileID = CSVFile.uniqueID()
+        rawFile = CSVFile(fileName: "BrainWave-EEG-Raw").openFile(id: fileID)
+        filteredFile = CSVFile(fileName: "BrainWave-EEG-Filtered").openFile(id: fileID)
+        
         do {
-            try? BoardShim.logMessage(.LEVEL_INFO, "init headset")
+            try? BoardShim.logMessage(.LEVEL_INFO, "init headset: \(boardId)")
             board = try BoardShim(boardId, params)
             boardDescription = try BoardShim.getBoardDescr(boardId)
             samplingRate = try BoardShim.getSamplingRate(boardId)
@@ -67,7 +75,7 @@ class Headset {
                 sleep(3)
             }
              
-            print("setting gain to x1")
+            try? BoardShim.logMessage(.LEVEL_INFO, "setting gain to 1")
             if !setGain(setting: .x1) {
                 exit(-1)
             }
@@ -78,7 +86,7 @@ class Headset {
             
             DispatchQueue.global(qos: .background).async {
                 self.streamEEG()
-            }
+            }            
         }
         catch let bfError as BrainFlowException {
             try? BoardShim.logMessage (.LEVEL_ERROR, bfError.message)
@@ -119,10 +127,15 @@ class Headset {
             }
             i += 1
             let command = "x" + channel.rawValue + setting.rawValue + "0110X"
+            let expected = "Success: Channel set for \(i)$$$"
             do {
                 let response = try board.configBoard(command)
-                print("set \(channel) to gain value \(setting) with command \(command)")
-                print("reponse: \(response)")
+                try BoardShim.logMessage(.LEVEL_INFO, "set \(channel) to gain value \(setting) with command \(command)")
+                if (response.count > 0) && (response != expected) {
+                    try BoardShim.logMessage(.LEVEL_CRITICAL, "Unexpected response:\n\(response)")
+                    return false
+                }
+                try BoardShim.logMessage(.LEVEL_INFO, "response: \(response)")
             }
             catch {
                 return false
@@ -149,72 +162,92 @@ class Headset {
         print("response: \(response)")
         return true
     }
+
+    func reopenFiles()  {
+        try? rawFile.close()
+        try? filteredFile.close()
+        let uqID = CSVFile.uniqueID()
+        rawFile = CSVFile(fileName: "BrainWave-EEG-Raw").openFile(id: uqID)
+        filteredFile = CSVFile(fileName: "BrainWave-EEG-Filtered").openFile(id: uqID)
+    }
+    
+    func writeStream(_ matrixRaw: [[Double]]) {
+        do {
+            let numSamples = matrixRaw[0].count
+            let pkgIDs = matrixRaw[pkgIDchannel]
+            let timestamps = matrixRaw[timestampChannel]
+            let markers = matrixRaw[markerChannel]
+            var rawSamples = [[Double]]()
+            var filteredSamples = [[Double]]()
+            for channel in eegChannels {
+                let ch = Int(channel)
+                var filtered = matrixRaw[ch].map { $0 / 24.0 }
+                try DataFilter.removeEnvironmentalNoise(data: &filtered, samplingRate: samplingRate, noiseType: NoiseTypes.SIXTY)
+                try DataFilter.performBandpass(data: &filtered, samplingRate: samplingRate, centerFreq: 27.5, bandWidth: 45.0, order: 4, filterType: FilterTypes.BUTTERWORTH, ripple: 1.0)
+                var rawSample = [Double]()
+                var filteredSample = [Double]()
+                for iSample in 0..<numSamples {
+                    rawSample.append(matrixRaw[ch][iSample])
+                    filteredSample.append(filtered[iSample])
+                }
+                rawSamples.append(rawSample)
+                filteredSamples.append(filteredSample)
+            }
+            
+            rawFile.writeEEGsamples(pkgIDs: pkgIDs, timestamps: timestamps, markers: markers, samples: rawSamples)
+            filteredFile.writeEEGsamples(pkgIDs: pkgIDs, timestamps: timestamps, markers: markers, samples: filteredSamples)
+        } catch let bfError as BrainFlowException {
+            try? BoardShim.logMessage (.LEVEL_ERROR, bfError.message)
+            try? BoardShim.logMessage (.LEVEL_ERROR, "Error code: \(bfError.errorCode)")
+        } catch {
+            try? BoardShim.logMessage (.LEVEL_ERROR, "undefined exception")
+        }
+    }
+    
+    func writeHeaders() {
+        var headerStr = "PKG ID, Timestamp, Marker"
+        for i in 0..<eegChannels.count {
+            headerStr += ", Ch\(i+1)"
+        }
+        headerStr += "\n"
+        rawFile.write(Data(headerStr.utf8))
+        filteredFile.write(Data(headerStr.utf8))
+    }
     
     func streamEEG() {
-        let rawFile = CSVFile(fileName: "BrainWave-EEG-Raw").openFile()
-        let filteredFile = CSVFile(fileName: "BrainWave-EEG-Filtered").openFile()
         var pauseCount = 0
         
         defer {
-            try?  BoardShim.logMessage(.LEVEL_INFO, "Headset.streamEEG.defer")
+            self.isStreaming = false
+            try? BoardShim.logMessage(.LEVEL_INFO, "Headset.streamEEG.defer")
             try? board.isPrepared() ? try? board.releaseSession() :
                                       try?  BoardShim.logMessage(.LEVEL_INFO, "defer: session already closed")
             rawFile.closeFile()
             filteredFile.closeFile()
         }
         
-        func writeHeaders() {
-            var headerStr = "PKG ID, Timestamp, Marker"
-            for i in 0..<eegChannels.count {
-                headerStr += ", Ch\(i+1)"
-            }
-            headerStr += "\n"
-            rawFile.write(Data(headerStr.utf8))
-            filteredFile.write(Data(headerStr.utf8))
-        }
-
         do {
-            //try setLogFile("brainflow.csv")
-            //try board.startStream(bufferSize: 10000000, streamerParams: "file://%file_name%:w")
             try board.startStream()
             writeHeaders()
-            print("streaming EEG")
+            try? BoardShim.logMessage(.LEVEL_INFO, "streaming EEG")
 
             while true {
-                guard self.isStreaming else {
-                    sleep(1)
-                    pauseCount += 1
-                    if (pauseCount % 3) == 0 { print("streaming paused \(pauseCount) sec.")}
-                    continue
-                }
-                pauseCount = 0
                 let matrixRaw = try board.getBoardData()
                 guard matrixRaw.count > 0 else {
                     continue
                 }
-                let numSamples = matrixRaw[0].count
-                let pkgIDs = matrixRaw[pkgIDchannel]
-                let timestamps = matrixRaw[timestampChannel]
-                let markers = matrixRaw[markerChannel]
-                var rawSamples = [[Double]]()
-                var filteredSamples = [[Double]]()
-                for channel in eegChannels {
-                    let ch = Int(channel)
-                    var filtered = matrixRaw[ch].map { $0 / 24.0 }
-                    try DataFilter.removeEnvironmentalNoise(data: &filtered, samplingRate: samplingRate, noiseType: NoiseTypes.SIXTY)
-                    try DataFilter.performBandpass(data: &filtered, samplingRate: samplingRate, centerFreq: 27.5, bandWidth: 45.0, order: 4, filterType: FilterTypes.BUTTERWORTH, ripple: 1.0)
-                    var rawSample = [Double]()
-                    var filteredSample = [Double]()
-                    for iSample in 0..<numSamples {
-                        rawSample.append(matrixRaw[ch][iSample])
-                        filteredSample.append(filtered[iSample])
-                    }
-                    rawSamples.append(rawSample)
-                    filteredSamples.append(filteredSample)
+
+                guard self.isStreaming else {
+                    pauseCount += 1
+                    continue
                 }
-                rawFile.writeEEGsamples(pkgIDs: pkgIDs, timestamps: timestamps, markers: markers, samples: rawSamples)
-                filteredFile.writeEEGsamples(pkgIDs: pkgIDs, timestamps: timestamps, markers: markers, samples: filteredSamples)
-                sleep(2)
+                
+                if pauseCount > 0 {
+                    reopenFiles()
+                }
+                
+                pauseCount = 0
+                writeStream(matrixRaw)
             }
         }
         catch let bfError as BrainFlowException {
@@ -225,9 +258,28 @@ class Headset {
             try? BoardShim.logMessage (.LEVEL_ERROR, "undefined exception")
         }
 
-        rawFile.closeFile()
-        filteredFile.closeFile()
-        self.isStreaming = false
-        try? BoardShim.logMessage(.LEVEL_INFO, "exit streaming")
     }
+    
+    static func scan() -> String {
+        // Return the first device name matching "cu.usbserial-DM*"
+        let fm = FileManager.default
+        let prefix = "/dev"
+        try? BoardShim.logMessage(.LEVEL_INFO, "Scanning for devices")
+
+        do {
+            let items = try fm.contentsOfDirectory(atPath: prefix)
+
+            for item in items.filter({$0.contains("cu.usbserial-DM")}) {
+                try? BoardShim.logMessage(.LEVEL_INFO, "Found device \(item)")
+                return prefix + "/" + item
+            }
+            
+            try? BoardShim.logMessage(.LEVEL_ERROR, "Cannot find any matching devices")
+            return ""
+        } catch {
+            try? BoardShim.logMessage(.LEVEL_ERROR, "Cannot list contents of /dev")
+            return ""
+        }
+    }
+
 }

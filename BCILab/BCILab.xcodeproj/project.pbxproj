@@ -44,8 +44,8 @@
 		5F58BD2226AC1C5E003F5483 /* BCILabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F58BD2126AC1C5E003F5483 /* BCILabTests.swift */; };
 		5F58BD2D26AC1C5E003F5483 /* BCILabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F58BD2C26AC1C5E003F5483 /* BCILabUITests.swift */; };
 		5F58BD3D26AC89F5003F5483 /* ImageCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F58BD3C26AC89F5003F5483 /* ImageCarousel.swift */; };
-		5F628BDE26E14B9D0085B009 /* RetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BDD26E14B9D0085B009 /* RetryView.swift */; };
-		5F628BE026E14D970085B009 /* RetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BDD26E14B9D0085B009 /* RetryView.swift */; };
+		5F628BDE26E14B9D0085B009 /* ReconnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BDD26E14B9D0085B009 /* ReconnectView.swift */; };
+		5F628BE026E14D970085B009 /* ReconnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BDD26E14B9D0085B009 /* ReconnectView.swift */; };
 		5F628BE226E231BA0085B009 /* CustomStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BE126E231BA0085B009 /* CustomStyles.swift */; };
 		5F628BE426E231BA0085B009 /* CustomStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BE126E231BA0085B009 /* CustomStyles.swift */; };
 		5F64A17E26AF0D8A0001E9FB /* NonFaces in Resources */ = {isa = PBXBuildFile; fileRef = 5F64A17D26AF0D8A0001E9FB /* NonFaces */; };
@@ -131,9 +131,9 @@
 		5FE55F65270484F400DDA111 /* CSVFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F74AE3C26C6845200A53ED5 /* CSVFile.swift */; };
 		5FE55F66270484F500DDA111 /* CSVFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F74AE3C26C6845200A53ED5 /* CSVFile.swift */; };
 		5FE55F67270484F500DDA111 /* CSVFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F74AE3C26C6845200A53ED5 /* CSVFile.swift */; };
-		5FE55F68270484F800DDA111 /* RetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BDD26E14B9D0085B009 /* RetryView.swift */; };
-		5FE55F69270484F900DDA111 /* RetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BDD26E14B9D0085B009 /* RetryView.swift */; };
-		5FE55F6A270484F900DDA111 /* RetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BDD26E14B9D0085B009 /* RetryView.swift */; };
+		5FE55F68270484F800DDA111 /* ReconnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BDD26E14B9D0085B009 /* ReconnectView.swift */; };
+		5FE55F69270484F900DDA111 /* ReconnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BDD26E14B9D0085B009 /* ReconnectView.swift */; };
+		5FE55F6A270484F900DDA111 /* ReconnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BDD26E14B9D0085B009 /* ReconnectView.swift */; };
 		5FE55F6B270484FC00DDA111 /* CustomStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BE126E231BA0085B009 /* CustomStyles.swift */; };
 		5FE55F6C270484FC00DDA111 /* CustomStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BE126E231BA0085B009 /* CustomStyles.swift */; };
 		5FE55F6D270484FD00DDA111 /* CustomStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BE126E231BA0085B009 /* CustomStyles.swift */; };
@@ -296,7 +296,7 @@
 		5F58BD2C26AC1C5E003F5483 /* BCILabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCILabUITests.swift; sourceTree = "<group>"; };
 		5F58BD2E26AC1C5E003F5483 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F58BD3C26AC89F5003F5483 /* ImageCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarousel.swift; sourceTree = "<group>"; };
-		5F628BDD26E14B9D0085B009 /* RetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryView.swift; sourceTree = "<group>"; };
+		5F628BDD26E14B9D0085B009 /* ReconnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconnectView.swift; sourceTree = "<group>"; };
 		5F628BE126E231BA0085B009 /* CustomStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStyles.swift; sourceTree = "<group>"; };
 		5F64A17D26AF0D8A0001E9FB /* NonFaces */ = {isa = PBXFileReference; lastKnownFileType = folder; path = NonFaces; sourceTree = "<group>"; };
 		5F73912D26DCE67D0029C95D /* libBoardController.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBoardController.dylib; path = BCILab/libBoardController.dylib; sourceTree = "<group>"; };
@@ -475,7 +475,7 @@
 				5FC07DB626BF67CB00B1971B /* LabeledImage.swift */,
 				5FCF8BAE26C577E3002DA9F0 /* EEG.swift */,
 				5F74AE3C26C6845200A53ED5 /* CSVFile.swift */,
-				5F628BDD26E14B9D0085B009 /* RetryView.swift */,
+				5F628BDD26E14B9D0085B009 /* ReconnectView.swift */,
 				5F628BE126E231BA0085B009 /* CustomStyles.swift */,
 				5F509C9D26FFEDAB00B48497 /* MainMenuView.swift */,
 				5FCA32782700A13500CF66E5 /* ExperimentVC.swift */,
@@ -877,7 +877,7 @@
 				5F524C4526BAD67C00DECD6E /* Error.swift in Sources */,
 				5FC6463426FBA5BA00164A31 /* BrainFlowInputParams.swift in Sources */,
 				5F524C3926BAD67C00DECD6E /* Global.swift in Sources */,
-				5F628BDE26E14B9D0085B009 /* RetryView.swift in Sources */,
+				5F628BDE26E14B9D0085B009 /* ReconnectView.swift in Sources */,
 				5FCF8BAF26C577E3002DA9F0 /* EEG.swift in Sources */,
 				5FCA328027010D4400CF66E5 /* ChangeSaveFolderView.swift in Sources */,
 				5FC6463926FBA5BE00164A31 /* BoardShim.swift in Sources */,
@@ -947,7 +947,7 @@
 				5FC6463F26FBA5C300164A31 /* BrainFlowExtensions.swift in Sources */,
 				5FC6462A26FBA5AA00164A31 /* DataFilter.swift in Sources */,
 				5F524C4A26BAD67C00DECD6E /* StreamInfo.swift in Sources */,
-				5F628BE026E14D970085B009 /* RetryView.swift in Sources */,
+				5F628BE026E14D970085B009 /* ReconnectView.swift in Sources */,
 				5F509C9F26FFEDAB00B48497 /* MainMenuView.swift in Sources */,
 				5FC6463726FBA5BC00164A31 /* BrainFlowInputParams.swift in Sources */,
 				5F628BE426E231BA0085B009 /* CustomStyles.swift in Sources */,
@@ -990,7 +990,7 @@
 				5FE55F952704855700DDA111 /* BoardDescription.swift in Sources */,
 				5FE55F922704855400DDA111 /* BrainFlowExtensions.swift in Sources */,
 				5FE55F832704853F00DDA111 /* BrainFlowException.swift in Sources */,
-				5FE55F68270484F800DDA111 /* RetryView.swift in Sources */,
+				5FE55F68270484F800DDA111 /* ReconnectView.swift in Sources */,
 				5FE55F5F270484EB00DDA111 /* ContentView.swift in Sources */,
 				5FE55F772704850C00DDA111 /* AppState.swift in Sources */,
 				5FE55F8F2704855100DDA111 /* BoardShim.swift in Sources */,
@@ -1016,7 +1016,7 @@
 				5FE55F902704855200DDA111 /* BoardShim.swift in Sources */,
 				5FE55F8A2704854900DDA111 /* BrainFlowConstants.swift in Sources */,
 				5FE55F57270484DA00DDA111 /* BCILabApp.swift in Sources */,
-				5FE55F69270484F900DDA111 /* RetryView.swift in Sources */,
+				5FE55F69270484F900DDA111 /* ReconnectView.swift in Sources */,
 				5FE55F752704850800DDA111 /* ChangeSaveFolderView.swift in Sources */,
 				5FE55F63270484EF00DDA111 /* LabeledImage.swift in Sources */,
 				5FE9A3B92704812A00A7AC22 /* BrainWaveiOSTests.swift in Sources */,
@@ -1047,7 +1047,7 @@
 				5FE55F972704855800DDA111 /* BoardDescription.swift in Sources */,
 				5FE55F942704855500DDA111 /* BrainFlowExtensions.swift in Sources */,
 				5FE55F852704853F00DDA111 /* BrainFlowException.swift in Sources */,
-				5FE55F6A270484F900DDA111 /* RetryView.swift in Sources */,
+				5FE55F6A270484F900DDA111 /* ReconnectView.swift in Sources */,
 				5FE55F61270484EC00DDA111 /* ContentView.swift in Sources */,
 				5FE55F792704850C00DDA111 /* AppState.swift in Sources */,
 				5FE55F912704855200DDA111 /* BoardShim.swift in Sources */,

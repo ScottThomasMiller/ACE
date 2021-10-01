@@ -14,13 +14,10 @@ struct MainMenuView: View {
     let callerVC: ExperimentVC
     @ObservedObject var appState: AppState
     
-//    @Binding var saveFolder: String
-//    @Binding var isMainMenuActive: Bool
-    
     var body: some View {
         let id = "bluetooth"
         let label = "Connect to the headset"
-        let connLink = NavigationLink(destination: RetryView(headset: headset, message: label, appState: self.appState)) {
+        let connLink = NavigationLink(destination: ReconnectView(message: label, appState: self.appState)) {
             HStack(alignment: .center) {
                 Text(label)
                     .fontWeight(.bold)

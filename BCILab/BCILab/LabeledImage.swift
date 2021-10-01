@@ -12,6 +12,8 @@ enum ImageLabels: Double {
     case face = 1.0
     case nonface = 2.0
     case blank = 3.0
+    case start = 4.0
+    case stop = 5.0
 }
 
 struct LabeledImage {

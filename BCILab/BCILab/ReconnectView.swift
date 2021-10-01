@@ -7,15 +7,14 @@
 
 import SwiftUI
 
-struct RetryView: View {
-    var headset: Headset?
+struct ReconnectView: View {
     @State var message: String
     @ObservedObject var appState: AppState
         
     func setBoardStatus () {
-        if let tempHeadset = self.headset {
-            if let status = try? tempHeadset.board.isPrepared() {
-                self.appState.isHeadsetNotReady = !status }
+        if let tempHeadset = self.appState.headset {
+            if let _ = try? tempHeadset.board.isPrepared() {
+                self.appState.isHeadsetNotReady = false }
             else {
                 self.appState.isHeadsetNotReady = true
             }
@@ -25,29 +24,25 @@ struct RetryView: View {
     }
     
     func retry() {
-        self.message = "Reconnecting..."
-        if let tempHeadset = self.headset {
-            if tempHeadset.isStreaming {
-                tempHeadset.isStreaming = false
-                sleep(1)
-            }
-            _ = tempHeadset.reconnect()
-            tempHeadset.isStreaming = true
+        self.message = "Connecting..."
+        if let tempHeadset = self.appState.headset {
+            tempHeadset.isStreaming = false
+            try? tempHeadset.board.stopStream()
+            sleep(2)
+            try? tempHeadset.board.releaseSession()
+            sleep(2)
+            
         }
 
+        self.appState.headset = try? Headset(boardId: self.appState.boardId)
         setBoardStatus()
         
         if self.appState.isHeadsetNotReady {
-            try? BoardShim.logMessage(.LEVEL_INFO, "failed to reconnect")
+            try? BoardShim.logMessage(.LEVEL_INFO, "failed to connect")
             self.message = "Try again"
         } else {
-            try? BoardShim.logMessage(.LEVEL_INFO, "reconnection successful")
+            try? BoardShim.logMessage(.LEVEL_INFO, "connection successful")
             self.message = "OK!"
-//            if let headsetCopy = self.headset {
-//                DispatchQueue.global(qos: .background).async {
-//                    headsetCopy.streamEEG()
-//                }
-//            }
         }
     }
 
@@ -57,7 +52,7 @@ struct RetryView: View {
                 .baselineOffset(40)
             HStack {
                 Button(action: retry) {
-                    Text("Retry")
+                    Text("Connect")
                         .fontWeight(.bold)
                         .font(.title)
                         .padding()
