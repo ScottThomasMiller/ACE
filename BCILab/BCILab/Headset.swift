@@ -37,8 +37,9 @@ enum ChannelIDs: String, CaseIterable {
     case channel16 = "I"
 }
 
-class Headset: ObservableObject {
+class Headset {
     var isStreaming: Bool = false
+    var isActive: Bool = true
     //let params = BrainFlowInputParams(serial_port: "/dev/cu.usbserial-DM0258EJ")
     let params = BrainFlowInputParams(serial_port: Headset.scan())
     private var rawFile: FileHandle
@@ -60,33 +61,15 @@ class Headset: ObservableObject {
         
         do {
             try? BoardShim.logMessage(.LEVEL_INFO, "init headset: \(boardId)")
-            board = try BoardShim(boardId, params)
-            boardDescription = try BoardShim.getBoardDescr(boardId)
-            samplingRate = try BoardShim.getSamplingRate(boardId)
-            eegChannels = try BoardShim.getEEGchannels(boardId)
-            markerChannel = try Int(BoardShim.getMarkerChannel(boardId))
-            pkgIDchannel = try Int(BoardShim.getPackageNumChannel(boardId))
-            timestampChannel = try Int(BoardShim.getTimestampChannel(boardId))
-            
-            try BoardShim.enableDevBoardLogger()
-            try board.prepareSession()
-            while try !board.isPrepared() {
-                try? BoardShim.logMessage(.LEVEL_INFO, "waiting for session...")
-                sleep(3)
-            }
-             
-            try? BoardShim.logMessage(.LEVEL_INFO, "setting gain to 1")
-            if !setGain(setting: .x1) {
-                exit(-1)
-            }
-            
-            if !setNumChannels() {
-                exit(-1)
-            }
-            
-            DispatchQueue.global(qos: .background).async {
-                self.streamEEG()
-            }            
+            self.board = try BoardShim(boardId, params)
+            self.boardDescription = try BoardShim.getBoardDescr(boardId)
+            self.samplingRate = try BoardShim.getSamplingRate(boardId)
+            self.eegChannels = try BoardShim.getEEGchannels(boardId)
+            self.markerChannel = try Int(BoardShim.getMarkerChannel(boardId))
+            self.pkgIDchannel = try Int(BoardShim.getPackageNumChannel(boardId))
+            self.timestampChannel = try Int(BoardShim.getTimestampChannel(boardId))
+                
+            try setup()
         }
         catch let bfError as BrainFlowException {
             try? BoardShim.logMessage (.LEVEL_ERROR, bfError.message)
@@ -99,10 +82,40 @@ class Headset: ObservableObject {
         }
     }
     
+    func setup() throws {
+        try BoardShim.enableDevBoardLogger()
+        try board.prepareSession()
+        while try !board.isPrepared() {
+            try? BoardShim.logMessage(.LEVEL_INFO, "waiting for session...")
+            sleep(3)
+        }
+         
+        try? BoardShim.logMessage(.LEVEL_INFO, "setting gain to 1")
+        if !setGain(setting: .x1) {
+            exit(-1)
+        }
+        
+        if !setNumChannels() {
+            exit(-1)
+        }
+        
+        self.isActive = true
+        DispatchQueue.global(qos: .background).async {
+            self.streamEEG()
+        }
+    }
+    
     func reconnect() -> Bool {
+        defer {
+            try? BoardShim.logMessage(.LEVEL_INFO, "end reconnect")
+        }
+        
         do {
-            try self.board.releaseSession()
-            try self.board.prepareSession()
+            try? BoardShim.logMessage(.LEVEL_INFO, "begin reconnect")
+            self.isActive = false
+            sleep(1)
+            try? self.board.releaseSession()
+            try setup()
             
             return try self.board.isPrepared()
         } catch let bfError as BrainFlowException {
@@ -116,7 +129,7 @@ class Headset: ObservableObject {
     
     deinit {
         try? BoardShim.logMessage(.LEVEL_INFO, "Headset.deinit()")
-        try? board.releaseSession()
+        cleanup()
     }
 
     func setGain(setting: GainSettings) -> Bool {
@@ -200,7 +213,7 @@ class Headset: ObservableObject {
             try? BoardShim.logMessage (.LEVEL_ERROR, bfError.message)
             try? BoardShim.logMessage (.LEVEL_ERROR, "Error code: \(bfError.errorCode)")
         } catch {
-            try? BoardShim.logMessage (.LEVEL_ERROR, "undefined exception")
+            try? BoardShim.logMessage (.LEVEL_ERROR, "cannot stream EEG samples to data files.\nError: \(error)")
         }
     }
     
@@ -210,33 +223,54 @@ class Headset: ObservableObject {
             headerStr += ", Ch\(i+1)"
         }
         headerStr += "\n"
+        
         rawFile.write(Data(headerStr.utf8))
         filteredFile.write(Data(headerStr.utf8))
     }
     
+    func cleanup() {
+        try? BoardShim.logMessage(.LEVEL_INFO, "headset cleanup")
+        try? self.board.stopStream()
+        self.isActive = false
+        self.isStreaming = false
+        rawFile.synchronizeFile()
+        filteredFile.synchronizeFile()
+    }
+    
     func streamEEG() {
-        var pauseCount = 0
+        var pauseCount = 1
+        var numEmptyBuffers = 0
         
         defer {
-            self.isStreaming = false
-            try? BoardShim.logMessage(.LEVEL_INFO, "Headset.streamEEG.defer")
-            try? board.isPrepared() ? try? board.releaseSession() :
-                                      try?  BoardShim.logMessage(.LEVEL_INFO, "defer: session already closed")
-            rawFile.closeFile()
-            filteredFile.closeFile()
+            try? BoardShim.logMessage(.LEVEL_INFO, "streaming EEG graceful exit")
+            cleanup()
         }
         
         do {
             try board.startStream()
             writeHeaders()
-            try? BoardShim.logMessage(.LEVEL_INFO, "streaming EEG")
+            try? BoardShim.logMessage(.LEVEL_INFO, "streaming EEG from headset")
 
             while true {
+                guard self.isActive else {
+                    try? BoardShim.logMessage(.LEVEL_INFO, "streaming EEG deactivated")
+                    return
+                }
+                
                 let matrixRaw = try board.getBoardData()
                 guard matrixRaw.count > 0 else {
+                    numEmptyBuffers += 1
+                    if numEmptyBuffers > 1000 {
+                        try? BoardShim.logMessage(.LEVEL_ERROR, "lost contact with headset")
+                        self.isActive = false
+                        return
+                    }
                     continue
                 }
 
+                if numEmptyBuffers > 500 { try? BoardShim.logMessage(.LEVEL_WARN, "empty buffers: \(numEmptyBuffers)") }
+                numEmptyBuffers = 0
+                
                 guard self.isStreaming else {
                     pauseCount += 1
                     continue
@@ -258,6 +292,7 @@ class Headset: ObservableObject {
             try? BoardShim.logMessage (.LEVEL_ERROR, "undefined exception")
         }
 
+        cleanup()
     }
     
     static func scan() -> String {

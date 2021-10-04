@@ -11,34 +11,65 @@ import SwiftUI
 
 struct ExperimentVC: View {
     let interval = 1.0
-    @State var timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+    @State var mainTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+    @State var animationTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State var selection = -1
     @StateObject private var appState = AppState()
     private let images: [LabeledImage] = prepareImages()
+
+    func manageSlideShow() {
+        guard self.selection < (self.images.count-1) else {
+            try? BoardShim.logMessage(.LEVEL_INFO, "experiment complete")
+            if let tempHeadset = self.appState.headset {
+                try? tempHeadset.board.insertMarker(value: ImageLabels.stop.rawValue) }
+            self.stopTimer()
+            return
+        }
+        
+        if self.selection < 0 {
+            try? BoardShim.logMessage(.LEVEL_INFO, "experiment is ready and paused")
+            if let tempHeadset = self.appState.headset {
+                try? tempHeadset.board.insertMarker(value: ImageLabels.blank.rawValue) }
+            self.selection = 0
+            self.stopTimer()
+        } else {
+            let label = self.images[self.selection+1].label
+            try? BoardShim.logMessage(.LEVEL_INFO, "marker: \(label)")
+            if let tempHeadset = self.appState.headset {
+                try? tempHeadset.board.insertMarker(value: label.rawValue) }
+            self.selection += 1
+        }
+    }
     
-//    init() {
-//        do {
-//            self.headset = try Headset(boardId: .CYTON_DAISY_BOARD)
-////            let headsetCopy = headset!
-////            DispatchQueue.global(qos: .background).async {
-////                headsetCopy.streamEEG()
-////            }
-//        }
-//        catch {
-//            try? BoardShim.logMessage(.LEVEL_ERROR, "Cannot connect to headset")
-//        }
-//    }
+    func pauseResume() {
+        if self.appState.isTimerRunning {
+            self.stopTimer()
+        } else {
+            self.startTimer()
+        }
+    }
     
-    func dismissMainMenu() {
-        print("dismissMainMenu()")
-        appState.isMainMenuActive = false
+    func activateMenu() {
+        stopTimer()
+        self.appState.isTimerRunning = false
+        self.appState.isMainMenuActive = true
+    }
+    
+    func checkHeadset() {
+        self.appState.isHeadsetNotReady = true
+        if let tempHeadset = self.appState.headset {
+            self.appState.isHeadsetNotReady = !tempHeadset.isActive
+        }
+        
+        if (self.appState.isHeadsetNotReady && self.appState.isTimerRunning) { stopTimer() }
     }
     
     var body: some View {
-        ZStack {
+        GeometryReader { _ in 
+            ZStack(alignment: .topLeading) {
             Color.black
-            TabView(selection : $selection){
-                ForEach(0..<images.count){ i in
+            TabView(selection : $selection) {
+                ForEach(0..<images.count) { i in
                     Image(uiImage: self.images[i].image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -46,65 +77,36 @@ struct ExperimentVC: View {
             }
             .tabViewStyle(PageTabViewStyle())
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-            .onReceive(timer, perform: { _ in
-                withAnimation{
-                    guard self.selection < (self.images.count-1) else {
-                        print("done")
-                        if let tempHeadset = self.appState.headset {
-                            try? tempHeadset.board.insertMarker(value: ImageLabels.stop.rawValue) }
-                        self.stopTimer()
-                        return
-                    }
-                    
-                    if self.selection < 0 {
-                        print("pause")
-                        if let tempHeadset = self.appState.headset {
-                            try? tempHeadset.board.insertMarker(value: ImageLabels.blank.rawValue) }
-                        self.selection = 0
-                        self.stopTimer()
-                    } else {
-                        let label = self.images[self.selection+1].label
-                        print("marker: \(label)")
-                        if let tempHeadset = self.appState.headset {
-                            try? tempHeadset.board.insertMarker(value: label.rawValue) }
-                        self.selection += 1
-                    }
-                }
-            })
+            .onReceive(animationTimer, perform: { _ in manageSlideShow() })
+            .onReceive(mainTimer, perform: { _ in checkHeadset() })
             .animation(nil)
-            .onTapGesture {
-                if self.appState.isTimerRunning {
-                    self.stopTimer()
-                } else {
-                    self.startTimer()
-                }
-                self.appState.isTimerRunning.toggle()
-            }
-            .onLongPressGesture{
-                self.appState.isMainMenuActive.toggle()
-            }
+            .onTapGesture { pauseResume() }
+            .onLongPressGesture{ activateMenu() }
         }
         .fullScreenCover(isPresented: $appState.isMainMenuActive) {
             MainMenuView(headset: self.appState.headset, callerVC: self, appState: appState) }
         .fullScreenCover(isPresented: $appState.isHeadsetNotReady) {
             ReconnectView(message: "Reconnect to headset", appState: appState)  }
-        .onAppear(perform: {print("ExperimentVC appears")})
+        .onAppear(perform: { print("ExperimentVC appears") })
+        }
     }
 
     func stopTimer() {
-        print("stop timer")
+        try? BoardShim.logMessage(.LEVEL_INFO, "stop timer")
         if let tempHeadset = self.appState.headset {
-            tempHeadset.isStreaming = false
-            try? tempHeadset.board.insertMarker(value: ImageLabels.stop.rawValue) }
-        self.timer.upstream.connect().cancel()
+            try? tempHeadset.board.insertMarker(value: ImageLabels.stop.rawValue)
+            tempHeadset.isStreaming = false }
+        self.animationTimer.upstream.connect().cancel()
+        self.appState.isTimerRunning = false
     }
     
     func startTimer() {
-        print("start timer")
+        try? BoardShim.logMessage(.LEVEL_INFO, "start timer")
         if let tempHeadset = self.appState.headset {
             tempHeadset.isStreaming = true
             try? tempHeadset.board.insertMarker(value: ImageLabels.start.rawValue) }
-        self.timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+        self.animationTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+        self.appState.isTimerRunning = true
     }
 }
 
