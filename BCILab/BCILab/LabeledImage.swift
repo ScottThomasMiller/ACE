@@ -16,9 +16,15 @@ enum ImageLabels: Double {
     case stop = 5.0
 }
 
-struct LabeledImage {
+class LabeledImage {
     let image: UIImage
     let label: ImageLabels
+    var appeared = false
+    
+    init(image: UIImage, label: ImageLabels) {
+        self.image = image
+        self.label = label
+    }
 }
 
 func getAllFromSubdir(subdir: String, label: ImageLabels, maxImages: Int = 10000) -> [LabeledImage]  {

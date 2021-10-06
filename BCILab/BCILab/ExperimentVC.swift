@@ -15,7 +15,7 @@ struct ExperimentVC: View {
     @State var animationTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State var selection = -1
     @StateObject private var appState = AppState()
-    private let images: [LabeledImage] = prepareImages()
+    private var images: [LabeledImage] = prepareImages()
 
     func manageSlideShow() {
         guard self.selection < (self.images.count-1) else {
@@ -64,15 +64,24 @@ struct ExperimentVC: View {
         if (self.appState.isHeadsetNotReady && self.appState.isTimerRunning) { stopTimer() }
     }
     
+    func insertAppears(_ image: LabeledImage) {
+        if let tempHeadset = self.appState.headset {
+            if !image.appeared {
+                let marker = image.label.rawValue + 100.0
+                try? tempHeadset.board.insertMarker(value: marker)
+                image.appeared = true } }
+    }
+    
     var body: some View {
         GeometryReader { _ in 
             ZStack(alignment: .topLeading) {
             Color.black
-            TabView(selection : $selection) {
-                ForEach(0..<images.count) { i in
+                TabView(selection : self.$selection) {
+                    ForEach(0..<self.images.count) { i in
                     Image(uiImage: self.images[i].image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .onAppear(perform: { insertAppears(self.images[i]) })
                 }
             }
             .tabViewStyle(PageTabViewStyle())
@@ -87,7 +96,6 @@ struct ExperimentVC: View {
             MainMenuView(headset: self.appState.headset, callerVC: self, appState: appState) }
         .fullScreenCover(isPresented: $appState.isHeadsetNotReady) {
             ReconnectView(message: "Reconnect to headset", appState: appState)  }
-        .onAppear(perform: { print("ExperimentVC appears") })
         }
     }
 

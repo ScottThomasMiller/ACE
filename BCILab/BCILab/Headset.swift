@@ -196,7 +196,6 @@ class Headset {
                 let ch = Int(channel)
                 var filtered = matrixRaw[ch].map { $0 / 24.0 }
                 try DataFilter.removeEnvironmentalNoise(data: &filtered, samplingRate: samplingRate, noiseType: NoiseTypes.SIXTY)
-                try DataFilter.performBandpass(data: &filtered, samplingRate: samplingRate, centerFreq: 27.5, bandWidth: 45.0, order: 4, filterType: FilterTypes.BUTTERWORTH, ripple: 1.0)
                 var rawSample = [Double]()
                 var filteredSample = [Double]()
                 for iSample in 0..<numSamples {
