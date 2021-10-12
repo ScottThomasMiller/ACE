@@ -13,6 +13,7 @@ class AppState: ObservableObject {
     @Published var isMainMenuActive: Bool = false
     @Published var isHeadsetNotReady: Bool = true
     @Published var saveFolder = "BrainWaves"
-    @Published var boardId: BoardIds = .CYTON_DAISY_BOARD
+//    @Published var boardId: BoardIds = .CYTON_DAISY_BOARD
+    @Published var boardId: BoardIds = .SYNTHETIC_BOARD
     var headset: Headset?
 }

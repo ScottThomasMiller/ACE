@@ -54,9 +54,10 @@ func getAllFromSubdir(subdir: String, label: ImageLabels, maxImages: Int = 10000
 // Return a randomized array of faces and nonfaces, with blanks inserted between each image.
 func prepareImages () -> [LabeledImage] {
     guard let blankURL = Bundle.main.url(forResource: "green_crosshair", withExtension: ".png") else {
-        print("Error: cannot load blank image")
+        try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load blank image")
         return [LabeledImage]()
     }
+    
     let blankImage = try! UIImage(data: Data(contentsOf: blankURL))
     let blank = LabeledImage(image: blankImage!, label: ImageLabels.blank)
     let faceImages = getAllFromSubdir(subdir: "Faces", label: ImageLabels.face).shuffled()
@@ -71,16 +72,17 @@ func prepareImages () -> [LabeledImage] {
         finalImages.append(blank)
         nblank += 1
         finalImages.append(image)
+        
         switch image.label {
         case .face:
             nface += 1
         case .nonface:
             nnonface += 1
         default:
-            print("Error. unknown label")
+            try? BoardShim.logMessage(.LEVEL_ERROR, "unknown image label: \(image.label)")
         }
     }
 
-    print("num blank: \(nblank) num face: \(nface) num nonface: \(nnonface)")
+    try? BoardShim.logMessage(.LEVEL_INFO, "loaded images. # blank: \(nblank) # face: \(nface) # nonface: \(nnonface)")
     return finalImages
 }

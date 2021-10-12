@@ -61,7 +61,11 @@ struct ExperimentVC: View {
             self.appState.isHeadsetNotReady = !tempHeadset.isActive
         }
         
-        if (self.appState.isHeadsetNotReady && self.appState.isTimerRunning) { stopTimer() }
+        
+        if self.appState.isHeadsetNotReady {
+            if self.appState.isTimerRunning { stopTimer() }
+            self.appState.isMainMenuActive = false
+        }
     }
     
     func insertAppears(_ image: LabeledImage) {

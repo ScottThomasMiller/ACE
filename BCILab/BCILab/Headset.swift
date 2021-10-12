@@ -40,12 +40,11 @@ enum ChannelIDs: String, CaseIterable {
 class Headset {
     var isStreaming: Bool = false
     var isActive: Bool = true
-    //let params = BrainFlowInputParams(serial_port: "/dev/cu.usbserial-DM0258EJ")
     let params = BrainFlowInputParams(serial_port: Headset.scan())
     private var rawFile: FileHandle
     private var filteredFile: FileHandle
     let boardId: BoardIds
-    let board: BoardShim
+    var board: BoardShim
     let samplingRate: Int32
     let eegChannels: [Int32]
     let boardDescription: BoardDescription
@@ -241,7 +240,7 @@ class Headset {
         var numEmptyBuffers = 0
         
         defer {
-            try? BoardShim.logMessage(.LEVEL_INFO, "streaming EEG graceful exit")
+            try? BoardShim.logMessage(.LEVEL_INFO, "streaming EEG deferred exit")
             cleanup()
         }
         
@@ -291,6 +290,7 @@ class Headset {
             try? BoardShim.logMessage (.LEVEL_ERROR, "undefined exception")
         }
 
+        try? BoardShim.logMessage(.LEVEL_INFO, "streamEEG is terminating")
         cleanup()
     }
     
