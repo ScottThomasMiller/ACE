@@ -35,15 +35,14 @@ func getAllFromSubdir(subdir: String, label: ImageLabels, maxImages: Int = 10000
         for url in urls {
             guard let image = try? UIImage(data: Data(contentsOf: url)) else {
                 print("Error loading image: \(url)")
-                continue
-            }
+                continue }
+            
             let labeledImage = LabeledImage(image: image, label: label)
             labeledImages.append(labeledImage) 
             count += 1
 
             guard count < maxImages else {
-                break
-            }
+                break }
         }
     }
     
@@ -59,7 +58,6 @@ func prepareImages () -> [LabeledImage] {
     }
     
     let blankImage = try! UIImage(data: Data(contentsOf: blankURL))
-    let blank = LabeledImage(image: blankImage!, label: ImageLabels.blank)
     let faceImages = getAllFromSubdir(subdir: "Faces", label: ImageLabels.face).shuffled()
     let nonFaceImages = getAllFromSubdir(subdir: "NonFaces", label: ImageLabels.nonface).shuffled()
     let shuffledImages = faceImages[..<50] + nonFaceImages[..<50]
@@ -69,6 +67,7 @@ func prepareImages () -> [LabeledImage] {
     var nnonface = 0
     var nblank = 0
     for image in shuffledImages.shuffled() {
+        let blank = LabeledImage(image: blankImage!, label: ImageLabels.blank)
         finalImages.append(blank)
         nblank += 1
         finalImages.append(image)

@@ -15,10 +15,14 @@ struct ReconnectView: View {
         try? BoardShim.logMessage(.LEVEL_INFO, "begin reconnect")
         
         if let tempHeadset = self.appState.headset {
-            try? BoardShim.logMessage(.LEVEL_INFO, "deactivating the existing streamer")
+            try? BoardShim.logMessage(.LEVEL_INFO, "deactivating the board")
             tempHeadset.isActive = false // terminates the streaming loop
             sleep(2)
-            try? tempHeadset.board.releaseSession() }
+            
+            if let board = tempHeadset.board {
+                try? board.releaseSession() }
+            
+            tempHeadset.board = nil }
         
         do {
             self.appState.headset = try Headset(boardId: self.appState.boardId)

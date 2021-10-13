@@ -41,10 +41,10 @@ class Headset {
     var isStreaming: Bool = false
     var isActive: Bool = true
     let params = BrainFlowInputParams(serial_port: Headset.scan())
-    private var rawFile: FileHandle
-    private var filteredFile: FileHandle
+    private var rawFile: FileHandle?
+    private var filteredFile: FileHandle?
     let boardId: BoardIds
-    var board: BoardShim
+    var board: BoardShim?
     let samplingRate: Int32
     let eegChannels: [Int32]
     let boardDescription: BoardDescription
@@ -54,9 +54,6 @@ class Headset {
 
     init(boardId: BoardIds) throws {
         self.boardId = boardId
-        let fileID = CSVFile.uniqueID()
-        rawFile = CSVFile(fileName: "BrainWave-EEG-Raw").openFile(id: fileID)
-        filteredFile = CSVFile(fileName: "BrainWave-EEG-Filtered").openFile(id: fileID)
         
         do {
             try? BoardShim.logMessage(.LEVEL_INFO, "init headset: \(boardId)")
@@ -83,8 +80,13 @@ class Headset {
     
     func setup() throws {
         try BoardShim.enableDevBoardLogger()
-        try board.prepareSession()
-        while try !board.isPrepared() {
+        guard board != nil else {
+            try? BoardShim.logMessage(.LEVEL_ERROR, "board is nil")
+            throw BrainFlowException("Uninitialized board", .BOARD_NOT_CREATED_ERROR)
+        }
+        
+        try board!.prepareSession()
+        while try !board!.isPrepared() {
             try? BoardShim.logMessage(.LEVEL_INFO, "waiting for session...")
             sleep(3)
         }
@@ -113,10 +115,14 @@ class Headset {
             try? BoardShim.logMessage(.LEVEL_INFO, "begin reconnect")
             self.isActive = false
             sleep(1)
-            try? self.board.releaseSession()
+            if let oldBoard = board {
+                try? oldBoard.releaseSession()}
             try setup()
             
-            return try self.board.isPrepared()
+            if let newBoard = board {
+                return try newBoard.isPrepared() }
+            else {
+                return false }
         } catch let bfError as BrainFlowException {
             try? BoardShim.logMessage(.LEVEL_ERROR, bfError.message)
         } catch {
@@ -132,6 +138,13 @@ class Headset {
     }
 
     func setGain(setting: GainSettings) -> Bool {
+        guard board != nil else {
+            try? BoardShim.logMessage(.LEVEL_ERROR, "setGain: board is nil")
+            return false
+        }
+        
+        let theBoard = board!
+        
         var i = 0
         for channel in ChannelIDs.allCases {
             if i >= eegChannels.count {
@@ -141,7 +154,7 @@ class Headset {
             let command = "x" + channel.rawValue + setting.rawValue + "0110X"
             let expected = "Success: Channel set for \(i)$$$"
             do {
-                let response = try board.configBoard(command)
+                let response = try theBoard.configBoard(command)
                 try BoardShim.logMessage(.LEVEL_INFO, "set \(channel) to gain value \(setting) with command \(command)")
                 if (response.count > 0) && (response != expected) {
                     try BoardShim.logMessage(.LEVEL_CRITICAL, "Unexpected response:\n\(response)")
@@ -157,6 +170,13 @@ class Headset {
     }
 
     func setNumChannels() -> Bool {
+        guard board != nil else {
+            try? BoardShim.logMessage(.LEVEL_ERROR, "setNumChannels: board is nil")
+            return false
+        }
+        
+        let theBoard = board!
+        
         // send "c" for Cyton or "C" for Cyton+Daisy
         var command: String = ""
         if boardId == .CYTON_BOARD {
@@ -166,7 +186,7 @@ class Headset {
         }
         print("setNumChannels sending: \(command)")
         
-        guard let response = try? board.configBoard(command) else {
+        guard let response = try? theBoard.configBoard(command) else {
             print("Error.  Cannot send command.")
             return false
         }
@@ -176,14 +196,24 @@ class Headset {
     }
 
     func reopenFiles()  {
-        try? rawFile.close()
-        try? filteredFile.close()
+        if rawFile != nil {
+            try? rawFile!.close()
+            try? filteredFile!.close() }
         let uqID = CSVFile.uniqueID()
         rawFile = CSVFile(fileName: "BrainWave-EEG-Raw").openFile(id: uqID)
         filteredFile = CSVFile(fileName: "BrainWave-EEG-Filtered").openFile(id: uqID)
+        writeHeaders()
     }
     
     func writeStream(_ matrixRaw: [[Double]]) {
+        guard (rawFile != nil) && (filteredFile != nil) else {
+            try? BoardShim.logMessage(.LEVEL_ERROR, "data files are not open")
+            return
+        }
+        
+        let raw = rawFile!
+        let filtered = filteredFile!
+        
         do {
             let numSamples = matrixRaw[0].count
             let pkgIDs = matrixRaw[pkgIDchannel]
@@ -205,8 +235,8 @@ class Headset {
                 filteredSamples.append(filteredSample)
             }
             
-            rawFile.writeEEGsamples(pkgIDs: pkgIDs, timestamps: timestamps, markers: markers, samples: rawSamples)
-            filteredFile.writeEEGsamples(pkgIDs: pkgIDs, timestamps: timestamps, markers: markers, samples: filteredSamples)
+            raw.writeEEGsamples(pkgIDs: pkgIDs, timestamps: timestamps, markers: markers, samples: rawSamples)
+            filtered.writeEEGsamples(pkgIDs: pkgIDs, timestamps: timestamps, markers: markers, samples: filteredSamples)
         } catch let bfError as BrainFlowException {
             try? BoardShim.logMessage (.LEVEL_ERROR, bfError.message)
             try? BoardShim.logMessage (.LEVEL_ERROR, "Error code: \(bfError.errorCode)")
@@ -216,28 +246,46 @@ class Headset {
     }
     
     func writeHeaders() {
+        guard (rawFile != nil) && (filteredFile != nil) else {
+            try? BoardShim.logMessage(.LEVEL_ERROR, "data files are not open")
+            return
+        }
+        
+        let raw = rawFile!
+        let filtered = filteredFile!
+
         var headerStr = "PKG ID, Timestamp, Marker"
         for i in 0..<eegChannels.count {
             headerStr += ", Ch\(i+1)"
         }
         headerStr += "\n"
         
-        rawFile.write(Data(headerStr.utf8))
-        filteredFile.write(Data(headerStr.utf8))
+        raw.write(Data(headerStr.utf8))
+        filtered.write(Data(headerStr.utf8))
     }
     
     func cleanup() {
         try? BoardShim.logMessage(.LEVEL_INFO, "headset cleanup")
-        try? self.board.stopStream()
+        if let theBoard = board {
+            try? theBoard.stopStream() }
         self.isActive = false
         self.isStreaming = false
-        rawFile.synchronizeFile()
-        filteredFile.synchronizeFile()
+        
+        if rawFile != nil {
+            rawFile!.synchronizeFile()
+            filteredFile!.synchronizeFile() }
     }
     
     func streamEEG() {
         var pauseCount = 1
         var numEmptyBuffers = 0
+        
+        guard board != nil else {
+            try? BoardShim.logMessage(.LEVEL_ERROR, "board is nil")
+            return
+        }
+        
+        let theBoard = board!
         
         defer {
             try? BoardShim.logMessage(.LEVEL_INFO, "streaming EEG deferred exit")
@@ -245,7 +293,7 @@ class Headset {
         }
         
         do {
-            try board.startStream()
+            try theBoard.startStream()
             writeHeaders()
             try? BoardShim.logMessage(.LEVEL_INFO, "streaming EEG from headset")
 
@@ -255,7 +303,7 @@ class Headset {
                     return
                 }
                 
-                let matrixRaw = try board.getBoardData()
+                let matrixRaw = try theBoard.getBoardData()
                 guard matrixRaw.count > 0 else {
                     numEmptyBuffers += 1
                     if numEmptyBuffers > 1000 {

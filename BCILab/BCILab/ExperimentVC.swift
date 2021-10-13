@@ -21,7 +21,8 @@ struct ExperimentVC: View {
         guard self.selection < (self.images.count-1) else {
             try? BoardShim.logMessage(.LEVEL_INFO, "experiment complete")
             if let tempHeadset = self.appState.headset {
-                try? tempHeadset.board.insertMarker(value: ImageLabels.stop.rawValue) }
+                if let board = tempHeadset.board {
+                    try? board.insertMarker(value: ImageLabels.stop.rawValue) }}
             self.stopTimer()
             return
         }
@@ -29,14 +30,16 @@ struct ExperimentVC: View {
         if self.selection < 0 {
             try? BoardShim.logMessage(.LEVEL_INFO, "experiment is ready and paused")
             if let tempHeadset = self.appState.headset {
-                try? tempHeadset.board.insertMarker(value: ImageLabels.blank.rawValue) }
+                if let board = tempHeadset.board {
+                    try? board.insertMarker(value: ImageLabels.blank.rawValue) }}
             self.selection = 0
             self.stopTimer()
         } else {
             let label = self.images[self.selection+1].label
             try? BoardShim.logMessage(.LEVEL_INFO, "marker: \(label)")
             if let tempHeadset = self.appState.headset {
-                try? tempHeadset.board.insertMarker(value: label.rawValue) }
+                if let board = tempHeadset.board {
+                    try? board.insertMarker(value: label.rawValue) }}
             self.selection += 1
         }
     }
@@ -72,7 +75,9 @@ struct ExperimentVC: View {
         if let tempHeadset = self.appState.headset {
             if !image.appeared {
                 let marker = image.label.rawValue + 100.0
-                try? tempHeadset.board.insertMarker(value: marker)
+                if let board = tempHeadset.board {
+                    try? BoardShim.logMessage(.LEVEL_INFO, "on-appear marker: \(marker)")
+                    try? board.insertMarker(value: marker) }
                 image.appeared = true } }
     }
     
@@ -106,7 +111,8 @@ struct ExperimentVC: View {
     func stopTimer() {
         try? BoardShim.logMessage(.LEVEL_INFO, "stop timer")
         if let tempHeadset = self.appState.headset {
-            try? tempHeadset.board.insertMarker(value: ImageLabels.stop.rawValue)
+            if let board = tempHeadset.board {
+                try? board.insertMarker(value: ImageLabels.stop.rawValue)}
             tempHeadset.isStreaming = false }
         self.animationTimer.upstream.connect().cancel()
         self.appState.isTimerRunning = false
@@ -116,7 +122,8 @@ struct ExperimentVC: View {
         try? BoardShim.logMessage(.LEVEL_INFO, "start timer")
         if let tempHeadset = self.appState.headset {
             tempHeadset.isStreaming = true
-            try? tempHeadset.board.insertMarker(value: ImageLabels.start.rawValue) }
+            if let board = tempHeadset.board {
+                try? board.insertMarker(value: ImageLabels.start.rawValue) }}
         self.animationTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
         self.appState.isTimerRunning = true
     }
