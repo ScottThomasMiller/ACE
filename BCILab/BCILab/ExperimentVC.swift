@@ -104,7 +104,7 @@ struct ExperimentVC: View {
         .fullScreenCover(isPresented: $appState.isMainMenuActive) {
             MainMenuView(headset: self.appState.headset, callerVC: self, appState: appState) }
         .fullScreenCover(isPresented: $appState.isHeadsetNotReady) {
-            ReconnectView(message: "Reconnect to headset", appState: appState)  }
+            ReconnectView(message: "Connect to headset", appState: appState)  }
         }
     }
 

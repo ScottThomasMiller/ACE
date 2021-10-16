@@ -60,7 +60,7 @@ func prepareImages () -> [LabeledImage] {
     let blankImage = try! UIImage(data: Data(contentsOf: blankURL))
     let faceImages = getAllFromSubdir(subdir: "Faces", label: ImageLabels.face).shuffled()
     let nonFaceImages = getAllFromSubdir(subdir: "NonFaces", label: ImageLabels.nonface).shuffled()
-    let shuffledImages = faceImages[..<50] + nonFaceImages[..<50]
+    let shuffledImages = faceImages[..<100] + nonFaceImages[..<100]
     var finalImages = [LabeledImage]()
     
     var nface = 0

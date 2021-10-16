@@ -37,7 +37,8 @@ struct ReconnectView: View {
             self.message = "Try again" }
         else {
             try? BoardShim.logMessage(.LEVEL_INFO, "connection successful")
-            self.message = "Success!" }
+            self.message = "Success!"
+            self.appState.isMainMenuActive = false }
     }
 
     var body: some View {
