@@ -58,6 +58,13 @@ struct ExperimentVC: View {
         self.appState.isMainMenuActive = true
     }
     
+    func resetTimer() {
+        let secs = self.appState.intervalSeconds
+        try? BoardShim.logMessage(.LEVEL_INFO, "resetting animation timer to \(secs) secs")
+        stopTimer()
+        startTimer()
+    }
+    
     func checkHeadset() {
         self.appState.isHeadsetNotReady = true
         if let tempHeadset = self.appState.headset {
@@ -95,6 +102,7 @@ struct ExperimentVC: View {
             }
             .tabViewStyle(PageTabViewStyle())
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+            .onChange(of: appState.intervalSeconds, perform: { _ in resetTimer() })
             .onReceive(animationTimer, perform: { _ in manageSlideShow() })
             .onReceive(mainTimer, perform: { _ in checkHeadset() })
             .animation(nil)
@@ -124,8 +132,12 @@ struct ExperimentVC: View {
             tempHeadset.isStreaming = true
             if let board = tempHeadset.board {
                 try? board.insertMarker(value: ImageLabels.start.rawValue) }}
-        self.animationTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
-        self.appState.isTimerRunning = true
+        
+        if let interval = Double(self.appState.intervalSeconds) {
+            self.animationTimer = Timer.publish(every: interval, on: .main, in: .common).autoconnect()
+            self.appState.isTimerRunning = true }
+        else {
+            try? BoardShim.logMessage(.LEVEL_ERROR, "Invalid value for slideshow interval") }
     }
 }
 

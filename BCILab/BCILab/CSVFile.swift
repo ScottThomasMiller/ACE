@@ -22,14 +22,15 @@ class CSVFile: FileHandle {
         let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let csvURL = docDir.appendingPathComponent(fileName+"_"+id).appendingPathExtension("csv")
         var fileHandle: FileHandle
+        
         do {
             FileManager.default.createFile(atPath: csvURL.path, contents: nil, attributes: nil)
             fileHandle = try FileHandle(forWritingTo: csvURL)
-            print("opened file: \(csvURL.path)")
-        } catch {
+            print("opened file: \(csvURL.path)") }
+        catch {
             print("Cannot open \(csvURL)\nError: \(error)")
-            exit(1)
-        }
+            exit(1) }
+        
         return fileHandle
     }
 }
@@ -42,10 +43,8 @@ extension FileHandle {
             let marker = String(format: "%d", Int(markers[iSample]))
             var sampleString = pkgID + "," + tStamp + "," + marker
             for iChannel in 0..<samples.count {
-                sampleString += "," + String(format: "%.5f", samples[iChannel][iSample])
-            }
+                sampleString += "," + String(format: "%.5f", samples[iChannel][iSample]) }
             sampleString += "\n"
-            self.write(Data(sampleString.utf8))
-        }
+            self.write(Data(sampleString.utf8)) }
     }
 }

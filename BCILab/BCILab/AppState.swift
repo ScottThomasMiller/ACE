@@ -16,8 +16,10 @@ class AppState: ObservableObject {
     @Published var intervalSeconds: String = "1.0"
     var headset: Headset?
     
-//      16-channel:
-        @Published var boardId: BoardIds = .CYTON_DAISY_BOARD
 //      8-channel:
 //        @Published var boardId: BoardIds = .CYTON_BOARD
+//    @Published var boardId: BoardIds = .SYNTHETIC_BOARD
+//      16-channel:
+        @Published var boardId: BoardIds = .CYTON_DAISY_BOARD
+
 }
