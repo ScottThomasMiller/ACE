@@ -8,21 +8,32 @@
 
 import SwiftUI
 
-struct ChangeSaveFolderView: View {
-    let message: String
-    @ObservedObject var appState: AppState
+struct FolderPicker: UIViewControllerRepresentable {
+    typealias UIViewControllerType = UIDocumentPickerViewController
 
+    func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
+        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.folder])
+        //picker.delegate = context.coordinator
+        return picker
+    }
+    
+    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {
+    }
+}
+
+struct ChangeSaveFolderView: View {
+    let message: String 
+    @ObservedObject var appState: AppState
+    let folderPicker = FolderPicker()
+    @State private var isActive: Bool = true
+
+    func onDismiss() {
+        self.isActive = false
+    }
+    
     var body: some View {
-        Color(.white)
-        Text("change save folder happens now")
+        folderPicker
     }
 }
     
-//    struct MainMenuView_Previews: PreviewProvider {
-//        static var previews: some View {
-//            Group {
-//                MainMenuView()
-//            }
-//        }
-//    }
 

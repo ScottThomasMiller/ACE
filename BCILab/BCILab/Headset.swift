@@ -7,7 +7,6 @@
 import Foundation
 import SwiftUI
 
-
 enum GainSettings: String, CaseIterable {
     case x1 = "00"
     case x2 = "01"
@@ -43,7 +42,7 @@ class Headset {
     let params = BrainFlowInputParams(serial_port: Headset.scan())
     private var rawFile: FileHandle?
     private var filteredFile: FileHandle?
-    let boardId: BoardIds
+    var boardId: BoardIds
     var board: BoardShim?
     let samplingRate: Int32
     let eegChannels: [Int32]
@@ -112,7 +111,7 @@ class Headset {
         }
         
         do {
-            try? BoardShim.logMessage(.LEVEL_INFO, "begin reconnect")
+            try? BoardShim.logMessage(.LEVEL_INFO, "Headset.reconnect: \(self.boardId.name)")
             self.isActive = false
             sleep(1)
             if let oldBoard = board {

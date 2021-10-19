@@ -33,7 +33,7 @@ enum BrainFlowExitCodes : Int32, Error {
     case UNSUPPORTED_CLASSIFIER_AND_METRIC_COMBINATION_ERROR = 23
 }
 
-enum BoardIds : Int32, CaseIterable {
+enum BoardIds : Int32, CaseIterable, Equatable {
     case PLAYBACK_FILE_BOARD = -3
     case STREAMING_BOARD = -2
     case SYNTHETIC_BOARD = -1
@@ -75,9 +75,10 @@ enum BoardIds : Int32, CaseIterable {
     case ANT_NEURO_EE_224_BOARD = 35
     case ANT_NEURO_EE_225_BOARD = 36
     case ENOPHONE_BOARD = 37
-    // use it to iterate
-    //case FIRST = PLAYBACK_FILE_BOARD
-    //case LAST = ENOPHONE_BOARD
+    
+    var name: String {
+        get { String(describing: self) }
+    }
 }
 
 enum IpProtocolType : Int32 {

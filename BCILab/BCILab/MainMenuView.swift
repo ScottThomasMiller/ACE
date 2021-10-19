@@ -32,10 +32,14 @@ struct MainMenuView: View {
             navLink(id: "bluetooth", label: label) }
         let label = "Change the save folder"
         let fileSaveLink = NavigationLink(destination: ChangeSaveFolderView(message: label, appState: self.appState)) {
-            navLink(id: "filesave", label: label) }
+            navLink(id: "folder", label: label) }
         let label = "Change the slideshow interval"
         let intervalLink = NavigationLink(destination: ChangeIntervalView(message: label, appState: self.appState)) {
             navLink(id: "interval", label: label) }
+        let label = "Change the headset type"
+        let headsetLink = NavigationLink(destination: ChangeHeadsetTypeView(message: label, appState: self.appState)) {
+            navLink(id: "headset", label: label) }
+        let statusColor: Color = (self.appState.headsetStatus == "connected") ? .green : .red
 
         NavigationView {
             VStack(alignment: .center, spacing: 2.0) {
@@ -43,11 +47,21 @@ struct MainMenuView: View {
                     connLink
                     fileSaveLink
                     intervalLink
+                    headsetLink
                 }.navigationBarTitle("Main Menu")
-            }.border(Color.yellow, width: 1)
-        }.border(Color.red, width: 1)
-        Spacer()
-        Spacer()
+            }
+        }
+        Spacer(minLength: 100)
+        HStack(alignment: .center) {
+            VStack(alignment: .leading) {
+                Text("Headset status:").bold().font(.largeTitle)
+                Text("Headset type:").bold().font(.largeTitle)
+            }
+            VStack(alignment: .trailing) {                Text("\(self.appState.headsetStatus)").bold().font(.largeTitle).foregroundColor(statusColor)
+                Text("\(self.appState.boardId.name)").bold().font(.title).foregroundColor(.blue)
+            }
+        }
+        Spacer(minLength: 100)
         Button(action: {appState.isMainMenuActive = false}) {
             Text("Go Back")
                 .fontWeight(.bold)
@@ -56,7 +70,7 @@ struct MainMenuView: View {
                 .foregroundColor(.white)
         }
         .buttonStyle(GrowingButton(color: .blue))
-
+        Spacer()
     }
 }
     

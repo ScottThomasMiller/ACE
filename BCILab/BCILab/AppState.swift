@@ -8,18 +8,14 @@
 import SwiftUI
 
 class AppState: ObservableObject {
-    @Published var isTimerRunning = false
+    @Published var isTimerRunning = true
     @Published var isPresented: Bool = true
-    @Published var isMainMenuActive: Bool = false
-    @Published var isHeadsetNotReady: Bool = true
+    @Published var isMainMenuActive: Bool = true
+    @Published var isHeadsetReady: Bool = false
     @Published var saveFolder = "BrainWaves"
-    @Published var intervalSeconds: String = "1.0"
-    var headset: Headset?
-    
-//      8-channel:
-//        @Published var boardId: BoardIds = .CYTON_BOARD
-//    @Published var boardId: BoardIds = .SYNTHETIC_BOARD
-//      16-channel:
-        @Published var boardId: BoardIds = .CYTON_DAISY_BOARD
+    @Published var intervalSeconds: Double = 1.0
+    @Published var boardId: BoardIds = .SYNTHETIC_BOARD
 
+    var headset = try! Headset(boardId: .SYNTHETIC_BOARD)
+    var headsetStatus = "not connected"
 }

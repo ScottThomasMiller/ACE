@@ -12,33 +12,34 @@ struct ReconnectView: View {
     @ObservedObject var appState: AppState
     
     func reconnect() {
-        try? BoardShim.logMessage(.LEVEL_INFO, "begin reconnect")
+        try? BoardShim.logMessage(.LEVEL_INFO, "ReconnectView.reconnect: \(self.appState.boardId.name)")
         
-        if let tempHeadset = self.appState.headset {
-            try? BoardShim.logMessage(.LEVEL_INFO, "deactivating the board")
-            tempHeadset.isActive = false // terminates the streaming loop
-            sleep(2)
-            
-            if let board = tempHeadset.board {
-                try? board.releaseSession() }
-            
-            tempHeadset.board = nil }
+        try? BoardShim.logMessage(.LEVEL_INFO, "deactivating the board")
+        self.appState.headset.isActive = false // terminates the streaming loop
+        sleep(2)
+        
+        if let board = self.appState.headset.board {
+            try? board.stopStream()
+            try? board.releaseSession() }
+        
+        self.appState.headset.board = nil
         
         do {
+            try? BoardShim.logMessage(.LEVEL_INFO, "connect to board ID: \(self.appState.boardId)")
             self.appState.headset = try Headset(boardId: self.appState.boardId)
-            self.appState.isHeadsetNotReady = false }
+            self.appState.isHeadsetReady = true }
         catch {
-            self.appState.isHeadsetNotReady = true
-            if self.appState.isMainMenuActive { self.appState.isMainMenuActive = false }
-            self.appState.headset = nil }
+            self.appState.isHeadsetReady = false
+            self.appState.headsetStatus = "disconnected" }
         
-        if self.appState.isHeadsetNotReady {
+        if self.appState.isHeadsetReady {
+            try? BoardShim.logMessage(.LEVEL_INFO, "connection successful")
+            self.message = "Success"
+            self.appState.isMainMenuActive = false
+            self.appState.headsetStatus = "connected" }
+        else {
             try? BoardShim.logMessage(.LEVEL_INFO, "failed to connect")
             self.message = "Try again" }
-        else {
-            try? BoardShim.logMessage(.LEVEL_INFO, "connection successful")
-            self.message = "Success!"
-            self.appState.isMainMenuActive = false }
     }
 
     var body: some View {

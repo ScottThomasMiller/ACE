@@ -10,24 +10,30 @@ import SwiftUI
 struct ChangeIntervalView: View {
     let message: String
     @ObservedObject var appState: AppState
-    @State var intervalString = ""
+    @State var interval: Double
     
     init(message: String, appState: AppState) {
         self.message = message
         self.appState = appState
-        self.intervalString = self.appState.intervalSeconds
+        self.interval = appState.intervalSeconds
     }
 
     var body: some View {
-        Text("Enter the new animation interval seconds:")
-        TextField("Enter interval seconds...", text: $intervalString, onCommit: {
-                self.appState.intervalSeconds = intervalString
+        let formatter: NumberFormatter = {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .decimal
+            return formatter
+        }()
+
+        Text("Enter the new slideshow interval seconds:")
+        TextField("interval seconds", value: $interval, formatter: formatter, onCommit: {
+                self.appState.intervalSeconds = interval
                 try? BoardShim.logMessage(.LEVEL_INFO, "new interval: \(self.appState.intervalSeconds) sec.")
                 self.appState.isMainMenuActive = false
         })
-             .fixedSize()
-             .padding()
-             .border(.blue, width: 2)
+         .fixedSize()
+         .padding()
+         .border(.blue, width: 2)
         
     }
 }
