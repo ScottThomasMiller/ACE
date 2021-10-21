@@ -96,7 +96,7 @@ struct ExperimentVC: View {
             image.appeared = true }
     }
     
-    func reconnectHeadset() {
+    func disconnectHeadset() {
         try? BoardShim.logMessage(.LEVEL_INFO, "disconnecting headset")
         stopTimer()
         self.appState.isHeadsetReady = false
@@ -111,8 +111,8 @@ struct ExperimentVC: View {
             self.appState.headset.board = nil }
 
         self.appState.headset.boardId = self.appState.boardId
-        if self.appState.headset.reconnect() {
-            self.appState.headsetStatus = "connected" }
+//        if self.appState.headset.reconnect() {
+//            self.appState.headsetStatus = "connected" }
     }
     
     var body: some View {
@@ -130,7 +130,7 @@ struct ExperimentVC: View {
             .tabViewStyle(PageTabViewStyle())
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
             .onChange(of: appState.intervalSeconds, perform: { _ in resetTimer() })
-            .onChange(of: appState.boardId, perform: { _ in reconnectHeadset() })
+            .onChange(of: appState.boardId, perform: { _ in disconnectHeadset() })
             .onReceive(animationTimer, perform: { _ in manageSlideShow() })
             .onReceive(mainTimer, perform: { _ in checkHeadset() })
             .animation(nil)

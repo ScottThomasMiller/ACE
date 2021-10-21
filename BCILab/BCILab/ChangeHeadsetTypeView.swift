@@ -12,16 +12,18 @@ struct ChangeHeadsetTypeView: View {
     @ObservedObject var appState: AppState
     
     var body: some View {
-        Form {
-            Picker("Headset:", selection: self.$appState.boardId) {
+        Spacer()
+        Text(message).font(.title)
+        ScrollView(showsIndicators: true) {
+            Picker(selection: self.$appState.boardId, label: Text("Headset:")) {
                 ForEach(BoardIds.allCases, id: \.self) { value in
-                    Text(String(value.name)).tag(value) }
-            }.fixedSize()
+                    Text(String(value.name)).font(.title).tag(value) }
+            }
         }
         .padding()
+        Spacer()
     }
 
-    
 //    var body: some View {
 //        Text(self.message)
 //        Picker("Headset Type", selection: self.$boardId) {
