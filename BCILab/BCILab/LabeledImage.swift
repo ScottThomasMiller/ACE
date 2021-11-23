@@ -15,20 +15,20 @@ enum ImageLabels: Double {
     case stop = 5.0
 }
 
-class LabeledImage {
-    let image: UIImage
+class LabeledImage<ImageType> {
+    let image: ImageType
     let label: ImageLabels
     var appeared = false
     
-    init(image: UIImage, label: ImageLabels) {
+    init(image: ImageType, label: ImageLabels) {
         self.image = image
         self.label = label
     }
 }
 
-func getAllFromSubdir(subdir: String, label: ImageLabels, maxImages: Int = 10000) -> [LabeledImage]  {
+func getAllFromSubdir(subdir: String, label: ImageLabels, maxImages: Int = 10000) -> [LabeledImage<UIImage>]  {
     var count = 0
-    var labeledImages = [LabeledImage]()
+    var labeledImages = [LabeledImage<UIImage>]()
     
     if let urls = Bundle.main.urls(forResourcesWithExtension: nil, subdirectory: subdir) {
         for url in urls {
@@ -50,7 +50,7 @@ func getAllFromSubdir(subdir: String, label: ImageLabels, maxImages: Int = 10000
 }
 
 // Return a randomized array of faces and nonfaces, with blanks inserted between each image.
-func prepareImages () -> [LabeledImage] {
+func prepareImages () -> [LabeledImage<UIImage>] {
     guard let blankURL = Bundle.main.url(forResource: "black_crosshair", withExtension: ".jpeg") else {
         try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load blank image")
         return [LabeledImage]()
@@ -59,7 +59,7 @@ func prepareImages () -> [LabeledImage] {
     let blankImage = try! UIImage(data: Data(contentsOf: blankURL))
     let faceImages = getAllFromSubdir(subdir: "Faces", label: ImageLabels.face).shuffled()
     let nonFaceImages = getAllFromSubdir(subdir: "NonFaces", label: ImageLabels.nonface).shuffled()
-    var finalImages = [LabeledImage]()
+    var finalImages = [LabeledImage<UIImage>]()
     
     var nImages = 0
     for (faceImage, nonfaceImage) in zip(faceImages, nonFaceImages) {

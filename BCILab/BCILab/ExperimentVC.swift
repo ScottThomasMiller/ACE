@@ -71,7 +71,7 @@ struct ExperimentVC: View {
             self.appState.isMainMenuActive = true }
     }
     
-    func insertAppears(_ image: LabeledImage) {
+    func insertAppears(_ image: LabeledImage<UIImage>) {
         if !image.appeared {
             let marker = image.label.rawValue + 100.0
             if let board = self.appState.headset.board {
