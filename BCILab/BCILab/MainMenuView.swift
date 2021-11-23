@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Foundation
-import UIKit
 
 struct MainMenuView: View {
     var headset: Headset?
@@ -31,13 +30,14 @@ struct MainMenuView: View {
         let connLink = NavigationLink(destination: ReconnectView(message: label, appState: self.appState)) {
             navLink(id: "bluetooth", label: label) }
         let label = "Change the save folder"
-        let fileSaveLink = NavigationLink(destination: ChangeSaveFolderView(message: label, appState: self.appState)) {
+//        let fileSaveLink = NavigationLink(destination: ChangeSaveFolderView(message: label,
+        let fileSaveLink = NavigationLink(destination: Text("Hi")) {
             navLink(id: "folder", label: label) }
         let label = "Change the slideshow interval"
         let intervalLink = NavigationLink(destination: ChangeIntervalView(message: label, appState: self.appState)) {
             navLink(id: "interval", label: label) }
         let label = "Change the headset type"
-        let headsetLink = NavigationLink(destination: ChangeHeadsetTypeView(message: label, appState: self.appState)) {
+        let headsetLink = NavigationLink(destination: ChangeHeadsetTypeView(appState: self.appState)) {
             navLink(id: "headset", label: label) }
         let statusColor: Color = (self.appState.headsetStatus == "connected") ? .green : .red
 
@@ -48,16 +48,23 @@ struct MainMenuView: View {
                     fileSaveLink
                     intervalLink
                     headsetLink
-                }.navigationBarTitle("Main Menu")
+                }.navigationTitle("Main Menu")
             }
         }
         Spacer(minLength: 100)
         HStack(alignment: .center) {
             VStack(alignment: .leading) {
+                if self.appState.images.count <= 0 {
+                    Text("Images status:").bold().font(.largeTitle)
+                }
                 Text("Headset status:").bold().font(.largeTitle)
                 Text("Headset type:").bold().font(.largeTitle)
             }
-            VStack(alignment: .trailing) {                Text("\(self.appState.headsetStatus)").bold().font(.largeTitle).foregroundColor(statusColor)
+            VStack(alignment: .trailing) {
+                if self.appState.images.count <= 0 {
+                    Text("No images found").bold().font(.largeTitle).foregroundColor(.red)
+                }
+                Text("\(self.appState.headsetStatus)").bold().font(.largeTitle).foregroundColor(statusColor)
                 Text("\(self.appState.boardId.name)").bold().font(.title).foregroundColor(.blue)
             }
         }

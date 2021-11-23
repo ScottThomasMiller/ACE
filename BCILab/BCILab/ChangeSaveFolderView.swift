@@ -6,33 +6,42 @@
 //
 //
 
+import UIKit
 import SwiftUI
+import Foundation
 
 struct FolderPicker: UIViewControllerRepresentable {
-    typealias UIViewControllerType = UIDocumentPickerViewController
-
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
-        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.folder])
-        //picker.delegate = context.coordinator
-        return picker
+        let newVC = UIDocumentPickerViewController(forOpeningContentTypes: [.folder])
+        //newVC.delegate = self
+        return newVC
     }
     
     func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {
+    }
+    
+//class FolderPicker: UIDocumentPickerViewController, UIDocumentPickerDelegate {
+    typealias UIViewControllerType = UIDocumentPickerViewController
+
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        if let folderChoice = urls.first { controller.directoryURL = folderChoice }
+        controller.dismiss(animated: true)
     }
 }
 
 struct ChangeSaveFolderView: View {
     let message: String 
     @ObservedObject var appState: AppState
-    let folderPicker = FolderPicker()
     @State private var isActive: Bool = true
+    let picker = FolderPicker()
+    
 
     func onDismiss() {
         self.isActive = false
     }
     
     var body: some View {
-        folderPicker
+        Text("hello")
     }
 }
     

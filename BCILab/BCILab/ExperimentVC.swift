@@ -9,33 +9,17 @@ import SwiftUI
 
 // TabView timer code forked from: https://stackoverflow.com/questions/58896661/swiftui-create-image-slider-with-dots-as-indicators
 
-class ImageState {
-    var images: [LabeledImage] = prepareImages()
-    var nextImages: [LabeledImage]?
-    var isBuildingNextImages: Bool = false
-}
 
 struct ExperimentVC: View {
     let interval = 1.0
     @State var mainTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State var animationTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State var selection = -1
-    @StateObject private var appState = AppState()
-    private var imageState = ImageState()
-    
-    func buildNextImages() {
-        try? BoardShim.logMessage(.LEVEL_INFO, "preparing next image set")
-        self.imageState.nextImages = prepareImages()
-        self.imageState.isBuildingNextImages = false
-    }
+//    @StateObject var appState = AppState()
+    @ObservedObject var appState: AppState
     
     func manageSlideShow() {
-        if (self.imageState.nextImages == nil) && !self.imageState.isBuildingNextImages {
-            self.imageState.isBuildingNextImages = true
-            DispatchQueue.global(qos: .background).async {
-                self.buildNextImages() }}
-        
-        guard self.selection < (self.imageState.images.count-1) else {
+        guard self.selection < (self.appState.images.count-1) else {
             try? BoardShim.logMessage(.LEVEL_INFO, "experiment complete")
             if let board = self.appState.headset.board {
                 try? board.insertMarker(value: ImageLabels.stop.rawValue) }
@@ -49,7 +33,7 @@ struct ExperimentVC: View {
             self.selection = 0
             self.stopTimer() }
         else {
-            let label = self.imageState.images[self.selection+1].label
+            let label = self.appState.images[self.selection+1].label
             try? BoardShim.logMessage(.LEVEL_INFO, "marker: \(label)")
             if let board = self.appState.headset.board {
                 try? board.insertMarker(value: label.rawValue) }
@@ -111,36 +95,33 @@ struct ExperimentVC: View {
             self.appState.headset.board = nil }
 
         self.appState.headset.boardId = self.appState.boardId
-//        if self.appState.headset.reconnect() {
-//            self.appState.headsetStatus = "connected" }
     }
     
+    func dismissMenu() {
+        
+    }
+
     var body: some View {
-        GeometryReader { _ in 
+        GeometryReader { _ in
             ZStack(alignment: .topLeading) {
-            Color.black
+                Color.white
                 TabView(selection : self.$selection) {
-                    ForEach(0..<self.imageState.images.count) { i in
-                        Image(uiImage: self.imageState.images[i].image)
+                    ForEach(0..<self.appState.images.count) { i in
+                        Image(uiImage: self.appState.images[i].image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .onAppear(perform: { insertAppears(self.imageState.images[i]) })
+                        .onAppear(perform: { insertAppears(self.appState.images[i]) })
+                    }
                 }
+                .onReceive(animationTimer, perform: { _ in manageSlideShow() })
+                .onChange(of: appState.intervalSeconds, perform: { _ in resetTimer() })
+                .onChange(of: appState.boardId, perform: { _ in disconnectHeadset() })
+                .onReceive(mainTimer, perform: { _ in checkHeadset() })
+                .onTapGesture { pauseResume() }
+                .onLongPressGesture{ activateMenu() }
             }
-            .tabViewStyle(PageTabViewStyle())
-            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-            .onChange(of: appState.intervalSeconds, perform: { _ in resetTimer() })
-            .onChange(of: appState.boardId, perform: { _ in disconnectHeadset() })
-            .onReceive(animationTimer, perform: { _ in manageSlideShow() })
-            .onReceive(mainTimer, perform: { _ in checkHeadset() })
-            .animation(nil)
-            .onTapGesture { pauseResume() }
-            .onLongPressGesture{ activateMenu() }
-        }
-        .fullScreenCover(isPresented: $appState.isMainMenuActive) {
+            .sheet(isPresented: $appState.isMainMenuActive, onDismiss: { dismissMenu() }) {
             MainMenuView(headset: self.appState.headset, callerVC: self, appState: appState) }
-//        .fullScreenCover(isPresented: $appState.isHeadsetReady) {
-//            ReconnectView(message: "Connect to headset", appState: appState)  }
         }
     }
 

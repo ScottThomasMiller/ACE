@@ -4,7 +4,6 @@
 //
 //  Created by Scott Miller on 8/7/21.
 //
-
 import Foundation
 import SwiftUI
 
@@ -31,14 +30,14 @@ func getAllFromSubdir(subdir: String, label: ImageLabels, maxImages: Int = 10000
     var count = 0
     var labeledImages = [LabeledImage]()
     
-    if let urls = Bundle.main.urls(forResourcesWithExtension: ".jpg", subdirectory: subdir) {
+    if let urls = Bundle.main.urls(forResourcesWithExtension: nil, subdirectory: subdir) {
         for url in urls {
             guard let image = try? UIImage(data: Data(contentsOf: url)) else {
                 print("Error loading image: \(url)")
                 continue }
             
             let labeledImage = LabeledImage(image: image, label: label)
-            labeledImages.append(labeledImage) 
+            labeledImages.append(labeledImage)
             count += 1
 
             guard count < maxImages else {
@@ -52,7 +51,7 @@ func getAllFromSubdir(subdir: String, label: ImageLabels, maxImages: Int = 10000
 
 // Return a randomized array of faces and nonfaces, with blanks inserted between each image.
 func prepareImages () -> [LabeledImage] {
-    guard let blankURL = Bundle.main.url(forResource: "green_crosshair", withExtension: ".png") else {
+    guard let blankURL = Bundle.main.url(forResource: "black_crosshair", withExtension: ".jpeg") else {
         try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load blank image")
         return [LabeledImage]()
     }
@@ -60,11 +59,9 @@ func prepareImages () -> [LabeledImage] {
     let blankImage = try! UIImage(data: Data(contentsOf: blankURL))
     let faceImages = getAllFromSubdir(subdir: "Faces", label: ImageLabels.face).shuffled()
     let nonFaceImages = getAllFromSubdir(subdir: "NonFaces", label: ImageLabels.nonface).shuffled()
-    //let shuffledImages = faceImages[..<300] + nonFaceImages[..<300]
     var finalImages = [LabeledImage]()
     
     var nImages = 0
-    //for image in shuffledImages.shuffled() {
     for (faceImage, nonfaceImage) in zip(faceImages, nonFaceImages) {
         guard nImages < 100 else {
             break }

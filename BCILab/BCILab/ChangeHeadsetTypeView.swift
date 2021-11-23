@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ChangeHeadsetTypeView: View {
-    let message: String
     @ObservedObject var appState: AppState
-    
+    let message: String = "Change the headset type"
+
     var body: some View {
         Spacer()
         Text(message).font(.title)

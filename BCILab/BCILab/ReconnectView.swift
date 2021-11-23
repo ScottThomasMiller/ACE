@@ -55,10 +55,11 @@ struct ReconnectView: View {
                 }
                 .buttonStyle(GrowingButton(color: .blue))
             }
-        }.frame(width: 450, height: 350, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        }
+        .frame(width: 450, height: 350, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
         .background(Color(.white))
-//        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 3)
-//        .cornerRadius(7)
+        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 3)
+        .cornerRadius(7)
     }
 }
 

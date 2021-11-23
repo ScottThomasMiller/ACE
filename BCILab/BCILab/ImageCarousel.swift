@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
- 
+import UIKit
 
 class ImageCarouselView: UIView {
     var labeledImages = [LabeledImage]()
