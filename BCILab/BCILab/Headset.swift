@@ -350,8 +350,7 @@ class Headset {
         do {
             let items = try fm.contentsOfDirectory(atPath: prefix)
 
-            //for item in items.filter({$0.contains("cu.usbserial-DM")}) {
-            for item in items.filter({$0.contains("cu")}) {
+            for item in items.filter({$0.contains("cu.usbserial-DM")}) {
                 try? BoardShim.logMessage(.LEVEL_INFO, "Found device \(item)")
                 return prefix + "/" + item
             }
