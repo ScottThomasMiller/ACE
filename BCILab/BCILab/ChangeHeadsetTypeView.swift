@@ -8,19 +8,24 @@
 import SwiftUI
 
 struct ChangeHeadsetTypeView: View {
-    @ObservedObject var appState: AppState
+    @Binding var boardId: BoardIds
+    //@ObservedObject var appState: AppState
     let message: String = "Change the headset type"
 
     var body: some View {
         Spacer()
-        Text(message).font(.title)
+        Text(message).font(.title).foregroundColor(.black)
         ScrollView(showsIndicators: true) {
-            Picker(selection: self.$appState.boardId, label: Text("Headset:")) {
+            Picker(selection: self.$boardId, label: Text("Headset:").foregroundColor(.black)) {
                 ForEach(BoardIds.allCases, id: \.self) { value in
-                    Text(String(value.name)).font(.title).tag(value) }
-            }
+                    Text(String(value.name))
+                        .font(.title)
+                        .foregroundColor(.black)
+                        .tag(value) }
+            }.pickerStyle(.automatic)
+
         }
-        .padding()
+        .padding(.all)
         Spacer()
     }
 

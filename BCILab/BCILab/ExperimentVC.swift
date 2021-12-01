@@ -15,8 +15,8 @@ struct ExperimentVC: View {
     @State var mainTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State var animationTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State var selection = -1
-//    @StateObject var appState = AppState()
-    @ObservedObject var appState: AppState
+    //@ObservedObject var appState: AppState
+    @StateObject var appState = AppState()
     
     func manageSlideShow() {
         guard self.selection < (self.appState.images.count-1) else {
@@ -29,7 +29,7 @@ struct ExperimentVC: View {
         if self.selection < 0 {
             try? BoardShim.logMessage(.LEVEL_INFO, "experiment is ready and paused")
             if let board = self.appState.headset.board {
-                    try? board.insertMarker(value: ImageLabels.blank.rawValue) }
+                try? board.insertMarker(value: ImageLabels.blank.rawValue) }
             self.selection = 0
             self.stopTimer() }
         else {
@@ -57,21 +57,21 @@ struct ExperimentVC: View {
     func resetTimer() {
         let secs = self.appState.intervalSeconds
         try? BoardShim.logMessage(.LEVEL_INFO, "resetting animation timer to \(secs) secs")
-        stopTimer()
-        startTimer()
+//        stopTimer()
+//        startTimer()
     }
-    
+
     func checkHeadset() {
-        self.appState.isHeadsetReady = false
-        self.appState.isHeadsetReady = (self.appState.headset.isActive && (self.appState.headset.board != nil))
-                
-        if !self.appState.isHeadsetReady {
+        let isReady = (self.appState.headset.isActive && (self.appState.headset.board != nil))
+
+        if !self.appState.isMainMenuActive && !isReady {
             stopTimer()
-            self.appState.headsetStatus = "not connected"
+            self.appState.isHeadsetReady = isReady
+            self.appState.headsetStatus = (isReady ? "connected" : "disconnected")
             self.appState.isMainMenuActive = true }
     }
     
-    func insertAppears(_ image: LabeledImage<UIImage>) {
+    func insertAppears(_ image: LabeledImage) {
         if !image.appeared {
             let marker = image.label.rawValue + 100.0
             if let board = self.appState.headset.board {
@@ -102,12 +102,14 @@ struct ExperimentVC: View {
     }
 
     var body: some View {
-        GeometryReader { _ in
+//        GeometryReader { _ in
+        GeometryReader { geometry in
+            let _ = print("[\(timestamp())] ExperimentVC.body: geometry->\(geometry.size)")
             ZStack(alignment: .topLeading) {
                 Color.white
                 TabView(selection : self.$selection) {
                     ForEach(0..<self.appState.images.count) { i in
-                        Image(uiImage: self.appState.images[i].image)
+                        self.appState.images[i].image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .onAppear(perform: { insertAppears(self.appState.images[i]) })
@@ -121,7 +123,7 @@ struct ExperimentVC: View {
                 .onLongPressGesture{ activateMenu() }
             }
             .sheet(isPresented: $appState.isMainMenuActive, onDismiss: { dismissMenu() }) {
-            MainMenuView(headset: self.appState.headset, callerVC: self, appState: appState) }
+                MainMenuView(appState: appState) }
         }
     }
 

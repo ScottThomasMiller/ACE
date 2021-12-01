@@ -8,15 +8,9 @@
 import SwiftUI
 
 struct ChangeIntervalView: View {
-    let message: String
-    @ObservedObject var appState: AppState
-    @State var interval: Double
-    
-    init(message: String, appState: AppState) {
-        self.message = message
-        self.appState = appState
-        self.interval = appState.intervalSeconds
-    }
+    @Binding var intervalSeconds: Double
+    //@Binding var isMainMenuActive: Bool
+    @State private var newValue: Double = 0.0
 
     var body: some View {
         let formatter: NumberFormatter = {
@@ -24,16 +18,17 @@ struct ChangeIntervalView: View {
             formatter.numberStyle = .decimal
             return formatter
         }()
-
-        Text("Enter the new slideshow interval seconds:")
-        TextField("interval seconds", value: $interval, formatter: formatter, onCommit: {
-                self.appState.intervalSeconds = interval
-                try? BoardShim.logMessage(.LEVEL_INFO, "new interval: \(self.appState.intervalSeconds) sec.")
-                self.appState.isMainMenuActive = false
+        Text("Enter the new slideshow interval seconds:").foregroundColor(.black)
+//        TextField("interval seconds", value: self.$intervalSeconds, formatter: formatter, onCommit: {
+        TextField("interval seconds", value: self.$newValue, formatter: formatter, onCommit: {
+            self.intervalSeconds = self.newValue
+            try? BoardShim.logMessage(.LEVEL_INFO, "new interval: \(intervalSeconds) sec.")
+            //self.isMainMenuActive = false
         })
-         .fixedSize()
-         .padding()
-         .border(.blue, width: 2)
+        .foregroundColor(.black)
+        .fixedSize(horizontal: true, vertical: true)
+        .padding()
+        .border(.blue, width: 2)
         
     }
 }

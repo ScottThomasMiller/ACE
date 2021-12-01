@@ -305,15 +305,18 @@ class Headset {
                 let matrixRaw = try theBoard.getBoardData()
                 guard matrixRaw.count > 0 else {
                     numEmptyBuffers += 1
-                    if numEmptyBuffers > 1000 {
+                    if numEmptyBuffers > 24 {
                         try? BoardShim.logMessage(.LEVEL_ERROR, "lost contact with headset")
                         self.isActive = false
                         return
                     }
+                    if (numEmptyBuffers % 5) == 0 {
+                        try? BoardShim.logMessage(.LEVEL_WARN, "empty buffers: \(numEmptyBuffers)") }
+                    
+                    usleep(1000)
                     continue
                 }
 
-                if numEmptyBuffers > 500 { try? BoardShim.logMessage(.LEVEL_WARN, "empty buffers: \(numEmptyBuffers)") }
                 numEmptyBuffers = 0
                 
                 guard self.isStreaming else {

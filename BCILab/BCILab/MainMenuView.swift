@@ -8,84 +8,65 @@
 import SwiftUI
 import Foundation
 
-struct MainMenuView: View {
-    var headset: Headset?
-    let callerVC: ExperimentVC
-    @ObservedObject var appState: AppState
-    
-    func navLink(id: String, label: String) -> some View {
-        HStack(alignment: .center) {
-            Text(label)
-                .fontWeight(.bold)
-                .font(.title)
-                .padding()
-                .foregroundColor(.black)
-            Spacer(minLength: 2)
-            Image(id).resizable().frame(width: 40, height: 40)
-        }
-    }
-    
-    var body: some View {
-        let label = "Reconnect to the headset"
-        let connLink = NavigationLink(destination: ReconnectView(message: label, appState: self.appState)) {
-            navLink(id: "bluetooth", label: label) }
-        let label = "Change the save folder"
-//        let fileSaveLink = NavigationLink(destination: ChangeSaveFolderView(message: label,
-        let fileSaveLink = NavigationLink(destination: Text("Hi")) {
-            navLink(id: "folder", label: label) }
-        let label = "Change the slideshow interval"
-        let intervalLink = NavigationLink(destination: ChangeIntervalView(message: label, appState: self.appState)) {
-            navLink(id: "interval", label: label) }
-        let label = "Change the headset type"
-        let headsetLink = NavigationLink(destination: ChangeHeadsetTypeView(appState: self.appState)) {
-            navLink(id: "headset", label: label) }
-        let statusColor: Color = (self.appState.headsetStatus == "connected") ? .green : .red
-
-        NavigationView {
-            VStack(alignment: .center, spacing: 2.0) {
-                List {
-                    connLink
-                    fileSaveLink
-                    intervalLink
-                    headsetLink
-                }.navigationTitle("Main Menu")
-            }
-        }
-        Spacer(minLength: 100)
-        HStack(alignment: .center) {
-            VStack(alignment: .leading) {
-                if self.appState.images.count <= 0 {
-                    Text("Images status:").bold().font(.largeTitle)
-                }
-                Text("Headset status:").bold().font(.largeTitle)
-                Text("Headset type:").bold().font(.largeTitle)
-            }
-            VStack(alignment: .trailing) {
-                if self.appState.images.count <= 0 {
-                    Text("No images found").bold().font(.largeTitle).foregroundColor(.red)
-                }
-                Text("\(self.appState.headsetStatus)").bold().font(.largeTitle).foregroundColor(statusColor)
-                Text("\(self.appState.boardId.name)").bold().font(.title).foregroundColor(.blue)
-            }
-        }
-        Spacer(minLength: 100)
-        Button(action: {appState.isMainMenuActive = false}) {
-            Text("Go Back")
-                .fontWeight(.bold)
-                .font(.title)
-                .padding()
-                .foregroundColor(.white)
-        }
-        .buttonStyle(GrowingButton(color: .blue))
-        Spacer()
-    }
+func timestamp() -> String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+    return (formatter.string(from: Date()) as NSString) as String
 }
-    
-//    struct MainMenuView_Previews: PreviewProvider {
-//        static var previews: some View {
-//            Group {
-//                MainMenuView()
-//            }
-//        }
-//    }
 
+struct MainMenuView: View {
+    @ObservedObject var appState: AppState
+    //@Binding var intervalSeconds: Double
+
+    var body: some View {
+        ZStack {
+            Color.white
+            VStack(alignment: .center, spacing: 2.0) {
+                let _ = print("[\(timestamp())] MainMenuView.body")
+                let status = StatusRec(imagesCount: self.appState.images.count,
+                                       headsetStatus: self.appState.headsetStatus,
+                                       boardName: self.appState.boardId.name)
+                NavigationView {
+                    ZStack {
+                        Color.white
+                        List {
+                            NavigationLink(destination: ReconnectView(headset: self.$appState.headset,
+                                                                      boardId: self.$appState.boardId,
+                                                                      headsetStatus: self.$appState.headsetStatus,
+                                                                      isMainMenuActive: self.$appState.isMainMenuActive,
+                                                                      isHeadsetReady: self.$appState.isHeadsetReady)) {
+                                NavLinkView(id: "bluetooth", label: "Reconnect") }
+                            NavigationLink(destination: Text("Hi")) {
+                                NavLinkView(id: "folder", label: "Save Folder") }
+                            NavigationLink(destination: ChangeIntervalView(intervalSeconds: self.$appState.intervalSeconds)) {
+                                NavLinkView(id: "interval", label: "Slideshow Interval") }
+                            NavigationLink(destination: ChangeHeadsetTypeView(boardId: self.$appState.boardId)) {
+                                NavLinkView(id: "headset", label: "Headset Type") }
+                        } // List
+                        .navigationTitle("Main Menu")
+                    } // ZStack
+                } // NavigationView
+                Spacer()
+                AppStatusView(status)
+                Spacer()
+                Button(action: {appState.isMainMenuActive = false}) {
+                    Text("Go Back")
+                        .fontWeight(.bold)
+                        .font(.title)
+                        .padding()
+                        .foregroundColor(.white)}.buttonStyle(GrowingButton(color: .blue))
+                Spacer()
+            } // VStack
+        } // ZStack
+        .frame(width: 900, height: 650, alignment: .center)
+    }
+} // MainMenuView
+    
+
+//struct MainMenuView_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        @StateObject var appState = AppState()
+//        return MainMenuView(headset: appState.headset, appState: appState)
+//    }
+//}

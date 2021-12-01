@@ -8,58 +8,73 @@
 import SwiftUI
 
 struct ReconnectView: View {
-    @State var message: String
-    @ObservedObject var appState: AppState
+    @Binding var headset: Headset
+    @Binding var boardId: BoardIds
+    @Binding var headsetStatus: String
+    @Binding var isMainMenuActive: Bool
+    @Binding var isHeadsetReady: Bool
+
+    //@State private var message: String = "Reconnect to Headet"
+    @State private var buttonLabel: String = "Connect"
+    //@ObservedObject var appState: AppState
     
     func reconnect() {
-        try? BoardShim.logMessage(.LEVEL_INFO, "ReconnectView.reconnect: \(self.appState.boardId.name)")
-        
-        try? BoardShim.logMessage(.LEVEL_INFO, "deactivating the board")
-        self.appState.headset.isActive = false // terminates the streaming loop
+        try? BoardShim.logMessage(.LEVEL_INFO, "reconnect(). deactivating the board")
+        self.headset.isActive = false // terminates the streaming loop
         sleep(2)
         
-        if let board = self.appState.headset.board {
+        if let board = self.headset.board {
             try? board.stopStream()
             try? board.releaseSession() }
         
-        self.appState.headset.board = nil
+        self.headset.board = nil
         
         do {
-            try? BoardShim.logMessage(.LEVEL_INFO, "connect to board ID: \(self.appState.boardId)")
-            self.appState.headset = try Headset(boardId: self.appState.boardId)
-            self.appState.isHeadsetReady = true }
+            try? BoardShim.logMessage(.LEVEL_INFO, "connect to board ID: \(self.boardId)")
+            self.headset = try Headset(boardId: self.boardId)
+            self.isHeadsetReady = true }
         catch {
-            self.appState.isHeadsetReady = false
-            self.appState.headsetStatus = "disconnected" }
+            self.isHeadsetReady = false
+            self.headsetStatus = "disconnected" }
         
-        if self.appState.isHeadsetReady {
+        if self.isHeadsetReady {
             try? BoardShim.logMessage(.LEVEL_INFO, "connection successful")
-            self.message = "Success"
-            self.appState.isMainMenuActive = false
-            self.appState.headsetStatus = "connected" }
+            self.headsetStatus = "connected"
+            self.isMainMenuActive = false }
         else {
             try? BoardShim.logMessage(.LEVEL_INFO, "failed to connect")
-            self.message = "Try again" }
+            self.headsetStatus = "disconnected" }
     }
 
     var body: some View {
         VStack {
-            Text(self.message).font(.largeTitle).baselineOffset(40)
+            Spacer()
+            Text("Connect to Headset")
+                .font(.largeTitle)
+                .foregroundColor(.black)
+                //.baselineOffset(40)
+            Spacer()
             HStack {
-                Button(action: reconnect) {
-                    Text("Connect")
+                Button(action: {
+                   self.headsetStatus = "reconnecting..."
+                   reconnect()
+                }) {
+                    Text(self.buttonLabel)
                         .fontWeight(.bold)
                         .font(.title)
                         .padding()
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                 }
                 .buttonStyle(GrowingButton(color: .blue))
             }
+            //Spacer()
+            //TextRTView(message: $message)
+            Spacer()
         }
-        .frame(width: 450, height: 350, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-        .background(Color(.white))
-        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 3)
-        .cornerRadius(7)
+        //.frame(width: 450, height: 350, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        //.background(Color(.white))
+        //.border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 3)
+        //.cornerRadius(7)
     }
 }
 

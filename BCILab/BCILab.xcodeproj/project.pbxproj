@@ -7,11 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F01258F2745A68200F356B1 /* ExperimentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F01258E2745A68200F356B1 /* ExperimentVC.swift */; };
-		5F0125912749171800F356B1 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0125902749171800F356B1 /* MainMenuView.swift */; };
+		5F0123082752734400E8F07E /* NavLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0123072752734400E8F07E /* NavLinkView.swift */; };
+		5F0123092752734400E8F07E /* NavLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0123072752734400E8F07E /* NavLinkView.swift */; };
+		5F01230A2752734400E8F07E /* NavLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0123072752734400E8F07E /* NavLinkView.swift */; };
+		5F01230B2752734400E8F07E /* NavLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0123072752734400E8F07E /* NavLinkView.swift */; };
+		5F01230C2752734400E8F07E /* NavLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0123072752734400E8F07E /* NavLinkView.swift */; };
+		5F01230E2752A60700E8F07E /* TextRTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F01230D2752A60700E8F07E /* TextRTView.swift */; };
+		5F01230F2752A60700E8F07E /* TextRTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F01230D2752A60700E8F07E /* TextRTView.swift */; };
+		5F0123102752A60700E8F07E /* TextRTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F01230D2752A60700E8F07E /* TextRTView.swift */; };
+		5F0123112752A60700E8F07E /* TextRTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F01230D2752A60700E8F07E /* TextRTView.swift */; };
+		5F0123122752A60700E8F07E /* TextRTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F01230D2752A60700E8F07E /* TextRTView.swift */; };
 		5F0996F426F261C5003881B0 /* DataFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0996F326F261C5003881B0 /* DataFilterTests.swift */; };
 		5F0996F626F2621A003881B0 /* BoardShimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0996F526F2621A003881B0 /* BoardShimTests.swift */; };
 		5F0996F826F3A046003881B0 /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = 5F0996F726F3A046003881B0 /* Numerics */; };
+		5F0C02B9274EF36D003F68DF /* ImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02B8274EF36D003F68DF /* ImageState.swift */; };
+		5F0C02BA274EF36D003F68DF /* ImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02B8274EF36D003F68DF /* ImageState.swift */; };
+		5F0C02BB274EF36D003F68DF /* ImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02B8274EF36D003F68DF /* ImageState.swift */; };
+		5F0C02BC274EF36D003F68DF /* ImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02B8274EF36D003F68DF /* ImageState.swift */; };
+		5F0C02BD274EF36D003F68DF /* ImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02B8274EF36D003F68DF /* ImageState.swift */; };
+		5F0C02BF274F99F1003F68DF /* LabeledImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02BE274F99F1003F68DF /* LabeledImage.swift */; };
+		5F0C02C0274F99F1003F68DF /* LabeledImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02BE274F99F1003F68DF /* LabeledImage.swift */; };
+		5F0C02C1274F99F1003F68DF /* LabeledImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02BE274F99F1003F68DF /* LabeledImage.swift */; };
+		5F0C02C2274F99F1003F68DF /* LabeledImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02BE274F99F1003F68DF /* LabeledImage.swift */; };
+		5F0C02C5274FB9CC003F68DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC07DB426BEFB4300B1971B /* ContentView.swift */; };
+		5F0C02C6274FB9F1003F68DF /* LabeledImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02BE274F99F1003F68DF /* LabeledImage.swift */; };
+		5F0C02C9274FC2DA003F68DF /* ExperimentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA32782700A13500CF66E5 /* ExperimentVC.swift */; };
+		5F0C02CA274FE901003F68DF /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F509C9D26FFEDAB00B48497 /* MainMenuView.swift */; };
+		5F0C02CC2750FE6E003F68DF /* AppStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02CB2750FE6E003F68DF /* AppStatusView.swift */; };
+		5F0C02CD2750FE6E003F68DF /* AppStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02CB2750FE6E003F68DF /* AppStatusView.swift */; };
+		5F0C02CE2750FE6E003F68DF /* AppStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02CB2750FE6E003F68DF /* AppStatusView.swift */; };
+		5F0C02CF2750FE6E003F68DF /* AppStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02CB2750FE6E003F68DF /* AppStatusView.swift */; };
+		5F0C02D02750FE6E003F68DF /* AppStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02CB2750FE6E003F68DF /* AppStatusView.swift */; };
 		5F1C3CE92728B07100938198 /* libMLModule.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F1C3CE62728B07100938198 /* libMLModule.dylib */; platformFilter = ios; };
 		5F1C3CEA2728B07100938198 /* libMLModule.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F1C3CE62728B07100938198 /* libMLModule.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5F1C3CEB2728B07100938198 /* libDataHandler.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F1C3CE72728B07100938198 /* libDataHandler.dylib */; platformFilter = ios; };
@@ -71,7 +97,6 @@
 		5F7F24FB27287F65004B315D /* libDataHandler.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F7F24EC27287DC6004B315D /* libDataHandler.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5F7F24FC27287F65004B315D /* libMLModule.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7F24ED27287DC6004B315D /* libMLModule.dylib */; };
 		5F7F24FD27287F65004B315D /* libMLModule.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F7F24ED27287DC6004B315D /* libMLModule.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		5F7F24FF272891BE004B315D /* LabeledImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7F24FE272891BE004B315D /* LabeledImage.swift */; };
 		5FA42B2926E378B8003C6F17 /* CSVFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F74AE3C26C6845200A53ED5 /* CSVFile.swift */; };
 		5FA42B2A26E378B9003C6F17 /* CSVFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F74AE3C26C6845200A53ED5 /* CSVFile.swift */; };
 		5FAB0B3226EE5D500047E69A /* ComplexModule in Frameworks */ = {isa = PBXBuildFile; productRef = 5FAB0B3126EE5D500047E69A /* ComplexModule */; };
@@ -119,14 +144,6 @@
 		5FC79292274B1E0A00FCA041 /* black_crosshair.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5FC7928C274B1E0A00FCA041 /* black_crosshair.jpeg */; };
 		5FC79293274B1E0A00FCA041 /* black_crosshair.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5FC7928C274B1E0A00FCA041 /* black_crosshair.jpeg */; };
 		5FC79294274B1E0A00FCA041 /* black_crosshair.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5FC7928C274B1E0A00FCA041 /* black_crosshair.jpeg */; };
-		5FC79296274B220000FCA041 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC79295274B220000FCA041 /* ErrorView.swift */; };
-		5FC79297274B220000FCA041 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC79295274B220000FCA041 /* ErrorView.swift */; };
-		5FC79298274B220000FCA041 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC79295274B220000FCA041 /* ErrorView.swift */; };
-		5FC79299274B220000FCA041 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC79295274B220000FCA041 /* ErrorView.swift */; };
-		5FC7929A274B220000FCA041 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC79295274B220000FCA041 /* ErrorView.swift */; };
-		5FC7929B274B220000FCA041 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC79295274B220000FCA041 /* ErrorView.swift */; };
-		5FC7929C274B220000FCA041 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC79295274B220000FCA041 /* ErrorView.swift */; };
-		5FC7929D274B220000FCA041 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC79295274B220000FCA041 /* ErrorView.swift */; };
 		5FCA32792700A13500CF66E5 /* ExperimentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA32782700A13500CF66E5 /* ExperimentVC.swift */; };
 		5FCA327A2700A13500CF66E5 /* ExperimentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA32782700A13500CF66E5 /* ExperimentVC.swift */; };
 		5FCD108D26DD3806000A6FFE /* Headset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108C26DD3806000A6FFE /* Headset.swift */; };
@@ -215,7 +232,6 @@
 		5FE950B12728120600E3E1A3 /* StreamInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3626BAD67C00DECD6E /* StreamInfo.swift */; };
 		5FE950B22728120600E3E1A3 /* MLModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC6464526FBC40600164A31 /* MLModule.swift */; };
 		5FE950B32728120600E3E1A3 /* Outlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3126BAD67B00DECD6E /* Outlet.swift */; };
-		5FE950B42728120600E3E1A3 /* LabeledImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC07DB626BF67CB00B1971B /* LabeledImage.swift */; };
 		5FE950B52728120600E3E1A3 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F51807D27033C9700665A7C /* AppState.swift */; };
 		5FE950B72728120600E3E1A3 /* Headset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108C26DD3806000A6FFE /* Headset.swift */; };
 		5FE950B82728120600E3E1A3 /* ChannelFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3826BAD67C00DECD6E /* ChannelFormat.swift */; };
@@ -314,11 +330,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5F0123072752734400E8F07E /* NavLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavLinkView.swift; sourceTree = "<group>"; };
+		5F01230D2752A60700E8F07E /* TextRTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRTView.swift; sourceTree = "<group>"; };
 		5F01258E2745A68200F356B1 /* ExperimentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentVC.swift; sourceTree = "<group>"; };
-		5F0125902749171800F356B1 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		5F0996F326F261C5003881B0 /* DataFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFilterTests.swift; sourceTree = "<group>"; };
 		5F0996F526F2621A003881B0 /* BoardShimTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardShimTests.swift; sourceTree = "<group>"; };
 		5F0996F926F3E864003881B0 /* BoardDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDescription.swift; sourceTree = "<group>"; };
+		5F0C02B8274EF36D003F68DF /* ImageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageState.swift; sourceTree = "<group>"; };
+		5F0C02BE274F99F1003F68DF /* LabeledImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledImage.swift; sourceTree = "<group>"; };
+		5F0C02CB2750FE6E003F68DF /* AppStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStatusView.swift; sourceTree = "<group>"; };
 		5F1C3CD32728ADF900938198 /* libBoardController.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBoardController.dylib; path = BrainFlow/dylib/OS64COMBINED/libBoardController.dylib; sourceTree = "<group>"; };
 		5F1C3CD42728ADF900938198 /* libDataHandler.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDataHandler.dylib; path = BrainFlow/dylib/OS64COMBINED/libDataHandler.dylib; sourceTree = "<group>"; };
 		5F1C3CD52728ADF900938198 /* libMLModule.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMLModule.dylib; path = BrainFlow/dylib/OS64COMBINED/libMLModule.dylib; sourceTree = "<group>"; };
@@ -366,16 +386,13 @@
 		5F7F24EC27287DC6004B315D /* libDataHandler.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDataHandler.dylib; path = BrainFlow/dylib/MACOS/libDataHandler.dylib; sourceTree = "<group>"; };
 		5F7F24ED27287DC6004B315D /* libMLModule.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMLModule.dylib; path = BrainFlow/dylib/MACOS/libMLModule.dylib; sourceTree = "<group>"; };
 		5F7F24EE27287DC6004B315D /* libBoardController.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBoardController.dylib; path = BrainFlow/dylib/MACOS/libBoardController.dylib; sourceTree = "<group>"; };
-		5F7F24FE272891BE004B315D /* LabeledImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledImage.swift; sourceTree = "<group>"; };
 		5FB9A4F726FB9587009EE0F1 /* BrainFlowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrainFlowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB9A4FC26FB9587009EE0F1 /* BrainFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainFlowTests.swift; sourceTree = "<group>"; };
 		5FBAE2EF272855800025F291 /* BrainFlowLibs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrainFlowLibs.h; sourceTree = "<group>"; };
 		5FBE6F8526B3F97600BA6B93 /* liblsl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = liblsl.h; sourceTree = "<group>"; };
 		5FC07DB426BEFB4300B1971B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		5FC07DB626BF67CB00B1971B /* LabeledImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledImage.swift; sourceTree = "<group>"; };
 		5FC6464526FBC40600164A31 /* MLModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLModule.swift; sourceTree = "<group>"; };
 		5FC7928C274B1E0A00FCA041 /* black_crosshair.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = black_crosshair.jpeg; sourceTree = "<group>"; };
-		5FC79295274B220000FCA041 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		5FCA32782700A13500CF66E5 /* ExperimentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentVC.swift; sourceTree = "<group>"; };
 		5FCA327F27010D4400CF66E5 /* ChangeSaveFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSaveFolderView.swift; sourceTree = "<group>"; };
 		5FCD107026DD36D6000A6FFE /* BrainFlowExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrainFlowExtensions.swift; sourceTree = "<group>"; };
@@ -557,8 +574,11 @@
 				5F51807D27033C9700665A7C /* AppState.swift */,
 				5F39795C271330F5003D3A64 /* ChangeIntervalView.swift */,
 				5F72F87E271B5D86000C6D13 /* ChangeHeadsetTypeView.swift */,
-				5F7F24FE272891BE004B315D /* LabeledImage.swift */,
-				5FC79295274B220000FCA041 /* ErrorView.swift */,
+				5F0C02B8274EF36D003F68DF /* ImageState.swift */,
+				5F0C02BE274F99F1003F68DF /* LabeledImage.swift */,
+				5F0C02CB2750FE6E003F68DF /* AppStatusView.swift */,
+				5F0123072752734400E8F07E /* NavLinkView.swift */,
+				5F01230D2752A60700E8F07E /* TextRTView.swift */,
 			);
 			path = BCILab;
 			sourceTree = "<group>";
@@ -595,10 +615,8 @@
 		5F5FF9632728424C00566DD0 /* BCILabMB */ = {
 			isa = PBXGroup;
 			children = (
-				5FC07DB626BF67CB00B1971B /* LabeledImage.swift */,
 				5F5FF9652728435800566DD0 /* BCILabMBApp.swift */,
 				5F01258E2745A68200F356B1 /* ExperimentVC.swift */,
-				5F0125902749171800F356B1 /* MainMenuView.swift */,
 			);
 			path = BCILabMB;
 			sourceTree = "<group>";
@@ -1022,23 +1040,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F0C02CC2750FE6E003F68DF /* AppStatusView.swift in Sources */,
+				5F0C02BF274F99F1003F68DF /* LabeledImage.swift in Sources */,
 				5F524C4526BAD67C00DECD6E /* Error.swift in Sources */,
 				5F39795D271330F5003D3A64 /* ChangeIntervalView.swift in Sources */,
 				5FC6463426FBA5BA00164A31 /* BrainFlowInputParams.swift in Sources */,
+				5F0123082752734400E8F07E /* NavLinkView.swift in Sources */,
 				5F524C3926BAD67C00DECD6E /* Global.swift in Sources */,
 				5F628BDE26E14B9D0085B009 /* ReconnectView.swift in Sources */,
-				5FC79296274B220000FCA041 /* ErrorView.swift in Sources */,
 				5FCF8BAF26C577E3002DA9F0 /* EEG.swift in Sources */,
 				5FC6463926FBA5BE00164A31 /* BoardShim.swift in Sources */,
 				5FC6462C26FBA5B300164A31 /* BrainFlowConstants.swift in Sources */,
 				5F628BE226E231BA0085B009 /* CustomStyles.swift in Sources */,
-				5F7F24FF272891BE004B315D /* LabeledImage.swift in Sources */,
 				5FC6464126FBA5C600164A31 /* BoardDescription.swift in Sources */,
 				5FC6463D26FBA5C200164A31 /* BrainFlowExtensions.swift in Sources */,
 				5F509C9E26FFEDAB00B48497 /* MainMenuView.swift in Sources */,
 				5F524C3F26BAD67C00DECD6E /* SampleX.swift in Sources */,
 				5FC07DB526BEFB4300B1971B /* ContentView.swift in Sources */,
+				5F01230E2752A60700E8F07E /* TextRTView.swift in Sources */,
 				5FC6462826FBA5A700164A31 /* DataFilter.swift in Sources */,
+				5F0C02B9274EF36D003F68DF /* ImageState.swift in Sources */,
 				5FC6463026FBA5B700164A31 /* BrainFlowException.swift in Sources */,
 				5F74AE3D26C6845200A53ED5 /* CSVFile.swift in Sources */,
 				5F524C4226BAD67C00DECD6E /* Inlet.swift in Sources */,
@@ -1061,9 +1082,10 @@
 				5FC6462926FBA5A800164A31 /* DataFilter.swift in Sources */,
 				5FC6463126FBA5B700164A31 /* BrainFlowException.swift in Sources */,
 				5F0996F426F261C5003881B0 /* DataFilterTests.swift in Sources */,
+				5F0C02C0274F99F1003F68DF /* LabeledImage.swift in Sources */,
 				5F0996F626F2621A003881B0 /* BoardShimTests.swift in Sources */,
-				5FC79298274B220000FCA041 /* ErrorView.swift in Sources */,
 				5FA42B2926E378B8003C6F17 /* CSVFile.swift in Sources */,
+				5F0123102752A60700E8F07E /* TextRTView.swift in Sources */,
 				5FC6463A26FBA5BF00164A31 /* BoardShim.swift in Sources */,
 				5F51807F27033C9700665A7C /* AppState.swift in Sources */,
 				5FC6464726FBC40600164A31 /* MLModule.swift in Sources */,
@@ -1071,10 +1093,13 @@
 				5F39795E271330F5003D3A64 /* ChangeIntervalView.swift in Sources */,
 				5FC6462D26FBA5B400164A31 /* BrainFlowConstants.swift in Sources */,
 				5FC6464226FBA5C600164A31 /* BoardDescription.swift in Sources */,
+				5F0C02CE2750FE6E003F68DF /* AppStatusView.swift in Sources */,
 				5FC6463E26FBA5C300164A31 /* BrainFlowExtensions.swift in Sources */,
+				5F01230A2752734400E8F07E /* NavLinkView.swift in Sources */,
 				5F3B444326FCB32400AC20E8 /* BrainFlowCItests.swift in Sources */,
 				5F58BD2226AC1C5E003F5483 /* BCILabTests.swift in Sources */,
 				5F72F880271B5D86000C6D13 /* ChangeHeadsetTypeView.swift in Sources */,
+				5F0C02BB274EF36D003F68DF /* ImageState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1090,11 +1115,14 @@
 				5FCD108F26DD3806000A6FFE /* Headset.swift in Sources */,
 				5F39795F271330F5003D3A64 /* ChangeIntervalView.swift in Sources */,
 				5F524C3B26BAD67C00DECD6E /* Global.swift in Sources */,
+				5F0C02BC274EF36D003F68DF /* ImageState.swift in Sources */,
+				5F0C02C1274F99F1003F68DF /* LabeledImage.swift in Sources */,
 				5F524C4426BAD67C00DECD6E /* Inlet.swift in Sources */,
 				5FC6463226FBA5B700164A31 /* BrainFlowException.swift in Sources */,
 				5F524C4726BAD67C00DECD6E /* Error.swift in Sources */,
-				5FC79299274B220000FCA041 /* ErrorView.swift in Sources */,
 				5FC6462E26FBA5B400164A31 /* BrainFlowConstants.swift in Sources */,
+				5F0C02CF2750FE6E003F68DF /* AppStatusView.swift in Sources */,
+				5F0123112752A60700E8F07E /* TextRTView.swift in Sources */,
 				5FC6464826FBC40600164A31 /* MLModule.swift in Sources */,
 				5FC6463F26FBA5C300164A31 /* BrainFlowExtensions.swift in Sources */,
 				5FC6462A26FBA5AA00164A31 /* DataFilter.swift in Sources */,
@@ -1104,6 +1132,7 @@
 				5FC6463726FBA5BC00164A31 /* BrainFlowInputParams.swift in Sources */,
 				5F628BE426E231BA0085B009 /* CustomStyles.swift in Sources */,
 				5FCA327A2700A13500CF66E5 /* ExperimentVC.swift in Sources */,
+				5F01230B2752734400E8F07E /* NavLinkView.swift in Sources */,
 				5F72F881271B5D86000C6D13 /* ChangeHeadsetTypeView.swift in Sources */,
 				5F58BD2D26AC1C5E003F5483 /* BCILabUITests.swift in Sources */,
 				5FC6464326FBA5C700164A31 /* BoardDescription.swift in Sources */,
@@ -1120,11 +1149,15 @@
 				5FC6462F26FBA5B400164A31 /* BrainFlowConstants.swift in Sources */,
 				5FC6464026FBA5C400164A31 /* BrainFlowExtensions.swift in Sources */,
 				5FC6463326FBA5B800164A31 /* BrainFlowException.swift in Sources */,
-				5FC7929A274B220000FCA041 /* ErrorView.swift in Sources */,
+				5F0C02BD274EF36D003F68DF /* ImageState.swift in Sources */,
+				5F0C02D02750FE6E003F68DF /* AppStatusView.swift in Sources */,
 				5FC6464426FBA5C700164A31 /* BoardDescription.swift in Sources */,
+				5F01230C2752734400E8F07E /* NavLinkView.swift in Sources */,
 				5FC6464926FBC40600164A31 /* MLModule.swift in Sources */,
+				5F0C02C2274F99F1003F68DF /* LabeledImage.swift in Sources */,
 				5FC6462B26FBA5AB00164A31 /* DataFilter.swift in Sources */,
 				5FC6463C26FBA5BF00164A31 /* BoardShim.swift in Sources */,
+				5F0123122752A60700E8F07E /* TextRTView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1132,20 +1165,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F0C02CD2750FE6E003F68DF /* AppStatusView.swift in Sources */,
+				5F0C02CA274FE901003F68DF /* MainMenuView.swift in Sources */,
 				5F5FF9662728435800566DD0 /* BCILabMBApp.swift in Sources */,
 				5FE9509C2728120600E3E1A3 /* Error.swift in Sources */,
 				5FE9509D2728120600E3E1A3 /* ChangeIntervalView.swift in Sources */,
+				5F0123092752734400E8F07E /* NavLinkView.swift in Sources */,
 				5FE9509E2728120600E3E1A3 /* BrainFlowInputParams.swift in Sources */,
 				5FE9509F2728120600E3E1A3 /* Global.swift in Sources */,
 				5FE950A02728120600E3E1A3 /* ReconnectView.swift in Sources */,
 				5FE950A12728120600E3E1A3 /* EEG.swift in Sources */,
 				5FE950A32728120600E3E1A3 /* BoardShim.swift in Sources */,
-				5F01258F2745A68200F356B1 /* ExperimentVC.swift in Sources */,
+				5F0C02BA274EF36D003F68DF /* ImageState.swift in Sources */,
 				5FE950A42728120600E3E1A3 /* BrainFlowConstants.swift in Sources */,
 				5FE950A52728120600E3E1A3 /* CustomStyles.swift in Sources */,
-				5FC79297274B220000FCA041 /* ErrorView.swift in Sources */,
 				5FE950A62728120600E3E1A3 /* BoardDescription.swift in Sources */,
 				5FE950A72728120600E3E1A3 /* BrainFlowExtensions.swift in Sources */,
+				5F0C02C6274FB9F1003F68DF /* LabeledImage.swift in Sources */,
+				5F01230F2752A60700E8F07E /* TextRTView.swift in Sources */,
+				5F0C02C9274FC2DA003F68DF /* ExperimentVC.swift in Sources */,
 				5FE950A92728120600E3E1A3 /* SampleX.swift in Sources */,
 				5FE950AC2728120600E3E1A3 /* DataFilter.swift in Sources */,
 				5FE950AD2728120600E3E1A3 /* BrainFlowException.swift in Sources */,
@@ -1154,10 +1192,9 @@
 				5FE950B02728120600E3E1A3 /* ChangeHeadsetTypeView.swift in Sources */,
 				5FE950B12728120600E3E1A3 /* StreamInfo.swift in Sources */,
 				5FE950B22728120600E3E1A3 /* MLModule.swift in Sources */,
-				5F0125912749171800F356B1 /* MainMenuView.swift in Sources */,
 				5FE950B32728120600E3E1A3 /* Outlet.swift in Sources */,
-				5FE950B42728120600E3E1A3 /* LabeledImage.swift in Sources */,
 				5FE950B52728120600E3E1A3 /* AppState.swift in Sources */,
+				5F0C02C5274FB9CC003F68DF /* ContentView.swift in Sources */,
 				5FE950B72728120600E3E1A3 /* Headset.swift in Sources */,
 				5FE950B82728120600E3E1A3 /* ChannelFormat.swift in Sources */,
 			);
@@ -1182,7 +1219,6 @@
 				5FE55F772704850C00DDA111 /* AppState.swift in Sources */,
 				5FE55F8F2704855100DDA111 /* BoardShim.swift in Sources */,
 				5FE55F862704854500DDA111 /* DataFilter.swift in Sources */,
-				5FC7929B274B220000FCA041 /* ErrorView.swift in Sources */,
 				5FE55F65270484F400DDA111 /* CSVFile.swift in Sources */,
 				5FE55F892704854800DDA111 /* BrainFlowConstants.swift in Sources */,
 				5FE55F53270484D300DDA111 /* Headset.swift in Sources */,
@@ -1196,7 +1232,6 @@
 			files = (
 				5FE55F872704854500DDA111 /* DataFilter.swift in Sources */,
 				5FE55F992704855B00DDA111 /* MLModule.swift in Sources */,
-				5FC7929C274B220000FCA041 /* ErrorView.swift in Sources */,
 				5FE55F6F270484FF00DDA111 /* MainMenuView.swift in Sources */,
 				5FE55F54270484D500DDA111 /* Headset.swift in Sources */,
 				5FE55F8E2704854F00DDA111 /* BrainFlowInputParams.swift in Sources */,
@@ -1235,7 +1270,6 @@
 				5FE55F792704850C00DDA111 /* AppState.swift in Sources */,
 				5FE55F912704855200DDA111 /* BoardShim.swift in Sources */,
 				5FE55F882704854600DDA111 /* DataFilter.swift in Sources */,
-				5FC7929D274B220000FCA041 /* ErrorView.swift in Sources */,
 				5FE55F67270484F500DDA111 /* CSVFile.swift in Sources */,
 				5FE55F8B2704854A00DDA111 /* BrainFlowConstants.swift in Sources */,
 				5FE55F55270484D600DDA111 /* Headset.swift in Sources */,

@@ -9,23 +9,15 @@ import SwiftUI
 
 // TabView timer code forked from: https://stackoverflow.com/questions/58896661/swiftui-create-image-slider-with-dots-as-indicators
 
-class ImageState {
-    var images: [LabeledImage] = prepareImages()
-    var nextImages: [LabeledImage]?
-    var isBuildingNextImages: Bool = false
-}
-
 struct ExperimentVC: View {
     let interval = 1.0
     @State var mainTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State var animationTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State var selection = -1
-    @StateObject private var appState = AppState()
-    var imageState = ImageState()
+    @ObservedObject var appState: AppState
     
     func manageSlideShow() {
-        print("slide selection: \(self.selection)")
-        guard self.selection < (self.imageState.images.count-1) else {
+        guard self.selection < (self.appState.images.count-1) else {
             try? BoardShim.logMessage(.LEVEL_INFO, "experiment complete")
             if let board = self.appState.headset.board {
                 try? board.insertMarker(value: ImageLabels.stop.rawValue) }
@@ -39,7 +31,7 @@ struct ExperimentVC: View {
             self.selection = 0
             self.stopTimer() }
         else {
-            let label = self.imageState.images[self.selection+1].label
+            let label = self.appState.images[self.selection+1].label
             try? BoardShim.logMessage(.LEVEL_INFO, "marker: \(label)")
             if let board = self.appState.headset.board {
                 try? board.insertMarker(value: label.rawValue) }
@@ -110,21 +102,20 @@ struct ExperimentVC: View {
     var body: some View {
         GeometryReader { _ in
             ZStack(alignment: .topLeading) {
-            Color.black
+                Color.white
                 TabView(selection : self.$selection) {
-                    ForEach(0..<self.imageState.images.count) { i in
-                        //Image(uiImage: self.imageState.images[i].image)
-                        self.imageState.images[i].image
+                    ForEach(0..<self.appState.images.count) { i in
+                        self.appState.images[i].image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .onAppear(perform: { insertAppears(self.imageState.images[i]) })
+                        .onAppear(perform: { insertAppears(self.appState.images[i]) })
                 }
-            }
-            .onReceive(animationTimer, perform: { _ in manageSlideShow() })
-            .onChange(of: appState.intervalSeconds, perform: { _ in resetTimer() })
-            .onChange(of: appState.boardId, perform: { _ in disconnectHeadset() })
-            .onReceive(mainTimer, perform: { _ in checkHeadset() })
-            .onTapGesture { pauseResume() }
+                }
+                .onReceive(animationTimer, perform: { _ in manageSlideShow() })
+                .onChange(of: appState.intervalSeconds, perform: { _ in resetTimer() })
+                .onChange(of: appState.boardId, perform: { _ in disconnectHeadset() })
+                .onReceive(mainTimer, perform: { _ in checkHeadset() })
+                .onTapGesture { pauseResume() }
             }
         }
     }

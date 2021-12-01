@@ -30,19 +30,15 @@ struct GrowingButton: ButtonStyle {
     }
 }
 
-//                .frame(width: 150, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-//                .background(Color.green)
-//                .cornerRadius(40)
-
-struct GrowingButton_Previews: PreviewProvider {
-    static var previews: some View {
-        Button(action: { print("test") }) {
-            Text("Retry")
-                .fontWeight(.bold)
-                .font(.title)
-                .padding()
-                .foregroundColor(.white)
-        }
-        .buttonStyle(GrowingButton(color: .green))
-    }
-}
+//struct GrowingButton_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Button(action: { print("test") }) {
+//            Text("Retry")
+//                .fontWeight(.bold)
+//                .font(.title)
+//                .padding()
+//                .foregroundColor(.white)
+//        }
+//        .buttonStyle(GrowingButton(color: .green))
+//    }
+//}

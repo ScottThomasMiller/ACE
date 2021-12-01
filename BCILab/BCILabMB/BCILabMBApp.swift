@@ -5,7 +5,7 @@ import SwiftUI
 struct BCILabMBApp: App {
     var body: some Scene {
         WindowGroup {
-            ExperimentVC()
+            ContentView()
         }
         .commands {
             CommandMenu("Settings") {
