@@ -16,9 +16,11 @@ func timestamp() -> String {
 
 struct MainMenuView: View {
     @ObservedObject var appState: AppState
-    //@Binding var intervalSeconds: Double
+    let appGeometry: GeometryProxy
 
     var body: some View {
+        let fWidth = appGeometry.size.width
+        let fHeight = 0.9*appGeometry.size.height
         ZStack {
             Color.white
             VStack(alignment: .center, spacing: 2.0) {
@@ -26,6 +28,7 @@ struct MainMenuView: View {
                 let status = StatusRec(imagesCount: self.appState.images.count,
                                        headsetStatus: self.appState.headsetStatus,
                                        boardName: self.appState.boardId.name)
+                
                 NavigationView {
                     ZStack {
                         Color.white
@@ -36,8 +39,10 @@ struct MainMenuView: View {
                                                                       isMainMenuActive: self.$appState.isMainMenuActive,
                                                                       isHeadsetReady: self.$appState.isHeadsetReady)) {
                                 NavLinkView(id: "bluetooth", label: "Reconnect") }
-                            NavigationLink(destination: Text("Hi")) {
-                                NavLinkView(id: "folder", label: "Save Folder") }
+                            NavigationLink(destination: ChangeSaveFolderView(folderURL: self.$appState.saveFolder)) {
+                                NavLinkView(id: "save_folder", label: "Save Folder") }
+                            NavigationLink(destination: ChangeLoadFolderView(loadFolderURL: self.$appState.loadFolder)) {
+                                NavLinkView(id: "load_folder", label: "Load Folder") }
                             NavigationLink(destination: ChangeIntervalView(intervalSeconds: self.$appState.intervalSeconds)) {
                                 NavLinkView(id: "interval", label: "Slideshow Interval") }
                             NavigationLink(destination: ChangeHeadsetTypeView(boardId: self.$appState.boardId)) {
@@ -45,28 +50,29 @@ struct MainMenuView: View {
                         } // List
                         .navigationTitle("Main Menu")
                     } // ZStack
-                } // NavigationView
+                }//.frame(width: 0.9*fWidth, height: 0.72*fHeight, alignment: .center) // NavigationView
                 Spacer()
-                AppStatusView(status)
+                AppStatusView(status).frame(width: 0.9*fWidth, height: 0.18*fHeight, alignment: .center)
                 Spacer()
                 Button(action: {appState.isMainMenuActive = false}) {
                     Text("Go Back")
                         .fontWeight(.bold)
-                        .font(.title)
+                        .font(.title2)
                         .padding()
                         .foregroundColor(.white)}.buttonStyle(GrowingButton(color: .blue))
                 Spacer()
             } // VStack
         } // ZStack
-        .frame(width: 900, height: 650, alignment: .center)
+        .frame(width: 0.9*fWidth, height: 0.9*fHeight, alignment: .center)
     }
 } // MainMenuView
     
-
-//struct MainMenuView_Previews: PreviewProvider {
 //
+//struct MainMenuView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        @StateObject var appState = AppState()
-//        return MainMenuView(headset: appState.headset, appState: appState)
+//        return GeometryReader { geometry in
+//            MainMenuView(appState: appState, appGeometry: geometry)
+//        }
 //    }
 //}

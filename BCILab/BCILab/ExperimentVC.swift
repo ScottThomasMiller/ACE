@@ -11,13 +11,12 @@ import SwiftUI
 
 
 struct ExperimentVC: View {
-    let interval = 1.0
+    @StateObject var appState = AppState()
     @State var mainTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State var animationTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State var selection = -1
-    //@ObservedObject var appState: AppState
-    @StateObject var appState = AppState()
-    
+    let interval = 1.0
+
     func manageSlideShow() {
         guard self.selection < (self.appState.images.count-1) else {
             try? BoardShim.logMessage(.LEVEL_INFO, "experiment complete")
@@ -57,8 +56,6 @@ struct ExperimentVC: View {
     func resetTimer() {
         let secs = self.appState.intervalSeconds
         try? BoardShim.logMessage(.LEVEL_INFO, "resetting animation timer to \(secs) secs")
-//        stopTimer()
-//        startTimer()
     }
 
     func checkHeadset() {
@@ -102,7 +99,7 @@ struct ExperimentVC: View {
     }
 
     var body: some View {
-//        GeometryReader { _ in
+        let _ = self.appState.headset.saveURL = self.appState.saveFolder
         GeometryReader { geometry in
             let _ = print("[\(timestamp())] ExperimentVC.body: geometry->\(geometry.size)")
             ZStack(alignment: .topLeading) {
@@ -123,7 +120,7 @@ struct ExperimentVC: View {
                 .onLongPressGesture{ activateMenu() }
             }
             .sheet(isPresented: $appState.isMainMenuActive, onDismiss: { dismissMenu() }) {
-                MainMenuView(appState: appState) }
+                MainMenuView(appState: appState, appGeometry: geometry) }
         }
     }
 

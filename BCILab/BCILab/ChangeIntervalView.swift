@@ -18,18 +18,20 @@ struct ChangeIntervalView: View {
             formatter.numberStyle = .decimal
             return formatter
         }()
-        Text("Enter the new slideshow interval seconds:").foregroundColor(.black)
-//        TextField("interval seconds", value: self.$intervalSeconds, formatter: formatter, onCommit: {
-        TextField("interval seconds", value: self.$newValue, formatter: formatter, onCommit: {
-            self.intervalSeconds = self.newValue
-            try? BoardShim.logMessage(.LEVEL_INFO, "new interval: \(intervalSeconds) sec.")
-            //self.isMainMenuActive = false
-        })
-        .foregroundColor(.black)
-        .fixedSize(horizontal: true, vertical: true)
-        .padding()
-        .border(.blue, width: 2)
         
+        HStack {
+            Text("Slideshow interval:")
+            TextField("interval seconds", value: self.$newValue, formatter: formatter, onCommit: {
+                self.intervalSeconds = self.newValue
+                try? BoardShim.logMessage(.LEVEL_INFO, "new interval: \(intervalSeconds) sec.")
+            })
+            .fixedSize(horizontal: true, vertical: true)
+            .padding()
+            Text("seconds")
+        }
+        .font(.title2)
+        .foregroundColor(.black)
+        .onAppear(perform: {self.newValue = self.intervalSeconds})
     }
 }
 

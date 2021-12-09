@@ -6,43 +6,60 @@
 //
 //
 
-import UIKit
+//import UIKit
 import SwiftUI
 import Foundation
 
-struct FolderPicker: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
-        let newVC = UIDocumentPickerViewController(forOpeningContentTypes: [.folder])
-        //newVC.delegate = self
-        return newVC
-    }
-    
-    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {
-    }
-    
-//class FolderPicker: UIDocumentPickerViewController, UIDocumentPickerDelegate {
-    typealias UIViewControllerType = UIDocumentPickerViewController
-
-    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        if let folderChoice = urls.first { controller.directoryURL = folderChoice }
-        controller.dismiss(animated: true)
-    }
-}
-
+//struct FolderPicker: UIViewControllerRepresentable {
+//    func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
+//        let newVC = UIDocumentPickerViewController(forOpeningContentTypes: [.folder])
+//        //newVC.delegate = self
+//        return newVC
+//    }
+//
+//    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {
+//    }
+//
+//    typealias UIViewControllerType = UIDocumentPickerViewController
+//
+//    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+//        if let folderChoice = urls.first { controller.directoryURL = folderChoice }
+//        controller.dismiss(animated: true)
+//    }
+//}
+//
 struct ChangeSaveFolderView: View {
-    let message: String 
-    @ObservedObject var appState: AppState
-    @State private var isActive: Bool = true
-    let picker = FolderPicker()
-    
+    @Binding var folderURL: URL
 
-    func onDismiss() {
-        self.isActive = false
+    func pickFolder() {
+        let panel = NSOpenPanel()
+        panel.allowsMultipleSelection = false
+        panel.canChooseDirectories = true
+        panel.canChooseFiles = false
+ 
+        print("pickFolder()")
+        if panel.runModal() == .OK {
+            if let selectedURL = panel.url {
+                if selectedURL != self.folderURL {
+                    self.folderURL = selectedURL
+                    try? BoardShim.logMessage(.LEVEL_INFO, "New save folder URL: \(selectedURL)") }}}
     }
-    
+
     var body: some View {
-        Text("hello")
+        VStack {
+            VStack (alignment: .leading, spacing: 10.0) {
+                Text("Current save folder:")
+                Text(self.folderURL.relativeString)
+                Spacer()
+                Button("Change") {
+                    pickFolder()
+                }.buttonStyle(GrowingButton(color: .blue))
+            }
+        }
+        .font(.title2)
+        .foregroundColor(.black)
+        .fixedSize()
     }
-}
+  }
     
 

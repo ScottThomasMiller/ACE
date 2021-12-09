@@ -19,6 +19,7 @@ struct ReconnectView: View {
     //@ObservedObject var appState: AppState
     
     func reconnect() {
+        var newStatus = ""
         try? BoardShim.logMessage(.LEVEL_INFO, "reconnect(). deactivating the board")
         self.headset.isActive = false // terminates the streaming loop
         sleep(2)
@@ -35,24 +36,20 @@ struct ReconnectView: View {
             self.isHeadsetReady = true }
         catch {
             self.isHeadsetReady = false
-            self.headsetStatus = "disconnected" }
+            newStatus = "failed to connect" }
         
         if self.isHeadsetReady {
-            try? BoardShim.logMessage(.LEVEL_INFO, "connection successful")
-            self.headsetStatus = "connected"
+            newStatus = "connected"
             self.isMainMenuActive = false }
         else {
-            try? BoardShim.logMessage(.LEVEL_INFO, "failed to connect")
-            self.headsetStatus = "disconnected" }
+            newStatus = "cannot connect" }
+        
+        try? BoardShim.logMessage(.LEVEL_INFO, newStatus)
+        self.headsetStatus = newStatus
     }
 
     var body: some View {
         VStack {
-            Spacer()
-            Text("Connect to Headset")
-                .font(.largeTitle)
-                .foregroundColor(.black)
-                //.baselineOffset(40)
             Spacer()
             HStack {
                 Button(action: {

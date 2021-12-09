@@ -44,6 +44,7 @@ class Headset {
     private var filteredFile: FileHandle?
     var boardId: BoardIds
     var board: BoardShim?
+    var saveURL: URL?
     let samplingRate: Int32
     let eegChannels: [Int32]
     let boardDescription: BoardDescription
@@ -199,8 +200,8 @@ class Headset {
             try? rawFile!.close()
             try? filteredFile!.close() }
         let uqID = CSVFile.uniqueID()
-        rawFile = CSVFile(fileName: "BrainWave-EEG-Raw").openFile(id: uqID)
-        filteredFile = CSVFile(fileName: "BrainWave-EEG-Filtered").openFile(id: uqID)
+        rawFile = CSVFile(fileName: "BrainWave-EEG-Raw").create(id: uqID, saveFolder: saveURL)
+        filteredFile = CSVFile(fileName: "BrainWave-EEG-Filtered").create(id: uqID, saveFolder: saveURL)
         writeHeaders()
     }
     

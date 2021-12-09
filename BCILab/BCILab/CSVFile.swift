@@ -18,8 +18,15 @@ class CSVFile: FileHandle {
         return String(Int(now))
     }
     
-    func openFile(id: String) -> FileHandle {
-        let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    // create the csv file in Documents unless overridden by saveFolder:
+    func create(id: String, saveFolder: URL? = nil) -> FileHandle {
+        var docDir: URL
+        
+        if let saveURL = saveFolder {
+            docDir = saveURL }
+        else {
+            docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first! }
+        
         let csvURL = docDir.appendingPathComponent(fileName+"_"+id).appendingPathExtension("csv")
         var fileHandle: FileHandle
         
