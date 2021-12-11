@@ -65,14 +65,47 @@ func getAllFromSubdir(subdir: String, label: ImageLabels, maxImages: Int = 10000
     return labeledImages
 }
 
-
-// Return a randomized array of faces and nonfaces, with blanks inserted between each image.
-func prepareImages () -> [LabeledImage] {
+func getBlankImage() -> Image? {
     guard let blankURL = Bundle.main.url(forResource: "black_crosshair", withExtension: ".jpeg") else {
         try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot locate blank URL")
-        return [LabeledImage]()
+        return nil
     }
     guard let blankImage = try? loadURL(blankURL) else {
+        try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load blank image")
+        return nil
+    }
+    
+    return blankImage
+}
+
+// Return a randomized array of faces and nonfaces, with blanks inserted between each image.
+func prepareFaces () -> [LabeledImage] {
+    guard let blankImage = getBlankImage() else {
+        try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load blank image")
+        return [LabeledImage]()
+    }
+    
+    let faceImages = getAllFromSubdir(subdir: "Faces", label: .face).shuffled()
+    let nonFaceImages = getAllFromSubdir(subdir: "NonFaces", label: .nonface).shuffled()
+    let allShuffledImages = (faceImages + nonFaceImages).shuffled()
+    var finalImages = [LabeledImage]()
+    
+    var nImages = 0
+    for image in allShuffledImages {
+        let blank = LabeledImage(image: blankImage, label: .blank)
+        finalImages.append(blank)
+        finalImages.append(image)
+        nImages += 1
+    }
+
+    try? BoardShim.logMessage(.LEVEL_INFO, "loaded \(nImages) images")
+    return finalImages
+}
+
+// Return a randomized array of all subfolders, with blanks inserted between each image.
+// Use the subfolder name as the image label.
+func prepareImages (from folder: URL) -> [LabeledImage] {
+    guard let blankImage = getBlankImage() else {
         try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load blank image")
         return [LabeledImage]()
     }

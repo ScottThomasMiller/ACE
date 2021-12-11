@@ -17,8 +17,8 @@ struct ExperimentVC: View {
     @State var selection = -1
     let interval = 1.0
 
-    func manageSlideShow() {
-        guard self.selection < (self.appState.images.count-1) else {
+    func manageSlideShow(for images: [LabeledImage]) {
+        guard self.selection < (images.count-1) else {
             try? BoardShim.logMessage(.LEVEL_INFO, "experiment complete")
             if let board = self.appState.headset.board {
                 try? board.insertMarker(value: ImageLabels.stop.rawValue) }
@@ -32,7 +32,7 @@ struct ExperimentVC: View {
             self.selection = 0
             self.stopTimer() }
         else {
-            let label = self.appState.images[self.selection+1].label
+            let label = images[self.selection+1].label
             try? BoardShim.logMessage(.LEVEL_INFO, "marker: \(label)")
             if let board = self.appState.headset.board {
                 try? board.insertMarker(value: label.rawValue) }
@@ -95,24 +95,25 @@ struct ExperimentVC: View {
     }
     
     func dismissMenu() {
-        
+        print("dismissMenu()")
     }
 
     var body: some View {
         let _ = self.appState.headset.saveURL = self.appState.saveFolder
+        let images = prepareImages(from: self.appState.loadFolder)
         GeometryReader { geometry in
             let _ = print("[\(timestamp())] ExperimentVC.body: geometry->\(geometry.size)")
             ZStack(alignment: .topLeading) {
                 Color.white
                 TabView(selection : self.$selection) {
-                    ForEach(0..<self.appState.images.count) { i in
-                        self.appState.images[i].image
+                    ForEach(0..<images.count) { i in
+                        images[i].image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .onAppear(perform: { insertAppears(self.appState.images[i]) })
+                        .onAppear(perform: { insertAppears(images[i]) })
                     }
                 }
-                .onReceive(animationTimer, perform: { _ in manageSlideShow() })
+                .onReceive(animationTimer, perform: { _ in manageSlideShow(for: images) })
                 .onChange(of: appState.intervalSeconds, perform: { _ in resetTimer() })
                 .onChange(of: appState.boardId, perform: { _ in disconnectHeadset() })
                 .onReceive(mainTimer, perform: { _ in checkHeadset() })

@@ -25,7 +25,7 @@ struct MainMenuView: View {
             Color.white
             VStack(alignment: .center, spacing: 2.0) {
                 let _ = print("[\(timestamp())] MainMenuView.body")
-                let status = StatusRec(imagesCount: self.appState.images.count,
+                let status = StatusRec(imagesCount: 0,
                                        headsetStatus: self.appState.headsetStatus,
                                        boardName: self.appState.boardId.name)
                 

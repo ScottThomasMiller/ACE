@@ -10,52 +10,65 @@ import Foundation
 
 extension FileManager {
     func subFolders(of folder: URL ) -> [URL]? {
-        print("subFolders(\(folder))")
-        let props = [URLResourceKey]()
-        let fileURLs = try? contentsOfDirectory(at: folder, includingPropertiesForKeys: props,
-                                                options: .skipsHiddenFiles)
-        print ("props:\n\(props)")
-        print("fileURLs: \(String(describing: fileURLs))")
-
-        return fileURLs
+        if let fileURLs = try? contentsOfDirectory(at: folder,
+                                                   includingPropertiesForKeys: [.isDirectoryKey]) {
+            let folders = fileURLs.filter { (url) -> Bool in
+                do {
+                    let resourceValues = try url.resourceValues(forKeys: [.isDirectoryKey])
+                    return resourceValues.isDirectory!
+                } catch { return false }
+            }
+            return folders }
+        else {
+            return nil
+        }
     }
 
-    func countImages(of folder: URL ) -> Int {
-        print("countImages(\(folder))")
-        let count = 0
-        let props = [URLResourceKey]()
-        let fileURLs = try? contentsOfDirectory(at: folder, includingPropertiesForKeys: props,
-                                                options: .skipsHiddenFiles)
-        print ("countImages() props:\n\(props)")
-        print("fileURLs: \(String(describing: fileURLs))")
-
-        return count
+    func imageURLs(of folder: URL ) -> [URL]? {
+        let imageExts = ["jpg","jpeg","png"]
+        if let fileURLs = try? contentsOfDirectory(at: folder, includingPropertiesForKeys: nil,
+                                                   options: .skipsHiddenFiles) {
+            let imageURLs = fileURLs.filter { url in imageExts.contains { $0 == url.pathExtension }}
+            return imageURLs
+        } else {
+            return nil
+        }
     }
 
-    // from: https://stackoverflow.com/questions/27721418/getting-list-of-files-in-documents-folder/27722526
-    func urls(for directory: FileManager.SearchPathDirectory, skipsHiddenFiles: Bool = true ) -> [URL]? {
-        let documentsURL = urls(for: directory, in: .userDomainMask)[0]
-        let fileURLs = try? contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil, options: skipsHiddenFiles ? .skipsHiddenFiles : [] )
-        return fileURLs
-    }
+// from: https://stackoverflow.com/questions/27721418/getting-list-of-files-in-documents-folder/27722526
+//    func urls(for directory: FileManager.SearchPathDirectory, skipsHiddenFiles: Bool = true ) -> [URL]? {
+//        let documentsURL = urls(for: directory, in: .userDomainMask)[0]
+//        let fileURLs = try? contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil, options: skipsHiddenFiles ? .skipsHiddenFiles : [] )
+//        return fileURLs
+//    }
 }
 
 struct ChangeLoadFolderView: View {
     @Binding var loadFolderURL: URL
     
-    func validateFolder() -> Bool {
-        if let subFolders = FileManager.default.subFolders(of: self.loadFolderURL) {
+    func validateFolder(folder: URL) -> Bool {
+        var numValid = 0
+        if let subFolders = FileManager.default.subFolders(of: folder) {
             guard subFolders.count > 0 else {
-                try? BoardShim.logMessage(.LEVEL_INFO, "no subfolders in load folder \(self.loadFolderURL)")
+                try? BoardShim.logMessage(.LEVEL_INFO, "no subfolders in load folder \(folder)")
                 return false
             }
 
             for folder in subFolders {
-                guard FileManager.default.countImages(of: folder) > 0 else {
-                    try? BoardShim.logMessage(.LEVEL_INFO, "no images in subfolder \(folder)")
-                    return false
+                print("  subfolder: \(folder)")
+                if let imageURLs = FileManager.default.imageURLs(of: folder) {
+                    guard imageURLs.count > 0 else {
+                        try? BoardShim.logMessage(.LEVEL_INFO, "no images in subfolder \(folder)")
+                        return false
+                    }
+                    numValid += 1
                 }
             }
+        }
+        
+        guard numValid > 0 else {
+            try? BoardShim.logMessage(.LEVEL_INFO, "no valid subfolders in \(folder)")
+            return false
         }
         
         return true
@@ -70,7 +83,8 @@ struct ChangeLoadFolderView: View {
         print("pickFolder()")
         if panel.runModal() == .OK {
             if let selectedURL = panel.url {
-                if (selectedURL != self.loadFolderURL) && validateFolder() {
+                print("selectedURL: \(selectedURL)")
+                if (selectedURL != self.loadFolderURL) && validateFolder(folder: selectedURL) {
                     self.loadFolderURL = selectedURL
                     try? BoardShim.logMessage(.LEVEL_INFO, "New load folder URL: \(selectedURL)") }}}
     }

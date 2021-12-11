@@ -20,11 +20,6 @@
 		5F0996F426F261C5003881B0 /* DataFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0996F326F261C5003881B0 /* DataFilterTests.swift */; };
 		5F0996F626F2621A003881B0 /* BoardShimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0996F526F2621A003881B0 /* BoardShimTests.swift */; };
 		5F0996F826F3A046003881B0 /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = 5F0996F726F3A046003881B0 /* Numerics */; };
-		5F0C02B9274EF36D003F68DF /* ImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02B8274EF36D003F68DF /* ImageState.swift */; };
-		5F0C02BA274EF36D003F68DF /* ImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02B8274EF36D003F68DF /* ImageState.swift */; };
-		5F0C02BB274EF36D003F68DF /* ImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02B8274EF36D003F68DF /* ImageState.swift */; };
-		5F0C02BC274EF36D003F68DF /* ImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02B8274EF36D003F68DF /* ImageState.swift */; };
-		5F0C02BD274EF36D003F68DF /* ImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02B8274EF36D003F68DF /* ImageState.swift */; };
 		5F0C02BF274F99F1003F68DF /* LabeledImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02BE274F99F1003F68DF /* LabeledImage.swift */; };
 		5F0C02C0274F99F1003F68DF /* LabeledImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02BE274F99F1003F68DF /* LabeledImage.swift */; };
 		5F0C02C1274F99F1003F68DF /* LabeledImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02BE274F99F1003F68DF /* LabeledImage.swift */; };
@@ -349,7 +344,6 @@
 		5F0996F326F261C5003881B0 /* DataFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFilterTests.swift; sourceTree = "<group>"; };
 		5F0996F526F2621A003881B0 /* BoardShimTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardShimTests.swift; sourceTree = "<group>"; };
 		5F0996F926F3E864003881B0 /* BoardDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDescription.swift; sourceTree = "<group>"; };
-		5F0C02B8274EF36D003F68DF /* ImageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageState.swift; sourceTree = "<group>"; };
 		5F0C02BE274F99F1003F68DF /* LabeledImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledImage.swift; sourceTree = "<group>"; };
 		5F0C02CB2750FE6E003F68DF /* AppStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStatusView.swift; sourceTree = "<group>"; };
 		5F1C3CD32728ADF900938198 /* libBoardController.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBoardController.dylib; path = BrainFlow/dylib/OS64COMBINED/libBoardController.dylib; sourceTree = "<group>"; };
@@ -586,7 +580,6 @@
 				5FCF8BAE26C577E3002DA9F0 /* EEG.swift */,
 				5FCA32782700A13500CF66E5 /* ExperimentVC.swift */,
 				5FCD108C26DD3806000A6FFE /* Headset.swift */,
-				5F0C02B8274EF36D003F68DF /* ImageState.swift */,
 				5F58BD1826AC1C5E003F5483 /* Info.plist */,
 				5F0C02BE274F99F1003F68DF /* LabeledImage.swift */,
 				5F509C9D26FFEDAB00B48497 /* MainMenuView.swift */,
@@ -1074,7 +1067,6 @@
 				5FC07DB526BEFB4300B1971B /* ContentView.swift in Sources */,
 				5F01230E2752A60700E8F07E /* TextRTView.swift in Sources */,
 				5FC6462826FBA5A700164A31 /* DataFilter.swift in Sources */,
-				5F0C02B9274EF36D003F68DF /* ImageState.swift in Sources */,
 				5FC6463026FBA5B700164A31 /* BrainFlowException.swift in Sources */,
 				5F74AE3D26C6845200A53ED5 /* CSVFile.swift in Sources */,
 				5FD6E2C1275BAF0E00F9A4CB /* ChangeLoadFolderView.swift in Sources */,
@@ -1118,7 +1110,6 @@
 				5F3B444326FCB32400AC20E8 /* BrainFlowCItests.swift in Sources */,
 				5F58BD2226AC1C5E003F5483 /* BCILabTests.swift in Sources */,
 				5F72F880271B5D86000C6D13 /* ChangeHeadsetTypeView.swift in Sources */,
-				5F0C02BB274EF36D003F68DF /* ImageState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1134,7 +1125,6 @@
 				5FCD108F26DD3806000A6FFE /* Headset.swift in Sources */,
 				5F39795F271330F5003D3A64 /* ChangeIntervalView.swift in Sources */,
 				5F524C3B26BAD67C00DECD6E /* Global.swift in Sources */,
-				5F0C02BC274EF36D003F68DF /* ImageState.swift in Sources */,
 				5F0C02C1274F99F1003F68DF /* LabeledImage.swift in Sources */,
 				5F524C4426BAD67C00DECD6E /* Inlet.swift in Sources */,
 				5FC6463226FBA5B700164A31 /* BrainFlowException.swift in Sources */,
@@ -1171,7 +1161,6 @@
 				5FC6462F26FBA5B400164A31 /* BrainFlowConstants.swift in Sources */,
 				5FC6464026FBA5C400164A31 /* BrainFlowExtensions.swift in Sources */,
 				5FC6463326FBA5B800164A31 /* BrainFlowException.swift in Sources */,
-				5F0C02BD274EF36D003F68DF /* ImageState.swift in Sources */,
 				5F0C02D02750FE6E003F68DF /* AppStatusView.swift in Sources */,
 				5FC6464426FBA5C700164A31 /* BoardDescription.swift in Sources */,
 				5F9D64E52757FB9300923CE8 /* ChangeSaveFolderView.swift in Sources */,
@@ -1199,7 +1188,6 @@
 				5FE950A02728120600E3E1A3 /* ReconnectView.swift in Sources */,
 				5FE950A12728120600E3E1A3 /* EEG.swift in Sources */,
 				5FE950A32728120600E3E1A3 /* BoardShim.swift in Sources */,
-				5F0C02BA274EF36D003F68DF /* ImageState.swift in Sources */,
 				5FE950A42728120600E3E1A3 /* BrainFlowConstants.swift in Sources */,
 				5FE950A52728120600E3E1A3 /* CustomStyles.swift in Sources */,
 				5FE950A62728120600E3E1A3 /* BoardDescription.swift in Sources */,
@@ -1372,11 +1360,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
-				CODE_SIGN_IDENTITY = "Apple Development: miller.scott.thomas@gmail.com (9C6P3H9F6Q)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = Y8JL76N88P;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1397,8 +1385,8 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1440,11 +1428,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Apple Development: miller.scott.thomas@gmail.com (9C6P3H9F6Q)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = Y8JL76N88P;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1459,8 +1447,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1477,9 +1465,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BCILab/BCILab.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"BCILab/Preview Content\"";
-				DEVELOPMENT_TEAM = Y8JL76N88P;
+				DEVELOPMENT_TEAM = "";
 				"DYLIB_INSTALL_NAME_BASE[arch=*]" = "@rpath";
 				ENABLE_BITCODE = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1519,9 +1507,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BCILab/BCILab.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"BCILab/Preview Content\"";
-				DEVELOPMENT_TEAM = Y8JL76N88P;
+				DEVELOPMENT_TEAM = "";
 				"DYLIB_INSTALL_NAME_BASE[arch=*]" = "@rpath";
 				ENABLE_BITCODE = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1745,7 +1733,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"BCILab/Preview Content\"";
 				DEVELOPMENT_TEAM = Y8JL76N88P;
 				"DYLIB_INSTALL_NAME_BASE[arch=*]" = "@rpath";
@@ -1788,7 +1776,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"BCILab/Preview Content\"";
 				DEVELOPMENT_TEAM = Y8JL76N88P;
 				"DYLIB_INSTALL_NAME_BASE[arch=*]" = "@rpath";
