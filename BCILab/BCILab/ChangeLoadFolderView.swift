@@ -93,7 +93,7 @@ struct ChangeLoadFolderView: View {
         VStack {
             VStack (alignment: .leading, spacing: 10.0) {
                 Text("Current load folder:").font(.title2)
-                Text(self.loadFolderURL.relativeString)
+                Text(self.loadFolderURL.lastPathComponent)
                 Spacer()
                 Button("Change") {
                     pickFolder()

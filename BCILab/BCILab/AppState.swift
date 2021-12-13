@@ -13,9 +13,8 @@ class AppState: ObservableObject {
     @Published var isMainMenuActive: Bool = true
     @Published var isHeadsetReady: Bool = false
     @Published var saveFolder: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-    @Published var loadFolder: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    @Published var loadFolder: URL = Bundle.main.bundleURL.appendingPathComponent("Contents/Resources/DefaultImages")
     @Published var intervalSeconds: Double = 1.0
-    //@Published var images = prepareImages()
     @Published var boardId: BoardIds = .SYNTHETIC_BOARD
 
     var headset = try! Headset(boardId: .SYNTHETIC_BOARD)

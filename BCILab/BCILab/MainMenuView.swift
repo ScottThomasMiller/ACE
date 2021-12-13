@@ -17,6 +17,7 @@ func timestamp() -> String {
 struct MainMenuView: View {
     @ObservedObject var appState: AppState
     let appGeometry: GeometryProxy
+    let slideshow: SlideShow
 
     var body: some View {
         let fWidth = appGeometry.size.width
@@ -25,7 +26,8 @@ struct MainMenuView: View {
             Color.white
             VStack(alignment: .center, spacing: 2.0) {
                 let _ = print("[\(timestamp())] MainMenuView.body")
-                let status = StatusRec(imagesCount: 0,
+                let status = StatusRec(numImages: slideshow.images.count/2,
+                                       numLabels: slideshow.labels.count,
                                        headsetStatus: self.appState.headsetStatus,
                                        boardName: self.appState.boardId.name)
                 

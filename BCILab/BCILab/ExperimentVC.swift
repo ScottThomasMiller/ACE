@@ -15,27 +15,28 @@ struct ExperimentVC: View {
     @State var mainTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State var animationTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State var selection = -1
+    let slideshow = SlideShow()
     let interval = 1.0
 
     func manageSlideShow(for images: [LabeledImage]) {
         guard self.selection < (images.count-1) else {
             try? BoardShim.logMessage(.LEVEL_INFO, "experiment complete")
             if let board = self.appState.headset.board {
-                try? board.insertMarker(value: ImageLabels.stop.rawValue) }
+                try? board.insertMarker(value: MarkerType.stop.rawValue) }
             self.stopTimer()
             return }
         
         if self.selection < 0 {
             try? BoardShim.logMessage(.LEVEL_INFO, "experiment is ready and paused")
             if let board = self.appState.headset.board {
-                try? board.insertMarker(value: ImageLabels.blank.rawValue) }
+                try? board.insertMarker(value: MarkerType.blank.rawValue) }
             self.selection = 0
             self.stopTimer() }
         else {
-            let label = images[self.selection+1].label
-            try? BoardShim.logMessage(.LEVEL_INFO, "marker: \(label)")
+            let marker = images[self.selection+1].marker
+            try? BoardShim.logMessage(.LEVEL_INFO, "timer marker: \(marker)")
             if let board = self.appState.headset.board {
-                try? board.insertMarker(value: label.rawValue) }
+                try? board.insertMarker(value: marker) }
             self.selection += 1 }
     }
     
@@ -70,7 +71,7 @@ struct ExperimentVC: View {
     
     func insertAppears(_ image: LabeledImage) {
         if !image.appeared {
-            let marker = image.label.rawValue + 100.0
+            let marker = image.marker + 100.0
             if let board = self.appState.headset.board {
                 try? BoardShim.logMessage(.LEVEL_INFO, "on-appear marker: \(marker)")
                 try? board.insertMarker(value: marker) }
@@ -99,21 +100,20 @@ struct ExperimentVC: View {
     }
 
     var body: some View {
-        let _ = self.appState.headset.saveURL = self.appState.saveFolder
-        let images = prepareImages(from: self.appState.loadFolder)
+        let _ = slideshow.prepareImages(from: self.appState.loadFolder)
         GeometryReader { geometry in
             let _ = print("[\(timestamp())] ExperimentVC.body: geometry->\(geometry.size)")
             ZStack(alignment: .topLeading) {
                 Color.white
                 TabView(selection : self.$selection) {
-                    ForEach(0..<images.count) { i in
-                        images[i].image
+                    ForEach(0..<slideshow.images.count) { i in
+                        slideshow.images[i].image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .onAppear(perform: { insertAppears(images[i]) })
+                        .onAppear(perform: { insertAppears(slideshow.images[i]) })
                     }
                 }
-                .onReceive(animationTimer, perform: { _ in manageSlideShow(for: images) })
+                .onReceive(animationTimer, perform: { _ in manageSlideShow(for: slideshow.images) })
                 .onChange(of: appState.intervalSeconds, perform: { _ in resetTimer() })
                 .onChange(of: appState.boardId, perform: { _ in disconnectHeadset() })
                 .onReceive(mainTimer, perform: { _ in checkHeadset() })
@@ -121,7 +121,7 @@ struct ExperimentVC: View {
                 .onLongPressGesture{ activateMenu() }
             }
             .sheet(isPresented: $appState.isMainMenuActive, onDismiss: { dismissMenu() }) {
-                MainMenuView(appState: appState, appGeometry: geometry) }
+                MainMenuView(appState: appState, appGeometry: geometry, slideshow: slideshow) }
         }
     }
 
@@ -130,7 +130,7 @@ struct ExperimentVC: View {
             return }
         try? BoardShim.logMessage(.LEVEL_INFO, "stopping timer")
         if let board = self.appState.headset.board {
-            try? board.insertMarker(value: ImageLabels.stop.rawValue)}
+            try? board.insertMarker(value: MarkerType.stop.rawValue)}
         self.appState.headset.isStreaming = false
         self.animationTimer.upstream.connect().cancel()
         self.appState.isTimerRunning = false
@@ -140,7 +140,7 @@ struct ExperimentVC: View {
         try? BoardShim.logMessage(.LEVEL_INFO, "start timer")
         self.appState.headset.isStreaming = true
         if let board = self.appState.headset.board {
-            try? board.insertMarker(value: ImageLabels.start.rawValue) }
+            try? board.insertMarker(value: MarkerType.start.rawValue) }
         
         let interval = Double(self.appState.intervalSeconds)
         self.animationTimer = Timer.publish(every: interval, on: .main, in: .common).autoconnect()

@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 
 struct StatusRec {
-    let imagesCount: Int
+    let numImages: Int
+    let numLabels: Int
     let headsetStatus: String
     let boardName: String
 }
@@ -29,13 +30,14 @@ struct AppStatusView: View {
 
             HStack(alignment: .center) {
                 VStack(alignment: .leading) {
-                    if self.status.imagesCount <= 0 {
-                        Text("Images status:").bold().font(.largeTitle).foregroundColor(.black) }
+                    Text("Images status:").bold().font(.largeTitle).foregroundColor(.black)
                     Text("Headset status:").bold().font(.largeTitle).foregroundColor(.black)
                     Text("Headset type:").bold().font(.largeTitle).foregroundColor(.black) }
                 VStack(alignment: .trailing) {
-                    if self.status.imagesCount <= 0 {
+                    if self.status.numImages <= 0 {
                         Text("No images found").bold().font(.largeTitle).foregroundColor(.red) }
+                    else {
+                        Text("\(self.status.numImages) images and \(self.status.numLabels) labels").bold().font(.largeTitle).foregroundColor(.green) }
                     Text("\(self.status.headsetStatus)").bold().font(.largeTitle).foregroundColor(statusColor)
                     Text("\(self.status.boardName)").bold().font(.title).foregroundColor(.blue) }
             } // HStack
