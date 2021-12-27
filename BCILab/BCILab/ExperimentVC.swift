@@ -98,15 +98,30 @@ struct ExperimentVC: View {
     func dismissMenu() {
         print("dismissMenu()")
     }
-
+    
+    func writeLabelFile() {
+        let uqID = CSVFile.uniqueID()
+        let labelFile = CSVFile(fileName: "BCILabels").create(id: uqID, saveFolder: appState.saveFolder)
+        for label in slideshow.labels {
+            labelFile.write(Data("\(label)\n".utf8))
+        }
+    }
+    
+    func reloadImages() {
+        guard slideshow.prepareImages(from: appState.loadFolder) else {
+            return }
+        self.selection = 0
+    }
+    
     var body: some View {
         let _ = slideshow.prepareImages(from: self.appState.loadFolder)
+        let _ = writeLabelFile()
         GeometryReader { geometry in
             let _ = print("[\(timestamp())] ExperimentVC.body: geometry->\(geometry.size)")
             ZStack(alignment: .topLeading) {
                 Color.white
                 TabView(selection : self.$selection) {
-                    ForEach(0..<slideshow.images.count) { i in
+                    ForEach(0..<slideshow.images.count, id: \.self) { i in
                         slideshow.images[i].image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -116,6 +131,7 @@ struct ExperimentVC: View {
                 .onReceive(animationTimer, perform: { _ in manageSlideShow(for: slideshow.images) })
                 .onChange(of: appState.intervalSeconds, perform: { _ in resetTimer() })
                 .onChange(of: appState.boardId, perform: { _ in disconnectHeadset() })
+                .onChange(of: appState.loadFolder, perform: { _ in reloadImages() })
                 .onReceive(mainTimer, perform: { _ in checkHeadset() })
                 .onTapGesture { pauseResume() }
                 .onLongPressGesture{ activateMenu() }

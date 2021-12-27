@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ChangeIntervalView: View {
     @Binding var intervalSeconds: Double
-    //@Binding var isMainMenuActive: Bool
     @State private var newValue: Double = 0.0
 
     var body: some View {
@@ -25,8 +24,8 @@ struct ChangeIntervalView: View {
                 self.intervalSeconds = self.newValue
                 try? BoardShim.logMessage(.LEVEL_INFO, "new interval: \(intervalSeconds) sec.")
             })
-            .fixedSize(horizontal: true, vertical: true)
             .padding()
+            .fixedSize(horizontal: true, vertical: true)
             Text("seconds")
         }
         .font(.title2)

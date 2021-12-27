@@ -21,13 +21,20 @@ class CSVFile: FileHandle {
     // create the csv file in Documents unless overridden by saveFolder:
     func create(id: String, saveFolder: URL? = nil) -> FileHandle {
         var docDir: URL
-        
+
         if let saveURL = saveFolder {
-            docDir = saveURL }
+            docDir = saveURL
+            let savePath = saveURL.path
+            do {
+                try FileManager.default.createDirectory(atPath: savePath, withIntermediateDirectories: true) }
+            catch {
+                print("create directory error: \(error.localizedDescription)")
+            }
+        }
         else {
             docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first! }
         
-        let csvURL = docDir.appendingPathComponent(fileName+"_"+id).appendingPathExtension("csv")
+        let csvURL = docDir.appendingPathComponent(self.fileName+"_"+id).appendingPathExtension("csv")
         var fileHandle: FileHandle
         
         do {
@@ -54,4 +61,5 @@ extension FileHandle {
             sampleString += "\n"
             self.write(Data(sampleString.utf8)) }
     }
+    
 }

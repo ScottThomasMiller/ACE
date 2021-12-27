@@ -49,7 +49,7 @@ struct ChangeSaveFolderView: View {
         VStack {
             VStack (alignment: .leading, spacing: 10.0) {
                 Text("Current save folder:")
-                Text(self.folderURL.relativeString)
+                Text(self.folderURL.lastPathComponent)
                 Spacer()
                 Button("Change") {
                     pickFolder()

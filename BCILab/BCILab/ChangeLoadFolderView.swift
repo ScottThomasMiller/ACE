@@ -50,7 +50,7 @@ struct ChangeLoadFolderView: View {
         var numValid = 0
         if let subFolders = FileManager.default.subFolders(of: folder) {
             guard subFolders.count > 0 else {
-                try? BoardShim.logMessage(.LEVEL_INFO, "no subfolders in load folder \(folder)")
+                try? BoardShim.logMessage(.LEVEL_ERROR, "no subfolders in load folder \(folder)")
                 return false
             }
 
@@ -58,7 +58,7 @@ struct ChangeLoadFolderView: View {
                 print("  subfolder: \(folder)")
                 if let imageURLs = FileManager.default.imageURLs(of: folder) {
                     guard imageURLs.count > 0 else {
-                        try? BoardShim.logMessage(.LEVEL_INFO, "no images in subfolder \(folder)")
+                        try? BoardShim.logMessage(.LEVEL_ERROR, "no images in subfolder \(folder)")
                         return false
                     }
                     numValid += 1

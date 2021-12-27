@@ -10,6 +10,7 @@ import SwiftUI
 
 enum MarkerType: Double {
     case unlabeled = -99
+    case end = -4
     case start  = -3
     case stop = -2
     case blank = -1
@@ -36,11 +37,13 @@ class SlideShow {
         let data = try Data(contentsOf: url)
         #if os(macOS)
             guard let nsImage = NSImage(data: data) else {
+                try? BoardShim.logMessage(.LEVEL_ERROR, "cannot load image URL: \(url)")
                 return nil
             }
             return Image(nsImage: nsImage)
         #else
             guard let uiImage = UIImage(data: data) else {
+                try? BoardShim.logMessage(.LEVEL_ERROR, "cannot load image URL: \(url)")
                 return nil
             }
             return Image(uiImage: uiImage)
@@ -95,22 +98,22 @@ class SlideShow {
         return labeledImages
     }
 
-    func getBlankImage() -> Image? {
-        guard let blankURL = Bundle.main.url(forResource: "black_crosshair", withExtension: ".jpeg") else {
-            try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot locate blank URL")
+    func getImage(_ assetName: String) -> Image? {
+        guard let blankURL = Bundle.main.url(forResource: assetName, withExtension: nil) else {
+            try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot locate URL for asset: \(assetName)")
             return nil
         }
-        guard let blankImage = try? loadURL(blankURL) else {
-            try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load blank image")
+        guard let assetImage = try? loadURL(blankURL) else {
+            try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load image \(assetName)")
             return nil
         }
         
-        return blankImage
+        return assetImage
     }
-
+    
     // Return a randomized array of faces and nonfaces, with blanks inserted between each image.
     func prepareFaces () -> [LabeledImage] {
-        guard let blankImage = getBlankImage() else {
+        guard let blankImage = getImage("black_crosshair.jpeg") else {
             try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load blank image")
             return [LabeledImage]()
         }
@@ -132,15 +135,19 @@ class SlideShow {
         return finalImages
     }
 
-    // Return a randomized array of all subfolders, with blanks inserted between each image.
+    // Load a randomized array of all subfolders, with blanks inserted between each image.
     // Use the subfolder name as the image label.
     func prepareImages (from folder: URL) -> Bool {
         print("before: \(images.count)")
         var marker: Double = 0
         var newImages = [LabeledImage]()
  
-        guard let blankImage = getBlankImage() else {
-            try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load blank image")
+        guard let blankImage = getImage("black_crosshair.jpeg") else {
+            try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load crosshair image")
+            return false
+        }
+        guard let endImage = getImage("end.png") else {
+            try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load end image")
             return false
         }
         guard let subFolders = FileManager.default.subFolders(of: folder) else {
@@ -170,6 +177,7 @@ class SlideShow {
         }
 
         self.images = finalImages
+        self.images.append(LabeledImage(image: endImage, marker: MarkerType.end.rawValue))
         try? BoardShim.logMessage(.LEVEL_INFO, "loaded \(newImages.count) images total " +
                                                "across \(self.labels.count) labels")
         return true

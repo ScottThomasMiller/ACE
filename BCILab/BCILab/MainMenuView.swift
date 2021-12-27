@@ -20,7 +20,7 @@ struct MainMenuView: View {
     let slideshow: SlideShow
 
     var body: some View {
-        let fWidth = appGeometry.size.width
+        let fWidth = 0.9*appGeometry.size.width
         let fHeight = 0.9*appGeometry.size.height
         ZStack {
             Color.white
@@ -29,7 +29,8 @@ struct MainMenuView: View {
                 let status = StatusRec(numImages: slideshow.images.count/2,
                                        numLabels: slideshow.labels.count,
                                        headsetStatus: self.appState.headsetStatus,
-                                       boardName: self.appState.boardId.name)
+                                       boardName: self.appState.boardId.name,
+                                       loadFolder: self.appState.loadFolder.lastPathComponent)
                 
                 NavigationView {
                     ZStack {

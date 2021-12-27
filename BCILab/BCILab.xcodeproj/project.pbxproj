@@ -43,6 +43,14 @@
 		5F39795E271330F5003D3A64 /* ChangeIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39795C271330F5003D3A64 /* ChangeIntervalView.swift */; };
 		5F39795F271330F5003D3A64 /* ChangeIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39795C271330F5003D3A64 /* ChangeIntervalView.swift */; };
 		5F3B444326FCB32400AC20E8 /* BrainFlowCItests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3B444226FCB32400AC20E8 /* BrainFlowCItests.swift */; };
+		5F3BB14F276A0D2F00A194F2 /* end.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3BB14E276A0D2F00A194F2 /* end.png */; };
+		5F3BB150276A0D2F00A194F2 /* end.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3BB14E276A0D2F00A194F2 /* end.png */; };
+		5F3BB151276A0D2F00A194F2 /* end.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3BB14E276A0D2F00A194F2 /* end.png */; };
+		5F3BB152276A0D2F00A194F2 /* end.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3BB14E276A0D2F00A194F2 /* end.png */; };
+		5F3BB153276A0D2F00A194F2 /* end.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3BB14E276A0D2F00A194F2 /* end.png */; };
+		5F3BB154276A0D2F00A194F2 /* end.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3BB14E276A0D2F00A194F2 /* end.png */; };
+		5F3BB155276A0D2F00A194F2 /* end.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3BB14E276A0D2F00A194F2 /* end.png */; };
+		5F3BB156276A0D2F00A194F2 /* end.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3BB14E276A0D2F00A194F2 /* end.png */; };
 		5F509C9E26FFEDAB00B48497 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F509C9D26FFEDAB00B48497 /* MainMenuView.swift */; };
 		5F509C9F26FFEDAB00B48497 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F509C9D26FFEDAB00B48497 /* MainMenuView.swift */; };
 		5F51807E27033C9700665A7C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F51807D27033C9700665A7C /* AppState.swift */; };
@@ -62,9 +70,6 @@
 		5F524C4A26BAD67C00DECD6E /* StreamInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3626BAD67C00DECD6E /* StreamInfo.swift */; };
 		5F524C4B26BAD67C00DECD6E /* ChannelFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3826BAD67C00DECD6E /* ChannelFormat.swift */; };
 		5F524C4D26BAD67C00DECD6E /* ChannelFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3826BAD67C00DECD6E /* ChannelFormat.swift */; };
-		5F576B2B26DDC5FC00A71CD4 /* green_crosshair-old.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F576B2A26DDC5FC00A71CD4 /* green_crosshair-old.png */; };
-		5F576B2C26DDC5FC00A71CD4 /* green_crosshair-old.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F576B2A26DDC5FC00A71CD4 /* green_crosshair-old.png */; };
-		5F576B2D26DDC5FC00A71CD4 /* green_crosshair-old.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F576B2A26DDC5FC00A71CD4 /* green_crosshair-old.png */; };
 		5F58BD1026AC1C5D003F5483 /* BCILabApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F58BD0F26AC1C5D003F5483 /* BCILabApp.swift */; };
 		5F58BD1426AC1C5E003F5483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F58BD1326AC1C5E003F5483 /* Assets.xcassets */; };
 		5F58BD1726AC1C5E003F5483 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F58BD1626AC1C5E003F5483 /* Preview Assets.xcassets */; };
@@ -184,9 +189,6 @@
 		5FE55F772704850C00DDA111 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F51807D27033C9700665A7C /* AppState.swift */; };
 		5FE55F782704850C00DDA111 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F51807D27033C9700665A7C /* AppState.swift */; };
 		5FE55F792704850C00DDA111 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F51807D27033C9700665A7C /* AppState.swift */; };
-		5FE55F802704852300DDA111 /* green_crosshair-old.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F576B2A26DDC5FC00A71CD4 /* green_crosshair-old.png */; };
-		5FE55F812704852400DDA111 /* green_crosshair-old.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F576B2A26DDC5FC00A71CD4 /* green_crosshair-old.png */; };
-		5FE55F822704852400DDA111 /* green_crosshair-old.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F576B2A26DDC5FC00A71CD4 /* green_crosshair-old.png */; };
 		5FE55F832704853F00DDA111 /* BrainFlowException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107E26DD36F0000A6FFE /* BrainFlowException.swift */; };
 		5FE55F842704853F00DDA111 /* BrainFlowException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107E26DD36F0000A6FFE /* BrainFlowException.swift */; };
 		5FE55F852704853F00DDA111 /* BrainFlowException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107E26DD36F0000A6FFE /* BrainFlowException.swift */; };
@@ -237,7 +239,6 @@
 		5FE950BB2728120600E3E1A3 /* RealModule in Frameworks */ = {isa = PBXBuildFile; productRef = 5FE950992728120600E3E1A3 /* RealModule */; };
 		5FE950BD2728120600E3E1A3 /* ComplexModule in Frameworks */ = {isa = PBXBuildFile; productRef = 5FE950972728120600E3E1A3 /* ComplexModule */; };
 		5FE950BF2728120600E3E1A3 /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = 5FE9509A2728120600E3E1A3 /* Numerics */; };
-		5FE950C22728120600E3E1A3 /* green_crosshair-old.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F576B2A26DDC5FC00A71CD4 /* green_crosshair-old.png */; };
 		5FE950C52728120600E3E1A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F58BD1626AC1C5E003F5483 /* Preview Assets.xcassets */; };
 		5FE950C62728120600E3E1A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F58BD1326AC1C5E003F5483 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -339,6 +340,7 @@
 		5F1C3CE82728B07100938198 /* libBoardController.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBoardController.dylib; path = BrainFlow/dylib/SIMULATORX86_64/libBoardController.dylib; sourceTree = "<group>"; };
 		5F39795C271330F5003D3A64 /* ChangeIntervalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeIntervalView.swift; sourceTree = "<group>"; };
 		5F3B444226FCB32400AC20E8 /* BrainFlowCItests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainFlowCItests.swift; sourceTree = "<group>"; };
+		5F3BB14E276A0D2F00A194F2 /* end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = end.png; sourceTree = "<group>"; };
 		5F466A2126FD222A001226F9 /* ml_module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ml_module.h; sourceTree = "<group>"; };
 		5F509C9D26FFEDAB00B48497 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		5F51807D27033C9700665A7C /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -352,7 +354,6 @@
 		5F524C3826BAD67C00DECD6E /* ChannelFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelFormat.swift; sourceTree = "<group>"; };
 		5F524C4E26BAD84400DECD6E /* lsl_c.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lsl_c.h; sourceTree = "<group>"; };
 		5F524C4F26BAD86F00DECD6E /* lsl_constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lsl_constants.h; sourceTree = "<group>"; };
-		5F576B2A26DDC5FC00A71CD4 /* green_crosshair-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green_crosshair-old.png"; sourceTree = "<group>"; };
 		5F58BD0C26AC1C5D003F5483 /* BCILab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BCILab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F58BD0F26AC1C5D003F5483 /* BCILabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCILabApp.swift; sourceTree = "<group>"; };
 		5F58BD1326AC1C5E003F5483 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -496,9 +497,9 @@
 		5F58BD0326AC1C5D003F5483 = {
 			isa = PBXGroup;
 			children = (
+				5F3BB14E276A0D2F00A194F2 /* end.png */,
 				5FC9E8902766D5D900B0D728 /* DefaultImages */,
 				5FC7928C274B1E0A00FCA041 /* black_crosshair.jpeg */,
-				5F576B2A26DDC5FC00A71CD4 /* green_crosshair-old.png */,
 				5FCD109126DD3B13000A6FFE /* BrainFlow */,
 				5FCD109026DD3AC7000A6FFE /* brainflow-bridge.h */,
 				5F524C4E26BAD84400DECD6E /* lsl_c.h */,
@@ -822,7 +823,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					5F58BD0B26AC1C5D003F5483 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -886,7 +887,7 @@
 			files = (
 				5FC7928D274B1E0A00FCA041 /* black_crosshair.jpeg in Resources */,
 				5FC9E8912766D5D900B0D728 /* DefaultImages in Resources */,
-				5F576B2B26DDC5FC00A71CD4 /* green_crosshair-old.png in Resources */,
+				5F3BB14F276A0D2F00A194F2 /* end.png in Resources */,
 				5F58BD1726AC1C5E003F5483 /* Preview Assets.xcassets in Resources */,
 				5F58BD1426AC1C5E003F5483 /* Assets.xcassets in Resources */,
 			);
@@ -896,8 +897,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F3BB151276A0D2F00A194F2 /* end.png in Resources */,
 				5FC7928F274B1E0A00FCA041 /* black_crosshair.jpeg in Resources */,
-				5F576B2C26DDC5FC00A71CD4 /* green_crosshair-old.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -906,8 +907,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FC79290274B1E0A00FCA041 /* black_crosshair.jpeg in Resources */,
+				5F3BB152276A0D2F00A194F2 /* end.png in Resources */,
 				5FC9E8932766D5D900B0D728 /* DefaultImages in Resources */,
-				5F576B2D26DDC5FC00A71CD4 /* green_crosshair-old.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -915,6 +916,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F3BB153276A0D2F00A194F2 /* end.png in Resources */,
 				5FC79291274B1E0A00FCA041 /* black_crosshair.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -923,11 +925,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FE950C22728120600E3E1A3 /* green_crosshair-old.png in Resources */,
 				5FC7928E274B1E0A00FCA041 /* black_crosshair.jpeg in Resources */,
 				5FE950C52728120600E3E1A3 /* Preview Assets.xcassets in Resources */,
 				5F5FF964272842BE00566DD0 /* BCILab.app in Resources */,
 				5FC9E8922766D5D900B0D728 /* DefaultImages in Resources */,
+				5F3BB150276A0D2F00A194F2 /* end.png in Resources */,
 				5FE950C62728120600E3E1A3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -937,8 +939,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FC79292274B1E0A00FCA041 /* black_crosshair.jpeg in Resources */,
+				5F3BB154276A0D2F00A194F2 /* end.png in Resources */,
 				5FE55F5C270484E400DDA111 /* Assets.xcassets in Resources */,
-				5FE55F802704852300DDA111 /* green_crosshair-old.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -947,7 +949,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FC79293274B1E0A00FCA041 /* black_crosshair.jpeg in Resources */,
-				5FE55F812704852400DDA111 /* green_crosshair-old.png in Resources */,
+				5F3BB155276A0D2F00A194F2 /* end.png in Resources */,
 				5FE55F5D270484E500DDA111 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -957,7 +959,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FC79294274B1E0A00FCA041 /* black_crosshair.jpeg in Resources */,
-				5FE55F822704852400DDA111 /* green_crosshair-old.png in Resources */,
+				5F3BB156276A0D2F00A194F2 /* end.png in Resources */,
 				5FE55F5E270484E500DDA111 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1740,6 +1742,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BrainWaveiOS/Preview Content\"";
 				DEVELOPMENT_TEAM = Y8JL76N88P;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1779,6 +1782,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BrainWaveiOS/Preview Content\"";
 				DEVELOPMENT_TEAM = Y8JL76N88P;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

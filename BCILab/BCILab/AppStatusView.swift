@@ -13,6 +13,7 @@ struct StatusRec {
     let numLabels: Int
     let headsetStatus: String
     let boardName: String
+    let loadFolder: String
 }
 
 struct AppStatusView: View {
@@ -30,10 +31,12 @@ struct AppStatusView: View {
 
             HStack(alignment: .center) {
                 VStack(alignment: .leading) {
-                    Text("Images status:").bold().font(.largeTitle).foregroundColor(.black)
+                    Text("Image folder:").bold().font(.largeTitle).foregroundColor(.black)
+                    Text("Image counts:").bold().font(.largeTitle).foregroundColor(.black)
                     Text("Headset status:").bold().font(.largeTitle).foregroundColor(.black)
                     Text("Headset type:").bold().font(.largeTitle).foregroundColor(.black) }
                 VStack(alignment: .trailing) {
+                    Text("\(self.status.loadFolder)").bold().font(.largeTitle).foregroundColor(.green)
                     if self.status.numImages <= 0 {
                         Text("No images found").bold().font(.largeTitle).foregroundColor(.red) }
                     else {
