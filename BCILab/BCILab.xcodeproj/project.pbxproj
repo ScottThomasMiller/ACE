@@ -26,7 +26,6 @@
 		5F0C02C2274F99F1003F68DF /* SlideShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02BE274F99F1003F68DF /* SlideShow.swift */; };
 		5F0C02C5274FB9CC003F68DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC07DB426BEFB4300B1971B /* ContentView.swift */; };
 		5F0C02C6274FB9F1003F68DF /* SlideShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02BE274F99F1003F68DF /* SlideShow.swift */; };
-		5F0C02C9274FC2DA003F68DF /* ExperimentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA32782700A13500CF66E5 /* ExperimentVC.swift */; };
 		5F0C02CA274FE901003F68DF /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F509C9D26FFEDAB00B48497 /* MainMenuView.swift */; };
 		5F0C02CC2750FE6E003F68DF /* AppStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02CB2750FE6E003F68DF /* AppStatusView.swift */; };
 		5F0C02CD2750FE6E003F68DF /* AppStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02CB2750FE6E003F68DF /* AppStatusView.swift */; };
@@ -39,6 +38,7 @@
 		5F1C3CEC2728B07100938198 /* libDataHandler.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F1C3CE72728B07100938198 /* libDataHandler.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5F1C3CED2728B07100938198 /* libBoardController.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F1C3CE82728B07100938198 /* libBoardController.dylib */; platformFilter = ios; };
 		5F1C3CEE2728B07100938198 /* libBoardController.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F1C3CE82728B07100938198 /* libBoardController.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5F1FE8FF2792E9B3005545D1 /* ExperimentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F01258E2745A68200F356B1 /* ExperimentVC.swift */; };
 		5F39795D271330F5003D3A64 /* ChangeIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39795C271330F5003D3A64 /* ChangeIntervalView.swift */; };
 		5F39795E271330F5003D3A64 /* ChangeIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39795C271330F5003D3A64 /* ChangeIntervalView.swift */; };
 		5F39795F271330F5003D3A64 /* ChangeIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39795C271330F5003D3A64 /* ChangeIntervalView.swift */; };
@@ -1117,8 +1117,8 @@
 				5FE950A72728120600E3E1A3 /* BrainFlowExtensions.swift in Sources */,
 				5F0C02C6274FB9F1003F68DF /* SlideShow.swift in Sources */,
 				5F01230F2752A60700E8F07E /* TextRTView.swift in Sources */,
-				5F0C02C9274FC2DA003F68DF /* ExperimentVC.swift in Sources */,
 				5FE950A92728120600E3E1A3 /* SampleX.swift in Sources */,
+				5F1FE8FF2792E9B3005545D1 /* ExperimentVC.swift in Sources */,
 				5FE950AC2728120600E3E1A3 /* DataFilter.swift in Sources */,
 				5FE950AD2728120600E3E1A3 /* BrainFlowException.swift in Sources */,
 				5FD6E2C2275BAF0E00F9A4CB /* ChangeLoadFolderView.swift in Sources */,

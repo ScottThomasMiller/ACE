@@ -195,7 +195,8 @@ class Headset {
         return true
     }
 
-    func reopenFiles()  {
+    func openNewFiles()  {
+        try? BoardShim.logMessage(.LEVEL_INFO, "Opening new files")
         if rawFile != nil {
             try? rawFile!.close()
             try? filteredFile!.close() }
@@ -326,7 +327,7 @@ class Headset {
                 }
                 
                 if pauseCount > 0 {
-                    reopenFiles()
+                    openNewFiles()
                 }
                 
                 pauseCount = 0

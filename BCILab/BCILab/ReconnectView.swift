@@ -64,8 +64,7 @@ struct ReconnectView: View {
                 }
                 .buttonStyle(GrowingButton(color: .blue))
             }
-            //Spacer()
-            //TextRTView(message: $message)
+
             Spacer()
         }
         //.frame(width: 450, height: 350, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
