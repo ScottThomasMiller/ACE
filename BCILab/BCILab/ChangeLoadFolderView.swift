@@ -35,7 +35,7 @@ extension FileManager {
         }
     }
 
-// from: https://stackoverflow.com/questions/27721418/getting-list-of-files-in-documents-folder/27722526
+// borrowed from: https://stackoverflow.com/questions/27721418/getting-list-of-files-in-documents-folder/27722526
 //    func urls(for directory: FileManager.SearchPathDirectory, skipsHiddenFiles: Bool = true ) -> [URL]? {
 //        let documentsURL = urls(for: directory, in: .userDomainMask)[0]
 //        let fileURLs = try? contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil, options: skipsHiddenFiles ? .skipsHiddenFiles : [] )
@@ -55,7 +55,6 @@ struct ChangeLoadFolderView: View {
             }
 
             for folder in subFolders {
-                print("  subfolder: \(folder)")
                 if let imageURLs = FileManager.default.imageURLs(of: folder) {
                     guard imageURLs.count > 0 else {
                         try? BoardShim.logMessage(.LEVEL_ERROR, "no images in subfolder \(folder)")

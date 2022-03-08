@@ -29,7 +29,7 @@ import Foundation
 //}
 //
 struct ChangeSaveFolderView: View {
-    @Binding var folderURL: URL
+    @Binding var saveFolderURL: URL
 
     func pickFolder() {
         let panel = NSOpenPanel()
@@ -40,16 +40,16 @@ struct ChangeSaveFolderView: View {
         print("pickFolder()")
         if panel.runModal() == .OK {
             if let selectedURL = panel.url {
-                if selectedURL != self.folderURL {
-                    self.folderURL = selectedURL
-                    try? BoardShim.logMessage(.LEVEL_INFO, "New save folder URL: \(selectedURL)") }}}
+                if selectedURL != self.saveFolderURL {
+                    self.saveFolderURL = selectedURL
+                    try? BoardShim.logMessage(.LEVEL_INFO, "selected save folder URL: \(selectedURL)") }}}
     }
 
     var body: some View {
         VStack {
             VStack (alignment: .leading, spacing: 10.0) {
-                Text("Current save folder:")
-                Text(self.folderURL.lastPathComponent)
+                Text("Current save folder:").font(.title2)
+                Text(self.saveFolderURL.lastPathComponent)
                 Spacer()
                 Button("Change") {
                     pickFolder()

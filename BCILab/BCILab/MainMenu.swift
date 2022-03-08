@@ -14,20 +14,26 @@ func timestamp() -> String {
     return (formatter.string(from: Date()) as NSString) as String
 }
 
-struct MainMenuView: View {
+struct MainMenu: View {
+    @Binding var isMainMenuActive: Bool
     @ObservedObject var appState: AppState
     let appGeometry: GeometryProxy
-    let slideshow: SlideShow
 
+    func restartAction() {
+        try? BoardShim.logMessage(.LEVEL_INFO, "restarting")
+        self.isMainMenuActive = false
+        self.appState.saveIndex = -1
+    }
+    
     var body: some View {
         let fWidth = 0.9*appGeometry.size.width
         let fHeight = 0.9*appGeometry.size.height
         ZStack {
             Color.white
             VStack(alignment: .center, spacing: 2.0) {
-                let _ = print("[\(timestamp())] MainMenuView.body")
-                let status = StatusRec(numImages: slideshow.images.count/2,
-                                       numLabels: slideshow.labels.count,
+                let _ = try? BoardShim.logMessage(.LEVEL_INFO, "MainMenuView body recompute")
+                let status = StatusRec(numImages: appState.totalImages/2,
+                                       numLabels: appState.labels.count,
                                        headsetStatus: self.appState.headsetStatus,
                                        boardName: self.appState.boardId.name,
                                        loadFolder: self.appState.loadFolder.lastPathComponent)
@@ -38,11 +44,9 @@ struct MainMenuView: View {
                         List {
                             NavigationLink(destination: ReconnectView(headset: self.$appState.headset,
                                                                       boardId: self.$appState.boardId,
-                                                                      headsetStatus: self.$appState.headsetStatus,
-                                                                      isMainMenuActive: self.$appState.isMainMenuActive,
-                                                                      isHeadsetReady: self.$appState.isHeadsetReady)) {
+                                                                      isMainMenuActive: self.$isMainMenuActive)) {
                                 NavLinkView(id: "bluetooth", label: "Reconnect") }
-                            NavigationLink(destination: ChangeSaveFolderView(folderURL: self.$appState.saveFolder)) {
+                            NavigationLink(destination: ChangeSaveFolderView(saveFolderURL: self.$appState.saveFolder)) {
                                 NavLinkView(id: "save_folder", label: "Save Folder") }
                             NavigationLink(destination: ChangeLoadFolderView(loadFolderURL: self.$appState.loadFolder)) {
                                 NavLinkView(id: "load_folder", label: "Load Folder") }
@@ -53,16 +57,21 @@ struct MainMenuView: View {
                         } // List
                         .navigationTitle("Main Menu")
                     } // ZStack
-                }//.frame(width: 0.9*fWidth, height: 0.72*fHeight, alignment: .center) // NavigationView
+                }
                 Spacer()
                 AppStatusView(status).frame(width: 0.9*fWidth, height: 0.18*fHeight, alignment: .center)
                 Spacer()
-                Button(action: {appState.isMainMenuActive = false}) {
-                    Text("Go Back")
-                        .fontWeight(.bold)
-                        .font(.title2)
-                        .padding()
-                        .foregroundColor(.white)}.buttonStyle(GrowingButton(color: .blue))
+                HStack() {
+                    Button(action: {self.isMainMenuActive = false}) {
+                        ButtonText("Resume", self.appGeometry)
+                    }.buttonStyle(GrowingButton(color: .blue))
+                    Button(action: { restartAction() }) {
+                        ButtonText("Restart", self.appGeometry)
+                    }.buttonStyle(GrowingButton(color: .blue))
+                    Button(action: {exit(0)}) {
+                        ButtonText("Exit", self.appGeometry)
+                    }.buttonStyle(GrowingButton(color: .blue))
+                }
                 Spacer()
             } // VStack
         } // ZStack

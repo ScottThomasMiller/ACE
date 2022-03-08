@@ -10,16 +10,13 @@ import SwiftUI
 struct ReconnectView: View {
     @Binding var headset: Headset
     @Binding var boardId: BoardIds
-    @Binding var headsetStatus: String
     @Binding var isMainMenuActive: Bool
-    @Binding var isHeadsetReady: Bool
 
     //@State private var message: String = "Reconnect to Headet"
     @State private var buttonLabel: String = "Connect"
     //@ObservedObject var appState: AppState
     
     func reconnect() {
-        var newStatus = ""
         try? BoardShim.logMessage(.LEVEL_INFO, "reconnect(). deactivating the board")
         self.headset.isActive = false // terminates the streaming loop
         sleep(2)
@@ -31,21 +28,13 @@ struct ReconnectView: View {
         self.headset.board = nil
         
         do {
-            try? BoardShim.logMessage(.LEVEL_INFO, "connect to board ID: \(self.boardId)")
+            try? BoardShim.logMessage(.LEVEL_INFO, "connecting to board ID: \(self.boardId)")
             self.headset = try Headset(boardId: self.boardId)
-            self.isHeadsetReady = true }
+            try? BoardShim.logMessage(.LEVEL_INFO, "connected")
+            self.isMainMenuActive = false
+        }
         catch {
-            self.isHeadsetReady = false
-            newStatus = "failed to connect" }
-        
-        if self.isHeadsetReady {
-            newStatus = "connected"
-            self.isMainMenuActive = false }
-        else {
-            newStatus = "cannot connect" }
-        
-        try? BoardShim.logMessage(.LEVEL_INFO, newStatus)
-        self.headsetStatus = newStatus
+            try? BoardShim.logMessage(.LEVEL_INFO, "failed to connect") }
     }
 
     var body: some View {
@@ -53,7 +42,6 @@ struct ReconnectView: View {
             Spacer()
             HStack {
                 Button(action: {
-                   self.headsetStatus = "reconnecting..."
                    reconnect()
                 }) {
                     Text(self.buttonLabel)

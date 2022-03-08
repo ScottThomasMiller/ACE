@@ -1,5 +1,5 @@
 //
-//  LabeledImage.swift
+//  SlideShow.swift
 //  BCILab
 //
 //  Created by Scott Miller on 8/7/21.
@@ -8,32 +8,38 @@
 import Foundation
 import SwiftUI
 
-enum MarkerType: Double {
-    case unlabeled = -99
-    case end = -4
-    case start  = -3
-    case stop = -2
-    case blank = -1
-    case image = 1
-}
-
-class LabeledImage {
-    let image: Image
-    let marker: Double
-    var appeared = false
-    
-    init(image: Image, marker: Double) {
-        self.image = image
-        self.marker = marker
-    }
-}
-
-class SlideShow {
-    let maxImages: Int = 10000
+struct SlideShow: View {
+    @Binding var isMainMenuActive: Bool
+    var appState: AppState
+    private let maxImages: Int = 10000
     var images = [LabeledImage]()
     var labels = [String]()
+    var totalImages: Int { return self.images.count }
     
-    func loadURL(_ url: URL) throws -> Image? {
+    @State private var selection: Int = 0
+    @State private var isPaused = true
+    @State private var animationTimer = Timer.publish(every: 0.6, on: .main, in: .common).autoconnect()
+
+    private func writeLabelFile() {
+        let uqID = CSVFile.uniqueID()
+        let labelFile = CSVFile(fileName: "BCILabels").create(id: uqID, saveFolder: self.appState.saveFolder)
+        for label in self.labels {
+            labelFile.write(Data("\(label)\n".utf8))
+        }
+    }
+    
+    init(isMainMenuActive: Binding<Bool>, appState: AppState) {
+        self._isMainMenuActive = isMainMenuActive
+        self.appState = appState
+        let results = self.prepareImages(from: appState.loadFolder)
+        self.images = results.0
+        self.labels = results.1
+        self.writeLabelFile()
+        if let startIndex = appState.saveIndex { self.selection = startIndex ; print("HELLO") } else { print("NOPE") }
+        try? BoardShim.logMessage(.LEVEL_INFO, "SlideShow.init(): \(self.selection)")
+    }
+    
+    private func loadURL(_ url: URL) throws -> Image? {
         let data = try Data(contentsOf: url)
         #if os(macOS)
             guard let nsImage = NSImage(data: data) else {
@@ -50,7 +56,7 @@ class SlideShow {
         #endif
     }
 
-    func loadAllFromURL(from: URL, marker: Double) -> [LabeledImage]  {
+    private func loadAllFromURL(from: URL, marker: Double) -> [LabeledImage]  {
         var count = 0
         var labeledImages = [LabeledImage]()
         
@@ -70,11 +76,10 @@ class SlideShow {
             }
         }
         
-        print("loaded \(count) images from URL \(from) with marker \(marker)")
         return labeledImages
     }
 
-    func loadAllFromSubdir(subdir: String, marker: Double) -> [LabeledImage]  {
+    private func loadAllFromSubdir(subdir: String, marker: Double) -> [LabeledImage]  {
         var count = 0
         var labeledImages = [LabeledImage]()
         
@@ -98,7 +103,7 @@ class SlideShow {
         return labeledImages
     }
 
-    func getImage(_ assetName: String) -> Image? {
+    private func getImage(_ assetName: String) -> Image? {
         guard let blankURL = Bundle.main.url(forResource: assetName, withExtension: nil) else {
             try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot locate URL for asset: \(assetName)")
             return nil
@@ -111,64 +116,40 @@ class SlideShow {
         return assetImage
     }
     
-    // Return a randomized array of faces and nonfaces, with blanks inserted between each image.
-    func prepareFaces () -> [LabeledImage] {
-        guard let blankImage = getImage("black_crosshair.jpeg") else {
-            try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load blank image")
-            return [LabeledImage]()
-        }
-        
-        let faceImages = loadAllFromSubdir(subdir: "Faces", marker: 1.0).shuffled()
-        let nonFaceImages = loadAllFromSubdir(subdir: "NonFaces", marker: 2.0).shuffled()
-        let allShuffledImages = (faceImages + nonFaceImages).shuffled()
-        var finalImages = [LabeledImage]()
-        
-        var nImages = 0
-        for image in allShuffledImages {
-            let blank = LabeledImage(image: blankImage, marker: MarkerType.blank.rawValue)
-            finalImages.append(blank)
-            finalImages.append(image)
-            nImages += 1
-        }
-
-        try? BoardShim.logMessage(.LEVEL_INFO, "loaded \(nImages) images")
-        return finalImages
-    }
-
     // Load a randomized array of all subfolders, with blanks inserted between each image.
-    // Use the subfolder name as the image label.
-    func prepareImages (from folder: URL) -> Bool {
-        print("before: \(images.count)")
+    // Use the subfolder names for the image labels.
+    private func prepareImages (from folder: URL) -> ([LabeledImage], [String]) {
+        try? BoardShim.logMessage(.LEVEL_INFO, "prepareImages(). load folder:\n\(folder)")
         var marker: Double = 0
         var newImages = [LabeledImage]()
- 
+        var labels = [String]()
+
         guard let blankImage = getImage("black_crosshair.jpeg") else {
             try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load crosshair image")
-            return false
+            return (newImages, labels)
         }
         guard let endImage = getImage("end.png") else {
             try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load end image")
-            return false
+            return (newImages, labels)
         }
         guard let subFolders = FileManager.default.subFolders(of: folder) else {
             try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot get subfolders for folder: \(folder)")
-            return false
+            return (newImages, labels)
         }
 
         let unsortedLabelURLs = Dictionary(uniqueKeysWithValues: subFolders.map { ($0.lastPathComponent, $0) })
-        self.labels = subFolders.map {$0.lastPathComponent}
-        self.labels.sort()
+        labels = subFolders.map {$0.lastPathComponent}
+        labels.sort()
         let labelURLs = unsortedLabelURLs.sorted( by: { $0.0 < $1.0 })
-        try? BoardShim.logMessage(.LEVEL_INFO, "preparing images from URL: \(folder)")
-        
+
         for (label, subfolder) in labelURLs {
-            guard let offset = self.labels.firstIndex(of: label) else {
+            guard let offset = labels.firstIndex(of: label) else {
                 try? BoardShim.logMessage(.LEVEL_ERROR, "Invalid label: \(label)")
                 break }
             marker = MarkerType.image.rawValue + Double(offset)
             newImages += loadAllFromURL(from: subfolder, marker: marker)
         }
-        
+
         var finalImages = [LabeledImage]()
         for image in newImages.shuffled() {
             let blank = LabeledImage(image: blankImage, marker: MarkerType.blank.rawValue)
@@ -176,10 +157,107 @@ class SlideShow {
             finalImages.append(image)
         }
 
-        self.images = finalImages
-        self.images.append(LabeledImage(image: endImage, marker: MarkerType.end.rawValue))
+        finalImages.append(LabeledImage(image: endImage, marker: MarkerType.end.rawValue))
         try? BoardShim.logMessage(.LEVEL_INFO, "loaded \(newImages.count) images total " +
                                                "across \(self.labels.count) labels")
-        return true
+
+        self.appState.totalImages = finalImages.count
+        self.appState.labels = labels
+        //self.appState.saveIndex = 0
+        return (finalImages, labels)
+    }
+
+    private func insertAppears(_ image: LabeledImage) {
+        guard !self.isPaused else {
+            try? BoardShim.logMessage(.LEVEL_INFO, "insertAppears(): paused.")
+            return
+        }
+        guard !image.appeared else {
+            return
+        }
+        let nmarker = image.marker + 100.0
+        if let board = self.appState.headset.board {
+            do { try board.insertMarker(value: nmarker) }
+            catch { try? BoardShim.logMessage(.LEVEL_ERROR, "cannot insert marker \(nmarker)") }
+        }
+        image.appeared = true
+        try? BoardShim.logMessage(.LEVEL_INFO, "insertAppears(). marker: \(nmarker) selection: \(self.selection)")
+    }
+    
+    private func stopTimer() {
+        try? BoardShim.logMessage(.LEVEL_INFO, "stopTimer()")
+        self.animationTimer.upstream.connect().cancel()
+        if let board = self.appState.headset.board {
+            try? board.insertMarker(value: MarkerType.stop.rawValue)}
+        self.appState.headset.isStreaming = false
+        self.isPaused = true
+    }
+    
+    private func startTimer() {
+        try? BoardShim.logMessage(.LEVEL_INFO, "startTimer()")
+        self.appState.headset.saveURL = self.appState.saveFolder
+        self.appState.headset.isStreaming = true
+        if let board = self.appState.headset.board {
+            try? board.insertMarker(value: MarkerType.start.rawValue) }
+        let interval = Double(self.appState.intervalSeconds)
+        self.animationTimer = Timer.publish(every: interval, on: .main, in: .common).autoconnect()
+        self.isPaused = false
+    }
+    
+    private func toggleTimer() {
+        if self.isPaused {
+            startTimer() }
+        else {
+            stopTimer()}
+    }
+    
+    private func longPress() {
+        try? BoardShim.logMessage(.LEVEL_INFO, "longPress()")
+        self.stopTimer()
+        self.isMainMenuActive = true
+    }
+    
+    private func animate() {
+        if let startIndex = self.appState.saveIndex {
+            let _ = restoreSelection(to: startIndex) }
+
+        guard self.selection < (self.images.count - 1) else {
+            try? BoardShim.logMessage(.LEVEL_INFO, "experiment complete")
+            if let board = self.appState.headset.board {
+                try? board.insertMarker(value: MarkerType.stop.rawValue) }
+            self.stopTimer()
+            return }
+        
+
+        if self.isPaused {
+            try? BoardShim.logMessage(.LEVEL_INFO, "experiment is ready and paused")
+            self.stopTimer()  }
+        else {
+            self.selection += 1
+        }
+    }
+    
+    private func restoreSelection(to: Int) {
+        try? BoardShim.logMessage(.LEVEL_INFO, "restoreSelection(to: \(to))")
+        self.selection = to
+        self.appState.saveIndex = nil
+    }
+
+    var body: some View {
+        if self.selection < self.images.count {
+            let _ = insertAppears(self.images[self.selection]) }
+        ZStack(alignment: .center) {
+            Color.white
+            if self.selection < self.images.count {
+                self.images[self.selection].image
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+            }
+        }
+        .onChange(of: self.isMainMenuActive, perform: { _ in self.stopTimer() })
+        .onChange(of: self.appState.loadFolder, perform: { _ in self.selection = 0})
+        .onReceive(self.animationTimer, perform: { _ in self.animate() })
+        .onTapGesture { self.toggleTimer() }
+        .onLongPressGesture { self.longPress() }
     }
 }

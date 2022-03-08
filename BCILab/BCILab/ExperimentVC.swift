@@ -11,11 +11,11 @@ import SwiftUI
 
 
 struct ExperimentVC: View {
-    @StateObject var appState = AppState()
-    @State var mainTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
-    @State var animationTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+    @StateObject private var appState = AppState()
+    @State private var mainTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+    @State private var animationTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State var selection = -1
-    let slideshow = SlideShow()
+    //var slideshow = SlideShow()
     let interval = 1.0
 
     func manageSlideShow(for images: [LabeledImage]) {
@@ -28,15 +28,9 @@ struct ExperimentVC: View {
         
         if self.selection < 0 {
             try? BoardShim.logMessage(.LEVEL_INFO, "experiment is ready and paused")
-            if let board = self.appState.headset.board {
-                try? board.insertMarker(value: MarkerType.blank.rawValue) }
             self.selection = 0
             self.stopTimer() }
         else {
-            let marker = images[self.selection+1].marker
-            try? BoardShim.logMessage(.LEVEL_INFO, "timer marker: \(marker)")
-            if let board = self.appState.headset.board {
-                try? board.insertMarker(value: marker) }
             self.selection += 1 }
     }
     
@@ -50,7 +44,6 @@ struct ExperimentVC: View {
     
     func activateMenu() {
         stopTimer()
-        self.appState.isTimerRunning = false
         self.appState.isMainMenuActive = true
     }
     
@@ -108,14 +101,18 @@ struct ExperimentVC: View {
     }
     
     func reloadImages() {
-        guard slideshow.prepareImages(from: appState.loadFolder) else {
-            return }
+//        guard slideshow.prepareImages(from: appState.loadFolder) else {
+//            return }
+        try? BoardShim.logMessage(.LEVEL_INFO, "reloading images from new folder \(appstate.loadFolder)")
         self.selection = 0
     }
     
     var body: some View {
+        let _ = try? BoardShim.logMessage(.LEVEL_INFO, "ExperimentVC body recompute")
+        let slideshow = SlideShow()
         let _ = slideshow.prepareImages(from: self.appState.loadFolder)
         let _ = writeLabelFile()
+        
         GeometryReader { geometry in
             let _ = print("[\(timestamp())] ExperimentVC.body: geometry->\(geometry.size)")
             ZStack(alignment: .topLeading) {

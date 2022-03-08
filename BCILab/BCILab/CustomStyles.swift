@@ -28,15 +28,34 @@ struct GrowingButton: ButtonStyle {
     }
 }
 
-struct GrowingButton_Previews: PreviewProvider {
-    static var previews: some View {
-        Button(action: { print("test") }) {
-            Text("Retry")
-                .fontWeight(.bold)
-                .font(.title)
-                .padding()
-                .foregroundColor(.white)
-        }
-        .buttonStyle(GrowingButton(color: .green))
+struct ButtonText: View {
+    private let text: String
+    private let appGeometry: GeometryProxy
+
+    init(_ text: String, _ appGeometry: GeometryProxy) {
+        self.text = text
+        self.appGeometry = appGeometry
+    }
+
+    var body: some View {
+        Text(text)
+            .fontWeight(.bold)
+            .font(.title2)
+            .padding()
+            .foregroundColor(.white)
+            .frame(maxHeight: appGeometry.size.height*0.025)
     }
 }
+
+//struct GrowingButton_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Button(action: { print("test") }) {
+//            Text("Retry")
+//                .fontWeight(.bold)
+//                .font(.title)
+//                .padding()
+//                .foregroundColor(.white)
+//        }
+//        .buttonStyle(GrowingButton(color: .green))
+//    }
+//}
