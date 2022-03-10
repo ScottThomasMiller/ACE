@@ -22,7 +22,7 @@ struct MainMenu: View {
     func restartAction() {
         try? BoardShim.logMessage(.LEVEL_INFO, "restarting")
         self.isMainMenuActive = false
-        self.appState.saveIndex = -1
+        self.appState.saveIndex = 0
     }
     
     var body: some View {
@@ -31,13 +31,7 @@ struct MainMenu: View {
         ZStack {
             Color.white
             VStack(alignment: .center, spacing: 2.0) {
-                let _ = try? BoardShim.logMessage(.LEVEL_INFO, "MainMenuView body recompute")
-                let status = StatusRec(numImages: appState.totalImages/2,
-                                       numLabels: appState.labels.count,
-                                       headsetStatus: self.appState.headsetStatus,
-                                       boardName: self.appState.boardId.name,
-                                       loadFolder: self.appState.loadFolder.lastPathComponent)
-                
+                let _ = try? BoardShim.logMessage(.LEVEL_INFO, "MainMenu body recompute")
                 NavigationView {
                     ZStack {
                         Color.white
@@ -59,7 +53,7 @@ struct MainMenu: View {
                     } // ZStack
                 }
                 Spacer()
-                AppStatusView(status).frame(width: 0.9*fWidth, height: 0.18*fHeight, alignment: .center)
+                AppStatusView(appState: appState).frame(width: 0.9*fWidth, height: 0.18*fHeight, alignment: .center)
                 Spacer()
                 HStack() {
                     Button(action: {self.isMainMenuActive = false}) {
@@ -75,7 +69,7 @@ struct MainMenu: View {
                 Spacer()
             } // VStack
         } // ZStack
-        .frame(width: 0.9*fWidth, height: 0.9*fHeight, alignment: .center)
+        //.frame(width: 0.9*fWidth, height: 0.9*fHeight, alignment: .center)
     }
 } // MainMenuView
     

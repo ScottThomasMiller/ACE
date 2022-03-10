@@ -35,8 +35,7 @@ struct SlideShow: View {
         self.images = results.0
         self.labels = results.1
         self.writeLabelFile()
-        if let startIndex = appState.saveIndex { self.selection = startIndex ; print("HELLO") } else { print("NOPE") }
-        try? BoardShim.logMessage(.LEVEL_INFO, "SlideShow.init(): \(self.selection)")
+        try? BoardShim.logMessage(.LEVEL_INFO, "SlideShow.init()")
     }
     
     private func loadURL(_ url: URL) throws -> Image? {
@@ -163,7 +162,7 @@ struct SlideShow: View {
 
         self.appState.totalImages = finalImages.count
         self.appState.labels = labels
-        //self.appState.saveIndex = 0
+        self.appState.saveIndex = 0
         return (finalImages, labels)
     }
 
@@ -191,6 +190,8 @@ struct SlideShow: View {
             try? board.insertMarker(value: MarkerType.stop.rawValue)}
         self.appState.headset.isStreaming = false
         self.isPaused = true
+        self.appState.saveIndex = self.selection
+        if self.images[selection].appeared { self.appState.saveIndex! += 1 }
     }
     
     private func startTimer() {
@@ -246,18 +247,24 @@ struct SlideShow: View {
     var body: some View {
         if self.selection < self.images.count {
             let _ = insertAppears(self.images[self.selection]) }
-        ZStack(alignment: .center) {
-            Color.white
-            if self.selection < self.images.count {
-                self.images[self.selection].image
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+        GeometryReader { geometry in
+            ZStack(alignment: .center) {
+                Color.white
+                if self.selection < self.images.count {
+                    self.images[self.selection].image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                }
             }
+            .onChange(of: self.isMainMenuActive, perform: { _ in self.stopTimer() })
+            .onChange(of: self.appState.loadFolder, perform: { _ in self.selection = 0})
+            .onReceive(self.animationTimer, perform: { _ in self.animate() })
+            .onTapGesture { self.toggleTimer() }
+            .onLongPressGesture { self.longPress() }
+//            .sheet(isPresented: self.$isMainMenuActive) {
+//                MainMenu(isMainMenuActive: self.$isMainMenuActive,
+//                         appState: self.appState,
+//                         appGeometry: geometry) }
         }
-        .onChange(of: self.isMainMenuActive, perform: { _ in self.stopTimer() })
-        .onChange(of: self.appState.loadFolder, perform: { _ in self.selection = 0})
-        .onReceive(self.animationTimer, perform: { _ in self.animate() })
-        .onTapGesture { self.toggleTimer() }
-        .onLongPressGesture { self.longPress() }
     }
 }

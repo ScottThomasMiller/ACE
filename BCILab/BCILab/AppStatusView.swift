@@ -8,23 +8,22 @@
 import Foundation
 import SwiftUI
 
-struct StatusRec {
-    let numImages: Int
-    let numLabels: Int
-    let headsetStatus: String
-    let boardName: String
-    let loadFolder: String
-}
-
 struct AppStatusView: View {
-    let status: StatusRec
-    var statusColor: Color = .red
-
-    init (_ status: StatusRec) {
-        self.status = status
-        self.statusColor = (status.headsetStatus == "connected") ? .green : .red
+    @ObservedObject var appState: AppState
+    var headsetColor: Color {
+        (self.appState.headsetStatus == "connected") ? .green : .red
     }
-
+    var imagesColor: Color {
+        (self.numImages > 0) ? .green : .red
+    }
+    var numImages: Int {appState.totalImages/2}
+    var numLabels: Int {appState.labels.count}
+    var imageCounts: String {
+        if self.numImages <= 0 { return "No images found" }
+        else { return "\(self.numImages) images and \(self.numLabels) labels" }
+    }
+    var loadFolder: String {self.appState.loadFolder.lastPathComponent}
+    
     var body: some View {
         ZStack {
             Color.white
@@ -36,14 +35,11 @@ struct AppStatusView: View {
                     Text("Headset status:").bold().font(.title2).foregroundColor(.black)
                     Text("Headset type:").bold().font(.title2).foregroundColor(.black) }
                 VStack(alignment: .trailing) {
-                    Text("\(self.status.loadFolder)").bold().font(.title2).foregroundColor(.green)
-                    if self.status.numImages <= 0 {
-                        Text("No images found").bold().font(.title2).foregroundColor(.red) }
-                    else {
-                        Text("\(self.status.numImages) images and \(self.status.numLabels) labels").bold().font(.title2).foregroundColor(.green) }
-                    Text("\(self.status.headsetStatus)").bold().font(.title2).foregroundColor(statusColor)
-                    Text("\(self.status.boardName)").bold().font(.title2).foregroundColor(.blue) }
-            } // HStack
+                    Text("\(self.loadFolder)").bold().font(.title2).foregroundColor(.green)
+                    Text("\(self.imageCounts)").bold().font(.title2).foregroundColor(self.imagesColor)
+                    Text("\(self.appState.headsetStatus)").bold().font(.title2).foregroundColor(self.headsetColor)
+                    Text("\(self.appState.boardId.name)").bold().font(.title2).foregroundColor(.blue) }
+            }
         } // ZStack
     }
 }

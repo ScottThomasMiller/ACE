@@ -9,7 +9,7 @@ import SwiftUI
 struct Experiment: View {
     @StateObject private var appState = AppState()
     @State private var mainTimer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
-    @State var isMainMenuActive = false
+    @State var isMainMenuActive = true
     let interval = 1.0
     
     private func checkHeadset() {
@@ -38,14 +38,19 @@ struct Experiment: View {
     
     var body: some View {
         let _ = try? BoardShim.logMessage(.LEVEL_INFO, "Experiment body recompute")
+        let slideshow = SlideShow(isMainMenuActive: self.$isMainMenuActive,
+                                  appState: self.appState)
         GeometryReader { geometry in
-             ZStack { SlideShow(isMainMenuActive: self.$isMainMenuActive, appState: self.appState) }
-                .onChange(of: self.appState.boardId, perform: { _ in disconnectHeadset() })
-                .onReceive(mainTimer, perform: { _ in checkHeadset() })
-                .sheet(isPresented: self.$isMainMenuActive) {
-                    MainMenu(isMainMenuActive: self.$isMainMenuActive,
-                             appState: self.appState,
-                             appGeometry: geometry) }
+             ZStack {
+                 if self.isMainMenuActive {
+                     MainMenu(isMainMenuActive: self.$isMainMenuActive,
+                              appState: self.appState,
+                              appGeometry: geometry) }
+                 else {
+                     slideshow }
+             }
+            .onChange(of: self.appState.boardId, perform: { _ in disconnectHeadset() })
+            .onReceive(mainTimer, perform: { _ in checkHeadset() })
         }
     }
 }
