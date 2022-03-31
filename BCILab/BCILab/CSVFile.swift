@@ -20,20 +20,27 @@ class CSVFile: FileHandle {
     
     // create the csv file in Documents unless overridden by saveFolder:
     func create(id: String, saveFolder: URL? = nil) -> FileHandle {
-        var docDir: URL
-
-        if let saveURL = saveFolder {
-            docDir = saveURL
-            let savePath = saveURL.path
-            do {
-                try FileManager.default.createDirectory(atPath: savePath, withIntermediateDirectories: true) }
-            catch {
-                print("create directory error: \(error.localizedDescription)")
-            }
-        }
-        else {
-            docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first! }
+//        var docDir: URL
         
+//        defer { saveFolder!.stopAccessingSecurityScopedResource() }
+                
+//        if let saveURL = saveFolder {
+//            guard saveURL.startAccessingSecurityScopedResource() else {
+//                try? BoardShim.logMessage(.LEVEL_ERROR, "Cannot access save folder \(saveURL)")
+//                return FileHandle()
+//            }
+//            docDir = saveURL
+//            let savePath = saveURL.path
+//            do {
+//                try FileManager.default.createDirectory(atPath: savePath, withIntermediateDirectories: true) }
+//            catch {
+//                print("create directory error: \(error.localizedDescription)")
+//            }
+//        }
+//        else {
+//            docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first! }
+
+        let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let csvURL = docDir.appendingPathComponent(self.fileName+"_"+id).appendingPathExtension("csv")
         var fileHandle: FileHandle
         

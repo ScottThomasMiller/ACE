@@ -36,10 +36,14 @@ enum ChannelIDs: String, CaseIterable {
     case channel16 = "I"
 }
 
+let cytons: [BoardIds] = [.CYTON_BOARD, .CYTON_DAISY_BOARD]
+let brainbits: [BoardIds] = [.BRAINBIT_BOARD, .BRAINBIT_BLED_BOARD]
+
 class Headset {
+    let uuid = UUID()
     var isStreaming: Bool = false
     var isActive: Bool = true
-    let params = BrainFlowInputParams(serial_port: Headset.scan())
+    let params: BrainFlowInputParams
     private var rawFile: FileHandle?
     private var filteredFile: FileHandle?
     var boardId: BoardIds
@@ -47,18 +51,18 @@ class Headset {
     var saveURL: URL?
     let samplingRate: Int32
     let eegChannels: [Int32]
-    let boardDescription: BoardDescription
     let pkgIDchannel: Int
     let timestampChannel: Int
     let markerChannel: Int
+
 
     init(boardId: BoardIds) throws {
         self.boardId = boardId
         
         do {
-            try? BoardShim.logMessage(.LEVEL_INFO, "init headset: \(boardId)")
+            try? BoardShim.logMessage(.LEVEL_INFO, "Headset.init() UUID: \(self.uuid) boardId: \(boardId)")
+            self.params = BrainFlowInputParams(serial_port: Headset.scan(boardId))
             self.board = try BoardShim(boardId, params)
-            self.boardDescription = try BoardShim.getBoardDescr(boardId)
             self.samplingRate = try BoardShim.getSamplingRate(boardId)
             self.eegChannels = try BoardShim.getEEGchannels(boardId)
             self.markerChannel = try Int(BoardShim.getMarkerChannel(boardId))
@@ -79,6 +83,7 @@ class Headset {
     }
     
     func setup() throws {
+        try? BoardShim.logMessage(.LEVEL_INFO, "Headset.setup() UUID: \(self.uuid) boardId: \(self.boardId)")
         try BoardShim.enableDevBoardLogger()
         guard board != nil else {
             try? BoardShim.logMessage(.LEVEL_ERROR, "board is nil")
@@ -90,14 +95,16 @@ class Headset {
             try? BoardShim.logMessage(.LEVEL_INFO, "waiting for session...")
             sleep(3)
         }
-         
-        try? BoardShim.logMessage(.LEVEL_INFO, "setting gain to 1")
-        if !setGain(setting: .x1) {
-            exit(-1)
-        }
         
-        if !setNumChannels() {
-            exit(-1)
+        if cytons.contains(self.boardId) {
+            try? BoardShim.logMessage(.LEVEL_INFO, "cyton/daisy setup")
+            if !setGain(setting: .x1) {
+                exit(-1)
+            }
+            
+            if !setNumChannels() {
+                exit(-1)
+            }
         }
         
         self.isActive = true
@@ -107,6 +114,7 @@ class Headset {
     }
     
     func reconnect() -> Bool {
+        try? BoardShim.logMessage(.LEVEL_INFO, "Headset.reconnect() UUID: \(self.uuid) boardId: \(self.boardId)")
         defer {
             try? BoardShim.logMessage(.LEVEL_INFO, "end reconnect")
         }
@@ -133,7 +141,7 @@ class Headset {
     }
     
     deinit {
-        try? BoardShim.logMessage(.LEVEL_INFO, "Headset.deinit()")
+        try? BoardShim.logMessage(.LEVEL_INFO, "Headset.deinit() UUID: \(self.uuid) boardId: \(self.boardId)")
         cleanup()
     }
 
@@ -266,7 +274,7 @@ class Headset {
     }
     
     func cleanup() {
-        try? BoardShim.logMessage(.LEVEL_INFO, "headset cleanup")
+        try? BoardShim.logMessage(.LEVEL_INFO, "Headset.cleanup() UUID: \(self.uuid) boardId: \(self.boardId)")
         if let theBoard = board {
             try? theBoard.stopStream() }
         self.isActive = false
@@ -288,10 +296,10 @@ class Headset {
         
         let theBoard = board!
         
-        defer {
-            try? BoardShim.logMessage(.LEVEL_INFO, "streaming EEG deferred exit")
-            cleanup()
-        }
+//        defer {
+//            try? BoardShim.logMessage(.LEVEL_INFO, "streaming EEG deferred exit")
+//            cleanup()
+//        }
         
         do {
             try theBoard.startStream()
@@ -307,12 +315,12 @@ class Headset {
                 let matrixRaw = try theBoard.getBoardData()
                 guard matrixRaw.count > 0 else {
                     numEmptyBuffers += 1
-                    if numEmptyBuffers > 24 {
+                    if numEmptyBuffers > 100 {
                         try? BoardShim.logMessage(.LEVEL_ERROR, "lost contact with headset")
                         self.isActive = false
                         return
                     }
-                    if (numEmptyBuffers % 5) == 0 {
+                    if (numEmptyBuffers % 20) == 0 {
                         try? BoardShim.logMessage(.LEVEL_WARN, "empty buffers: \(numEmptyBuffers)") }
                     
                     usleep(1000)
@@ -346,7 +354,7 @@ class Headset {
         cleanup()
     }
     
-    static func scan() -> String {
+    static func scan(_ boardId: BoardIds) -> String {
         // Return the first device name matching "cu.usbserial-DM*"
         let fm = FileManager.default
         let prefix = "/dev"
@@ -355,7 +363,14 @@ class Headset {
         do {
             let items = try fm.contentsOfDirectory(atPath: prefix)
 
-            for item in items.filter({$0.contains("cu.usbserial-DM")}) {
+            var deviceString: String = ""
+            if cytons.contains(boardId) {
+                deviceString = "cu.usbserial-DM" }
+            else {
+                deviceString = "cu.usbmodem"
+            }
+
+            for item in items.filter({$0.contains(deviceString)}) {
                 try? BoardShim.logMessage(.LEVEL_INFO, "Found device \(item)")
                 return prefix + "/" + item
             }

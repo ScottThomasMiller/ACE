@@ -47,7 +47,7 @@ struct BoardShim {
     static func setLogFile (_ logFile: String) throws
     {
         var cLogFile = logFile.cString(using: String.Encoding.utf8)!
-        let errorCode = set_log_file(&cLogFile)
+        let errorCode = set_log_file_board_controller(&cLogFile)
         try checkErrorCode("failed to set log file", errorCode)
     }
 
@@ -56,7 +56,7 @@ struct BoardShim {
      */
     static func setLogLevel (_ logLevel: LogLevels) throws
     {
-        let errorCode = set_log_level (logLevel.rawValue)
+        let errorCode = set_log_level_board_controller (logLevel.rawValue)
         try checkErrorCode("failed to set log level", errorCode)
     }
 
@@ -65,7 +65,7 @@ struct BoardShim {
      */
     static func logMessage (_ logLevel: LogLevels, _ message: String) throws {
         var cMessage = message.cString(using: String.Encoding.utf8)!
-        let errorCode = log_message (logLevel.rawValue, &cMessage)
+        let errorCode = log_message_board_controller (logLevel.rawValue, &cMessage)
         try checkErrorCode("Error in log_message", errorCode)
     }
 

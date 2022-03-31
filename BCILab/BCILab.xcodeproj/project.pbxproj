@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,12 +26,6 @@
 		5F0C02CE2750FE6E003F68DF /* AppStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02CB2750FE6E003F68DF /* AppStatusView.swift */; };
 		5F0C02CF2750FE6E003F68DF /* AppStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02CB2750FE6E003F68DF /* AppStatusView.swift */; };
 		5F0C02D02750FE6E003F68DF /* AppStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02CB2750FE6E003F68DF /* AppStatusView.swift */; };
-		5F1C3CE92728B07100938198 /* libMLModule.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F1C3CE62728B07100938198 /* libMLModule.dylib */; platformFilter = ios; };
-		5F1C3CEA2728B07100938198 /* libMLModule.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F1C3CE62728B07100938198 /* libMLModule.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		5F1C3CEB2728B07100938198 /* libDataHandler.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F1C3CE72728B07100938198 /* libDataHandler.dylib */; platformFilter = ios; };
-		5F1C3CEC2728B07100938198 /* libDataHandler.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F1C3CE72728B07100938198 /* libDataHandler.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		5F1C3CED2728B07100938198 /* libBoardController.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F1C3CE82728B07100938198 /* libBoardController.dylib */; platformFilter = ios; };
-		5F1C3CEE2728B07100938198 /* libBoardController.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F1C3CE82728B07100938198 /* libBoardController.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5F1FE8FF2792E9B3005545D1 /* Experiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F01258E2745A68200F356B1 /* Experiment.swift */; };
 		5F39795D271330F5003D3A64 /* ChangeIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39795C271330F5003D3A64 /* ChangeIntervalView.swift */; };
 		5F39795E271330F5003D3A64 /* ChangeIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39795C271330F5003D3A64 /* ChangeIntervalView.swift */; };
@@ -45,6 +39,7 @@
 		5F3BB154276A0D2F00A194F2 /* end.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3BB14E276A0D2F00A194F2 /* end.png */; };
 		5F3BB155276A0D2F00A194F2 /* end.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3BB14E276A0D2F00A194F2 /* end.png */; };
 		5F3BB156276A0D2F00A194F2 /* end.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3BB14E276A0D2F00A194F2 /* end.png */; };
+		5F3C530C27DFD39300F27964 /* Experiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F01258E2745A68200F356B1 /* Experiment.swift */; };
 		5F509C9E26FFEDAB00B48497 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F509C9D26FFEDAB00B48497 /* MainMenu.swift */; };
 		5F509C9F26FFEDAB00B48497 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F509C9D26FFEDAB00B48497 /* MainMenu.swift */; };
 		5F51807E27033C9700665A7C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F51807D27033C9700665A7C /* AppState.swift */; };
@@ -79,12 +74,15 @@
 		5F72F880271B5D86000C6D13 /* ChangeHeadsetTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F72F87E271B5D86000C6D13 /* ChangeHeadsetTypeView.swift */; };
 		5F72F881271B5D86000C6D13 /* ChangeHeadsetTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F72F87E271B5D86000C6D13 /* ChangeHeadsetTypeView.swift */; };
 		5F74AE3D26C6845200A53ED5 /* CSVFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F74AE3C26C6845200A53ED5 /* CSVFile.swift */; };
-		5F7F24F827287F65004B315D /* libBoardController.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7F24EE27287DC6004B315D /* libBoardController.dylib */; };
-		5F7F24F927287F65004B315D /* libBoardController.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F7F24EE27287DC6004B315D /* libBoardController.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		5F7F24FA27287F65004B315D /* libDataHandler.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7F24EC27287DC6004B315D /* libDataHandler.dylib */; };
-		5F7F24FB27287F65004B315D /* libDataHandler.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F7F24EC27287DC6004B315D /* libDataHandler.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		5F7F24FC27287F65004B315D /* libMLModule.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7F24ED27287DC6004B315D /* libMLModule.dylib */; };
-		5F7F24FD27287F65004B315D /* libMLModule.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F7F24ED27287DC6004B315D /* libMLModule.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5F909CBA27E1473C00071228 /* libneurosdk-shared.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FC8086A27E1357900A0EA39 /* libneurosdk-shared.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5F909CBE27E2768000071228 /* libBoardController.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC8085A27E1352C00A0EA39 /* libBoardController.dylib */; platformFilters = (macos, ); };
+		5F909CBF27E2768000071228 /* libBoardController.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FC8085A27E1352C00A0EA39 /* libBoardController.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5F909CC027E2768000071228 /* libDataHandler.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC8085D27E1352C00A0EA39 /* libDataHandler.dylib */; platformFilters = (macos, ); };
+		5F909CC127E2768000071228 /* libDataHandler.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FC8085D27E1352C00A0EA39 /* libDataHandler.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5F909CC427E2768000071228 /* libMLModule.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC8085C27E1352C00A0EA39 /* libMLModule.dylib */; platformFilters = (macos, ); };
+		5F909CC527E2768000071228 /* libMLModule.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FC8085C27E1352C00A0EA39 /* libMLModule.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5F96968027E8B011009B8952 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 5F96967F27E8B011009B8952 /* images */; };
+		5F96968127E8B011009B8952 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 5F96967F27E8B011009B8952 /* images */; };
 		5F9D64E12757FB9000923CE8 /* ChangeSaveFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA327F27010D4400CF66E5 /* ChangeSaveFolderView.swift */; };
 		5F9D64E22757FB9100923CE8 /* ChangeSaveFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA327F27010D4400CF66E5 /* ChangeSaveFolderView.swift */; };
 		5F9D64E32757FB9200923CE8 /* ChangeSaveFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA327F27010D4400CF66E5 /* ChangeSaveFolderView.swift */; };
@@ -106,7 +104,21 @@
 		5FAFBE3627BF29E700D574B0 /* SlideShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFBE2727BE657B00D574B0 /* SlideShow.swift */; };
 		5FAFBE3727BF29E700D574B0 /* SlideShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFBE2727BE657B00D574B0 /* SlideShow.swift */; };
 		5FAFBE3827BF29E800D574B0 /* SlideShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFBE2727BE657B00D574B0 /* SlideShow.swift */; };
+		5FB1116627F4B697007A9B3C /* libBrainBitLib.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FB1116527F4B697007A9B3C /* libBrainBitLib.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5FB1116E27F4F3E2007A9B3C /* libneurosdk-shared.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9FA89527E018D5008D9972 /* libneurosdk-shared.dylib */; };
+		5FB1116F27F4F3E2007A9B3C /* libneurosdk-shared.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F9FA89527E018D5008D9972 /* libneurosdk-shared.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5FB1117027F4F435007A9B3C /* neurosdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB6338627EA1CB000B2504C /* neurosdk.framework */; };
+		5FB1117127F4F435007A9B3C /* neurosdk.framework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FB6338627EA1CB000B2504C /* neurosdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5FB1117227F4F440007A9B3C /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3C531027DFD77E00F27964 /* CoreBluetooth.framework */; };
+		5FB1117327F4F448007A9B3C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3C531227DFD7A300F27964 /* libc++.tbd */; };
+		5FB1117527F535E4007A9B3C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FB1117427F535E4007A9B3C /* Info.plist */; };
 		5FB9A4FD26FB9587009EE0F1 /* BrainFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB9A4FC26FB9587009EE0F1 /* BrainFlowTests.swift */; };
+		5FC619D327F39E1200068E4A /* libMLModule.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F122F4627DFA62E0087CB10 /* libMLModule.dylib */; };
+		5FC619D427F39E1200068E4A /* libMLModule.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F122F4627DFA62E0087CB10 /* libMLModule.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5FC619D527F39E1200068E4A /* libDataHandler.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F122F4527DFA62E0087CB10 /* libDataHandler.dylib */; };
+		5FC619D627F39E1200068E4A /* libDataHandler.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F122F4527DFA62E0087CB10 /* libDataHandler.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5FC619DF27F3B3DC00068E4A /* libBoardController.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F122F4427DFA62E0087CB10 /* libBoardController.dylib */; };
+		5FC619E027F3B3DC00068E4A /* libBoardController.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F122F4427DFA62E0087CB10 /* libBoardController.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5FC6462826FBA5A700164A31 /* DataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108826DD37FB000A6FFE /* DataFilter.swift */; };
 		5FC6462926FBA5A800164A31 /* DataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108826DD37FB000A6FFE /* DataFilter.swift */; };
 		5FC6462A26FBA5AA00164A31 /* DataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108826DD37FB000A6FFE /* DataFilter.swift */; };
@@ -147,11 +159,6 @@
 		5FC79292274B1E0A00FCA041 /* black_crosshair.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5FC7928C274B1E0A00FCA041 /* black_crosshair.jpeg */; };
 		5FC79293274B1E0A00FCA041 /* black_crosshair.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5FC7928C274B1E0A00FCA041 /* black_crosshair.jpeg */; };
 		5FC79294274B1E0A00FCA041 /* black_crosshair.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5FC7928C274B1E0A00FCA041 /* black_crosshair.jpeg */; };
-		5FC9E8912766D5D900B0D728 /* DefaultImages in Resources */ = {isa = PBXBuildFile; fileRef = 5FC9E8902766D5D900B0D728 /* DefaultImages */; };
-		5FC9E8922766D5D900B0D728 /* DefaultImages in Resources */ = {isa = PBXBuildFile; fileRef = 5FC9E8902766D5D900B0D728 /* DefaultImages */; };
-		5FC9E8932766D5D900B0D728 /* DefaultImages in Resources */ = {isa = PBXBuildFile; fileRef = 5FC9E8902766D5D900B0D728 /* DefaultImages */; };
-		5FCA32792700A13500CF66E5 /* ExperimentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA32782700A13500CF66E5 /* ExperimentVC.swift */; };
-		5FCA327A2700A13500CF66E5 /* ExperimentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA32782700A13500CF66E5 /* ExperimentVC.swift */; };
 		5FCD108D26DD3806000A6FFE /* Headset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108C26DD3806000A6FFE /* Headset.swift */; };
 		5FCD108F26DD3806000A6FFE /* Headset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108C26DD3806000A6FFE /* Headset.swift */; };
 		5FCF8BAF26C577E3002DA9F0 /* EEG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCF8BAE26C577E3002DA9F0 /* EEG.swift */; };
@@ -185,9 +192,6 @@
 		5FE55F6E270484FF00DDA111 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F509C9D26FFEDAB00B48497 /* MainMenu.swift */; };
 		5FE55F6F270484FF00DDA111 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F509C9D26FFEDAB00B48497 /* MainMenu.swift */; };
 		5FE55F70270484FF00DDA111 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F509C9D26FFEDAB00B48497 /* MainMenu.swift */; };
-		5FE55F712704850400DDA111 /* ExperimentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA32782700A13500CF66E5 /* ExperimentVC.swift */; };
-		5FE55F722704850400DDA111 /* ExperimentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA32782700A13500CF66E5 /* ExperimentVC.swift */; };
-		5FE55F732704850500DDA111 /* ExperimentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA32782700A13500CF66E5 /* ExperimentVC.swift */; };
 		5FE55F772704850C00DDA111 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F51807D27033C9700665A7C /* AppState.swift */; };
 		5FE55F782704850C00DDA111 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F51807D27033C9700665A7C /* AppState.swift */; };
 		5FE55F792704850C00DDA111 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F51807D27033C9700665A7C /* AppState.swift */; };
@@ -284,28 +288,32 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		5F0A654D272838A60034D571 /* Embed Libraries */ = {
+		5FC619D927F39E1200068E4A /* Embed Libraries */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5F7F24F927287F65004B315D /* libBoardController.dylib in Embed Libraries */,
-				5F7F24FB27287F65004B315D /* libDataHandler.dylib in Embed Libraries */,
-				5F7F24FD27287F65004B315D /* libMLModule.dylib in Embed Libraries */,
+				5FB1116F27F4F3E2007A9B3C /* libneurosdk-shared.dylib in Embed Libraries */,
+				5FC619E027F3B3DC00068E4A /* libBoardController.dylib in Embed Libraries */,
+				5FC619D427F39E1200068E4A /* libMLModule.dylib in Embed Libraries */,
+				5FC619D627F39E1200068E4A /* libDataHandler.dylib in Embed Libraries */,
+				5FB1117127F4F435007A9B3C /* neurosdk.framework in Embed Libraries */,
 			);
 			name = "Embed Libraries";
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5F1C3CEF2728B07100938198 /* Embed Libraries */ = {
+		5FC8086927E1352C00A0EA39 /* Embed Libraries */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5F1C3CEE2728B07100938198 /* libBoardController.dylib in Embed Libraries */,
-				5F1C3CEA2728B07100938198 /* libMLModule.dylib in Embed Libraries */,
-				5F1C3CEC2728B07100938198 /* libDataHandler.dylib in Embed Libraries */,
+				5FB1116627F4B697007A9B3C /* libBrainBitLib.dylib in Embed Libraries */,
+				5F909CBF27E2768000071228 /* libBoardController.dylib in Embed Libraries */,
+				5F909CC127E2768000071228 /* libDataHandler.dylib in Embed Libraries */,
+				5F909CC527E2768000071228 /* libMLModule.dylib in Embed Libraries */,
+				5F909CBA27E1473C00071228 /* libneurosdk-shared.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,18 +338,16 @@
 		5F0996F526F2621A003881B0 /* BoardShimTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardShimTests.swift; sourceTree = "<group>"; };
 		5F0996F926F3E864003881B0 /* BoardDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDescription.swift; sourceTree = "<group>"; };
 		5F0C02CB2750FE6E003F68DF /* AppStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStatusView.swift; sourceTree = "<group>"; };
-		5F1C3CD32728ADF900938198 /* libBoardController.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBoardController.dylib; path = BrainFlow/dylib/OS64COMBINED/libBoardController.dylib; sourceTree = "<group>"; };
-		5F1C3CD42728ADF900938198 /* libDataHandler.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDataHandler.dylib; path = BrainFlow/dylib/OS64COMBINED/libDataHandler.dylib; sourceTree = "<group>"; };
-		5F1C3CD52728ADF900938198 /* libMLModule.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMLModule.dylib; path = BrainFlow/dylib/OS64COMBINED/libMLModule.dylib; sourceTree = "<group>"; };
-		5F1C3CDC2728AECD00938198 /* libBoardController.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBoardController.dylib; path = BrainFlow/dylib/SIMULATOR64/libBoardController.dylib; sourceTree = "<group>"; };
-		5F1C3CDD2728AECD00938198 /* libDataHandler.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDataHandler.dylib; path = BrainFlow/dylib/SIMULATOR64/libDataHandler.dylib; sourceTree = "<group>"; };
-		5F1C3CDE2728AECD00938198 /* libMLModule.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMLModule.dylib; path = BrainFlow/dylib/SIMULATOR64/libMLModule.dylib; sourceTree = "<group>"; };
-		5F1C3CE62728B07100938198 /* libMLModule.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMLModule.dylib; path = BrainFlow/dylib/SIMULATORX86_64/libMLModule.dylib; sourceTree = "<group>"; };
-		5F1C3CE72728B07100938198 /* libDataHandler.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDataHandler.dylib; path = BrainFlow/dylib/SIMULATORX86_64/libDataHandler.dylib; sourceTree = "<group>"; };
-		5F1C3CE82728B07100938198 /* libBoardController.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBoardController.dylib; path = BrainFlow/dylib/SIMULATORX86_64/libBoardController.dylib; sourceTree = "<group>"; };
+		5F122F4327DFA62E0087CB10 /* libGanglionLib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGanglionLib.dylib; path = BrainFlow/dylib/OS64/libGanglionLib.dylib; sourceTree = "<group>"; };
+		5F122F4427DFA62E0087CB10 /* libBoardController.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBoardController.dylib; path = BrainFlow/dylib/OS64/libBoardController.dylib; sourceTree = "<group>"; };
+		5F122F4527DFA62E0087CB10 /* libDataHandler.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDataHandler.dylib; path = BrainFlow/dylib/OS64/libDataHandler.dylib; sourceTree = "<group>"; };
+		5F122F4627DFA62E0087CB10 /* libMLModule.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMLModule.dylib; path = BrainFlow/dylib/OS64/libMLModule.dylib; sourceTree = "<group>"; };
+		5F122F4727DFA62E0087CB10 /* libMuseLib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMuseLib.dylib; path = BrainFlow/dylib/OS64/libMuseLib.dylib; sourceTree = "<group>"; };
 		5F39795C271330F5003D3A64 /* ChangeIntervalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeIntervalView.swift; sourceTree = "<group>"; };
 		5F3B444226FCB32400AC20E8 /* BrainFlowCItests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainFlowCItests.swift; sourceTree = "<group>"; };
 		5F3BB14E276A0D2F00A194F2 /* end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = end.png; sourceTree = "<group>"; };
+		5F3C531027DFD77E00F27964 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		5F3C531227DFD7A300F27964 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		5F466A2126FD222A001226F9 /* ml_module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ml_module.h; sourceTree = "<group>"; };
 		5F509C9D26FFEDAB00B48497 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		5F51807D27033C9700665A7C /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -372,11 +378,18 @@
 		5F628BE126E231BA0085B009 /* CustomStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStyles.swift; sourceTree = "<group>"; };
 		5F72F87E271B5D86000C6D13 /* ChangeHeadsetTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeHeadsetTypeView.swift; sourceTree = "<group>"; };
 		5F74AE3C26C6845200A53ED5 /* CSVFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVFile.swift; sourceTree = "<group>"; };
-		5F7F24EC27287DC6004B315D /* libDataHandler.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDataHandler.dylib; path = BrainFlow/dylib/MACOS/libDataHandler.dylib; sourceTree = "<group>"; };
-		5F7F24ED27287DC6004B315D /* libMLModule.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMLModule.dylib; path = BrainFlow/dylib/MACOS/libMLModule.dylib; sourceTree = "<group>"; };
-		5F7F24EE27287DC6004B315D /* libBoardController.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBoardController.dylib; path = BrainFlow/dylib/MACOS/libBoardController.dylib; sourceTree = "<group>"; };
+		5F86ADAE27DE7E6600CFBD2A /* BCILabMB.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BCILabMB.entitlements; sourceTree = "<group>"; };
+		5F909CB827E1419300071228 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/CoreBluetooth.framework; sourceTree = DEVELOPER_DIR; };
+		5F909CBB27E2732300071228 /* libBrainBitLib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBrainBitLib.dylib; path = BrainFlow/dylib/OS64/libBrainBitLib.dylib; sourceTree = "<group>"; };
+		5F909CC827E2768100071228 /* libBrainBitLib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBrainBitLib.dylib; path = BrainFlow/dylib/MAC_ARM64/libBrainBitLib.dylib; sourceTree = "<group>"; };
+		5F96967F27E8B011009B8952 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		5F9FA89527E018D5008D9972 /* libneurosdk-shared.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libneurosdk-shared.dylib"; path = "BrainFlow/dylib/OS64/libneurosdk-shared.dylib"; sourceTree = "<group>"; };
 		5FAFBE2727BE657B00D574B0 /* SlideShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShow.swift; sourceTree = "<group>"; };
 		5FAFBE2B27BE81CB00D574B0 /* LabeledImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledImage.swift; sourceTree = "<group>"; };
+		5FB1116527F4B697007A9B3C /* libBrainBitLib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBrainBitLib.dylib; path = BrainFlow/dylib/MAC_ARM64/libBrainBitLib.dylib; sourceTree = "<group>"; };
+		5FB1116B27F4F360007A9B3C /* libneurosdk-shared.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libneurosdk-shared.dylib"; path = "frameworks/libneurosdk-shared.dylib"; sourceTree = "<group>"; };
+		5FB1117427F535E4007A9B3C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FB6338627EA1CB000B2504C /* neurosdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = neurosdk.framework; path = frameworks/neurosdk.framework; sourceTree = "<group>"; };
 		5FB9A4F726FB9587009EE0F1 /* BrainFlowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrainFlowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB9A4FC26FB9587009EE0F1 /* BrainFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainFlowTests.swift; sourceTree = "<group>"; };
 		5FBAE2EF272855800025F291 /* BrainFlowLibs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrainFlowLibs.h; sourceTree = "<group>"; };
@@ -384,8 +397,12 @@
 		5FC07DB426BEFB4300B1971B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5FC6464526FBC40600164A31 /* MLModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLModule.swift; sourceTree = "<group>"; };
 		5FC7928C274B1E0A00FCA041 /* black_crosshair.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = black_crosshair.jpeg; sourceTree = "<group>"; };
-		5FC9E8902766D5D900B0D728 /* DefaultImages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DefaultImages; sourceTree = "<group>"; };
-		5FCA32782700A13500CF66E5 /* ExperimentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentVC.swift; sourceTree = "<group>"; };
+		5FC8085A27E1352C00A0EA39 /* libBoardController.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBoardController.dylib; path = BrainFlow/dylib/MAC_ARM64/libBoardController.dylib; sourceTree = "<group>"; };
+		5FC8085B27E1352C00A0EA39 /* libMuseLib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMuseLib.dylib; path = BrainFlow/dylib/MAC_ARM64/libMuseLib.dylib; sourceTree = "<group>"; };
+		5FC8085C27E1352C00A0EA39 /* libMLModule.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMLModule.dylib; path = BrainFlow/dylib/MAC_ARM64/libMLModule.dylib; sourceTree = "<group>"; };
+		5FC8085D27E1352C00A0EA39 /* libDataHandler.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDataHandler.dylib; path = BrainFlow/dylib/MAC_ARM64/libDataHandler.dylib; sourceTree = "<group>"; };
+		5FC8085E27E1352C00A0EA39 /* libGanglionLib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGanglionLib.dylib; path = BrainFlow/dylib/MAC_ARM64/libGanglionLib.dylib; sourceTree = "<group>"; };
+		5FC8086A27E1357900A0EA39 /* libneurosdk-shared.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libneurosdk-shared.dylib"; path = "BrainFlow/dylib/MAC_ARM64/libneurosdk-shared.dylib"; sourceTree = "<group>"; };
 		5FCA327F27010D4400CF66E5 /* ChangeSaveFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSaveFolderView.swift; sourceTree = "<group>"; };
 		5FCD107026DD36D6000A6FFE /* BrainFlowExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrainFlowExtensions.swift; sourceTree = "<group>"; };
 		5FCD107426DD36DF000A6FFE /* BoardShim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardShim.swift; sourceTree = "<group>"; };
@@ -402,7 +419,6 @@
 		5FCF8BAE26C577E3002DA9F0 /* EEG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EEG.swift; sourceTree = "<group>"; };
 		5FD6E2C0275BAF0E00F9A4CB /* ChangeLoadFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLoadFolderView.swift; sourceTree = "<group>"; };
 		5FE950CE2728120600E3E1A3 /* BCILabMB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BCILabMB.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FE950CF2728120600E3E1A3 /* BCILab copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BCILab copy-Info.plist"; path = "/Users/scottmiller/git/ACE/BCILab/BCILab copy-Info.plist"; sourceTree = "<absolute>"; };
 		5FE9A3A52704812800A7AC22 /* BrainWaveiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainWaveiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FE9A3B42704812A00A7AC22 /* BrainWaveiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrainWaveiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FE9A3BE2704812A00A7AC22 /* BrainWaveiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrainWaveiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -415,11 +431,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FAB0B3426EE5D500047E69A /* RealModule in Frameworks */,
-				5F1C3CE92728B07100938198 /* libMLModule.dylib in Frameworks */,
+				5FB1117227F4F440007A9B3C /* CoreBluetooth.framework in Frameworks */,
+				5FB1117027F4F435007A9B3C /* neurosdk.framework in Frameworks */,
 				5FAB0B3226EE5D500047E69A /* ComplexModule in Frameworks */,
-				5F1C3CED2728B07100938198 /* libBoardController.dylib in Frameworks */,
-				5F1C3CEB2728B07100938198 /* libDataHandler.dylib in Frameworks */,
+				5FB1116E27F4F3E2007A9B3C /* libneurosdk-shared.dylib in Frameworks */,
 				5FAB0B3626EE5D500047E69A /* Numerics in Frameworks */,
+				5FB1117327F4F448007A9B3C /* libc++.tbd in Frameworks */,
+				5FC619D327F39E1200068E4A /* libMLModule.dylib in Frameworks */,
+				5FC619DF27F3B3DC00068E4A /* libBoardController.dylib in Frameworks */,
+				5FC619D527F39E1200068E4A /* libDataHandler.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,11 +470,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FE950BB2728120600E3E1A3 /* RealModule in Frameworks */,
-				5F7F24F827287F65004B315D /* libBoardController.dylib in Frameworks */,
+				5F909CBE27E2768000071228 /* libBoardController.dylib in Frameworks */,
 				5FE950BD2728120600E3E1A3 /* ComplexModule in Frameworks */,
-				5F7F24FA27287F65004B315D /* libDataHandler.dylib in Frameworks */,
+				5F909CC027E2768000071228 /* libDataHandler.dylib in Frameworks */,
+				5F909CC427E2768000071228 /* libMLModule.dylib in Frameworks */,
 				5FE950BF2728120600E3E1A3 /* Numerics in Frameworks */,
-				5F7F24FC27287F65004B315D /* libMLModule.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,8 +520,8 @@
 		5F58BD0326AC1C5D003F5483 = {
 			isa = PBXGroup;
 			children = (
+				5FB1116527F4B697007A9B3C /* libBrainBitLib.dylib */,
 				5F3BB14E276A0D2F00A194F2 /* end.png */,
-				5FC9E8902766D5D900B0D728 /* DefaultImages */,
 				5FC7928C274B1E0A00FCA041 /* black_crosshair.jpeg */,
 				5FCD109126DD3B13000A6FFE /* BrainFlow */,
 				5FCD109026DD3AC7000A6FFE /* brainflow-bridge.h */,
@@ -517,7 +537,6 @@
 				5FBAE2EE272855800025F291 /* BrainFlowLibs */,
 				5F58BD0D26AC1C5D003F5483 /* Products */,
 				5FBE6F8226B3F5C000BA6B93 /* Frameworks */,
-				5FE950CF2728120600E3E1A3 /* BCILab copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -539,6 +558,8 @@
 		5F58BD0E26AC1C5D003F5483 /* BCILab */ = {
 			isa = PBXGroup;
 			children = (
+				5F96968227E8B4C7009B8952 /* save */,
+				5F96967F27E8B011009B8952 /* images */,
 				5F51807D27033C9700665A7C /* AppState.swift */,
 				5F0C02CB2750FE6E003F68DF /* AppStatusView.swift */,
 				5F58BD1326AC1C5E003F5483 /* Assets.xcassets */,
@@ -552,7 +573,7 @@
 				5F74AE3C26C6845200A53ED5 /* CSVFile.swift */,
 				5F628BE126E231BA0085B009 /* CustomStyles.swift */,
 				5FCF8BAE26C577E3002DA9F0 /* EEG.swift */,
-				5FCA32782700A13500CF66E5 /* ExperimentVC.swift */,
+				5F01258E2745A68200F356B1 /* Experiment.swift */,
 				5FCD108C26DD3806000A6FFE /* Headset.swift */,
 				5F58BD1826AC1C5E003F5483 /* Info.plist */,
 				5FAFBE2B27BE81CB00D574B0 /* LabeledImage.swift */,
@@ -598,10 +619,18 @@
 		5F5FF9632728424C00566DD0 /* BCILabMB */ = {
 			isa = PBXGroup;
 			children = (
+				5FB1117427F535E4007A9B3C /* Info.plist */,
+				5F86ADAE27DE7E6600CFBD2A /* BCILabMB.entitlements */,
 				5F5FF9652728435800566DD0 /* BCILabMBApp.swift */,
-				5F01258E2745A68200F356B1 /* Experiment.swift */,
 			);
 			path = BCILabMB;
+			sourceTree = "<group>";
+		};
+		5F96968227E8B4C7009B8952 /* save */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = save;
 			sourceTree = "<group>";
 		};
 		5FB9A4FB26FB9587009EE0F1 /* BrainFlowTests */ = {
@@ -623,18 +652,25 @@
 		5FBE6F8226B3F5C000BA6B93 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5F1C3CE82728B07100938198 /* libBoardController.dylib */,
-				5F1C3CE72728B07100938198 /* libDataHandler.dylib */,
-				5F1C3CE62728B07100938198 /* libMLModule.dylib */,
-				5F1C3CDC2728AECD00938198 /* libBoardController.dylib */,
-				5F1C3CDD2728AECD00938198 /* libDataHandler.dylib */,
-				5F1C3CDE2728AECD00938198 /* libMLModule.dylib */,
-				5F1C3CD32728ADF900938198 /* libBoardController.dylib */,
-				5F1C3CD42728ADF900938198 /* libDataHandler.dylib */,
-				5F1C3CD52728ADF900938198 /* libMLModule.dylib */,
-				5F7F24EE27287DC6004B315D /* libBoardController.dylib */,
-				5F7F24EC27287DC6004B315D /* libDataHandler.dylib */,
-				5F7F24ED27287DC6004B315D /* libMLModule.dylib */,
+				5FB1116B27F4F360007A9B3C /* libneurosdk-shared.dylib */,
+				5FB6338627EA1CB000B2504C /* neurosdk.framework */,
+				5F909CBB27E2732300071228 /* libBrainBitLib.dylib */,
+				5F909CC827E2768100071228 /* libBrainBitLib.dylib */,
+				5F909CB827E1419300071228 /* CoreBluetooth.framework */,
+				5FC8086A27E1357900A0EA39 /* libneurosdk-shared.dylib */,
+				5FC8085A27E1352C00A0EA39 /* libBoardController.dylib */,
+				5FC8085D27E1352C00A0EA39 /* libDataHandler.dylib */,
+				5FC8085E27E1352C00A0EA39 /* libGanglionLib.dylib */,
+				5FC8085C27E1352C00A0EA39 /* libMLModule.dylib */,
+				5FC8085B27E1352C00A0EA39 /* libMuseLib.dylib */,
+				5F9FA89527E018D5008D9972 /* libneurosdk-shared.dylib */,
+				5F3C531227DFD7A300F27964 /* libc++.tbd */,
+				5F3C531027DFD77E00F27964 /* CoreBluetooth.framework */,
+				5F122F4427DFA62E0087CB10 /* libBoardController.dylib */,
+				5F122F4527DFA62E0087CB10 /* libDataHandler.dylib */,
+				5F122F4327DFA62E0087CB10 /* libGanglionLib.dylib */,
+				5F122F4627DFA62E0087CB10 /* libMLModule.dylib */,
+				5F122F4727DFA62E0087CB10 /* libMuseLib.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -670,7 +706,7 @@
 				5F58BD0826AC1C5D003F5483 /* Sources */,
 				5F58BD0926AC1C5D003F5483 /* Frameworks */,
 				5F58BD0A26AC1C5D003F5483 /* Resources */,
-				5F1C3CEF2728B07100938198 /* Embed Libraries */,
+				5FC619D927F39E1200068E4A /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -749,7 +785,7 @@
 				5FE9509B2728120600E3E1A3 /* Sources */,
 				5FE950BA2728120600E3E1A3 /* Frameworks */,
 				5FE950C12728120600E3E1A3 /* Resources */,
-				5F0A654D272838A60034D571 /* Embed Libraries */,
+				5FC8086927E1352C00A0EA39 /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -827,7 +863,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					5F58BD0B26AC1C5D003F5483 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -889,8 +925,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F96968027E8B011009B8952 /* images in Resources */,
 				5FC7928D274B1E0A00FCA041 /* black_crosshair.jpeg in Resources */,
-				5FC9E8912766D5D900B0D728 /* DefaultImages in Resources */,
 				5F3BB14F276A0D2F00A194F2 /* end.png in Resources */,
 				5F58BD1726AC1C5E003F5483 /* Preview Assets.xcassets in Resources */,
 				5F58BD1426AC1C5E003F5483 /* Assets.xcassets in Resources */,
@@ -912,7 +948,6 @@
 			files = (
 				5FC79290274B1E0A00FCA041 /* black_crosshair.jpeg in Resources */,
 				5F3BB152276A0D2F00A194F2 /* end.png in Resources */,
-				5FC9E8932766D5D900B0D728 /* DefaultImages in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -929,12 +964,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F96968127E8B011009B8952 /* images in Resources */,
 				5FC7928E274B1E0A00FCA041 /* black_crosshair.jpeg in Resources */,
 				5FE950C52728120600E3E1A3 /* Preview Assets.xcassets in Resources */,
 				5F5FF964272842BE00566DD0 /* BCILab.app in Resources */,
-				5FC9E8922766D5D900B0D728 /* DefaultImages in Resources */,
 				5F3BB150276A0D2F00A194F2 /* end.png in Resources */,
 				5FE950C62728120600E3E1A3 /* Assets.xcassets in Resources */,
+				5FB1117527F535E4007A9B3C /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -987,6 +1023,7 @@
 				5FC6463926FBA5BE00164A31 /* BoardShim.swift in Sources */,
 				5FC6462C26FBA5B300164A31 /* BrainFlowConstants.swift in Sources */,
 				5F628BE226E231BA0085B009 /* CustomStyles.swift in Sources */,
+				5F3C530C27DFD39300F27964 /* Experiment.swift in Sources */,
 				5FC6464126FBA5C600164A31 /* BoardDescription.swift in Sources */,
 				5FC6463D26FBA5C200164A31 /* BrainFlowExtensions.swift in Sources */,
 				5F509C9E26FFEDAB00B48497 /* MainMenu.swift in Sources */,
@@ -1004,7 +1041,6 @@
 				5FC6464626FBC40600164A31 /* MLModule.swift in Sources */,
 				5F524C3C26BAD67C00DECD6E /* Outlet.swift in Sources */,
 				5F51807E27033C9700665A7C /* AppState.swift in Sources */,
-				5FCA32792700A13500CF66E5 /* ExperimentVC.swift in Sources */,
 				5F9D64E12757FB9000923CE8 /* ChangeSaveFolderView.swift in Sources */,
 				5FCD108D26DD3806000A6FFE /* Headset.swift in Sources */,
 				5F524C4B26BAD67C00DECD6E /* ChannelFormat.swift in Sources */,
@@ -1074,7 +1110,6 @@
 				5FC6463726FBA5BC00164A31 /* BrainFlowInputParams.swift in Sources */,
 				5F628BE426E231BA0085B009 /* CustomStyles.swift in Sources */,
 				5FAFBE2F27BE81CB00D574B0 /* LabeledImage.swift in Sources */,
-				5FCA327A2700A13500CF66E5 /* ExperimentVC.swift in Sources */,
 				5F01230B2752734400E8F07E /* NavLinkView.swift in Sources */,
 				5F72F881271B5D86000C6D13 /* ChangeHeadsetTypeView.swift in Sources */,
 				5F58BD2D26AC1C5E003F5483 /* BCILabUITests.swift in Sources */,
@@ -1153,7 +1188,6 @@
 				5FE55F8C2704854E00DDA111 /* BrainFlowInputParams.swift in Sources */,
 				5FE55F982704855B00DDA111 /* MLModule.swift in Sources */,
 				5FE55F6E270484FF00DDA111 /* MainMenu.swift in Sources */,
-				5FE55F712704850400DDA111 /* ExperimentVC.swift in Sources */,
 				5FE55F6B270484FC00DDA111 /* CustomStyles.swift in Sources */,
 				5FE55F952704855700DDA111 /* BoardDescription.swift in Sources */,
 				5FE55F922704855400DDA111 /* BrainFlowExtensions.swift in Sources */,
@@ -1185,7 +1219,6 @@
 				5FE55F69270484F900DDA111 /* ReconnectView.swift in Sources */,
 				5FE55F842704853F00DDA111 /* BrainFlowException.swift in Sources */,
 				5FE55F962704855800DDA111 /* BoardDescription.swift in Sources */,
-				5FE55F722704850400DDA111 /* ExperimentVC.swift in Sources */,
 				5FE55F66270484F500DDA111 /* CSVFile.swift in Sources */,
 				5FE55F932704855400DDA111 /* BrainFlowExtensions.swift in Sources */,
 				5FE55F782704850C00DDA111 /* AppState.swift in Sources */,
@@ -1201,7 +1234,6 @@
 				5FE55F8D2704854E00DDA111 /* BrainFlowInputParams.swift in Sources */,
 				5FE55F9A2704855C00DDA111 /* MLModule.swift in Sources */,
 				5FE55F70270484FF00DDA111 /* MainMenu.swift in Sources */,
-				5FE55F732704850500DDA111 /* ExperimentVC.swift in Sources */,
 				5FE55F6D270484FD00DDA111 /* CustomStyles.swift in Sources */,
 				5FE55F972704855800DDA111 /* BoardDescription.swift in Sources */,
 				5FE55F942704855500DDA111 /* BrainFlowExtensions.swift in Sources */,
@@ -1284,11 +1316,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development: miller.scott.thomas@gmail.com (9C6P3H9F6Q)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Y8JL76N88P;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1309,8 +1341,8 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1352,11 +1384,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development: miller.scott.thomas@gmail.com (9C6P3H9F6Q)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Y8JL76N88P;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1371,8 +1403,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1388,7 +1420,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BCILab/BCILab.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "Apple Development: miller.scott.thomas@gmail.com (9C6P3H9F6Q)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"BCILab/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
@@ -1396,8 +1428,12 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/frameworks",
+				);
 				INFOPLIST_FILE = BCILab/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1406,19 +1442,21 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/BCILab",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/BrainFlow/dylib/SIMULATORX86_64",
+					"$(PROJECT_DIR)/BrainFlow/dylib/OS64",
+					"$(PROJECT_DIR)/frameworks",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "Aeris-Rising.BCILab";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = MillerScottThomasXCWildcard;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "brainflow-bridge.h";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -1430,16 +1468,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BCILab/BCILab.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "Apple Development: miller.scott.thomas@gmail.com (9C6P3H9F6Q)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"BCILab/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Y8JL76N88P;
 				"DYLIB_INSTALL_NAME_BASE[arch=*]" = "@rpath";
 				ENABLE_BITCODE = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/frameworks",
+				);
 				INFOPLIST_FILE = BCILab/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1448,19 +1490,21 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/BCILab",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/BrainFlow/dylib/SIMULATORX86_64",
+					"$(PROJECT_DIR)/BrainFlow/dylib/OS64",
+					"$(PROJECT_DIR)/frameworks",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "Aeris-Rising.BCILab";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = MillerScottThomasXCWildcard;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = MillerScottThomasXCWildcard;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "brainflow-bridge.h";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -1656,6 +1700,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BCILabMB/BCILabMB.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"BCILab/Preview Content\"";
@@ -1664,7 +1709,12 @@
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_BITCODE = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/frameworks",
+				);
 				INFOPLIST_FILE = "BCILab copy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1677,9 +1727,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/BCILab",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/BrainFlow/dylib/MACOS",
+					"$(PROJECT_DIR)/BrainFlow/dylib/MAC_ARM64",
+					"$(PROJECT_DIR)/BrainFlow/dylib/OS64",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "Aeris-Rising.BCILab";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1699,7 +1750,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_ENTITLEMENTS = BCILabMB/BCILabMB.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"BCILab/Preview Content\"";
 				DEVELOPMENT_TEAM = Y8JL76N88P;
@@ -1707,7 +1759,12 @@
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_BITCODE = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/frameworks",
+				);
 				INFOPLIST_FILE = "BCILab copy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1720,9 +1777,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/BCILab",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/BrainFlow/dylib/MACOS",
+					"$(PROJECT_DIR)/BrainFlow/dylib/MAC_ARM64",
+					"$(PROJECT_DIR)/BrainFlow/dylib/OS64",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "Aeris-Rising.BCILab";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -78,30 +78,6 @@ struct SlideShow: View {
         return labeledImages
     }
 
-    private func loadAllFromSubdir(subdir: String, marker: Double) -> [LabeledImage]  {
-        var count = 0
-        var labeledImages = [LabeledImage]()
-        
-        if let urls = Bundle.main.urls(forResourcesWithExtension: ".jpg", subdirectory: subdir) {
-            for url in urls {
-                guard let image = try? loadURL(url) else {
-                    try? BoardShim.logMessage(.LEVEL_ERROR, "Error loading image: \(url)")
-                    continue }
-                
-                let labeledImage = LabeledImage(image: image, marker: marker)
-                labeledImages.append(labeledImage)
-                count += 1
-
-                guard count < maxImages else {
-                    try? BoardShim.logMessage(.LEVEL_INFO, "reached limit of \(maxImages) images")
-                    break }
-            }
-        }
-        
-        print("loaded \(count) images from \(subdir) with marker \(marker)")
-        return labeledImages
-    }
-
     private func getImage(_ assetName: String) -> Image? {
         guard let blankURL = Bundle.main.url(forResource: assetName, withExtension: nil) else {
             try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot locate URL for asset: \(assetName)")
@@ -115,6 +91,42 @@ struct SlideShow: View {
         return assetImage
     }
     
+//    // https://stackoverflow.com/questions/27721418/getting-list-of-files-in-documents-folder
+//    private func listFilesFromDocumentsFolder() -> [String]?
+//    {
+//        let resURL = Bundle.main.resourceURL!
+//        let subFolderURL = resURL.appendingPathComponent("DefaultImages")
+//        print("image path: \(String(describing: subFolderURL))")
+//        let fileMngr = FileManager.default
+//        let subs = fileMngr.subFolders(of: subFolderURL)
+////        let subs = fileMngr.subFolders(of: fileMngr.urls(for: .documentDirectory, in: .userDomainMask)[0])
+//        print("subs: \n\(String(describing: subs))")
+//
+//        let imagesURL = Bundle.main.url(forResource: "images", withExtension: nil)
+//        let x = Bundle.main.url(forResource: "images", withExtension: nil)
+//        let y = Bundle.main.url(forResource: "CroppedFaces50-1", withExtension: ".jpg", subdirectory: "images/default")
+//        print("x: \(String(describing: x))")
+//        print("y: \(String(describing: y))")
+//        let files = Bundle.main.urls(forResourcesWithExtension: ".png", subdirectory: "images/default")
+//        print("files = \n\(String(describing: files))")
+//        // Full path to documents directory
+//        let docsURL = fileMngr.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//        let docsPath = docsURL.path
+//
+//        let docDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+//        let fileURL = docDir.appendingPathComponent("images/default")
+//
+//        do {
+//            try fileMngr.createDirectory(at: fileURL, withIntermediateDirectories: true)
+//            print("yep")
+//        } catch {
+//            print("nope")
+//        }
+//        // List all contents of directory and return as [String] OR nil if failed
+//        let results = try? fileMngr.contentsOfDirectory(atPath:docsPath)
+//        return results
+//    }
+    
     // Load a randomized array of all subfolders, with blanks inserted between each image.
     // Use the subfolder names for the image labels.
     private func prepareImages (from folder: URL) -> ([LabeledImage], [String]) {
@@ -123,6 +135,13 @@ struct SlideShow: View {
         var newImages = [LabeledImage]()
         var labels = [String]()
 
+//        guard folder.startAccessingSecurityScopedResource() else {
+//            try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot access folder: \(folder)")
+//            return (newImages, labels)
+//        }
+//        
+//        defer { folder.stopAccessingSecurityScopedResource() }
+        
         guard let blankImage = getImage("black_crosshair.jpeg") else {
             try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load crosshair image")
             return (newImages, labels)
@@ -131,6 +150,7 @@ struct SlideShow: View {
             try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load end image")
             return (newImages, labels)
         }
+        
         guard let subFolders = FileManager.default.subFolders(of: folder) else {
             try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot get subfolders for folder: \(folder)")
             return (newImages, labels)
@@ -158,7 +178,7 @@ struct SlideShow: View {
 
         finalImages.append(LabeledImage(image: endImage, marker: MarkerType.end.rawValue))
         try? BoardShim.logMessage(.LEVEL_INFO, "loaded \(newImages.count) images total " +
-                                               "across \(self.labels.count) labels")
+                                               "across \(labels.count) labels")
 
         self.appState.totalImages = finalImages.count
         self.appState.labels = labels

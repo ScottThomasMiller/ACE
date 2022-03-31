@@ -14,17 +14,17 @@ struct ChangeSaveFolderView: View {
     @Binding var saveFolderURL: URL
 
     func pickFolder() {
-        let panel = NSOpenPanel()
-        panel.allowsMultipleSelection = false
-        panel.canChooseDirectories = true
-        panel.canChooseFiles = false
- 
-        print("pickFolder()")
-        if panel.runModal() == .OK {
-            if let selectedURL = panel.url {
-                if selectedURL != self.saveFolderURL {
-                    self.saveFolderURL = selectedURL
-                    try? BoardShim.logMessage(.LEVEL_INFO, "selected save folder URL: \(selectedURL)") }}}
+//        let panel = NSOpenPanel()
+//        panel.allowsMultipleSelection = false
+//        panel.canChooseDirectories = true
+//        panel.canChooseFiles = false
+// 
+//        print("pickFolder()")
+//        if panel.runModal() == .OK {
+//            if let selectedURL = panel.url {
+//                if selectedURL != self.saveFolderURL {
+//                    self.saveFolderURL = selectedURL
+//                    try? BoardShim.logMessage(.LEVEL_INFO, "selected save folder URL: \(selectedURL)") }}}
     }
 
     var body: some View {

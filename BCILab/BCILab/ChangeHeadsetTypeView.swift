@@ -22,6 +22,7 @@ struct ChangeHeadsetTypeView: View {
                             .tag(value)
                     }
                 }.pickerStyle(.radioGroup)
+//                }.pickerStyle(.automatic)
             }
         }
     }

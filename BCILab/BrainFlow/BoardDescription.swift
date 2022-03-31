@@ -19,6 +19,7 @@ struct BoardDescription: Codable, Equatable {
     let package_num_channel: Int32
     let sampling_rate: Int32
     let timestamp_channel: Int32
+    
     // optionals:
     let battery_channel: Int32?
     let eda_channels: [Int32]?
@@ -40,7 +41,7 @@ struct BoardDescription: Codable, Equatable {
             let json = try decoder.decode(type(of: self), from: jsonData)
             self = json
         } catch {
-            print("board description JSON decoding error:\n \(error)")
+            try? BoardShim.logMessage(.LEVEL_CRITICAL, "board description JSON decoding error:\n \(error)")
             throw BrainFlowException("Invalid board description JSON", .NO_SUCH_DATA_IN_JSON_ERROR)
         }
     }

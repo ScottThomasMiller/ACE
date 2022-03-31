@@ -48,7 +48,7 @@ struct DataFilter {
      */
     static func setLogFile (_ logFile: String) throws {
         var cLogFile = logFile.cString(using: String.Encoding.utf8)!
-        let errorCode = set_log_file (&cLogFile)
+        let errorCode = set_log_file_data_handler (&cLogFile)
         try checkErrorCode("Error in set_log_file", errorCode)
     }
 
@@ -56,7 +56,7 @@ struct DataFilter {
      * set log level
      */
     static func setLogLevel (_ logLevel: LogLevels) throws {
-        let errorCode = set_log_level (logLevel.rawValue)
+        let errorCode = set_log_level_data_handler (logLevel.rawValue)
         try checkErrorCode("Error in set_log_level", errorCode)
     }
 

@@ -8,10 +8,10 @@
 import SwiftUI
 
 class AppState: ObservableObject {
-    static public let docsFolder: URL = Bundle.main.bundleURL.appendingPathComponent("Contents/Resources/DefaultImages")
-    
-    @Published var saveFolder = URL(fileURLWithPath: "BCILab", relativeTo: docsFolder)
-    @Published var loadFolder = Bundle.main.bundleURL.appendingPathComponent("Contents/Resources/DefaultImages")
+    static public let docsFolder: URL = Bundle.main.bundleURL
+
+    @Published var saveFolder = Bundle.main.resourceURL!.appendingPathComponent("save")
+    @Published var loadFolder = Bundle.main.resourceURL!.appendingPathComponent("images/default")
     @Published var intervalSeconds: Double = 0.6
     @Published var boardId: BoardIds = .SYNTHETIC_BOARD
 

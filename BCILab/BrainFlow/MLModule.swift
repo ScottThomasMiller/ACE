@@ -30,7 +30,7 @@ struct MLModule {
         //:param log_level: log level, to specify it you should use values from LogLevels enum
         //:type log_level: int
         
-        let errorCode = set_log_level(logLevel.rawValue)
+        let errorCode = set_log_level_ml_module(logLevel.rawValue)
         try checkErrorCode("unable to enable logger", errorCode)
     }
 
@@ -55,7 +55,7 @@ struct MLModule {
         //:type log_file: str
         
         var cFile = [CChar](repeating: CChar(0), count: 4096)
-        let errorCode = set_log_file(&cFile)
+        let errorCode = set_log_file_ml_module(&cFile)
         try checkErrorCode("Cannot set log file to: \(logFile)", errorCode)
     }
         
