@@ -1,8 +1,11 @@
 import SwiftUI
 
-// TabView timer code forked from: https://stackoverflow.com/questions/58896661/swiftui-create-image-slider-with-dots-as-indicators
-
 struct ContentView: View {
+    #if os(iOS)
+    init() {
+        UITableView.appearance().backgroundColor = .white // for NavigationView background
+    }
+    #endif
     
     var body: some View {
         let _ = try? BoardShim.logMessage(.LEVEL_INFO, "ContentView body recompute")

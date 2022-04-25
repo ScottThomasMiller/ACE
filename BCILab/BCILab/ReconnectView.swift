@@ -7,17 +7,20 @@
 
 import SwiftUI
 
+struct Message: Identifiable {
+    let id = UUID()
+    let text: String
+}
+
 struct ReconnectView: View {
     @Binding var headset: Headset
     @Binding var boardId: BoardIds
     @Binding var isMainMenuActive: Bool
-
-    //@State private var message: String = "Reconnect to Headet"
     @State private var buttonLabel: String = "Connect"
-    //@ObservedObject var appState: AppState
     
     func reconnect() {
         try? BoardShim.logMessage(.LEVEL_INFO, "reconnect(). deactivating the board")
+        self.buttonLabel = "Reconnecting..."
         self.headset.isActive = false // terminates the streaming loop
         sleep(2)
         
@@ -31,34 +34,32 @@ struct ReconnectView: View {
             try? BoardShim.logMessage(.LEVEL_INFO, "connecting to board ID: \(self.boardId)")
             self.headset = try Headset(boardId: self.boardId)
             try? BoardShim.logMessage(.LEVEL_INFO, "connected")
-            self.isMainMenuActive = false
-        }
+            self.isMainMenuActive = false }
         catch {
-            try? BoardShim.logMessage(.LEVEL_INFO, "failed to connect") }
+            try? BoardShim.logMessage(.LEVEL_INFO, "failed to connect")
+            self.buttonLabel = "Try Again" }
     }
-
+    
     var body: some View {
-        VStack {
-            Spacer()
-            HStack {
-                Button(action: {
-                   reconnect()
-                }) {
-                    Text(self.buttonLabel)
-                        .fontWeight(.bold)
-                        .font(.title)
-                        .padding()
-                        .foregroundColor(.black)
+        ZStack {
+            Color.white
+            VStack {
+                Spacer()
+                HStack {
+                    Button(action: {
+                        reconnect()
+                    }) {
+                        Text(self.buttonLabel)
+                            .fontWeight(.bold)
+                            .font(.title)
+                            .padding()
+                            .foregroundColor(.black)
+                    }
+                    .buttonStyle(GrowingButton(color: .blue))
                 }
-                .buttonStyle(GrowingButton(color: .blue))
+                Spacer()
             }
-
-            Spacer()
         }
-        //.frame(width: 450, height: 350, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-        //.background(Color(.white))
-        //.border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 3)
-        //.cornerRadius(7)
     }
 }
 

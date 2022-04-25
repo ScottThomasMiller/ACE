@@ -18,19 +18,24 @@ struct ChangeIntervalView: View {
             return formatter
         }()
         
-        HStack {
-            Text("Slideshow interval:")
-            TextField("interval seconds", value: self.$newValue, formatter: formatter, onCommit: {
-                self.intervalSeconds = self.newValue
-                try? BoardShim.logMessage(.LEVEL_INFO, "new interval: \(intervalSeconds) sec.")
-            })
-            .padding()
-            .fixedSize(horizontal: true, vertical: true)
-            Text("seconds")
+        ZStack {
+            Color.white
+            HStack {
+                Text("Slideshow interval:")
+                TextField("interval seconds", value: self.$newValue, formatter: formatter, onCommit: {
+                    self.intervalSeconds = self.newValue
+                    try? BoardShim.logMessage(.LEVEL_INFO, "new interval: \(intervalSeconds) sec.")
+                })
+                .padding()
+    //            .fixedSize(horizontal: true, vertical: true)
+                .fixedSize(horizontal: true, vertical: true)
+                .frame(minWidth: 20, maxWidth: 100, alignment: .center)
+                Text("seconds")
+            }
+            .font(.title2)
+            .foregroundColor(.black)
+            .onAppear(perform: {self.newValue = self.intervalSeconds})
         }
-        .font(.title2)
-        .foregroundColor(.black)
-        .onAppear(perform: {self.newValue = self.intervalSeconds})
     }
 }
 

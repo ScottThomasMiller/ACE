@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,6 +27,8 @@
 		5F0C02CF2750FE6E003F68DF /* AppStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02CB2750FE6E003F68DF /* AppStatusView.swift */; };
 		5F0C02D02750FE6E003F68DF /* AppStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0C02CB2750FE6E003F68DF /* AppStatusView.swift */; };
 		5F1FE8FF2792E9B3005545D1 /* Experiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F01258E2745A68200F356B1 /* Experiment.swift */; };
+		5F38224527FBC72E00316FE0 /* libneurosdk.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F38224427FBC72E00316FE0 /* libneurosdk.dylib */; };
+		5F38224627FBC72E00316FE0 /* libneurosdk.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F38224427FBC72E00316FE0 /* libneurosdk.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5F39795D271330F5003D3A64 /* ChangeIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39795C271330F5003D3A64 /* ChangeIntervalView.swift */; };
 		5F39795E271330F5003D3A64 /* ChangeIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39795C271330F5003D3A64 /* ChangeIntervalView.swift */; };
 		5F39795F271330F5003D3A64 /* ChangeIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39795C271330F5003D3A64 /* ChangeIntervalView.swift */; };
@@ -64,23 +66,18 @@
 		5F58BD1726AC1C5E003F5483 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F58BD1626AC1C5E003F5483 /* Preview Assets.xcassets */; };
 		5F58BD2226AC1C5E003F5483 /* BCILabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F58BD2126AC1C5E003F5483 /* BCILabTests.swift */; };
 		5F58BD2D26AC1C5E003F5483 /* BCILabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F58BD2C26AC1C5E003F5483 /* BCILabUITests.swift */; };
-		5F5FF964272842BE00566DD0 /* BCILab.app in Resources */ = {isa = PBXBuildFile; fileRef = 5F58BD0C26AC1C5D003F5483 /* BCILab.app */; platformFilter = ios; };
+		5F5FF964272842BE00566DD0 /* iBrainWave.app in Resources */ = {isa = PBXBuildFile; fileRef = 5F58BD0C26AC1C5D003F5483 /* iBrainWave.app */; platformFilter = ios; };
 		5F5FF9662728435800566DD0 /* BCILabMBApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5FF9652728435800566DD0 /* BCILabMBApp.swift */; };
 		5F628BDE26E14B9D0085B009 /* ReconnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BDD26E14B9D0085B009 /* ReconnectView.swift */; };
 		5F628BE026E14D970085B009 /* ReconnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BDD26E14B9D0085B009 /* ReconnectView.swift */; };
 		5F628BE226E231BA0085B009 /* CustomStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BE126E231BA0085B009 /* CustomStyles.swift */; };
 		5F628BE426E231BA0085B009 /* CustomStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F628BE126E231BA0085B009 /* CustomStyles.swift */; };
+		5F6D92F527F899F900438C09 /* ReconnectingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D92F427F899F900438C09 /* ReconnectingView.swift */; };
+		5F6D92F627F899F900438C09 /* ReconnectingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6D92F427F899F900438C09 /* ReconnectingView.swift */; };
 		5F72F87F271B5D86000C6D13 /* ChangeHeadsetTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F72F87E271B5D86000C6D13 /* ChangeHeadsetTypeView.swift */; };
 		5F72F880271B5D86000C6D13 /* ChangeHeadsetTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F72F87E271B5D86000C6D13 /* ChangeHeadsetTypeView.swift */; };
 		5F72F881271B5D86000C6D13 /* ChangeHeadsetTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F72F87E271B5D86000C6D13 /* ChangeHeadsetTypeView.swift */; };
 		5F74AE3D26C6845200A53ED5 /* CSVFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F74AE3C26C6845200A53ED5 /* CSVFile.swift */; };
-		5F909CBA27E1473C00071228 /* libneurosdk-shared.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FC8086A27E1357900A0EA39 /* libneurosdk-shared.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		5F909CBE27E2768000071228 /* libBoardController.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC8085A27E1352C00A0EA39 /* libBoardController.dylib */; platformFilters = (macos, ); };
-		5F909CBF27E2768000071228 /* libBoardController.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FC8085A27E1352C00A0EA39 /* libBoardController.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		5F909CC027E2768000071228 /* libDataHandler.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC8085D27E1352C00A0EA39 /* libDataHandler.dylib */; platformFilters = (macos, ); };
-		5F909CC127E2768000071228 /* libDataHandler.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FC8085D27E1352C00A0EA39 /* libDataHandler.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		5F909CC427E2768000071228 /* libMLModule.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC8085C27E1352C00A0EA39 /* libMLModule.dylib */; platformFilters = (macos, ); };
-		5F909CC527E2768000071228 /* libMLModule.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FC8085C27E1352C00A0EA39 /* libMLModule.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5F96968027E8B011009B8952 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 5F96967F27E8B011009B8952 /* images */; };
 		5F96968127E8B011009B8952 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 5F96967F27E8B011009B8952 /* images */; };
 		5F9D64E12757FB9000923CE8 /* ChangeSaveFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA327F27010D4400CF66E5 /* ChangeSaveFolderView.swift */; };
@@ -104,7 +101,6 @@
 		5FAFBE3627BF29E700D574B0 /* SlideShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFBE2727BE657B00D574B0 /* SlideShow.swift */; };
 		5FAFBE3727BF29E700D574B0 /* SlideShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFBE2727BE657B00D574B0 /* SlideShow.swift */; };
 		5FAFBE3827BF29E800D574B0 /* SlideShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFBE2727BE657B00D574B0 /* SlideShow.swift */; };
-		5FB1116627F4B697007A9B3C /* libBrainBitLib.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FB1116527F4B697007A9B3C /* libBrainBitLib.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5FB1116E27F4F3E2007A9B3C /* libneurosdk-shared.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9FA89527E018D5008D9972 /* libneurosdk-shared.dylib */; };
 		5FB1116F27F4F3E2007A9B3C /* libneurosdk-shared.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F9FA89527E018D5008D9972 /* libneurosdk-shared.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5FB1117027F4F435007A9B3C /* neurosdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB6338627EA1CB000B2504C /* neurosdk.framework */; };
@@ -113,6 +109,14 @@
 		5FB1117327F4F448007A9B3C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3C531227DFD7A300F27964 /* libc++.tbd */; };
 		5FB1117527F535E4007A9B3C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FB1117427F535E4007A9B3C /* Info.plist */; };
 		5FB9A4FD26FB9587009EE0F1 /* BrainFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB9A4FC26FB9587009EE0F1 /* BrainFlowTests.swift */; };
+		5FC365F527FBC2B900ABA69E /* libBoardController.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC365F127FBC2B900ABA69E /* libBoardController.dylib */; };
+		5FC365F627FBC2B900ABA69E /* libBoardController.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FC365F127FBC2B900ABA69E /* libBoardController.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5FC365F727FBC2B900ABA69E /* libBrainBitLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC365F227FBC2B900ABA69E /* libBrainBitLib.dylib */; };
+		5FC365F827FBC2B900ABA69E /* libBrainBitLib.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FC365F227FBC2B900ABA69E /* libBrainBitLib.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5FC365F927FBC2B900ABA69E /* libMLModule.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC365F327FBC2B900ABA69E /* libMLModule.dylib */; };
+		5FC365FA27FBC2B900ABA69E /* libMLModule.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FC365F327FBC2B900ABA69E /* libMLModule.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5FC365FB27FBC2B900ABA69E /* libDataHandler.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC365F427FBC2B900ABA69E /* libDataHandler.dylib */; };
+		5FC365FC27FBC2B900ABA69E /* libDataHandler.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FC365F427FBC2B900ABA69E /* libDataHandler.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5FC619D327F39E1200068E4A /* libMLModule.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F122F4627DFA62E0087CB10 /* libMLModule.dylib */; };
 		5FC619D427F39E1200068E4A /* libMLModule.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F122F4627DFA62E0087CB10 /* libMLModule.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5FC619D527F39E1200068E4A /* libDataHandler.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F122F4527DFA62E0087CB10 /* libDataHandler.dylib */; };
@@ -219,6 +223,8 @@
 		5FE55F982704855B00DDA111 /* MLModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC6464526FBC40600164A31 /* MLModule.swift */; };
 		5FE55F992704855B00DDA111 /* MLModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC6464526FBC40600164A31 /* MLModule.swift */; };
 		5FE55F9A2704855C00DDA111 /* MLModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC6464526FBC40600164A31 /* MLModule.swift */; };
+		5FE63BBA27FBC4E700DC4477 /* libneurosdk-shared.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE63BB927FBC4E700DC4477 /* libneurosdk-shared.dylib */; };
+		5FE63BBB27FBC4E700DC4477 /* libneurosdk-shared.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FE63BB927FBC4E700DC4477 /* libneurosdk-shared.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5FE9509C2728120600E3E1A3 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F524C3526BAD67C00DECD6E /* Error.swift */; };
 		5FE9509D2728120600E3E1A3 /* ChangeIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F39795C271330F5003D3A64 /* ChangeIntervalView.swift */; };
 		5FE9509E2728120600E3E1A3 /* BrainFlowInputParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD107D26DD36F0000A6FFE /* BrainFlowInputParams.swift */; };
@@ -309,11 +315,12 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5FB1116627F4B697007A9B3C /* libBrainBitLib.dylib in Embed Libraries */,
-				5F909CBF27E2768000071228 /* libBoardController.dylib in Embed Libraries */,
-				5F909CC127E2768000071228 /* libDataHandler.dylib in Embed Libraries */,
-				5F909CC527E2768000071228 /* libMLModule.dylib in Embed Libraries */,
-				5F909CBA27E1473C00071228 /* libneurosdk-shared.dylib in Embed Libraries */,
+				5FC365F827FBC2B900ABA69E /* libBrainBitLib.dylib in Embed Libraries */,
+				5F38224627FBC72E00316FE0 /* libneurosdk.dylib in Embed Libraries */,
+				5FC365FA27FBC2B900ABA69E /* libMLModule.dylib in Embed Libraries */,
+				5FE63BBB27FBC4E700DC4477 /* libneurosdk-shared.dylib in Embed Libraries */,
+				5FC365FC27FBC2B900ABA69E /* libDataHandler.dylib in Embed Libraries */,
+				5FC365F627FBC2B900ABA69E /* libBoardController.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,6 +350,7 @@
 		5F122F4527DFA62E0087CB10 /* libDataHandler.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDataHandler.dylib; path = BrainFlow/dylib/OS64/libDataHandler.dylib; sourceTree = "<group>"; };
 		5F122F4627DFA62E0087CB10 /* libMLModule.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMLModule.dylib; path = BrainFlow/dylib/OS64/libMLModule.dylib; sourceTree = "<group>"; };
 		5F122F4727DFA62E0087CB10 /* libMuseLib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMuseLib.dylib; path = BrainFlow/dylib/OS64/libMuseLib.dylib; sourceTree = "<group>"; };
+		5F38224427FBC72E00316FE0 /* libneurosdk.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libneurosdk.dylib; path = BrainFlow/dylib/MAC/libneurosdk.dylib; sourceTree = "<group>"; };
 		5F39795C271330F5003D3A64 /* ChangeIntervalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeIntervalView.swift; sourceTree = "<group>"; };
 		5F3B444226FCB32400AC20E8 /* BrainFlowCItests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainFlowCItests.swift; sourceTree = "<group>"; };
 		5F3BB14E276A0D2F00A194F2 /* end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = end.png; sourceTree = "<group>"; };
@@ -361,7 +369,7 @@
 		5F524C3826BAD67C00DECD6E /* ChannelFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelFormat.swift; sourceTree = "<group>"; };
 		5F524C4E26BAD84400DECD6E /* lsl_c.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lsl_c.h; sourceTree = "<group>"; };
 		5F524C4F26BAD86F00DECD6E /* lsl_constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lsl_constants.h; sourceTree = "<group>"; };
-		5F58BD0C26AC1C5D003F5483 /* BCILab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BCILab.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F58BD0C26AC1C5D003F5483 /* iBrainWave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBrainWave.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F58BD0F26AC1C5D003F5483 /* BCILabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCILabApp.swift; sourceTree = "<group>"; };
 		5F58BD1326AC1C5E003F5483 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F58BD1626AC1C5E003F5483 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -376,6 +384,7 @@
 		5F5FF968272845B800566DD0 /* BCILab.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BCILab.entitlements; sourceTree = "<group>"; };
 		5F628BDD26E14B9D0085B009 /* ReconnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconnectView.swift; sourceTree = "<group>"; };
 		5F628BE126E231BA0085B009 /* CustomStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStyles.swift; sourceTree = "<group>"; };
+		5F6D92F427F899F900438C09 /* ReconnectingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconnectingView.swift; sourceTree = "<group>"; };
 		5F72F87E271B5D86000C6D13 /* ChangeHeadsetTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeHeadsetTypeView.swift; sourceTree = "<group>"; };
 		5F74AE3C26C6845200A53ED5 /* CSVFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVFile.swift; sourceTree = "<group>"; };
 		5F86ADAE27DE7E6600CFBD2A /* BCILabMB.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BCILabMB.entitlements; sourceTree = "<group>"; };
@@ -395,6 +404,10 @@
 		5FBAE2EF272855800025F291 /* BrainFlowLibs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrainFlowLibs.h; sourceTree = "<group>"; };
 		5FBE6F8526B3F97600BA6B93 /* liblsl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = liblsl.h; sourceTree = "<group>"; };
 		5FC07DB426BEFB4300B1971B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5FC365F127FBC2B900ABA69E /* libBoardController.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBoardController.dylib; path = BrainFlow/dylib/MAC/libBoardController.dylib; sourceTree = "<group>"; };
+		5FC365F227FBC2B900ABA69E /* libBrainBitLib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBrainBitLib.dylib; path = BrainFlow/dylib/MAC/libBrainBitLib.dylib; sourceTree = "<group>"; };
+		5FC365F327FBC2B900ABA69E /* libMLModule.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMLModule.dylib; path = BrainFlow/dylib/MAC/libMLModule.dylib; sourceTree = "<group>"; };
+		5FC365F427FBC2B900ABA69E /* libDataHandler.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDataHandler.dylib; path = BrainFlow/dylib/MAC/libDataHandler.dylib; sourceTree = "<group>"; };
 		5FC6464526FBC40600164A31 /* MLModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLModule.swift; sourceTree = "<group>"; };
 		5FC7928C274B1E0A00FCA041 /* black_crosshair.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = black_crosshair.jpeg; sourceTree = "<group>"; };
 		5FC8085A27E1352C00A0EA39 /* libBoardController.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBoardController.dylib; path = BrainFlow/dylib/MAC_ARM64/libBoardController.dylib; sourceTree = "<group>"; };
@@ -418,7 +431,8 @@
 		5FCD109526DD3B13000A6FFE /* board_info_getter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = board_info_getter.h; sourceTree = "<group>"; };
 		5FCF8BAE26C577E3002DA9F0 /* EEG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EEG.swift; sourceTree = "<group>"; };
 		5FD6E2C0275BAF0E00F9A4CB /* ChangeLoadFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLoadFolderView.swift; sourceTree = "<group>"; };
-		5FE950CE2728120600E3E1A3 /* BCILabMB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BCILabMB.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE63BB927FBC4E700DC4477 /* libneurosdk-shared.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libneurosdk-shared.dylib"; path = "BrainFlow/dylib/MAC/libneurosdk-shared.dylib"; sourceTree = "<group>"; };
+		5FE950CE2728120600E3E1A3 /* BrainWave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainWave.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FE9A3A52704812800A7AC22 /* BrainWaveiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainWaveiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FE9A3B42704812A00A7AC22 /* BrainWaveiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrainWaveiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FE9A3BE2704812A00A7AC22 /* BrainWaveiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrainWaveiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -469,12 +483,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FE63BBA27FBC4E700DC4477 /* libneurosdk-shared.dylib in Frameworks */,
 				5FE950BB2728120600E3E1A3 /* RealModule in Frameworks */,
-				5F909CBE27E2768000071228 /* libBoardController.dylib in Frameworks */,
+				5FC365FB27FBC2B900ABA69E /* libDataHandler.dylib in Frameworks */,
+				5FC365F527FBC2B900ABA69E /* libBoardController.dylib in Frameworks */,
 				5FE950BD2728120600E3E1A3 /* ComplexModule in Frameworks */,
-				5F909CC027E2768000071228 /* libDataHandler.dylib in Frameworks */,
-				5F909CC427E2768000071228 /* libMLModule.dylib in Frameworks */,
+				5FC365F727FBC2B900ABA69E /* libBrainBitLib.dylib in Frameworks */,
 				5FE950BF2728120600E3E1A3 /* Numerics in Frameworks */,
+				5F38224527FBC72E00316FE0 /* libneurosdk.dylib in Frameworks */,
+				5FC365F927FBC2B900ABA69E /* libMLModule.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,14 +560,14 @@
 		5F58BD0D26AC1C5D003F5483 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5F58BD0C26AC1C5D003F5483 /* BCILab.app */,
+				5F58BD0C26AC1C5D003F5483 /* iBrainWave.app */,
 				5F58BD1D26AC1C5E003F5483 /* BCILabTests.xctest */,
 				5F58BD2826AC1C5E003F5483 /* BCILabUITests.xctest */,
 				5FB9A4F726FB9587009EE0F1 /* BrainFlowTests.xctest */,
 				5FE9A3A52704812800A7AC22 /* BrainWaveiOS.app */,
 				5FE9A3B42704812A00A7AC22 /* BrainWaveiOSTests.xctest */,
 				5FE9A3BE2704812A00A7AC22 /* BrainWaveiOSUITests.xctest */,
-				5FE950CE2728120600E3E1A3 /* BCILabMB.app */,
+				5FE950CE2728120600E3E1A3 /* BrainWave.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -583,6 +600,7 @@
 				5F628BDD26E14B9D0085B009 /* ReconnectView.swift */,
 				5FAFBE2727BE657B00D574B0 /* SlideShow.swift */,
 				5F01230D2752A60700E8F07E /* TextRTView.swift */,
+				5F6D92F427F899F900438C09 /* ReconnectingView.swift */,
 			);
 			path = BCILab;
 			sourceTree = "<group>";
@@ -652,6 +670,12 @@
 		5FBE6F8226B3F5C000BA6B93 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5F38224427FBC72E00316FE0 /* libneurosdk.dylib */,
+				5FE63BB927FBC4E700DC4477 /* libneurosdk-shared.dylib */,
+				5FC365F127FBC2B900ABA69E /* libBoardController.dylib */,
+				5FC365F227FBC2B900ABA69E /* libBrainBitLib.dylib */,
+				5FC365F427FBC2B900ABA69E /* libDataHandler.dylib */,
+				5FC365F327FBC2B900ABA69E /* libMLModule.dylib */,
 				5FB1116B27F4F360007A9B3C /* libneurosdk-shared.dylib */,
 				5FB6338627EA1CB000B2504C /* neurosdk.framework */,
 				5F909CBB27E2732300071228 /* libBrainBitLib.dylib */,
@@ -699,9 +723,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5F58BD0B26AC1C5D003F5483 /* BCILab */ = {
+		5F58BD0B26AC1C5D003F5483 /* iBrainWave */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5F58BD3126AC1C5E003F5483 /* Build configuration list for PBXNativeTarget "BCILab" */;
+			buildConfigurationList = 5F58BD3126AC1C5E003F5483 /* Build configuration list for PBXNativeTarget "iBrainWave" */;
 			buildPhases = (
 				5F58BD0826AC1C5D003F5483 /* Sources */,
 				5F58BD0926AC1C5D003F5483 /* Frameworks */,
@@ -712,14 +736,14 @@
 			);
 			dependencies = (
 			);
-			name = BCILab;
+			name = iBrainWave;
 			packageProductDependencies = (
 				5FAB0B3126EE5D500047E69A /* ComplexModule */,
 				5FAB0B3326EE5D500047E69A /* RealModule */,
 				5FAB0B3526EE5D500047E69A /* Numerics */,
 			);
 			productName = BCILab;
-			productReference = 5F58BD0C26AC1C5D003F5483 /* BCILab.app */;
+			productReference = 5F58BD0C26AC1C5D003F5483 /* iBrainWave.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5F58BD1C26AC1C5E003F5483 /* BCILabTests */ = {
@@ -778,9 +802,9 @@
 			productReference = 5FB9A4F726FB9587009EE0F1 /* BrainFlowTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		5FE950962728120600E3E1A3 /* BCILabMB */ = {
+		5FE950962728120600E3E1A3 /* BrainWave */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5FE950CB2728120600E3E1A3 /* Build configuration list for PBXNativeTarget "BCILabMB" */;
+			buildConfigurationList = 5FE950CB2728120600E3E1A3 /* Build configuration list for PBXNativeTarget "BrainWave" */;
 			buildPhases = (
 				5FE9509B2728120600E3E1A3 /* Sources */,
 				5FE950BA2728120600E3E1A3 /* Frameworks */,
@@ -791,14 +815,14 @@
 			);
 			dependencies = (
 			);
-			name = BCILabMB;
+			name = BrainWave;
 			packageProductDependencies = (
 				5FE950972728120600E3E1A3 /* ComplexModule */,
 				5FE950992728120600E3E1A3 /* RealModule */,
 				5FE9509A2728120600E3E1A3 /* Numerics */,
 			);
 			productName = BCILab;
-			productReference = 5FE950CE2728120600E3E1A3 /* BCILabMB.app */;
+			productReference = 5FE950CE2728120600E3E1A3 /* BrainWave.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5FE9A3A42704812800A7AC22 /* BrainWaveiOS */ = {
@@ -908,8 +932,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5F58BD0B26AC1C5D003F5483 /* BCILab */,
-				5FE950962728120600E3E1A3 /* BCILabMB */,
+				5F58BD0B26AC1C5D003F5483 /* iBrainWave */,
+				5FE950962728120600E3E1A3 /* BrainWave */,
 				5F58BD1C26AC1C5E003F5483 /* BCILabTests */,
 				5F58BD2726AC1C5E003F5483 /* BCILabUITests */,
 				5FB9A4F626FB9587009EE0F1 /* BrainFlowTests */,
@@ -967,7 +991,7 @@
 				5F96968127E8B011009B8952 /* images in Resources */,
 				5FC7928E274B1E0A00FCA041 /* black_crosshair.jpeg in Resources */,
 				5FE950C52728120600E3E1A3 /* Preview Assets.xcassets in Resources */,
-				5F5FF964272842BE00566DD0 /* BCILab.app in Resources */,
+				5F5FF964272842BE00566DD0 /* iBrainWave.app in Resources */,
 				5F3BB150276A0D2F00A194F2 /* end.png in Resources */,
 				5FE950C62728120600E3E1A3 /* Assets.xcassets in Resources */,
 				5FB1117527F535E4007A9B3C /* Info.plist in Resources */,
@@ -1028,6 +1052,7 @@
 				5FC6463D26FBA5C200164A31 /* BrainFlowExtensions.swift in Sources */,
 				5F509C9E26FFEDAB00B48497 /* MainMenu.swift in Sources */,
 				5F524C3F26BAD67C00DECD6E /* SampleX.swift in Sources */,
+				5F6D92F527F899F900438C09 /* ReconnectingView.swift in Sources */,
 				5FAFBE3427BF29E500D574B0 /* SlideShow.swift in Sources */,
 				5F01230E2752A60700E8F07E /* TextRTView.swift in Sources */,
 				5FC6462826FBA5A700164A31 /* DataFilter.swift in Sources */,
@@ -1160,6 +1185,7 @@
 				5FE950A62728120600E3E1A3 /* BoardDescription.swift in Sources */,
 				5FE950A72728120600E3E1A3 /* BrainFlowExtensions.swift in Sources */,
 				5FAFBE3827BF29E800D574B0 /* SlideShow.swift in Sources */,
+				5F6D92F627F899F900438C09 /* ReconnectingView.swift in Sources */,
 				5F01230F2752A60700E8F07E /* TextRTView.swift in Sources */,
 				5FE950A92728120600E3E1A3 /* SampleX.swift in Sources */,
 				5F1FE8FF2792E9B3005545D1 /* Experiment.swift in Sources */,
@@ -1254,12 +1280,12 @@
 /* Begin PBXTargetDependency section */
 		5F58BD2A26AC1C5E003F5483 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5F58BD0B26AC1C5D003F5483 /* BCILab */;
+			target = 5F58BD0B26AC1C5D003F5483 /* iBrainWave */;
 			targetProxy = 5F58BD2926AC1C5E003F5483 /* PBXContainerItemProxy */;
 		};
 		5FE55FA227049BF700DDA111 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5F58BD0B26AC1C5D003F5483 /* BCILab */;
+			target = 5F58BD0B26AC1C5D003F5483 /* iBrainWave */;
 			targetProxy = 5FE55FA127049BF700DDA111 /* PBXContainerItemProxy */;
 		};
 		5FE9A3B62704812A00A7AC22 /* PBXTargetDependency */ = {
@@ -1274,7 +1300,7 @@
 		};
 		5FF2DC7326E917430040A6FF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5F58BD0B26AC1C5D003F5483 /* BCILab */;
+			target = 5F58BD0B26AC1C5D003F5483 /* iBrainWave */;
 			targetProxy = 5FF2DC7226E917430040A6FF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1727,8 +1753,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/BCILab",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/BrainFlow/dylib/MAC_ARM64",
-					"$(PROJECT_DIR)/BrainFlow/dylib/OS64",
+					"$(PROJECT_DIR)/BrainFlow/dylib/MAC",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1777,8 +1802,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/BCILab",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/BrainFlow/dylib/MAC_ARM64",
-					"$(PROJECT_DIR)/BrainFlow/dylib/OS64",
+					"$(PROJECT_DIR)/BrainFlow/dylib/MAC",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1989,7 +2013,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5F58BD3126AC1C5E003F5483 /* Build configuration list for PBXNativeTarget "BCILab" */ = {
+		5F58BD3126AC1C5E003F5483 /* Build configuration list for PBXNativeTarget "iBrainWave" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5F58BD3226AC1C5E003F5483 /* Debug */,
@@ -2025,7 +2049,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5FE950CB2728120600E3E1A3 /* Build configuration list for PBXNativeTarget "BCILabMB" */ = {
+		5FE950CB2728120600E3E1A3 /* Build configuration list for PBXNativeTarget "BrainWave" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FE950CC2728120600E3E1A3 /* Debug */,

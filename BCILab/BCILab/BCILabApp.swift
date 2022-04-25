@@ -11,7 +11,16 @@ import SwiftUI
 struct BCILabApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ZStack {
+                Color.white
+                ContentView()
+            }
         }
+//        .commands {
+//            CommandMenu("Settings") {
+//                Button("Headset") { print("headset!") }
+//                    .keyboardShortcut("H")
+//            }
+//        }
     }
 }

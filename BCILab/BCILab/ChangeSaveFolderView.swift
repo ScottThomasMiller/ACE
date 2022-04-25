@@ -2,11 +2,10 @@
 //  ChangeSaveFolder.swift
 //  BCILab
 //
-//  Created by Scott Miller on 9/26/21.
-//
+//  Created by Scott Miller on 9/26/21 for Aeris Rising, LLC.
 //
 
-//import UIKit
+
 import SwiftUI
 import Foundation
 
@@ -14,17 +13,19 @@ struct ChangeSaveFolderView: View {
     @Binding var saveFolderURL: URL
 
     func pickFolder() {
-//        let panel = NSOpenPanel()
-//        panel.allowsMultipleSelection = false
-//        panel.canChooseDirectories = true
-//        panel.canChooseFiles = false
-// 
-//        print("pickFolder()")
-//        if panel.runModal() == .OK {
-//            if let selectedURL = panel.url {
-//                if selectedURL != self.saveFolderURL {
-//                    self.saveFolderURL = selectedURL
-//                    try? BoardShim.logMessage(.LEVEL_INFO, "selected save folder URL: \(selectedURL)") }}}
+        #if os(macOS)
+        let panel = NSOpenPanel()
+        panel.allowsMultipleSelection = false
+        panel.canChooseDirectories = true
+        panel.canChooseFiles = false
+ 
+        print("pickFolder()")
+        if panel.runModal() == .OK {
+            if let selectedURL = panel.url {
+                if selectedURL != self.saveFolderURL {
+                    self.saveFolderURL = selectedURL
+                    try? BoardShim.logMessage(.LEVEL_INFO, "selected save folder URL: \(selectedURL)") }}}
+        #endif
     }
 
     var body: some View {

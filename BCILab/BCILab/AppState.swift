@@ -12,13 +12,12 @@ class AppState: ObservableObject {
 
     @Published var saveFolder = Bundle.main.resourceURL!.appendingPathComponent("save")
     @Published var loadFolder = Bundle.main.resourceURL!.appendingPathComponent("images/default")
-    @Published var intervalSeconds: Double = 0.6
-    @Published var boardId: BoardIds = .SYNTHETIC_BOARD
+    @Published var intervalSeconds: Double = 1.0
+    @Published var boardId: BoardIds = .SYNTHETIC_BOARD 
 
     var saveIndex: Int?
     var isHeadsetReady : Bool { return self.headset.isActive && (self.headset.board != nil) }
     var headset = try! Headset(boardId: .SYNTHETIC_BOARD)
-    var headsetStatus: String { return (self.isHeadsetReady ? "connected" : "disconnected") }
     var labels = ["Faces", "Non-faces"]
     var totalImages: Int = 200
 }

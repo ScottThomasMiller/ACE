@@ -13,8 +13,7 @@ struct Experiment: View {
     let interval = 1.0
     
     private func checkHeadset() {
-        if !self.appState.isHeadsetReady {
-            self.isMainMenuActive = true }
+        if !self.appState.isHeadsetReady { self.isMainMenuActive = true }
     }
         
     private func disconnectHeadset() {
@@ -42,6 +41,7 @@ struct Experiment: View {
                                   appState: self.appState)
         GeometryReader { geometry in
              ZStack {
+                 Color.white
                  if self.isMainMenuActive {
                      MainMenu(isMainMenuActive: self.$isMainMenuActive,
                               appState: self.appState,

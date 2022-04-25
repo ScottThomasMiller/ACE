@@ -11,8 +11,10 @@ import SwiftUI
 struct AppStatusView: View {
     @ObservedObject var appState: AppState
     var headsetColor: Color {
-        (self.appState.headsetStatus == "connected") ? .green : .red
+        (self.headsetStatus == "connected") ? .green : .red
     }
+//    var headsetStatus: String { return (self.appState.isHeadsetReady ? "connected" : "disconnected") }
+    var headsetStatus: String { return (self.appState.headset.isActive ? "connected" : "disconnected") }
     var imagesColor: Color {
         (self.numImages > 0) ? .green : .red
     }
@@ -37,7 +39,7 @@ struct AppStatusView: View {
                 VStack(alignment: .trailing) {
                     Text("\(self.loadFolder)").bold().font(.title2).foregroundColor(.green)
                     Text("\(self.imageCounts)").bold().font(.title2).foregroundColor(self.imagesColor)
-                    Text("\(self.appState.headsetStatus)").bold().font(.title2).foregroundColor(self.headsetColor)
+                    Text("\(self.headsetStatus)").bold().font(.title2).foregroundColor(self.headsetColor)
                     Text("\(self.appState.boardId.name)").bold().font(.title2).foregroundColor(.blue) }
             }
         } // ZStack

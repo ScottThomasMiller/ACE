@@ -25,6 +25,12 @@ struct MainMenu: View {
         self.appState.saveIndex = 0
     }
     
+    func exitApp() {
+        self.appState.headset.cleanup()
+        sleep(1)
+        exit(0)
+    }
+    
     var body: some View {
         let fWidth = 0.9*appGeometry.size.width
         let fHeight = 0.9*appGeometry.size.height
@@ -40,13 +46,16 @@ struct MainMenu: View {
                                                                       boardId: self.$appState.boardId,
                                                                       isMainMenuActive: self.$isMainMenuActive)) {
                                 NavLinkView(id: "bluetooth", label: "Reconnect") }
-                            NavigationLink(destination: ChangeSaveFolderView(saveFolderURL: self.$appState.saveFolder)) {
-                                NavLinkView(id: "save_folder", label: "Save Folder") }
-                            NavigationLink(destination: ChangeLoadFolderView(loadFolderURL: self.$appState.loadFolder)) {
-                                NavLinkView(id: "load_folder", label: "Load Folder") }
+                            
+                            #if os(macOS)
+                                NavigationLink(destination: ChangeSaveFolderView(saveFolderURL: self.$appState.saveFolder)) {
+                                    NavLinkView(id: "save_folder", label: "Save Folder") }
+                                NavigationLink(destination: ChangeLoadFolderView(loadFolderURL: self.$appState.loadFolder)) {
+                                    NavLinkView(id: "load_folder", label: "Load Folder") }
+                            #endif
                             NavigationLink(destination: ChangeIntervalView(intervalSeconds: self.$appState.intervalSeconds)) {
                                 NavLinkView(id: "interval", label: "Slideshow Interval") }
-                            NavigationLink(destination: ChangeHeadsetTypeView(boardId: self.$appState.boardId)) {
+                            NavigationLink(destination: ChangeHeadsetTypeView(boardId: self.$appState.boardId, headset: self.$appState.headset)) {
                                 NavLinkView(id: "headset", label: "Headset Type") }
                         } // List
                         .navigationTitle("Main Menu")
@@ -62,9 +71,10 @@ struct MainMenu: View {
                     Button(action: { restartAction() }) {
                         ButtonText("Restart", self.appGeometry)
                     }.buttonStyle(GrowingButton(color: .blue))
-                    Button(action: {exit(0)}) {
+                    Button(action: { exitApp() }) {
                         ButtonText("Exit", self.appGeometry)
                     }.buttonStyle(GrowingButton(color: .blue))
+                     .keyboardShortcut("q", modifiers: [.command])
                 }
                 Spacer()
             } // VStack

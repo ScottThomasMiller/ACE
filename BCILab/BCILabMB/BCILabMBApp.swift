@@ -7,11 +7,5 @@ struct BCILabMBApp: App {
         WindowGroup {
             ContentView()
         }
-        .commands {
-            CommandMenu("Settings") {
-                Button("Headset") { print("headset!") }
-                    .keyboardShortcut("H")
-            }
-        }
     }
 }

@@ -74,18 +74,20 @@ struct ChangeLoadFolderView: View {
     }
     
     func pickFolder() {
-//        let panel = NSOpenPanel()
-//        panel.allowsMultipleSelection = false
-//        panel.canChooseDirectories = true
-//        panel.canChooseFiles = false
-// 
-//        print("pickFolder()")
-//        if panel.runModal() == .OK {
-//            if let selectedURL = panel.url {
-//                print("selectedURL: \(selectedURL)")
-//                if (selectedURL != self.loadFolderURL) && validateFolder(folder: selectedURL) {
-//                    self.loadFolderURL = selectedURL
-//                    try? BoardShim.logMessage(.LEVEL_INFO, "New load folder URL: \(selectedURL)") }}}
+        #if os(macOS)
+        let panel = NSOpenPanel()
+        panel.allowsMultipleSelection = false
+        panel.canChooseDirectories = true
+        panel.canChooseFiles = false
+ 
+        print("pickFolder()")
+        if panel.runModal() == .OK {
+            if let selectedURL = panel.url {
+                print("selectedURL: \(selectedURL)")
+                if (selectedURL != self.loadFolderURL) && validateFolder(folder: selectedURL) {
+                    self.loadFolderURL = selectedURL
+                    try? BoardShim.logMessage(.LEVEL_INFO, "New load folder URL: \(selectedURL)") }}}
+        #endif
     }
 
     var body: some View {

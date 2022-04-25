@@ -47,12 +47,22 @@
 		<key>BrainFlowTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>BrainWave.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
 		<key>BrainWaveiOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
+		</dict>
+		<key>iBrainWave.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -68,6 +78,11 @@
 			<true/>
 		</dict>
 		<key>5F58BD2726AC1C5E003F5483</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5FE950962728120600E3E1A3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

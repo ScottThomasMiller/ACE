@@ -113,33 +113,6 @@ class Headset {
         }
     }
     
-    func reconnect() -> Bool {
-        try? BoardShim.logMessage(.LEVEL_INFO, "Headset.reconnect() UUID: \(self.uuid) boardId: \(self.boardId)")
-        defer {
-            try? BoardShim.logMessage(.LEVEL_INFO, "end reconnect")
-        }
-        
-        do {
-            try? BoardShim.logMessage(.LEVEL_INFO, "Headset.reconnect: \(self.boardId.name)")
-            self.isActive = false
-            sleep(1)
-            if let oldBoard = board {
-                try? oldBoard.releaseSession()}
-            try setup()
-            
-            if let newBoard = board {
-                return try newBoard.isPrepared() }
-            else {
-                return false }
-        } catch let bfError as BrainFlowException {
-            try? BoardShim.logMessage(.LEVEL_ERROR, bfError.message)
-        } catch {
-            try? BoardShim.logMessage(.LEVEL_ERROR, "\(error)")
-        }
-        
-        return false
-    }
-    
     deinit {
         try? BoardShim.logMessage(.LEVEL_INFO, "Headset.deinit() UUID: \(self.uuid) boardId: \(self.boardId)")
         cleanup()
@@ -275,14 +248,16 @@ class Headset {
     
     func cleanup() {
         try? BoardShim.logMessage(.LEVEL_INFO, "Headset.cleanup() UUID: \(self.uuid) boardId: \(self.boardId)")
-        if let theBoard = board {
-            try? theBoard.stopStream() }
         self.isActive = false
         self.isStreaming = false
+
+        if let theBoard = board {
+            try? theBoard.stopStream()
+            try? theBoard.releaseSession()
+        }
         
-        if rawFile != nil {
-            rawFile!.synchronizeFile()
-            filteredFile!.synchronizeFile() }
+        if let rFile = self.rawFile  { rFile.synchronizeFile() }
+        if let fFile = self.filteredFile  { fFile.synchronizeFile() }
     }
     
     func streamEEG() {
