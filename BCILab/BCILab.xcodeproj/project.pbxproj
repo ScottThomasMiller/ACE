@@ -105,7 +105,6 @@
 		5FB1116F27F4F3E2007A9B3C /* libneurosdk-shared.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F9FA89527E018D5008D9972 /* libneurosdk-shared.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5FB1117027F4F435007A9B3C /* neurosdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB6338627EA1CB000B2504C /* neurosdk.framework */; };
 		5FB1117127F4F435007A9B3C /* neurosdk.framework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FB6338627EA1CB000B2504C /* neurosdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5FB1117227F4F440007A9B3C /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3C531027DFD77E00F27964 /* CoreBluetooth.framework */; };
 		5FB1117327F4F448007A9B3C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3C531227DFD7A300F27964 /* libc++.tbd */; };
 		5FB1117527F535E4007A9B3C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FB1117427F535E4007A9B3C /* Info.plist */; };
 		5FB9A4FD26FB9587009EE0F1 /* BrainFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB9A4FC26FB9587009EE0F1 /* BrainFlowTests.swift */; };
@@ -175,6 +174,8 @@
 		5FDD249627C4DDAE007DE63B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC07DB426BEFB4300B1971B /* ContentView.swift */; };
 		5FDD249727C4DDAF007DE63B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC07DB426BEFB4300B1971B /* ContentView.swift */; };
 		5FDD249827C4DDB0007DE63B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC07DB426BEFB4300B1971B /* ContentView.swift */; };
+		5FE508392823712000915D53 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3C531027DFD77E00F27964 /* CoreBluetooth.framework */; };
+		5FE5083A2823712000915D53 /* CoreBluetooth.framework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F3C531027DFD77E00F27964 /* CoreBluetooth.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5FE55F53270484D300DDA111 /* Headset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108C26DD3806000A6FFE /* Headset.swift */; };
 		5FE55F54270484D500DDA111 /* Headset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108C26DD3806000A6FFE /* Headset.swift */; };
 		5FE55F55270484D600DDA111 /* Headset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108C26DD3806000A6FFE /* Headset.swift */; };
@@ -304,6 +305,7 @@
 				5FC619E027F3B3DC00068E4A /* libBoardController.dylib in Embed Libraries */,
 				5FC619D427F39E1200068E4A /* libMLModule.dylib in Embed Libraries */,
 				5FC619D627F39E1200068E4A /* libDataHandler.dylib in Embed Libraries */,
+				5FE5083A2823712000915D53 /* CoreBluetooth.framework in Embed Libraries */,
 				5FB1117127F4F435007A9B3C /* neurosdk.framework in Embed Libraries */,
 			);
 			name = "Embed Libraries";
@@ -445,7 +447,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FAB0B3426EE5D500047E69A /* RealModule in Frameworks */,
-				5FB1117227F4F440007A9B3C /* CoreBluetooth.framework in Frameworks */,
 				5FB1117027F4F435007A9B3C /* neurosdk.framework in Frameworks */,
 				5FAB0B3226EE5D500047E69A /* ComplexModule in Frameworks */,
 				5FB1116E27F4F3E2007A9B3C /* libneurosdk-shared.dylib in Frameworks */,
@@ -453,6 +454,7 @@
 				5FB1117327F4F448007A9B3C /* libc++.tbd in Frameworks */,
 				5FC619D327F39E1200068E4A /* libMLModule.dylib in Frameworks */,
 				5FC619DF27F3B3DC00068E4A /* libBoardController.dylib in Frameworks */,
+				5FE508392823712000915D53 /* CoreBluetooth.framework in Frameworks */,
 				5FC619D527F39E1200068E4A /* libDataHandler.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1448,9 +1450,11 @@
 				CODE_SIGN_ENTITLEMENTS = BCILab/BCILab.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development: miller.scott.thomas@gmail.com (9C6P3H9F6Q)";
 				CODE_SIGN_STYLE = Manual;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"BCILab/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DYLIB_INSTALL_NAME_BASE[arch=*]" = "@rpath";
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_BITCODE = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1496,9 +1500,11 @@
 				CODE_SIGN_ENTITLEMENTS = BCILab/BCILab.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development: miller.scott.thomas@gmail.com (9C6P3H9F6Q)";
 				CODE_SIGN_STYLE = Manual;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"BCILab/Preview Content\"";
 				DEVELOPMENT_TEAM = Y8JL76N88P;
 				"DYLIB_INSTALL_NAME_BASE[arch=*]" = "@rpath";
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_BITCODE = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
