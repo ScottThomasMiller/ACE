@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import BrainFlow
 
 struct ReconnectingView: View {
     @Binding var boardId: BoardIds
