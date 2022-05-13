@@ -1,0 +1,29 @@
+{
+  "kind": "Root",
+  "name": "TopLevel",
+  "printedName": "TopLevel",
+  "children": [
+    {
+      "kind": "Import",
+      "name": "RealModule",
+      "printedName": "RealModule",
+      "declKind": "Import",
+      "moduleName": "Numerics",
+      "declAttributes": [
+        "Exported",
+        "RawDocComment"
+      ]
+    },
+    {
+      "kind": "Import",
+      "name": "ComplexModule",
+      "printedName": "ComplexModule",
+      "declKind": "Import",
+      "moduleName": "Numerics",
+      "declAttributes": [
+        "Exported"
+      ]
+    }
+  ],
+  "json_format_version": 6
+}

@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5FE950962728120600E3E1A3"
-               BuildableName = "BrainWave.app"
-               BlueprintName = "BrainWave"
+               BuildableName = "BrainWaveMB.app"
+               BlueprintName = "BrainWaveMB"
                ReferencedContainer = "container:BCILab.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5FE950962728120600E3E1A3"
-            BuildableName = "BrainWave.app"
-            BlueprintName = "BrainWave"
+            BuildableName = "BrainWaveMB.app"
+            BlueprintName = "BrainWaveMB"
             ReferencedContainer = "container:BCILab.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5FE950962728120600E3E1A3"
-            BuildableName = "BrainWave.app"
-            BlueprintName = "BrainWave"
+            BuildableName = "BrainWaveMB.app"
+            BlueprintName = "BrainWaveMB"
             ReferencedContainer = "container:BCILab.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

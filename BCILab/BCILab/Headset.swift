@@ -6,6 +6,7 @@
 
 import Foundation
 import SwiftUI
+import BrainFlow
 
 enum GainSettings: String, CaseIterable {
     case x1 = "00"

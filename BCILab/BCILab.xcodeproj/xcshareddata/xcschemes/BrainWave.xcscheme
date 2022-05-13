@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5FE950962728120600E3E1A3"
+               BlueprintIdentifier = "5F58BD0B26AC1C5D003F5483"
                BuildableName = "BrainWave.app"
                BlueprintName = "BrainWave"
                ReferencedContainer = "container:BCILab.xcodeproj">
@@ -44,7 +44,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5FE950962728120600E3E1A3"
+            BlueprintIdentifier = "5F58BD0B26AC1C5D003F5483"
             BuildableName = "BrainWave.app"
             BlueprintName = "BrainWave"
             ReferencedContainer = "container:BCILab.xcodeproj">
@@ -61,7 +61,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5FE950962728120600E3E1A3"
+            BlueprintIdentifier = "5F58BD0B26AC1C5D003F5483"
             BuildableName = "BrainWave.app"
             BlueprintName = "BrainWave"
             ReferencedContainer = "container:BCILab.xcodeproj">
@@ -73,7 +73,6 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
-      customArchiveName = "BrainWave"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

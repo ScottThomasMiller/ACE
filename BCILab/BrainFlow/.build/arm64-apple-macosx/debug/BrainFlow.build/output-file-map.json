@@ -1,0 +1,53 @@
+{
+  "": {
+    "swift-dependencies": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/master.swiftdeps"
+  },
+  "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BoardDescription.swift": {
+    "dependencies": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BoardDescription.d",
+    "object": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BoardDescription.swift.o",
+    "swiftmodule": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BoardDescription~partial.swiftmodule",
+    "swift-dependencies": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BoardDescription.swiftdeps"
+  },
+  "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BoardShim.swift": {
+    "dependencies": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BoardShim.d",
+    "object": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BoardShim.swift.o",
+    "swiftmodule": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BoardShim~partial.swiftmodule",
+    "swift-dependencies": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BoardShim.swiftdeps"
+  },
+  "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BrainFlowConstants.swift": {
+    "dependencies": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowConstants.d",
+    "object": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowConstants.swift.o",
+    "swiftmodule": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowConstants~partial.swiftmodule",
+    "swift-dependencies": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowConstants.swiftdeps"
+  },
+  "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BrainFlowException.swift": {
+    "dependencies": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowException.d",
+    "object": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowException.swift.o",
+    "swiftmodule": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowException~partial.swiftmodule",
+    "swift-dependencies": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowException.swiftdeps"
+  },
+  "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BrainFlowExtensions.swift": {
+    "dependencies": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowExtensions.d",
+    "object": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowExtensions.swift.o",
+    "swiftmodule": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowExtensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowExtensions.swiftdeps"
+  },
+  "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BrainFlowInputParams.swift": {
+    "dependencies": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowInputParams.d",
+    "object": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowInputParams.swift.o",
+    "swiftmodule": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowInputParams~partial.swiftmodule",
+    "swift-dependencies": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowInputParams.swiftdeps"
+  },
+  "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/DataFilter.swift": {
+    "dependencies": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/DataFilter.d",
+    "object": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/DataFilter.swift.o",
+    "swiftmodule": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/DataFilter~partial.swiftmodule",
+    "swift-dependencies": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/DataFilter.swiftdeps"
+  },
+  "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/MLModule.swift": {
+    "dependencies": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/MLModule.d",
+    "object": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/MLModule.swift.o",
+    "swiftmodule": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/MLModule~partial.swiftmodule",
+    "swift-dependencies": "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/MLModule.swiftdeps"
+  }
+}

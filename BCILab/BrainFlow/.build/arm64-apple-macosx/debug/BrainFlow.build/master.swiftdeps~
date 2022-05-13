@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.6 (swiftlang-5.6.0.323.62 clang-1316.0.20.8)"
+options: "659d2fd51b8831d9d404efedc37a6f78e6176d2e8a042c043af19dd55678c411"
+build_start_time: [1652277400, 461050987]
+build_end_time: [1652277400, 513705968]
+inputs:
+  "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BrainFlow.swift": [1652102496, 755206108]

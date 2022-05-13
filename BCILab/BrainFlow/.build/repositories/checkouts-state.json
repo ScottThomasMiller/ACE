@@ -1,0 +1,11 @@
+{
+  "object" : {
+    "repositories" : {
+      "https://github.com/apple/swift-numerics.git" : {
+        "repositoryURL" : "https://github.com/apple/swift-numerics.git",
+        "subpath" : "swift-numerics-e62fc324"
+      }
+    }
+  },
+  "version" : 1
+}

@@ -1,0 +1,640 @@
+{
+  "builtTestProducts" : [
+    {
+      "binaryPath" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlowPackageTests.xctest/Contents/MacOS/BrainFlowPackageTests",
+      "productName" : "BrainFlowPackageTests"
+    }
+  ],
+  "copyCommands" : {
+    "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/libBoardController.dylib" : {
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/BoardController.xcframework/macos-arm64_x86_64/libBoardController.dylib"
+        }
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/libBoardController.dylib"
+        }
+      ]
+    }
+  },
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.BrainFlow-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "importPath" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BoardDescription.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BoardShim.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BrainFlowConstants.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BrainFlowException.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BrainFlowExtensions.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BrainFlowInputParams.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/DataFilter.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/MLModule.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/Numerics.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/libBoardController.dylib"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "BrainFlow",
+      "moduleOutputPath" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.swiftmodule",
+      "objects" : [
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BoardDescription.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BoardShim.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowConstants.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowException.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowExtensions.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowInputParams.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/DataFilter.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/MLModule.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx10.15",
+        "-swift-version",
+        "5",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-g",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-Xcc",
+        "-fmodule-map-file=/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/_NumericsShims/include/module.modulemap",
+        "-Xcc",
+        "-I",
+        "-Xcc",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/_NumericsShims/include",
+        "-Xcc",
+        "-I",
+        "-Xcc",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/BoardController.xcframework/macos-arm64_x86_64/Headers",
+        "-module-cache-path",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-F",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlow-Swift.h",
+        "-color-diagnostics",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib"
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BoardDescription.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BoardShim.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowConstants.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowException.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowExtensions.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlowInputParams.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/DataFilter.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/MLModule.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.swiftmodule"
+        }
+      ],
+      "sources" : [
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BoardDescription.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BoardShim.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BrainFlowConstants.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BrainFlowException.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BrainFlowExtensions.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/BrainFlowInputParams.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/DataFilter.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Sources/BrainFlow/MLModule.swift"
+      ],
+      "tempsPath" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.BrainFlowTests-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "importPath" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Tests/BrainFlowTests/BoardShimTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Tests/BrainFlowTests/BrainFlowCItests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Tests/BrainFlowTests/BrainFlowTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Tests/BrainFlowTests/DataFilterTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/Numerics.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/libBoardController.dylib"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "BrainFlowTests",
+      "moduleOutputPath" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlowTests.swiftmodule",
+      "objects" : [
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlowTests.build/BoardShimTests.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlowTests.build/BrainFlowCItests.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlowTests.build/BrainFlowTests.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlowTests.build/DataFilterTests.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx11.0",
+        "-swift-version",
+        "5",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-g",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-Xcc",
+        "-fmodule-map-file=/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/_NumericsShims/include/module.modulemap",
+        "-Xcc",
+        "-I",
+        "-Xcc",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/_NumericsShims/include",
+        "-Xcc",
+        "-I",
+        "-Xcc",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/BoardController.xcframework/macos-arm64_x86_64/Headers",
+        "-module-cache-path",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-F",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug",
+        "-color-diagnostics",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib"
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlowTests.build/BoardShimTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlowTests.build/BrainFlowCItests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlowTests.build/BrainFlowTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlowTests.build/DataFilterTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlowTests.swiftmodule"
+        }
+      ],
+      "sources" : [
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Tests/BrainFlowTests/BoardShimTests.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Tests/BrainFlowTests/BrainFlowCItests.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Tests/BrainFlowTests/BrainFlowTests.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/Tests/BrainFlowTests/DataFilterTests.swift"
+      ],
+      "tempsPath" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlowTests.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.ComplexModule-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "importPath" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/ComplexModule/Arithmetic.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/ComplexModule/Complex.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/ComplexModule/Differentiable.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/ComplexModule/ElementaryFunctions.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.swiftmodule"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "ComplexModule",
+      "moduleOutputPath" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/ComplexModule.swiftmodule",
+      "objects" : [
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/ComplexModule.build/Arithmetic.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/ComplexModule.build/Complex.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/ComplexModule.build/Differentiable.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/ComplexModule.build/ElementaryFunctions.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx10.10",
+        "-swift-version",
+        "5",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-g",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-Xcc",
+        "-fmodule-map-file=/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/_NumericsShims/include/module.modulemap",
+        "-Xcc",
+        "-I",
+        "-Xcc",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/_NumericsShims/include",
+        "-module-cache-path",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/ComplexModule.build/ComplexModule-Swift.h",
+        "-color-diagnostics",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib"
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/ComplexModule.build/Arithmetic.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/ComplexModule.build/Complex.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/ComplexModule.build/Differentiable.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/ComplexModule.build/ElementaryFunctions.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/ComplexModule.swiftmodule"
+        }
+      ],
+      "sources" : [
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/ComplexModule/Arithmetic.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/ComplexModule/Complex.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/ComplexModule/Differentiable.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/ComplexModule/ElementaryFunctions.swift"
+      ],
+      "tempsPath" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/ComplexModule.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.Numerics-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "importPath" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/Numerics/Numerics.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/ComplexModule.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.swiftmodule"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "Numerics",
+      "moduleOutputPath" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/Numerics.swiftmodule",
+      "objects" : [
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/Numerics.build/Numerics.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx10.10",
+        "-swift-version",
+        "5",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-g",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-Xcc",
+        "-fmodule-map-file=/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/_NumericsShims/include/module.modulemap",
+        "-Xcc",
+        "-I",
+        "-Xcc",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/_NumericsShims/include",
+        "-module-cache-path",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/Numerics.build/Numerics-Swift.h",
+        "-color-diagnostics",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib"
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/Numerics.build/Numerics.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/Numerics.swiftmodule"
+        }
+      ],
+      "sources" : [
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/Numerics/Numerics.swift"
+      ],
+      "tempsPath" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/Numerics.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.RealModule-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "importPath" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/AlgebraicField.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/ApproximateEquality.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/AugmentedArithmetic.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/Double+Real.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/ElementaryFunctions.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/Float+Real.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/Float16+Real.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/Float80+Real.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/Real.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/RealFunctions.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/_NumericsShims.build/_NumericsShims.c.o"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "RealModule",
+      "moduleOutputPath" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.swiftmodule",
+      "objects" : [
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/AlgebraicField.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/ApproximateEquality.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/AugmentedArithmetic.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/Double+Real.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/ElementaryFunctions.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/Float+Real.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/Float16+Real.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/Float80+Real.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/Real.swift.o",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/RealFunctions.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx10.10",
+        "-swift-version",
+        "5",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-g",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-Xcc",
+        "-fmodule-map-file=/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/_NumericsShims/include/module.modulemap",
+        "-Xcc",
+        "-I",
+        "-Xcc",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/_NumericsShims/include",
+        "-module-cache-path",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/RealModule-Swift.h",
+        "-color-diagnostics",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib"
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/AlgebraicField.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/ApproximateEquality.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/AugmentedArithmetic.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/Double+Real.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/ElementaryFunctions.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/Float+Real.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/Float16+Real.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/Float80+Real.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/Real.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build/RealFunctions.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.swiftmodule"
+        }
+      ],
+      "sources" : [
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/AlgebraicField.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/ApproximateEquality.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/AugmentedArithmetic.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/Double+Real.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/ElementaryFunctions.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/Float+Real.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/Float16+Real.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/Float80+Real.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/Real.swift",
+        "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/RealModule/RealFunctions.swift"
+      ],
+      "tempsPath" : "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/RealModule.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "testDiscoveryCommands" : {
+
+  }
+}
