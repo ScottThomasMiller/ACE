@@ -50,9 +50,9 @@ struct MainMenu: View {
                             #if os(macOS)
                                 NavigationLink(destination: ChangeSaveFolderView(saveFolderURL: self.$appState.saveFolder)) {
                                     NavLinkView(id: "save_folder", label: "Save Folder") }
-                                NavigationLink(destination: ChangeLoadFolderView(loadFolderURL: self.$appState.loadFolder)) {
-                                    NavLinkView(id: "load_folder", label: "Load Folder") }
                             #endif
+                            NavigationLink(destination: ChangeLoadFolderView(loadFolderURL: self.$appState.loadFolder)) {
+                                NavLinkView(id: "load_folder", label: "Load Folder") }
                             NavigationLink(destination: ChangeIntervalView(intervalSeconds: self.$appState.intervalSeconds)) {
                                 NavLinkView(id: "interval", label: "Slideshow Interval") }
                             NavigationLink(destination: ChangeHeadsetTypeView(boardId: self.$appState.boardId, headset: self.$appState.headset)) {

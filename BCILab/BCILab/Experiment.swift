@@ -5,7 +5,7 @@
 //  Created by Scott Miller on 9/26/21.
 //
 import SwiftUI
-import BrainFlow
+//import BrainFlow
 
 struct Experiment: View {
     @StateObject private var appState = AppState()

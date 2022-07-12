@@ -1,9 +1,0 @@
-version: "Apple Swift version 5.6 (swiftlang-5.6.0.323.62 clang-1316.0.20.8)"
-options: "ccb944e6591660fb33f1c68c633a06911f3f25a771fb83c369e694ca8d767828"
-build_start_time: [1652277400, 70575952]
-build_end_time: [1652277400, 338567018]
-inputs:
-  "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/ComplexModule/Arithmetic.swift": [1652277397, 309419631]
-  "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/ComplexModule/Complex.swift": [1652277397, 309596538]
-  "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/ComplexModule/Differentiable.swift": [1652277397, 309671640]
-  "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/checkouts/swift-numerics/Sources/ComplexModule/ElementaryFunctions.swift": [1652277397, 309833288]

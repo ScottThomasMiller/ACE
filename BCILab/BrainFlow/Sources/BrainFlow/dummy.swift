@@ -1,7 +1,7 @@
 
 import Foundation
-import Numerics
-    
+
 struct dummy {
- var d = 0
+    let num = 1
 }
+

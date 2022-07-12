@@ -5,6 +5,7 @@
 //  Created by Scott Miller for Aeris Rising, LLC on 8/23/21.
 //
 import Foundation
+//import BrainFlow
 
 struct BoardDescription: Codable, Equatable {
     let accel_channels: [Int32]

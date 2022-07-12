@@ -9,8 +9,7 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(name: "BrainFlow",
-                 targets: ["BrainFlow", "BoardController", "DataHandler", "MLModule", "BrainBitLib",
-                           "LibNeuroSDK-Shared"])
+                 targets: ["BrainFlow", "BoardController", "DataHandler", "MLModule", "BrainBitLib"])
     ],
     dependencies: [
         .package(name: "swift-numerics",
@@ -37,10 +36,6 @@ let package = Package(
         .binaryTarget(
             name: "BrainBitLib",
             path: "BrainBitLib.xcframework"
-        ),
-        .binaryTarget(
-            name: "LibNeuroSDK-Shared",
-            path: "LibNeuroSDK-Shared.xcframework"
         ),
         .testTarget(
             name: "BrainFlowTests",

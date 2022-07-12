@@ -1,4 +1,0 @@
-module BrainFlow {
-    header "/Users/scottmiller/git/ACE/BCILab/BrainFlow/.build/arm64-apple-macosx/debug/BrainFlow.build/BrainFlow-Swift.h"
-    requires objc
-}

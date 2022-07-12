@@ -151,11 +151,7 @@ struct SlideShow: View {
             return (newImages, labels)
         }
         
-        guard let subFolders = FileManager.default.subFolders(of: folder) else {
-            try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot get subfolders for folder: \(folder)")
-            return (newImages, labels)
-        }
-
+        let subFolders = FileManager.default.subFolders(of: folder)
         let unsortedLabelURLs = Dictionary(uniqueKeysWithValues: subFolders.map { ($0.lastPathComponent, $0) })
         labels = subFolders.map {$0.lastPathComponent}
         labels.sort()

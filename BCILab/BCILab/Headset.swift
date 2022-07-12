@@ -6,7 +6,7 @@
 
 import Foundation
 import SwiftUI
-import BrainFlow
+//import BrainFlow
 
 enum GainSettings: String, CaseIterable {
     case x1 = "00"
@@ -271,12 +271,6 @@ class Headset {
         }
         
         let theBoard = board!
-        
-//        defer {
-//            try? BoardShim.logMessage(.LEVEL_INFO, "streaming EEG deferred exit")
-//            cleanup()
-//        }
-        
         do {
             try theBoard.startStream()
             writeHeaders()
