@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import BrainFlow
+//import BrainFlow
 
 class AppState: ObservableObject {
     static public let docsFolder: URL = Bundle.main.bundleURL

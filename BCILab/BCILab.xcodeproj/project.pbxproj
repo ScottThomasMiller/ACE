@@ -39,22 +39,6 @@
 		5F3BB155276A0D2F00A194F2 /* end.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3BB14E276A0D2F00A194F2 /* end.png */; };
 		5F3BB156276A0D2F00A194F2 /* end.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3BB14E276A0D2F00A194F2 /* end.png */; };
 		5F3C530C27DFD39300F27964 /* Experiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F01258E2745A68200F356B1 /* Experiment.swift */; };
-		5F4469B6283C6498002FA214 /* DataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4469AE283C6498002FA214 /* DataFilter.swift */; };
-		5F4469B7283C6498002FA214 /* DataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4469AE283C6498002FA214 /* DataFilter.swift */; };
-		5F4469B8283C6498002FA214 /* BrainFlowConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4469AF283C6498002FA214 /* BrainFlowConstants.swift */; };
-		5F4469B9283C6498002FA214 /* BrainFlowConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4469AF283C6498002FA214 /* BrainFlowConstants.swift */; };
-		5F4469BA283C6498002FA214 /* BrainFlowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4469B0283C6498002FA214 /* BrainFlowExtensions.swift */; };
-		5F4469BB283C6498002FA214 /* BrainFlowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4469B0283C6498002FA214 /* BrainFlowExtensions.swift */; };
-		5F4469BC283C6498002FA214 /* BrainFlowException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4469B1283C6498002FA214 /* BrainFlowException.swift */; };
-		5F4469BD283C6498002FA214 /* BrainFlowException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4469B1283C6498002FA214 /* BrainFlowException.swift */; };
-		5F4469BE283C6498002FA214 /* BrainFlowInputParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4469B2283C6498002FA214 /* BrainFlowInputParams.swift */; };
-		5F4469BF283C6498002FA214 /* BrainFlowInputParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4469B2283C6498002FA214 /* BrainFlowInputParams.swift */; };
-		5F4469C0283C6498002FA214 /* BoardShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4469B3283C6498002FA214 /* BoardShim.swift */; };
-		5F4469C1283C6498002FA214 /* BoardShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4469B3283C6498002FA214 /* BoardShim.swift */; };
-		5F4469C2283C6498002FA214 /* MLModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4469B4283C6498002FA214 /* MLModule.swift */; };
-		5F4469C3283C6498002FA214 /* MLModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4469B4283C6498002FA214 /* MLModule.swift */; };
-		5F4469C4283C6498002FA214 /* BoardDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4469B5283C6498002FA214 /* BoardDescription.swift */; };
-		5F4469C5283C6498002FA214 /* BoardDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4469B5283C6498002FA214 /* BoardDescription.swift */; };
 		5F4469C7283C6E85002FA214 /* BrainFlow in Frameworks */ = {isa = PBXBuildFile; productRef = 5F4469C6283C6E85002FA214 /* BrainFlow */; };
 		5F509C9E26FFEDAB00B48497 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F509C9D26FFEDAB00B48497 /* MainMenu.swift */; };
 		5F509C9F26FFEDAB00B48497 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F509C9D26FFEDAB00B48497 /* MainMenu.swift */; };
@@ -137,6 +121,53 @@
 		5FDD249627C4DDAE007DE63B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC07DB426BEFB4300B1971B /* ContentView.swift */; };
 		5FDD249727C4DDAF007DE63B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC07DB426BEFB4300B1971B /* ContentView.swift */; };
 		5FDD249827C4DDB0007DE63B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC07DB426BEFB4300B1971B /* ContentView.swift */; };
+		5FE381E72886B1EE004D4D38 /* BrainFlow in Frameworks */ = {isa = PBXBuildFile; productRef = 5FE381E62886B1EE004D4D38 /* BrainFlow */; };
+		5FE3823228894C3E004D4D38 /* neurosdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7FC77C285FA7BE009B9A2F /* neurosdk.framework */; };
+		5FE3823328894C3E004D4D38 /* neurosdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7FC77C285FA7BE009B9A2F /* neurosdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5FE3823B28894E3A004D4D38 /* libneurosdk-shared.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE3823528894D63004D4D38 /* libneurosdk-shared.dylib */; };
+		5FE3823C28894E3A004D4D38 /* libneurosdk-shared.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE3823528894D63004D4D38 /* libneurosdk-shared.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5FE3823E28894E3A004D4D38 /* libneurosdk.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE3823D28894E3A004D4D38 /* libneurosdk.dylib */; };
+		5FE3823F28894E3A004D4D38 /* libneurosdk.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE3823D28894E3A004D4D38 /* libneurosdk.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5FE3824828894FE7004D4D38 /* BrainFlowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824028894FE6004D4D38 /* BrainFlowExtensions.swift */; };
+		5FE3824928894FE7004D4D38 /* BrainFlowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824028894FE6004D4D38 /* BrainFlowExtensions.swift */; };
+		5FE3824A28894FE7004D4D38 /* BrainFlowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824028894FE6004D4D38 /* BrainFlowExtensions.swift */; };
+		5FE3824B28894FE7004D4D38 /* BrainFlowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824028894FE6004D4D38 /* BrainFlowExtensions.swift */; };
+		5FE3824C28894FE7004D4D38 /* BrainFlowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824028894FE6004D4D38 /* BrainFlowExtensions.swift */; };
+		5FE3824D28894FE7004D4D38 /* MLModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824128894FE6004D4D38 /* MLModule.swift */; };
+		5FE3824E28894FE7004D4D38 /* MLModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824128894FE6004D4D38 /* MLModule.swift */; };
+		5FE3824F28894FE7004D4D38 /* MLModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824128894FE6004D4D38 /* MLModule.swift */; };
+		5FE3825028894FE7004D4D38 /* MLModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824128894FE6004D4D38 /* MLModule.swift */; };
+		5FE3825128894FE7004D4D38 /* MLModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824128894FE6004D4D38 /* MLModule.swift */; };
+		5FE3825228894FE7004D4D38 /* DataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824228894FE7004D4D38 /* DataFilter.swift */; };
+		5FE3825328894FE7004D4D38 /* DataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824228894FE7004D4D38 /* DataFilter.swift */; };
+		5FE3825428894FE7004D4D38 /* DataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824228894FE7004D4D38 /* DataFilter.swift */; };
+		5FE3825528894FE7004D4D38 /* DataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824228894FE7004D4D38 /* DataFilter.swift */; };
+		5FE3825628894FE7004D4D38 /* DataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824228894FE7004D4D38 /* DataFilter.swift */; };
+		5FE3825728894FE7004D4D38 /* BoardDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824328894FE7004D4D38 /* BoardDescription.swift */; };
+		5FE3825828894FE7004D4D38 /* BoardDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824328894FE7004D4D38 /* BoardDescription.swift */; };
+		5FE3825928894FE7004D4D38 /* BoardDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824328894FE7004D4D38 /* BoardDescription.swift */; };
+		5FE3825A28894FE7004D4D38 /* BoardDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824328894FE7004D4D38 /* BoardDescription.swift */; };
+		5FE3825B28894FE7004D4D38 /* BoardDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824328894FE7004D4D38 /* BoardDescription.swift */; };
+		5FE3825C28894FE7004D4D38 /* BrainFlowInputParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824428894FE7004D4D38 /* BrainFlowInputParams.swift */; };
+		5FE3825D28894FE7004D4D38 /* BrainFlowInputParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824428894FE7004D4D38 /* BrainFlowInputParams.swift */; };
+		5FE3825E28894FE7004D4D38 /* BrainFlowInputParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824428894FE7004D4D38 /* BrainFlowInputParams.swift */; };
+		5FE3825F28894FE7004D4D38 /* BrainFlowInputParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824428894FE7004D4D38 /* BrainFlowInputParams.swift */; };
+		5FE3826028894FE7004D4D38 /* BrainFlowInputParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824428894FE7004D4D38 /* BrainFlowInputParams.swift */; };
+		5FE3826128894FE7004D4D38 /* BrainFlowException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824528894FE7004D4D38 /* BrainFlowException.swift */; };
+		5FE3826228894FE7004D4D38 /* BrainFlowException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824528894FE7004D4D38 /* BrainFlowException.swift */; };
+		5FE3826328894FE7004D4D38 /* BrainFlowException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824528894FE7004D4D38 /* BrainFlowException.swift */; };
+		5FE3826428894FE7004D4D38 /* BrainFlowException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824528894FE7004D4D38 /* BrainFlowException.swift */; };
+		5FE3826528894FE7004D4D38 /* BrainFlowException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824528894FE7004D4D38 /* BrainFlowException.swift */; };
+		5FE3826628894FE7004D4D38 /* BoardShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824628894FE7004D4D38 /* BoardShim.swift */; };
+		5FE3826728894FE7004D4D38 /* BoardShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824628894FE7004D4D38 /* BoardShim.swift */; };
+		5FE3826828894FE7004D4D38 /* BoardShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824628894FE7004D4D38 /* BoardShim.swift */; };
+		5FE3826928894FE7004D4D38 /* BoardShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824628894FE7004D4D38 /* BoardShim.swift */; };
+		5FE3826A28894FE7004D4D38 /* BoardShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824628894FE7004D4D38 /* BoardShim.swift */; };
+		5FE3826B28894FE7004D4D38 /* BrainFlowConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824728894FE7004D4D38 /* BrainFlowConstants.swift */; };
+		5FE3826C28894FE7004D4D38 /* BrainFlowConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824728894FE7004D4D38 /* BrainFlowConstants.swift */; };
+		5FE3826D28894FE7004D4D38 /* BrainFlowConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824728894FE7004D4D38 /* BrainFlowConstants.swift */; };
+		5FE3826E28894FE7004D4D38 /* BrainFlowConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824728894FE7004D4D38 /* BrainFlowConstants.swift */; };
+		5FE3826F28894FE7004D4D38 /* BrainFlowConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824728894FE7004D4D38 /* BrainFlowConstants.swift */; };
 		5FE55F54270484D500DDA111 /* Headset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108C26DD3806000A6FFE /* Headset.swift */; };
 		5FE55F55270484D600DDA111 /* Headset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD108C26DD3806000A6FFE /* Headset.swift */; };
 		5FE55F57270484DA00DDA111 /* BCILabApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F58BD0F26AC1C5D003F5483 /* BCILabApp.swift */; };
@@ -201,14 +232,17 @@
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5FC5E08C28271D0700276A8F /* Embed Libraries */ = {
+		5FE3823428894C3E004D4D38 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				5FE3823C28894E3A004D4D38 /* libneurosdk-shared.dylib in Embed Frameworks */,
+				5FE3823F28894E3A004D4D38 /* libneurosdk.dylib in Embed Frameworks */,
+				5FE3823328894C3E004D4D38 /* neurosdk.framework in Embed Frameworks */,
 			);
-			name = "Embed Libraries";
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -225,14 +259,6 @@
 		5F3BB14E276A0D2F00A194F2 /* end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = end.png; sourceTree = "<group>"; };
 		5F3C531227DFD7A300F27964 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		5F4469AC283C5F3A002FA214 /* BrainFlow */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BrainFlow; sourceTree = "<group>"; };
-		5F4469AE283C6498002FA214 /* DataFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFilter.swift; sourceTree = "<group>"; };
-		5F4469AF283C6498002FA214 /* BrainFlowConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrainFlowConstants.swift; sourceTree = "<group>"; };
-		5F4469B0283C6498002FA214 /* BrainFlowExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrainFlowExtensions.swift; sourceTree = "<group>"; };
-		5F4469B1283C6498002FA214 /* BrainFlowException.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrainFlowException.swift; sourceTree = "<group>"; };
-		5F4469B2283C6498002FA214 /* BrainFlowInputParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrainFlowInputParams.swift; sourceTree = "<group>"; };
-		5F4469B3283C6498002FA214 /* BoardShim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardShim.swift; sourceTree = "<group>"; };
-		5F4469B4283C6498002FA214 /* MLModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLModule.swift; sourceTree = "<group>"; };
-		5F4469B5283C6498002FA214 /* BoardDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardDescription.swift; sourceTree = "<group>"; };
 		5F509C9D26FFEDAB00B48497 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		5F51807D27033C9700665A7C /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		5F524C2F26BAD67B00DECD6E /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
@@ -282,6 +308,17 @@
 		5FCA327F27010D4400CF66E5 /* ChangeSaveFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSaveFolderView.swift; sourceTree = "<group>"; };
 		5FCD108C26DD3806000A6FFE /* Headset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Headset.swift; sourceTree = "<group>"; };
 		5FD6E2C0275BAF0E00F9A4CB /* ChangeLoadFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLoadFolderView.swift; sourceTree = "<group>"; };
+		5FE3823528894D63004D4D38 /* libneurosdk-shared.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libneurosdk-shared.dylib"; path = "third_party/neurosdk.framework/libneurosdk-shared.dylib"; sourceTree = "<group>"; };
+		5FE3823828894E07004D4D38 /* neurosdk */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = neurosdk; path = third_party/neurosdk.framework/neurosdk; sourceTree = "<group>"; };
+		5FE3823D28894E3A004D4D38 /* libneurosdk.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libneurosdk.dylib; path = third_party/neurosdk.framework/libneurosdk.dylib; sourceTree = "<group>"; };
+		5FE3824028894FE6004D4D38 /* BrainFlowExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrainFlowExtensions.swift; sourceTree = "<group>"; };
+		5FE3824128894FE6004D4D38 /* MLModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLModule.swift; sourceTree = "<group>"; };
+		5FE3824228894FE7004D4D38 /* DataFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFilter.swift; sourceTree = "<group>"; };
+		5FE3824328894FE7004D4D38 /* BoardDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardDescription.swift; sourceTree = "<group>"; };
+		5FE3824428894FE7004D4D38 /* BrainFlowInputParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrainFlowInputParams.swift; sourceTree = "<group>"; };
+		5FE3824528894FE7004D4D38 /* BrainFlowException.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrainFlowException.swift; sourceTree = "<group>"; };
+		5FE3824628894FE7004D4D38 /* BoardShim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardShim.swift; sourceTree = "<group>"; };
+		5FE3824728894FE7004D4D38 /* BrainFlowConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrainFlowConstants.swift; sourceTree = "<group>"; };
 		5FE950CE2728120600E3E1A3 /* BrainWaveMB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainWaveMB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FE9A3B42704812A00A7AC22 /* BrainWaveiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrainWaveiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FE9A3BE2704812A00A7AC22 /* BrainWaveiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrainWaveiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -293,8 +330,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FC5E074282711C900276A8F /* CoreBluetooth.framework in Frameworks */,
+				5FE381E72886B1EE004D4D38 /* BrainFlow in Frameworks */,
+				5FE3823E28894E3A004D4D38 /* libneurosdk.dylib in Frameworks */,
 				5F256C902827F038008CA398 /* Numerics in Frameworks */,
 				5FB1117327F4F448007A9B3C /* libc++.tbd in Frameworks */,
+				5FE3823B28894E3A004D4D38 /* libneurosdk-shared.dylib in Frameworks */,
+				5FE3823228894C3E004D4D38 /* neurosdk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,14 +391,14 @@
 		5F4469AD283C6498002FA214 /* BrainFlowBindings */ = {
 			isa = PBXGroup;
 			children = (
-				5F4469AE283C6498002FA214 /* DataFilter.swift */,
-				5F4469AF283C6498002FA214 /* BrainFlowConstants.swift */,
-				5F4469B0283C6498002FA214 /* BrainFlowExtensions.swift */,
-				5F4469B1283C6498002FA214 /* BrainFlowException.swift */,
-				5F4469B2283C6498002FA214 /* BrainFlowInputParams.swift */,
-				5F4469B3283C6498002FA214 /* BoardShim.swift */,
-				5F4469B4283C6498002FA214 /* MLModule.swift */,
-				5F4469B5283C6498002FA214 /* BoardDescription.swift */,
+				5FE3824328894FE7004D4D38 /* BoardDescription.swift */,
+				5FE3824628894FE7004D4D38 /* BoardShim.swift */,
+				5FE3824728894FE7004D4D38 /* BrainFlowConstants.swift */,
+				5FE3824528894FE7004D4D38 /* BrainFlowException.swift */,
+				5FE3824028894FE6004D4D38 /* BrainFlowExtensions.swift */,
+				5FE3824428894FE7004D4D38 /* BrainFlowInputParams.swift */,
+				5FE3824228894FE7004D4D38 /* DataFilter.swift */,
+				5FE3824128894FE6004D4D38 /* MLModule.swift */,
 			);
 			name = BrainFlowBindings;
 			path = BrainFlow/Sources/BrainFlowBindings;
@@ -503,6 +544,9 @@
 		5FBE6F8226B3F5C000BA6B93 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5FE3823D28894E3A004D4D38 /* libneurosdk.dylib */,
+				5FE3823828894E07004D4D38 /* neurosdk */,
+				5FE3823528894D63004D4D38 /* libneurosdk-shared.dylib */,
 				5F7FC781285FB335009B9A2F /* libneurosdk.dylib */,
 				5F7FC779285FA6A8009B9A2F /* neurosdk.framework */,
 				5F7FC77C285FA7BE009B9A2F /* neurosdk.framework */,
@@ -531,7 +575,7 @@
 				5F58BD0826AC1C5D003F5483 /* Sources */,
 				5F58BD0926AC1C5D003F5483 /* Frameworks */,
 				5F58BD0A26AC1C5D003F5483 /* Resources */,
-				5FC5E08C28271D0700276A8F /* Embed Libraries */,
+				5FE3823428894C3E004D4D38 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -540,6 +584,7 @@
 			name = BrainWave;
 			packageProductDependencies = (
 				5F256C8F2827F038008CA398 /* Numerics */,
+				5FE381E62886B1EE004D4D38 /* BrainFlow */,
 			);
 			productName = BCILab;
 			productReference = 5F58BD0C26AC1C5D003F5483 /* BrainWave.app */;
@@ -798,36 +843,36 @@
 				5F0C02CC2750FE6E003F68DF /* AppStatusView.swift in Sources */,
 				5F524C4526BAD67C00DECD6E /* Error.swift in Sources */,
 				5F39795D271330F5003D3A64 /* ChangeIntervalView.swift in Sources */,
-				5F4469C0283C6498002FA214 /* BoardShim.swift in Sources */,
 				5FAFBE2C27BE81CB00D574B0 /* LabeledImage.swift in Sources */,
-				5F4469C4283C6498002FA214 /* BoardDescription.swift in Sources */,
 				5F0123082752734400E8F07E /* NavLinkView.swift in Sources */,
+				5FE3826628894FE7004D4D38 /* BoardShim.swift in Sources */,
 				5F524C3926BAD67C00DECD6E /* Global.swift in Sources */,
+				5FE3826128894FE7004D4D38 /* BrainFlowException.swift in Sources */,
 				5F628BDE26E14B9D0085B009 /* ReconnectView.swift in Sources */,
 				5F628BE226E231BA0085B009 /* CustomStyles.swift in Sources */,
-				5F4469B8283C6498002FA214 /* BrainFlowConstants.swift in Sources */,
+				5FE3824D28894FE7004D4D38 /* MLModule.swift in Sources */,
 				5F3C530C27DFD39300F27964 /* Experiment.swift in Sources */,
 				5F509C9E26FFEDAB00B48497 /* MainMenu.swift in Sources */,
 				5F524C3F26BAD67C00DECD6E /* SampleX.swift in Sources */,
-				5F4469C2283C6498002FA214 /* MLModule.swift in Sources */,
+				5FE3826B28894FE7004D4D38 /* BrainFlowConstants.swift in Sources */,
 				5F6D92F527F899F900438C09 /* ReconnectingView.swift in Sources */,
 				5FAFBE3427BF29E500D574B0 /* SlideShow.swift in Sources */,
-				5F4469BA283C6498002FA214 /* BrainFlowExtensions.swift in Sources */,
 				5F01230E2752A60700E8F07E /* TextRTView.swift in Sources */,
 				5F74AE3D26C6845200A53ED5 /* CSVFile.swift in Sources */,
 				5FD6E2C1275BAF0E00F9A4CB /* ChangeLoadFolderView.swift in Sources */,
 				5F524C4226BAD67C00DECD6E /* Inlet.swift in Sources */,
-				5F4469BE283C6498002FA214 /* BrainFlowInputParams.swift in Sources */,
 				5F72F87F271B5D86000C6D13 /* ChangeHeadsetTypeView.swift in Sources */,
+				5FE3825C28894FE7004D4D38 /* BrainFlowInputParams.swift in Sources */,
 				5FDD249527C4DDAD007DE63B /* ContentView.swift in Sources */,
+				5FE3824828894FE7004D4D38 /* BrainFlowExtensions.swift in Sources */,
 				5F524C4826BAD67C00DECD6E /* StreamInfo.swift in Sources */,
-				5F4469BC283C6498002FA214 /* BrainFlowException.swift in Sources */,
 				5F524C3C26BAD67C00DECD6E /* Outlet.swift in Sources */,
+				5FE3825728894FE7004D4D38 /* BoardDescription.swift in Sources */,
 				5F51807E27033C9700665A7C /* AppState.swift in Sources */,
 				5F9D64E12757FB9000923CE8 /* ChangeSaveFolderView.swift in Sources */,
 				5FCD108D26DD3806000A6FFE /* Headset.swift in Sources */,
-				5F4469B6283C6498002FA214 /* DataFilter.swift in Sources */,
 				5F524C4B26BAD67C00DECD6E /* ChannelFormat.swift in Sources */,
+				5FE3825228894FE7004D4D38 /* DataFilter.swift in Sources */,
 				5F58BD1026AC1C5D003F5483 /* BCILabApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -836,21 +881,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FE3826328894FE7004D4D38 /* BrainFlowException.swift in Sources */,
+				5FE3825428894FE7004D4D38 /* DataFilter.swift in Sources */,
 				5FAFBE2E27BE81CB00D574B0 /* LabeledImage.swift in Sources */,
 				5FDD249727C4DDAF007DE63B /* ContentView.swift in Sources */,
+				5FE3826D28894FE7004D4D38 /* BrainFlowConstants.swift in Sources */,
 				5FD6E2C3275BAF0E00F9A4CB /* ChangeLoadFolderView.swift in Sources */,
 				5F0996F426F261C5003881B0 /* DataFilterTests.swift in Sources */,
 				5F0996F626F2621A003881B0 /* BoardShimTests.swift in Sources */,
 				5FA42B2926E378B8003C6F17 /* CSVFile.swift in Sources */,
+				5FE3825E28894FE7004D4D38 /* BrainFlowInputParams.swift in Sources */,
+				5FE3826828894FE7004D4D38 /* BoardShim.swift in Sources */,
+				5FE3824A28894FE7004D4D38 /* BrainFlowExtensions.swift in Sources */,
 				5F0123102752A60700E8F07E /* TextRTView.swift in Sources */,
 				5F9D64E32757FB9200923CE8 /* ChangeSaveFolderView.swift in Sources */,
 				5F51807F27033C9700665A7C /* AppState.swift in Sources */,
 				5FAFBE3627BF29E700D574B0 /* SlideShow.swift in Sources */,
 				5F39795E271330F5003D3A64 /* ChangeIntervalView.swift in Sources */,
+				5FE3825928894FE7004D4D38 /* BoardDescription.swift in Sources */,
 				5F0C02CE2750FE6E003F68DF /* AppStatusView.swift in Sources */,
 				5F01230A2752734400E8F07E /* NavLinkView.swift in Sources */,
 				5F3B444326FCB32400AC20E8 /* BrainFlowCItests.swift in Sources */,
 				5F58BD2226AC1C5E003F5483 /* BCILabTests.swift in Sources */,
+				5FE3824F28894FE7004D4D38 /* MLModule.swift in Sources */,
 				5F72F880271B5D86000C6D13 /* ChangeHeadsetTypeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -860,27 +913,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F524C4D26BAD67C00DECD6E /* ChannelFormat.swift in Sources */,
+				5FE3825A28894FE7004D4D38 /* BoardDescription.swift in Sources */,
 				5FA42B2A26E378B9003C6F17 /* CSVFile.swift in Sources */,
+				5FE3826928894FE7004D4D38 /* BoardShim.swift in Sources */,
 				5F51808027033C9700665A7C /* AppState.swift in Sources */,
+				5FE3824B28894FE7004D4D38 /* BrainFlowExtensions.swift in Sources */,
 				5F524C3E26BAD67C00DECD6E /* Outlet.swift in Sources */,
 				5F524C4126BAD67C00DECD6E /* SampleX.swift in Sources */,
 				5FCD108F26DD3806000A6FFE /* Headset.swift in Sources */,
 				5F39795F271330F5003D3A64 /* ChangeIntervalView.swift in Sources */,
 				5F524C3B26BAD67C00DECD6E /* Global.swift in Sources */,
 				5FAFBE3727BF29E700D574B0 /* SlideShow.swift in Sources */,
+				5FE3825F28894FE7004D4D38 /* BrainFlowInputParams.swift in Sources */,
+				5FE3825028894FE7004D4D38 /* MLModule.swift in Sources */,
 				5F524C4426BAD67C00DECD6E /* Inlet.swift in Sources */,
 				5F524C4726BAD67C00DECD6E /* Error.swift in Sources */,
 				5F0C02CF2750FE6E003F68DF /* AppStatusView.swift in Sources */,
 				5F9D64E42757FB9200923CE8 /* ChangeSaveFolderView.swift in Sources */,
 				5F0123112752A60700E8F07E /* TextRTView.swift in Sources */,
 				5FD6E2C4275BAF0E00F9A4CB /* ChangeLoadFolderView.swift in Sources */,
+				5FE3826E28894FE7004D4D38 /* BrainFlowConstants.swift in Sources */,
 				5F524C4A26BAD67C00DECD6E /* StreamInfo.swift in Sources */,
 				5F628BE026E14D970085B009 /* ReconnectView.swift in Sources */,
 				5F509C9F26FFEDAB00B48497 /* MainMenu.swift in Sources */,
+				5FE3826428894FE7004D4D38 /* BrainFlowException.swift in Sources */,
 				5FDD249827C4DDB0007DE63B /* ContentView.swift in Sources */,
 				5F628BE426E231BA0085B009 /* CustomStyles.swift in Sources */,
 				5FAFBE2F27BE81CB00D574B0 /* LabeledImage.swift in Sources */,
 				5F01230B2752734400E8F07E /* NavLinkView.swift in Sources */,
+				5FE3825528894FE7004D4D38 /* DataFilter.swift in Sources */,
 				5F72F881271B5D86000C6D13 /* ChangeHeadsetTypeView.swift in Sources */,
 				5F58BD2D26AC1C5E003F5483 /* BCILabUITests.swift in Sources */,
 			);
@@ -890,12 +951,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FE3825128894FE7004D4D38 /* MLModule.swift in Sources */,
 				5FB9A4FD26FB9587009EE0F1 /* BrainFlowTests.swift in Sources */,
 				5FD6E2C5275BAF0E00F9A4CB /* ChangeLoadFolderView.swift in Sources */,
+				5FE3825B28894FE7004D4D38 /* BoardDescription.swift in Sources */,
 				5F0C02D02750FE6E003F68DF /* AppStatusView.swift in Sources */,
+				5FE3824C28894FE7004D4D38 /* BrainFlowExtensions.swift in Sources */,
 				5F9D64E52757FB9300923CE8 /* ChangeSaveFolderView.swift in Sources */,
+				5FE3825628894FE7004D4D38 /* DataFilter.swift in Sources */,
+				5FE3826F28894FE7004D4D38 /* BrainFlowConstants.swift in Sources */,
 				5F01230C2752734400E8F07E /* NavLinkView.swift in Sources */,
+				5FE3826028894FE7004D4D38 /* BrainFlowInputParams.swift in Sources */,
+				5FE3826528894FE7004D4D38 /* BrainFlowException.swift in Sources */,
 				5F0123122752A60700E8F07E /* TextRTView.swift in Sources */,
+				5FE3826A28894FE7004D4D38 /* BoardShim.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -906,36 +975,36 @@
 				5F0C02CD2750FE6E003F68DF /* AppStatusView.swift in Sources */,
 				5F0C02CA274FE901003F68DF /* MainMenu.swift in Sources */,
 				5F5FF9662728435800566DD0 /* BCILabMBApp.swift in Sources */,
-				5F4469C1283C6498002FA214 /* BoardShim.swift in Sources */,
 				5FAFBE2D27BE81CB00D574B0 /* LabeledImage.swift in Sources */,
-				5F4469C5283C6498002FA214 /* BoardDescription.swift in Sources */,
 				5FE9509C2728120600E3E1A3 /* Error.swift in Sources */,
+				5FE3826728894FE7004D4D38 /* BoardShim.swift in Sources */,
 				5FE9509D2728120600E3E1A3 /* ChangeIntervalView.swift in Sources */,
+				5FE3826228894FE7004D4D38 /* BrainFlowException.swift in Sources */,
 				5F0123092752734400E8F07E /* NavLinkView.swift in Sources */,
 				5FE9509F2728120600E3E1A3 /* Global.swift in Sources */,
-				5F4469B9283C6498002FA214 /* BrainFlowConstants.swift in Sources */,
+				5FE3824E28894FE7004D4D38 /* MLModule.swift in Sources */,
 				5FE950A02728120600E3E1A3 /* ReconnectView.swift in Sources */,
 				5FE950A52728120600E3E1A3 /* CustomStyles.swift in Sources */,
 				5FAFBE3827BF29E800D574B0 /* SlideShow.swift in Sources */,
-				5F4469C3283C6498002FA214 /* MLModule.swift in Sources */,
+				5FE3826C28894FE7004D4D38 /* BrainFlowConstants.swift in Sources */,
 				5F6D92F627F899F900438C09 /* ReconnectingView.swift in Sources */,
 				5F01230F2752A60700E8F07E /* TextRTView.swift in Sources */,
-				5F4469BB283C6498002FA214 /* BrainFlowExtensions.swift in Sources */,
 				5FE950A92728120600E3E1A3 /* SampleX.swift in Sources */,
 				5F1FE8FF2792E9B3005545D1 /* Experiment.swift in Sources */,
 				5FD6E2C2275BAF0E00F9A4CB /* ChangeLoadFolderView.swift in Sources */,
 				5FE950AE2728120600E3E1A3 /* CSVFile.swift in Sources */,
-				5F4469BF283C6498002FA214 /* BrainFlowInputParams.swift in Sources */,
 				5FDD249627C4DDAE007DE63B /* ContentView.swift in Sources */,
+				5FE3825D28894FE7004D4D38 /* BrainFlowInputParams.swift in Sources */,
 				5FE950AF2728120600E3E1A3 /* Inlet.swift in Sources */,
+				5FE3824928894FE7004D4D38 /* BrainFlowExtensions.swift in Sources */,
 				5FE950B02728120600E3E1A3 /* ChangeHeadsetTypeView.swift in Sources */,
-				5F4469BD283C6498002FA214 /* BrainFlowException.swift in Sources */,
 				5FE950B12728120600E3E1A3 /* StreamInfo.swift in Sources */,
+				5FE3825828894FE7004D4D38 /* BoardDescription.swift in Sources */,
 				5FE950B32728120600E3E1A3 /* Outlet.swift in Sources */,
 				5FE950B52728120600E3E1A3 /* AppState.swift in Sources */,
 				5F9D64E22757FB9100923CE8 /* ChangeSaveFolderView.swift in Sources */,
-				5F4469B7283C6498002FA214 /* DataFilter.swift in Sources */,
 				5FE950B72728120600E3E1A3 /* Headset.swift in Sources */,
+				5FE3825328894FE7004D4D38 /* DataFilter.swift in Sources */,
 				5FE950B82728120600E3E1A3 /* ChannelFormat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1051,6 +1120,7 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = BrainFlow/BrainFlow.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1113,6 +1183,7 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = BrainFlow/BrainFlow.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1126,11 +1197,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BCILab/BCILab.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development: miller.scott.thomas@gmail.com (9C6P3H9F6Q)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"BCILab/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Y8JL76N88P;
 				"DYLIB_INSTALL_NAME_BASE[arch=*]" = "@rpath";
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_BITCODE = NO;
@@ -1139,6 +1210,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
+					"$(PROJECT_DIR)/third_party",
 				);
 				INFOPLIST_FILE = BCILab/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.3;
@@ -1150,16 +1222,18 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/BCILab",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/BrainFlow/lib",
+					"$(PROJECT_DIR)/third_party/neurosdk.framework",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "Aeris-Rising.BrainWave";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = MillerScottThomasXCWildcard;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = BrainFlow/Sources/bridge.h;
+				SWIFT_OBJC_BRIDGING_HEADER = BrainFlow/BrainFlow.h;
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1187,6 +1261,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
+					"$(PROJECT_DIR)/third_party",
 				);
 				INFOPLIST_FILE = BCILab/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.3;
@@ -1198,6 +1273,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/BCILab",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/BrainFlow/lib",
+					"$(PROJECT_DIR)/third_party/neurosdk.framework",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "Aeris-Rising.BrainWave";
@@ -1207,7 +1284,7 @@
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = BrainFlow/Sources/bridge.h;
+				SWIFT_OBJC_BRIDGING_HEADER = BrainFlow/BrainFlow.h;
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1697,6 +1774,10 @@
 			productName = Numerics;
 		};
 		5F4469C6283C6E85002FA214 /* BrainFlow */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BrainFlow;
+		};
+		5FE381E62886B1EE004D4D38 /* BrainFlow */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BrainFlow;
 		};
