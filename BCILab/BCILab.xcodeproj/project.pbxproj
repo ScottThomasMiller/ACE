@@ -76,10 +76,6 @@
 		5F72F880271B5D86000C6D13 /* ChangeHeadsetTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F72F87E271B5D86000C6D13 /* ChangeHeadsetTypeView.swift */; };
 		5F72F881271B5D86000C6D13 /* ChangeHeadsetTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F72F87E271B5D86000C6D13 /* ChangeHeadsetTypeView.swift */; };
 		5F74AE3D26C6845200A53ED5 /* CSVFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F74AE3C26C6845200A53ED5 /* CSVFile.swift */; };
-		5F7FC787285FBB23009B9A2F /* neurosdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7FC779285FA6A8009B9A2F /* neurosdk.framework */; };
-		5F7FC788285FBB23009B9A2F /* neurosdk.framework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F7FC779285FA6A8009B9A2F /* neurosdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5F7FC789285FBC04009B9A2F /* libneurosdk-shared.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7FC775285FA3E2009B9A2F /* libneurosdk-shared.dylib */; };
-		5F7FC78A285FBC04009B9A2F /* libneurosdk-shared.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F7FC775285FA3E2009B9A2F /* libneurosdk-shared.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5F96968027E8B011009B8952 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 5F96967F27E8B011009B8952 /* images */; };
 		5F96968127E8B011009B8952 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 5F96967F27E8B011009B8952 /* images */; };
 		5F9D64E12757FB9000923CE8 /* ChangeSaveFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA327F27010D4400CF66E5 /* ChangeSaveFolderView.swift */; };
@@ -99,6 +95,16 @@
 		5FAFBE3627BF29E700D574B0 /* SlideShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFBE2727BE657B00D574B0 /* SlideShow.swift */; };
 		5FAFBE3727BF29E700D574B0 /* SlideShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFBE2727BE657B00D574B0 /* SlideShow.swift */; };
 		5FAFBE3827BF29E800D574B0 /* SlideShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAFBE2727BE657B00D574B0 /* SlideShow.swift */; };
+		5FB08584288C7EF60003CA62 /* libneurosdk-shared.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE3823528894D63004D4D38 /* libneurosdk-shared.dylib */; };
+		5FB08585288C7EF60003CA62 /* libneurosdk-shared.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FE3823528894D63004D4D38 /* libneurosdk-shared.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5FB08586288C7EF60003CA62 /* libneurosdk.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE3823D28894E3A004D4D38 /* libneurosdk.dylib */; };
+		5FB08587288C7EF60003CA62 /* libneurosdk.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FE3823D28894E3A004D4D38 /* libneurosdk.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5FB08589288C7F5B0003CA62 /* neurosdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7FC77C285FA7BE009B9A2F /* neurosdk.framework */; };
+		5FB0858A288C7F5B0003CA62 /* neurosdk.framework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5F7FC77C285FA7BE009B9A2F /* neurosdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5FB085A8288C85080003CA62 /* libneurosdk-shared.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB085A6288C85080003CA62 /* libneurosdk-shared.dylib */; };
+		5FB085A9288C85080003CA62 /* libneurosdk-shared.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FB085A6288C85080003CA62 /* libneurosdk-shared.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5FB085AA288C85080003CA62 /* libneurosdk.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB085A7288C85080003CA62 /* libneurosdk.dylib */; };
+		5FB085AB288C85080003CA62 /* libneurosdk.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 5FB085A7288C85080003CA62 /* libneurosdk.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5FB1117327F4F448007A9B3C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3C531227DFD7A300F27964 /* libc++.tbd */; };
 		5FB9A4FD26FB9587009EE0F1 /* BrainFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB9A4FC26FB9587009EE0F1 /* BrainFlowTests.swift */; };
 		5FC5E074282711C900276A8F /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC5E072282711BD00276A8F /* CoreBluetooth.framework */; };
@@ -122,12 +128,6 @@
 		5FDD249727C4DDAF007DE63B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC07DB426BEFB4300B1971B /* ContentView.swift */; };
 		5FDD249827C4DDB0007DE63B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC07DB426BEFB4300B1971B /* ContentView.swift */; };
 		5FE381E72886B1EE004D4D38 /* BrainFlow in Frameworks */ = {isa = PBXBuildFile; productRef = 5FE381E62886B1EE004D4D38 /* BrainFlow */; };
-		5FE3823228894C3E004D4D38 /* neurosdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7FC77C285FA7BE009B9A2F /* neurosdk.framework */; };
-		5FE3823328894C3E004D4D38 /* neurosdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7FC77C285FA7BE009B9A2F /* neurosdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5FE3823B28894E3A004D4D38 /* libneurosdk-shared.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE3823528894D63004D4D38 /* libneurosdk-shared.dylib */; };
-		5FE3823C28894E3A004D4D38 /* libneurosdk-shared.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE3823528894D63004D4D38 /* libneurosdk-shared.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		5FE3823E28894E3A004D4D38 /* libneurosdk.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE3823D28894E3A004D4D38 /* libneurosdk.dylib */; };
-		5FE3823F28894E3A004D4D38 /* libneurosdk.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE3823D28894E3A004D4D38 /* libneurosdk.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5FE3824828894FE7004D4D38 /* BrainFlowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824028894FE6004D4D38 /* BrainFlowExtensions.swift */; };
 		5FE3824928894FE7004D4D38 /* BrainFlowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824028894FE6004D4D38 /* BrainFlowExtensions.swift */; };
 		5FE3824A28894FE7004D4D38 /* BrainFlowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3824028894FE6004D4D38 /* BrainFlowExtensions.swift */; };
@@ -226,23 +226,23 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5F7FC78A285FBC04009B9A2F /* libneurosdk-shared.dylib in Embed Libraries */,
-				5F7FC788285FBB23009B9A2F /* neurosdk.framework in Embed Libraries */,
+				5FB085A9288C85080003CA62 /* libneurosdk-shared.dylib in Embed Libraries */,
+				5FB085AB288C85080003CA62 /* libneurosdk.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5FE3823428894C3E004D4D38 /* Embed Frameworks */ = {
+		5FB08588288C7EF60003CA62 /* Embed Libraries */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5FE3823C28894E3A004D4D38 /* libneurosdk-shared.dylib in Embed Frameworks */,
-				5FE3823F28894E3A004D4D38 /* libneurosdk.dylib in Embed Frameworks */,
-				5FE3823328894C3E004D4D38 /* neurosdk.framework in Embed Frameworks */,
+				5FB08585288C7EF60003CA62 /* libneurosdk-shared.dylib in Embed Libraries */,
+				5FB0858A288C7F5B0003CA62 /* neurosdk.framework in Embed Libraries */,
+				5FB08587288C7EF60003CA62 /* libneurosdk.dylib in Embed Libraries */,
 			);
-			name = "Embed Frameworks";
+			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -289,14 +289,13 @@
 		5F6D92F427F899F900438C09 /* ReconnectingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconnectingView.swift; sourceTree = "<group>"; };
 		5F72F87E271B5D86000C6D13 /* ChangeHeadsetTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeHeadsetTypeView.swift; sourceTree = "<group>"; };
 		5F74AE3C26C6845200A53ED5 /* CSVFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVFile.swift; sourceTree = "<group>"; };
-		5F7FC775285FA3E2009B9A2F /* libneurosdk-shared.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libneurosdk-shared.dylib"; path = "BrainFlow/lib/libneurosdk-shared.dylib"; sourceTree = "<group>"; };
-		5F7FC779285FA6A8009B9A2F /* neurosdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = neurosdk.framework; path = ../../../Downloads/neurosdk.framework; sourceTree = "<group>"; };
 		5F7FC77C285FA7BE009B9A2F /* neurosdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = neurosdk.framework; path = third_party/neurosdk.framework; sourceTree = "<group>"; };
-		5F7FC781285FB335009B9A2F /* libneurosdk.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libneurosdk.dylib; path = BrainFlow/lib/libneurosdk.dylib; sourceTree = "<group>"; };
 		5F86ADAE27DE7E6600CFBD2A /* BCILabMB.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BCILabMB.entitlements; sourceTree = "<group>"; };
 		5F96967F27E8B011009B8952 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		5FAFBE2727BE657B00D574B0 /* SlideShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideShow.swift; sourceTree = "<group>"; };
 		5FAFBE2B27BE81CB00D574B0 /* LabeledImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledImage.swift; sourceTree = "<group>"; };
+		5FB085A6288C85080003CA62 /* libneurosdk-shared.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libneurosdk-shared.dylib"; path = "BrainFlow/lib/macOS/libneurosdk-shared.dylib"; sourceTree = "<group>"; };
+		5FB085A7288C85080003CA62 /* libneurosdk.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libneurosdk.dylib; path = BrainFlow/lib/macOS/libneurosdk.dylib; sourceTree = "<group>"; };
 		5FB1117427F535E4007A9B3C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FB9A4F726FB9587009EE0F1 /* BrainFlowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrainFlowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB9A4FC26FB9587009EE0F1 /* BrainFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainFlowTests.swift; sourceTree = "<group>"; };
@@ -309,7 +308,6 @@
 		5FCD108C26DD3806000A6FFE /* Headset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Headset.swift; sourceTree = "<group>"; };
 		5FD6E2C0275BAF0E00F9A4CB /* ChangeLoadFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLoadFolderView.swift; sourceTree = "<group>"; };
 		5FE3823528894D63004D4D38 /* libneurosdk-shared.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libneurosdk-shared.dylib"; path = "third_party/neurosdk.framework/libneurosdk-shared.dylib"; sourceTree = "<group>"; };
-		5FE3823828894E07004D4D38 /* neurosdk */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = neurosdk; path = third_party/neurosdk.framework/neurosdk; sourceTree = "<group>"; };
 		5FE3823D28894E3A004D4D38 /* libneurosdk.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libneurosdk.dylib; path = third_party/neurosdk.framework/libneurosdk.dylib; sourceTree = "<group>"; };
 		5FE3824028894FE6004D4D38 /* BrainFlowExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrainFlowExtensions.swift; sourceTree = "<group>"; };
 		5FE3824128894FE6004D4D38 /* MLModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLModule.swift; sourceTree = "<group>"; };
@@ -330,12 +328,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FC5E074282711C900276A8F /* CoreBluetooth.framework in Frameworks */,
+				5FB08586288C7EF60003CA62 /* libneurosdk.dylib in Frameworks */,
 				5FE381E72886B1EE004D4D38 /* BrainFlow in Frameworks */,
-				5FE3823E28894E3A004D4D38 /* libneurosdk.dylib in Frameworks */,
+				5FB08584288C7EF60003CA62 /* libneurosdk-shared.dylib in Frameworks */,
 				5F256C902827F038008CA398 /* Numerics in Frameworks */,
 				5FB1117327F4F448007A9B3C /* libc++.tbd in Frameworks */,
-				5FE3823B28894E3A004D4D38 /* libneurosdk-shared.dylib in Frameworks */,
-				5FE3823228894C3E004D4D38 /* neurosdk.framework in Frameworks */,
+				5FB08589288C7F5B0003CA62 /* neurosdk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,10 +362,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F7FC789285FBC04009B9A2F /* libneurosdk-shared.dylib in Frameworks */,
 				5FC5E09B2827263900276A8F /* libc++.tbd in Frameworks */,
+				5FB085AA288C85080003CA62 /* libneurosdk.dylib in Frameworks */,
+				5FB085A8288C85080003CA62 /* libneurosdk-shared.dylib in Frameworks */,
 				5F4469C7283C6E85002FA214 /* BrainFlow in Frameworks */,
-				5F7FC787285FBB23009B9A2F /* neurosdk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,12 +543,10 @@
 			isa = PBXGroup;
 			children = (
 				5FE3823D28894E3A004D4D38 /* libneurosdk.dylib */,
-				5FE3823828894E07004D4D38 /* neurosdk */,
 				5FE3823528894D63004D4D38 /* libneurosdk-shared.dylib */,
-				5F7FC781285FB335009B9A2F /* libneurosdk.dylib */,
-				5F7FC779285FA6A8009B9A2F /* neurosdk.framework */,
+				5FB085A6288C85080003CA62 /* libneurosdk-shared.dylib */,
+				5FB085A7288C85080003CA62 /* libneurosdk.dylib */,
 				5F7FC77C285FA7BE009B9A2F /* neurosdk.framework */,
-				5F7FC775285FA3E2009B9A2F /* libneurosdk-shared.dylib */,
 				5FC5E072282711BD00276A8F /* CoreBluetooth.framework */,
 				5F3C531227DFD7A300F27964 /* libc++.tbd */,
 			);
@@ -575,7 +571,7 @@
 				5F58BD0826AC1C5D003F5483 /* Sources */,
 				5F58BD0926AC1C5D003F5483 /* Frameworks */,
 				5F58BD0A26AC1C5D003F5483 /* Resources */,
-				5FE3823428894C3E004D4D38 /* Embed Frameworks */,
+				5FB08588288C7EF60003CA62 /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -707,7 +703,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1330;
+				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					5F58BD0B26AC1C5D003F5483 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -1480,7 +1476,6 @@
 		5FE950CC2728120600E3E1A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BCILabMB/BCILabMB.entitlements;
@@ -1512,6 +1507,7 @@
 					"$(PROJECT_DIR)/BCILab",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/BrainFlow/lib",
+					"$(PROJECT_DIR)/BrainFlow/lib/macOS",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1530,7 +1526,6 @@
 		5FE950CD2728120600E3E1A3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BCILabMB/BCILabMB.entitlements;
@@ -1562,9 +1557,10 @@
 					"$(PROJECT_DIR)/BCILab",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/BrainFlow/lib",
+					"$(PROJECT_DIR)/BrainFlow/lib/macOS",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "Aeris-Rising.BrainWaveMacOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
