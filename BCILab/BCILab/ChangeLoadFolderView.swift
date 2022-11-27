@@ -33,7 +33,7 @@ extension FileManager {
     }
 
     func imageURLs(of folder: URL ) -> [URL]? {
-        let imageExts = ["jpg","jpeg","png"]
+        let imageExts = ["jpg","jpeg","png", "mov", "mp4"]
         if let fileURLs = try? contentsOfDirectory(at: folder, includingPropertiesForKeys: nil,
                                                    options: .skipsHiddenFiles) {
             let imageURLs = fileURLs.filter { url in imageExts.contains { $0 == url.pathExtension }}
@@ -73,27 +73,26 @@ struct ChangeLoadFolderView: View {
         return true
     }
 
-    private func pickFoldermacOS() {
-        #if os(macOS)
-            let panel = NSOpenPanel()
-            panel.allowsMultipleSelection = false
-            panel.canChooseDirectories = true
-            panel.canChooseFiles = false
-     
-            print("pickFolder()")
-            if panel.runModal() == .OK {
-                if let selectedURL = panel.url {
-                    print("selectedURL: \(selectedURL)")
-                    if (selectedURL != self.loadFolderURL) && validateFolder(folder: selectedURL) {
-                        self.loadFolderURL = selectedURL
-                        try? BoardShim.logMessage(.LEVEL_INFO, "New load folder URL: \(selectedURL)") }}}
-        #endif
-    }
+//    private func pickFolder() {
+//        let panel = NSOpenPanel()
+//        panel.allowsMultipleSelection = false
+//        panel.canChooseDirectories = true
+//        panel.canChooseFiles = false
+//
+//        print("pickFolder()")
+//        if panel.runModal() == .OK {
+//            if let selectedURL = panel.url {
+//                print("selectedURL: \(selectedURL)")
+//                if (selectedURL != self.loadFolderURL) && validateFolder(folder: selectedURL) {
+//                    self.loadFolderURL = selectedURL
+//                    try? BoardShim.logMessage(.LEVEL_INFO, "New load folder URL: \(selectedURL)") }}}
+//    }
 
     var body: some View {
         let pickerLabel = Text("").foregroundColor(.black)
         let files = FileManager()
-        let folders = files.subFolders(of: files.getDocumentsDirectory())
+        let images = files.getDocumentsDirectory().appendingPathComponent("images", isDirectory: true)
+        let folders = files.subFolders(of: images)
         ZStack {
             Color.white
             VStack(alignment: .leading, spacing: 10) {

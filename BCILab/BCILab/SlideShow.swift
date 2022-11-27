@@ -42,13 +42,11 @@ struct SlideShow: View {
         let data = try Data(contentsOf: url)
         #if os(macOS)
             guard let nsImage = NSImage(data: data) else {
-                try? BoardShim.logMessage(.LEVEL_ERROR, "cannot load image URL: \(url)")
                 return nil
             }
             return Image(nsImage: nsImage)
         #else
             guard let uiImage = UIImage(data: data) else {
-                try? BoardShim.logMessage(.LEVEL_ERROR, "cannot load image URL: \(url)")
                 return nil
             }
             return Image(uiImage: uiImage)
@@ -61,17 +59,18 @@ struct SlideShow: View {
         
         if let urls = FileManager.default.imageURLs(of: from) {
             for url in urls {
+                guard count < maxImages else {
+                    try? BoardShim.logMessage(.LEVEL_INFO, "reached limit of \(maxImages) images")
+                    break
+                }
                 guard let image = try? loadURL(url) else {
                     try? BoardShim.logMessage(.LEVEL_ERROR, "Error loading image: \(url)")
-                    continue }
+                    break
+                }
                 
                 let labeledImage = LabeledImage(image: image, marker: marker)
                 labeledImages.append(labeledImage)
                 count += 1
-
-                guard count < maxImages else {
-                    try? BoardShim.logMessage(.LEVEL_INFO, "reached limit of \(maxImages) images")
-                    break }
             }
         }
         
@@ -130,22 +129,23 @@ struct SlideShow: View {
     // Load a randomized array of all subfolders, with blanks inserted between each image.
     // Use the subfolder names for the image labels.
     private func prepareImages (from folder: URL) -> ([LabeledImage], [String]) {
-        try? BoardShim.logMessage(.LEVEL_INFO, "prepareImages(). load folder:\n\(folder)")
         var marker: Double = 0
         var newImages = [LabeledImage]()
         var labels = [String]()
 
+        try? BoardShim.logMessage(.LEVEL_INFO, "loading images from: \(folder)")
 //        guard folder.startAccessingSecurityScopedResource() else {
 //            try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot access folder: \(folder)")
 //            return (newImages, labels)
 //        }
-//        
+//
 //        defer { folder.stopAccessingSecurityScopedResource() }
         
         guard let blankImage = getImage("black_crosshair.jpeg") else {
             try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load crosshair image")
             return (newImages, labels)
         }
+        
         guard let endImage = getImage("end.png") else {
             try? BoardShim.logMessage(.LEVEL_INFO, "Error: cannot load end image")
             return (newImages, labels)

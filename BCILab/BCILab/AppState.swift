@@ -12,7 +12,7 @@ class AppState: ObservableObject {
     static public let docsFolder: URL = Bundle.main.bundleURL
 
     @Published var saveFolder = Bundle.main.resourceURL!.appendingPathComponent("save")
-    @Published var loadFolder = Bundle.main.resourceURL!.appendingPathComponent("images/default")
+    @Published var loadFolder = Bundle.main.resourceURL!.appendingPathComponent("Documents/images/default")
     @Published var intervalSeconds: Double = 1.0
     @Published var boardId: BoardIds = .SYNTHETIC_BOARD 
 

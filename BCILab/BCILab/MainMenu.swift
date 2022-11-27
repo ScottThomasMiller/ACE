@@ -60,7 +60,7 @@ struct MainMenu: View {
                         } // List
                         .navigationTitle("Main Menu")
                     } // ZStack
-                }
+                } // NavigationView
                 Spacer()
                 AppStatusView(appState: appState).frame(width: 0.9*fWidth, height: 0.18*fHeight, alignment: .center)
                 Spacer()

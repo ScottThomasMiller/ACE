@@ -47,15 +47,15 @@ struct ButtonText: View {
     }
 }
 
-//struct GrowingButton_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Button(action: { print("test") }) {
-//            Text("Retry")
-//                .fontWeight(.bold)
-//                .font(.title)
-//                .padding()
-//                .foregroundColor(.white)
-//        }
-//        .buttonStyle(GrowingButton(color: .green))
-//    }
-//}
+struct GrowingButton_Previews: PreviewProvider {
+    static var previews: some View {
+        Button(action: { print("test") }) {
+            Text("Retry")
+                .fontWeight(.bold)
+                .font(.title)
+                .padding()
+                .foregroundColor(.white)
+        }
+        .buttonStyle(GrowingButton(color: .green))
+    }
+}

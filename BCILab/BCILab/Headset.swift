@@ -52,10 +52,10 @@ class Headset {
     var saveURL: URL?
     let samplingRate: Int32
     let eegChannels: [Int32]
+    let analogChannels: [Int32]?
     let pkgIDchannel: Int
     let timestampChannel: Int
     let markerChannel: Int
-
 
     init(boardId: BoardIds) throws {
         self.boardId = boardId
@@ -66,6 +66,7 @@ class Headset {
             self.board = try BoardShim(boardId, params)
             self.samplingRate = try BoardShim.getSamplingRate(boardId)
             self.eegChannels = try BoardShim.getEEGchannels(boardId)
+            self.analogChannels = try? BoardShim.getAnalogChannels(boardId)
             self.markerChannel = try Int(BoardShim.getMarkerChannel(boardId))
             self.pkgIDchannel = try Int(BoardShim.getPackageNumChannel(boardId))
             self.timestampChannel = try Int(BoardShim.getTimestampChannel(boardId))
@@ -187,45 +188,54 @@ class Headset {
         filteredFile = CSVFile(fileName: "BrainWave-EEG-Filtered").create(id: uqID, saveFolder: saveURL)
         writeHeaders()
     }
+
+    func getSamples(channel: Int32, matrixRaw: [[Double]], samplingRate: Int32) -> ([Double], [Double]) {
+        let ch = Int(channel)
+        let numSamples = matrixRaw[0].count
+        var filtered = matrixRaw[ch].map { $0 / 24.0 }
+        try? DataFilter.removeEnvironmentalNoise(data: &filtered, samplingRate: samplingRate, noiseType: NoiseTypes.SIXTY)
+        var rawSample = [Double]()
+        var filteredSample = [Double]()
+        for iSample in 0..<numSamples {
+            rawSample.append(matrixRaw[ch][iSample])
+            filteredSample.append(filtered[iSample])
+        }
+
+        return (rawSample, filteredSample)
+    }
     
     func writeStream(_ matrixRaw: [[Double]]) {
         guard (rawFile != nil) && (filteredFile != nil) else {
             try? BoardShim.logMessage(.LEVEL_ERROR, "data files are not open")
             return
         }
-        
         let raw = rawFile!
         let filtered = filteredFile!
-        
-        do {
-            let numSamples = matrixRaw[0].count
-            let pkgIDs = matrixRaw[pkgIDchannel]
-            let timestamps = matrixRaw[timestampChannel]
-            let markers = matrixRaw[markerChannel]
-            var rawSamples = [[Double]]()
-            var filteredSamples = [[Double]]()
-            for channel in eegChannels {
-                let ch = Int(channel)
-                var filtered = matrixRaw[ch].map { $0 / 24.0 }
-                try DataFilter.removeEnvironmentalNoise(data: &filtered, samplingRate: samplingRate, noiseType: NoiseTypes.SIXTY)
-                var rawSample = [Double]()
-                var filteredSample = [Double]()
-                for iSample in 0..<numSamples {
-                    rawSample.append(matrixRaw[ch][iSample])
-                    filteredSample.append(filtered[iSample])
-                }
-                rawSamples.append(rawSample)
-                filteredSamples.append(filteredSample)
-            }
-            
-            raw.writeEEGsamples(pkgIDs: pkgIDs, timestamps: timestamps, markers: markers, samples: rawSamples)
-            filtered.writeEEGsamples(pkgIDs: pkgIDs, timestamps: timestamps, markers: markers, samples: filteredSamples)
-        } catch let bfError as BrainFlowException {
-            try? BoardShim.logMessage (.LEVEL_ERROR, bfError.message)
-            try? BoardShim.logMessage (.LEVEL_ERROR, "Error code: \(bfError.errorCode)")
-        } catch {
-            try? BoardShim.logMessage (.LEVEL_ERROR, "cannot stream EEG samples to data files.\nError: \(error)")
+        let pkgIDs = matrixRaw[pkgIDchannel]
+        let timestamps = matrixRaw[timestampChannel]
+        let markers = matrixRaw[markerChannel]
+        var rawSamples = [[Double]]()
+        var filteredSamples = [[Double]]()
+        var analogs = [Int32]()
+        if analogChannels != nil {
+            analogs = analogChannels!
         }
+        
+        for channel in eegChannels {
+            let (rawSample, filteredSample) =
+                getSamples(channel: channel, matrixRaw: matrixRaw, samplingRate: samplingRate)
+            rawSamples.append(rawSample)
+            filteredSamples.append(filteredSample)
+        }
+        for channel in analogs {
+            let (rawSample, filteredSample) =
+                getSamples(channel: channel, matrixRaw: matrixRaw, samplingRate: samplingRate)
+            rawSamples.append(rawSample)
+            filteredSamples.append(filteredSample)
+        }
+
+        raw.writeEEGsamples(pkgIDs: pkgIDs, timestamps: timestamps, markers: markers, samples: rawSamples)
+        filtered.writeEEGsamples(pkgIDs: pkgIDs, timestamps: timestamps, markers: markers, samples: filteredSamples)
     }
     
     func writeHeaders() {
@@ -353,4 +363,22 @@ class Headset {
         }
     }
 
+    static func describe(_ boardId: BoardIds) -> String {
+        let accelChannels = try? BoardShim.getAccelChannels(boardId)
+        let ecgChannels = try? BoardShim.getECGchannels(boardId)
+        let eegChannels = try? BoardShim.getEEGchannels(boardId)
+        let emgChannels = try? BoardShim.getEMGchannels(boardId)
+        let eogChannels = try? BoardShim.getEOGchannels(boardId)
+        let analogChannels = try? BoardShim.getAnalogChannels(boardId)
+        let description = try? BoardShim.getBoardDescr(boardId)
+
+        print("accelChannels: \(String(describing: accelChannels))")
+        print("ecgChannels: \(String(describing: ecgChannels))")
+        print("eegChannels: \(String(describing: eegChannels))")
+        print("emgChannels: \(String(describing: emgChannels))")
+        print("eogChannels: \(String(describing: eogChannels))")
+        print("analogChannels: \(String(describing: analogChannels))")
+        
+        return String(describing: description)
+    }
 }

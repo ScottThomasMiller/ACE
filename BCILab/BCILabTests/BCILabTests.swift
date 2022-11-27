@@ -143,6 +143,10 @@ class BCILabTests: XCTestCase {
 //        XCTAssert(result == .SYNTHETIC_BOARD)
 //    }
 
+    func testChannels() {
+        print("description:\n"+BoardShim.getBoardDescr(board_id))
+    }
+    
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {
